@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Planning Sheet - AI Kids Spark Learn</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #9b59b6;
+            margin: 0;
+        }
+
+        .section {
+            margin: 25px 0;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #3498db;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        .planning-box {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .planning-box h3 {
+            margin-top: 0;
+            color: #9b59b6;
+            font-size: 16px;
+        }
+
+        .line {
+            border-bottom: 1px solid #ddd;
+            margin: 10px 0;
+            min-height: 30px;
+        }
+
+        .checklist {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .checklist-item {
+            margin: 8px 0;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ Print to PDF</button>
+
+    <div class="header">
+        <h1>🎬 Video Planning Sheet</h1>
+        <p>Organize Your AI Video Project!</p>
+        <p><strong>Name:</strong> _____________________________ <strong>Date:</strong> _____________</p>
+    </div>
+
+    <div class="section">
+        <h2>📝 Project Overview</h2>
+        <div class="planning-box">
+            <h3>Video Title:</h3>
+            <div class="line"></div>
+        </div>
+
+        <div class="planning-box">
+            <h3>Video Type:</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox"> Story Video
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Educational
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Animation
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Other: _______________________
+                </div>
+            </div>
+        </div>
+
+        <div class="planning-box">
+            <h3>What is your video about? (Main idea)</h3>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="planning-box">
+            <h3>Who is your audience?</h3>
+            <div class="line"></div>
+            <p style="font-size: 12px; color: #666;">Who will watch this video? (Kids, teachers, family, friends?)</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎨 Creative Choices</h2>
+        <div class="planning-box">
+            <h3>Art Style:</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox"> Cartoon
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Realistic
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Anime
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Other: _______________________
+                </div>
+            </div>
+        </div>
+
+        <div class="planning-box">
+            <h3>Color Palette/Mood:</h3>
+            <div class="line"></div>
+            <p style="font-size: 12px; color: #666;">Bright and colorful? Dark and mysterious? Soft and calm?</p>
+        </div>
+
+        <div class="planning-box">
+            <h3>Music/Sound:</h3>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🛠️ Tools & Resources</h2>
+        <div class="planning-box">
+            <h3>AI Tool I'll Use:</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox"> Runway ML
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> D-ID
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Canva AI Video
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Other: _______________________
+                </div>
+            </div>
+        </div>
+
+        <div class="planning-box">
+            <h3>Number of Scenes:</h3>
+            <div class="line"></div>
+            <p style="font-size: 12px; color: #666;">Recommended: 3-5 scenes for your first video</p>
+        </div>
+
+        <div class="planning-box">
+            <h3>Estimated Total Length:</h3>
+            <div class="line"></div>
+            <p style="font-size: 12px; color: #666;">Example: 15-30 seconds</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>✅ Production Checklist</h2>
+        <div class="checklist">
+            <div class="checklist-item">
+                <input type="checkbox"> <strong>Pre-Production</strong>
+            </div>
+            <div style="margin-left: 30px;">
+                <div class="checklist-item">
+                    <input type="checkbox"> Completed storyboard
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Wrote all prompts
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Chose AI tool
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox"> <strong>Production</strong>
+            </div>
+            <div style="margin-left: 30px;">
+                <div class="checklist-item">
+                    <input type="checkbox"> Generated all scenes
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Downloaded clips
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Organized files
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox"> <strong>Post-Production</strong>
+            </div>
+            <div style="margin-left: 30px;">
+                <div class="checklist-item">
+                    <input type="checkbox"> Combined scenes
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Added music/sound
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Added text/captions
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox"> Final review
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>💭 Reflection</h2>
+        <div class="planning-box">
+            <h3>What do you hope viewers will feel or learn?</h3>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="planning-box">
+            <h3>What challenges do you expect?</h3>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>AI Kids Spark Learn | AI Video Magic Project</p>
+        <p>© 2024 | For educational use</p>
+    </div>
+</body>
+
+</html>

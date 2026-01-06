@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Art Gallery Template - AI Kids Spark Learn</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #e74c3c;
+            margin: 0;
+        }
+
+        .info-box {
+            border: 2px dashed #ccc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .art-frame {
+            border: 3px solid #333;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            min-height: 200px;
+            page-break-inside: avoid;
+        }
+
+        .art-frame .image-space {
+            border: 2px dashed #ccc;
+            min-height: 150px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .art-frame .details {
+            font-size: 12px;
+        }
+
+        .art-frame .details div {
+            margin: 5px 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ Print to PDF</button>
+
+    <div class="header">
+        <h1>🖼️ My AI Art Gallery</h1>
+        <p>Showcase your amazing AI creations!</p>
+    </div>
+
+    <div class="info-box">
+        <strong>Artist Name:</strong> _________________________________
+        <br><br>
+        <strong>Gallery Theme:</strong> _________________________________
+        <br><br>
+        <strong>Date Created:</strong> _________________________________
+    </div>
+
+    <div class="gallery-grid">
+        <div class="art-frame">
+            <div class="image-space">Paste or draw your AI art here</div>
+            <div class="details">
+                <div><strong>Title:</strong> _________________________</div>
+                <div><strong>Prompt Used:</strong> _________________________</div>
+                <div><strong>Style:</strong> _________________________</div>
+                <div><strong>Tool:</strong> _________________________</div>
+            </div>
+        </div>
+
+        <div class="art-frame">
+            <div class="image-space">Paste or draw your AI art here</div>
+            <div class="details">
+                <div><strong>Title:</strong> _________________________</div>
+                <div><strong>Prompt Used:</strong> _________________________</div>
+                <div><strong>Style:</strong> _________________________</div>
+                <div><strong>Tool:</strong> _________________________</div>
+            </div>
+        </div>
+
+        <div class="art-frame">
+            <div class="image-space">Paste or draw your AI art here</div>
+            <div class="details">
+                <div><strong>Title:</strong> _________________________</div>
+                <div><strong>Prompt Used:</strong> _________________________</div>
+                <div><strong>Style:</strong> _________________________</div>
+                <div><strong>Tool:</strong> _________________________</div>
+            </div>
+        </div>
+
+        <div class="art-frame">
+            <div class="image-space">Paste or draw your AI art here</div>
+            <div class="details">
+                <div><strong>Title:</strong> _________________________</div>
+                <div><strong>Prompt Used:</strong> _________________________</div>
+                <div><strong>Style:</strong> _________________________</div>
+                <div><strong>Tool:</strong> _________________________</div>
+            </div>
+        </div>
+
+        <div class="art-frame">
+            <div class="image-space">Paste or draw your AI art here</div>
+            <div class="details">
+                <div><strong>Title:</strong> _________________________</div>
+                <div><strong>Prompt Used:</strong> _________________________</div>
+                <div><strong>Style:</strong> _________________________</div>
+                <div><strong>Tool:</strong> _________________________</div>
+            </div>
+        </div>
+
+        <div class="art-frame">
+            <div class="image-space">Paste or draw your AI art here</div>
+            <div class="details">
+                <div><strong>Title:</strong> _________________________</div>
+                <div><strong>Prompt Used:</strong> _________________________</div>
+                <div><strong>Style:</strong> _________________________</div>
+                <div><strong>Tool:</strong> _________________________</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #856404; margin-top: 0;">📝 Gallery Notes:</h3>
+        <p style="margin: 5px 0;">What did you learn from creating these images?</p>
+        <div style="border-bottom: 1px solid #ccc; margin: 10px 0; min-height: 25px;"></div>
+        <div style="border-bottom: 1px solid #ccc; margin: 10px 0; min-height: 25px;"></div>
+        <p style="margin: 15px 0 5px 0;">Which is your favorite and why?</p>
+        <div style="border-bottom: 1px solid #ccc; margin: 10px 0; min-height: 25px;"></div>
+        <div style="border-bottom: 1px solid #ccc; margin: 10px 0; min-height: 25px;"></div>
+    </div>
+
+    <div class="footer">
+        <p>AI Kids Spark Learn | AI Art Studio Project</p>
+        <p>© 2024 | For educational use</p>
+    </div>
+</body>
+
+</html>

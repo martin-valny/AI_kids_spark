@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script Writing Guide - AI Kids Spark Learn</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #f39c12;
+            margin: 0;
+        }
+
+        .section {
+            margin: 25px 0;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #e74c3c;
+            border-left: 4px solid #e74c3c;
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        .example-box {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .example-box h4 {
+            color: #3498db;
+            margin: 0 0 10px 0;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .bad-example {
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e74c3c;
+        }
+
+        .good-example {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #27ae60;
+        }
+
+        .formula-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #f39c12;
+        }
+
+        .script-template {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .line {
+            border-bottom: 1px solid #ddd;
+            margin: 10px 0;
+            min-height: 30px;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ Print to PDF</button>
+
+    <div class="header">
+        <h1>✍️ AI Video Script Writing Guide</h1>
+        <p>Write Better Prompts for Amazing Videos!</p>
+    </div>
+
+    <div class="section">
+        <h2>📝 The Video Prompt Formula</h2>
+        <div class="formula-box">
+            <h3 style="color: #f39c12; margin-top: 0;">🎯 Perfect Prompt = Subject + Action + Setting + Details + Style
+            </h3>
+            <p><strong>Example:</strong></p>
+            <p style="font-family: monospace; background: white; padding: 10px; border-radius: 5px;">
+                "A friendly robot [subject] waving hello [action] in a colorful garden [setting] with flowers and
+                butterflies [details], cartoon style [style]"
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>❌ vs ✅ Prompt Examples</h2>
+
+        <div class="comparison">
+            <div class="bad-example">
+                <h4 style="color: #e74c3c; margin: 0 0 10px 0;">❌ TOO SIMPLE</h4>
+                <p style="font-family: monospace; font-size: 14px;">"a cat"</p>
+                <p style="font-size: 12px; margin-top: 10px;"><strong>Problem:</strong> Not enough details!</p>
+            </div>
+            <div class="good-example">
+                <h4 style="color: #27ae60; margin: 0 0 10px 0;">✅ MUCH BETTER</h4>
+                <p style="font-family: monospace; font-size: 14px;">"a fluffy orange cat playing with a ball of yarn in
+                    a cozy living room, sunlight streaming through window, realistic style"</p>
+                <p style="font-size: 12px; margin-top: 10px;"><strong>Why:</strong> Specific details create better
+                    videos!</p>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <div class="bad-example">
+                <h4 style="color: #e74c3c; margin: 0 0 10px 0;">❌ TOO VAGUE</h4>
+                <p style="font-family: monospace; font-size: 14px;">"space"</p>
+                <p style="font-size: 12px; margin-top: 10px;"><strong>Problem:</strong> What about space?</p>
+            </div>
+            <div class="good-example">
+                <h4 style="color: #27ae60; margin: 0 0 10px 0;">✅ MUCH BETTER</h4>
+                <p style="font-family: monospace; font-size: 14px;">"an astronaut floating near a space station with
+                    Earth visible below, stars twinkling in background, cinematic style"</p>
+                <p style="font-size: 12px; margin-top: 10px;"><strong>Why:</strong> Clear scene and atmosphere!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>💡 Pro Tips for Great Video Prompts</h2>
+        <div class="example-box">
+            <h4>1. Be Specific About Movement</h4>
+            <p>Instead of: "a bird"</p>
+            <p>Try: "a blue bird flying through clouds" or "a bird landing on a branch"</p>
+        </div>
+
+        <div class="example-box">
+            <h4>2. Describe the Atmosphere</h4>
+            <p>Add words like: sunny, rainy, foggy, bright, dark, peaceful, exciting</p>
+            <p>Example: "a peaceful forest at sunrise with morning mist"</p>
+        </div>
+
+        <div class="example-box">
+            <h4>3. Include Camera Angles (Optional)</h4>
+            <p>Try: "close-up shot", "wide angle view", "bird's eye view"</p>
+            <p>Example: "close-up shot of a flower blooming"</p>
+        </div>
+
+        <div class="example-box">
+            <h4>4. Keep It Short and Clear</h4>
+            <p>Aim for 1-2 sentences per scene</p>
+            <p>Too long = confusing. Too short = not enough detail.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎬 Scene-by-Scene Script Template</h2>
+
+        <div class="script-template">
+            <h3 style="color: #e74c3c; margin-top: 0;">Scene 1:</h3>
+            <p><strong>What happens:</strong></p>
+            <div class="line"></div>
+            <p><strong>AI Prompt:</strong></p>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="script-template">
+            <h3 style="color: #e74c3c; margin-top: 0;">Scene 2:</h3>
+            <p><strong>What happens:</strong></p>
+            <div class="line"></div>
+            <p><strong>AI Prompt:</strong></p>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="script-template">
+            <h3 style="color: #e74c3c; margin-top: 0;">Scene 3:</h3>
+            <p><strong>What happens:</strong></p>
+            <div class="line"></div>
+            <p><strong>AI Prompt:</strong></p>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎨 Style Keywords to Try</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong>cartoon style</strong>
+            </div>
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong>realistic</strong>
+            </div>
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong>anime style</strong>
+            </div>
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong>cinematic</strong>
+            </div>
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong>3D animation</strong>
+            </div>
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong>watercolor</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>AI Kids Spark Learn | AI Video Magic Project</p>
+        <p>© 2024 | For educational use</p>
+    </div>
+</body>
+
+</html>

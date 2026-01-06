@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhythm Game Cards - AI Kids Spark Learn</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .card {
+                page-break-inside: avoid;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.4in;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0 0 8px 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin: 0;
+            opacity: 0.95;
+            font-size: 14px;
+        }
+
+        .instructions {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 3px solid #ffc107;
+        }
+
+        .instructions h3 {
+            margin: 0 0 10px 0;
+            color: #f39c12;
+            font-size: 18px;
+        }
+
+        .instructions ol {
+            margin: 8px 0;
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Game Ideas Section */
+        .game-ideas {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 3px solid #3498db;
+        }
+
+        .game-ideas h3 {
+            margin: 0 0 12px 0;
+            color: #3498db;
+            font-size: 18px;
+        }
+
+        .game-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .game-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .game-item strong {
+            color: #2c3e50;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .game-item p {
+            margin: 0;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border: 3px dashed #95a5a6;
+            border-radius: 15px;
+            padding: 18px;
+            text-align: center;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: white;
+        }
+
+        /* Difficulty Colors */
+        .card.easy {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-color: #27ae60;
+        }
+
+        .card.medium {
+            background: linear-gradient(135deg, #cce5ff 0%, #b3d9ff 100%);
+            border-color: #3498db;
+        }
+
+        .card.hard {
+            background: linear-gradient(135deg, #e8daef 0%, #d7bde2 100%);
+            border-color: #9b59b6;
+        }
+
+        .card.blank {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-color: #f39c12;
+        }
+
+        /* Cut Line Indicators */
+        .card::before {
+            content: '✂️';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            background: white;
+            padding: 0 8px;
+        }
+
+        .difficulty-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 16px;
+        }
+
+        .card-number {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .card .pattern {
+            font-size: 40px;
+            margin: 12px 0;
+            letter-spacing: 8px;
+            line-height: 1.2;
+        }
+
+        .card .description {
+            font-size: 13px;
+            margin-top: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .card .difficulty-label {
+            font-size: 11px;
+            margin-top: 6px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #ecf0f1;
+            color: #95a5a6;
+            font-size: 11px;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ Print to PDF</button>
+
+    <div class="header">
+        <h1>🎵 Rhythm Game Cards</h1>
+        <p>Cut, Play, and Create Your Own Musical Patterns!</p>
+    </div>
+
+    <div class="instructions">
+        <h3>✂️ How to Use These Cards:</h3>
+        <ol>
+            <li><strong>Print</strong> this page in color (or black & white works too!)</li>
+            <li><strong>Cut</strong> along the dotted lines (look for the ✂️ scissors)</li>
+            <li><strong>Practice</strong> each rhythm pattern by clapping, stomping, or waving</li>
+            <li><strong>Play games</strong> with the cards (see ideas below!)</li>
+        </ol>
+    </div>
+
+    <div class="game-ideas">
+        <h3>🎮 Fun Games to Play with Your Cards:</h3>
+        <div class="game-list">
+            <div class="game-item">
+                <strong>🎯 Pattern Match</strong>
+                <p>Pick a card and perform it. Can a friend guess which card you're doing?</p>
+            </div>
+            <div class="game-item">
+                <strong>🔀 Mix & Match</strong>
+                <p>Combine 2-3 cards to create a super long rhythm pattern!</p>
+            </div>
+            <div class="game-item">
+                <strong>⚡ Speed Challenge</strong>
+                <p>How fast can you perform all the patterns without mistakes?</p>
+            </div>
+            <div class="game-item">
+                <strong>🎲 Random Rhythm</strong>
+                <p>Shuffle cards face down. Pick one and perform it. Repeat!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-grid">
+        <!-- Easy Cards (Green) -->
+        <div class="card easy">
+            <div class="difficulty-badge">⭐</div>
+            <div class="card-number">Card 1</div>
+            <div class="pattern">👏 👏 ⏸️</div>
+            <div class="description">Clap - Clap - Pause</div>
+            <div class="difficulty-label">Easy</div>
+        </div>
+
+        <div class="card easy">
+            <div class="difficulty-badge">⭐</div>
+            <div class="card-number">Card 2</div>
+            <div class="pattern">👏 👏 👏</div>
+            <div class="description">Clap - Clap - Clap</div>
+            <div class="difficulty-label">Easy</div>
+        </div>
+
+        <div class="card easy">
+            <div class="difficulty-badge">⭐</div>
+            <div class="card-number">Card 3</div>
+            <div class="pattern">🦶 🦶 ⏸️</div>
+            <div class="description">Stomp - Stomp - Pause</div>
+            <div class="difficulty-label">Easy</div>
+        </div>
+
+        <div class="card easy">
+            <div class="difficulty-badge">⭐</div>
+            <div class="card-number">Card 4</div>
+            <div class="pattern">👋 👋 👋</div>
+            <div class="description">Wave - Wave - Wave</div>
+            <div class="difficulty-label">Easy</div>
+        </div>
+
+        <!-- Medium Cards (Blue) -->
+        <div class="card medium">
+            <div class="difficulty-badge">⭐⭐</div>
+            <div class="card-number">Card 5</div>
+            <div class="pattern">👏 ⏸️ 👏 ⏸️</div>
+            <div class="description">Clap - Pause - Clap - Pause</div>
+            <div class="difficulty-label">Medium</div>
+        </div>
+
+        <div class="card medium">
+            <div class="difficulty-badge">⭐⭐</div>
+            <div class="card-number">Card 6</div>
+            <div class="pattern">🦶 👏 🦶 👏</div>
+            <div class="description">Stomp - Clap - Stomp - Clap</div>
+            <div class="difficulty-label">Medium</div>
+        </div>
+
+        <div class="card medium">
+            <div class="difficulty-badge">⭐⭐</div>
+            <div class="card-number">Card 7</div>
+            <div class="pattern">👏 👏 🦶 ⏸️</div>
+            <div class="description">Clap - Clap - Stomp - Pause</div>
+            <div class="difficulty-label">Medium</div>
+        </div>
+
+        <div class="card medium">
+            <div class="difficulty-badge">⭐⭐</div>
+            <div class="card-number">Card 8</div>
+            <div class="pattern">👋 👏 👋 👏</div>
+            <div class="description">Wave - Clap - Wave - Clap</div>
+            <div class="difficulty-label">Medium</div>
+        </div>
+
+        <!-- Hard Cards (Purple) -->
+        <div class="card hard">
+            <div class="difficulty-badge">⭐⭐⭐</div>
+            <div class="card-number">Card 9</div>
+            <div class="pattern">👏 🦶 👋 ⏸️</div>
+            <div class="description">Clap - Stomp - Wave - Pause</div>
+            <div class="difficulty-label">Hard</div>
+        </div>
+
+        <div class="card hard">
+            <div class="difficulty-badge">⭐⭐⭐</div>
+            <div class="card-number">Card 10</div>
+            <div class="pattern">⏸️ 👏 👏 🦶 👋</div>
+            <div class="description">Pause - Clap - Clap - Stomp - Wave</div>
+            <div class="difficulty-label">Hard</div>
+        </div>
+
+        <!-- Blank Cards for Custom Patterns -->
+        <div class="card blank">
+            <div class="difficulty-badge">✨</div>
+            <div class="card-number">Create Your Own!</div>
+            <div class="pattern">_ _ _ _</div>
+            <div class="description">Design your pattern here</div>
+            <div class="difficulty-label">Your Choice!</div>
+        </div>
+
+        <div class="card blank">
+            <div class="difficulty-badge">✨</div>
+            <div class="card-number">Create Your Own!</div>
+            <div class="pattern">_ _ _ _</div>
+            <div class="description">Design your pattern here</div>
+            <div class="difficulty-label">Your Choice!</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🌟 AI Kids Spark Learn | Music & AI Creator Project 🌟</p>
+        <p>© 2024 | For educational use | Difficulty: ⭐ Easy | ⭐⭐ Medium | ⭐⭐⭐ Hard</p>
+    </div>
+</body>
+
+</html>

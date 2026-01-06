@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Flowchart - AI Kids Spark Learn</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #27ae60;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #27ae60;
+            margin: 0;
+        }
+
+        .flowchart {
+            margin: 30px 0;
+        }
+
+        .flow-node {
+            border: 3px solid #3498db;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 400px;
+            background: #e8f4f8;
+            position: relative;
+        }
+
+        .flow-node.start {
+            background: #d4edda;
+            border-color: #27ae60;
+        }
+
+        .flow-node.question {
+            background: #fff3cd;
+            border-color: #f39c12;
+        }
+
+        .flow-node.response {
+            background: #e8f4f8;
+            border-color: #3498db;
+        }
+
+        .flow-node h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .flow-node .content {
+            border-bottom: 1px solid #ccc;
+            min-height: 30px;
+            margin: 10px 0;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #999;
+            margin: 10px 0;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ Print to PDF</button>
+
+    <div class="header">
+        <h1>💬 Conversation Flowchart</h1>
+        <p>Map out how your chatbot talks to users!</p>
+        <p><strong>Chatbot Name:</strong> _____________________________</p>
+    </div>
+
+    <div class="example-box">
+        <h3 style="color: #9b59b6; margin-top: 0;">📋 How to Use This Template:</h3>
+        <ol style="margin: 10px 0;">
+            <li>Fill in the START node with your chatbot's greeting</li>
+            <li>Add common questions users might ask</li>
+            <li>Write how your chatbot would respond</li>
+            <li>Think about follow-up questions and responses</li>
+        </ol>
+    </div>
+
+    <div class="flowchart">
+        <div class="flow-node start">
+            <h4>🟢 START - Greeting</h4>
+            <p style="font-size: 12px; margin: 5px 0;">What does your chatbot say first?</p>
+            <div class="content"></div>
+            <div class="content"></div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="flow-node question">
+            <h4>❓ User Question #1</h4>
+            <p style="font-size: 12px; margin: 5px 0;">What might a user ask?</p>
+            <div class="content"></div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="flow-node response">
+            <h4>💬 Chatbot Response #1</h4>
+            <p style="font-size: 12px; margin: 5px 0;">How does your chatbot answer?</p>
+            <div class="content"></div>
+            <div class="content"></div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="flow-node question">
+            <h4>❓ User Question #2</h4>
+            <p style="font-size: 12px; margin: 5px 0;">What might they ask next?</p>
+            <div class="content"></div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="flow-node response">
+            <h4>💬 Chatbot Response #2</h4>
+            <p style="font-size: 12px; margin: 5px 0;">How does your chatbot answer?</p>
+            <div class="content"></div>
+            <div class="content"></div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="flow-node question">
+            <h4>❓ User Question #3</h4>
+            <p style="font-size: 12px; margin: 5px 0;">Another possible question?</p>
+            <div class="content"></div>
+        </div>
+
+        <div class="arrow">↓</div>
+
+        <div class="flow-node response">
+            <h4>💬 Chatbot Response #3</h4>
+            <p style="font-size: 12px; margin: 5px 0;">How does your chatbot answer?</p>
+            <div class="content"></div>
+            <div class="content"></div>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h3 style="color: #3498db; margin-top: 0;">💡 Example Conversation Flow:</h3>
+        <p><strong>START:</strong> "Hi! I'm Sparky the Science Bot! Want to learn something cool about space?"</p>
+        <p><strong>Question 1:</strong> "What's the biggest planet?"</p>
+        <p><strong>Response 1:</strong> "Great question! Jupiter is the biggest planet in our solar system. It's so huge
+            that 1,300 Earths could fit inside it!"</p>
+        <p><strong>Question 2:</strong> "Does Jupiter have moons?"</p>
+        <p><strong>Response 2:</strong> "Yes! Jupiter has 95 known moons! The biggest one is called Ganymede."</p>
+    </div>
+
+    <div class="footer">
+        <p>AI Kids Spark Learn | Build Your AI Chatbot Project</p>
+        <p>© 2024 | For educational use</p>
+    </div>
+</body>
+
+</html>

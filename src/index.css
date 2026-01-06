@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: transparent !important;
+    /* Allow Matrix background to show */
+  }
+}
+
+@layer base {
+  :root {
+    --background: 220 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 217 91.2% 59.8%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 42 96.5% 59%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 262 83.3% 57.8%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 42 96.5% 59%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 262 83.3% 57.8%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground font-medium;
+    background-color: transparent;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl leading-tight;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl leading-snug;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl leading-snug;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+
+  /* Enhanced Glassmorphism System */
+  .glass-card {
+    @apply bg-white/95 backdrop-blur-md border border-white/20 rounded-3xl shadow-lg transition-all duration-300;
+  }
+
+  .glass-card-strong {
+    @apply bg-white/95 backdrop-blur-xl border border-white/30 rounded-3xl shadow-xl transition-all duration-300;
+  }
+
+  .glass-card-hover {
+    @apply hover:shadow-xl hover:-translate-y-1 hover:bg-white;
+  }
+
+  .glass-blue {
+    @apply bg-white/95 backdrop-blur-md border border-blue-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .glass-purple {
+    @apply bg-white/95 backdrop-blur-md border border-purple-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .glass-green {
+    @apply bg-white/95 backdrop-blur-md border border-green-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .glass-pink {
+    @apply bg-white/95 backdrop-blur-md border border-pink-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .glass-orange {
+    @apply bg-white/95 backdrop-blur-md border border-orange-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .glass-yellow {
+    @apply bg-white/95 backdrop-blur-md border border-yellow-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .glass-red {
+    @apply bg-white/95 backdrop-blur-md border border-red-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Unified Button System */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-kids-blue to-kids-purple text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 transform focus:outline-none focus:ring-4 focus:ring-kids-blue/30;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white/80 backdrop-blur-sm text-kids-blue font-semibold rounded-full border border-white/40 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 transform focus:outline-none focus:ring-4 focus:ring-kids-blue/20;
+  }
+
+  .btn-small {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-large {
+    @apply px-8 py-4 text-lg;
+  }
+
+  /* Enhanced gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, #4285F4, #9C27B0, #E91E63);
+    background-size: 200% 200%;
+    animation: gradient-flow 3s ease-in-out infinite;
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #34A853, #009688, #4285F4);
+    background-size: 200% 200%;
+    animation: gradient-flow 3s ease-in-out infinite;
+  }
+
+  /* Unified typography */
+  .heading-primary {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-kids-blue via-kids-purple to-kids-pink bg-clip-text text-transparent leading-tight;
+  }
+
+  .heading-secondary {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight;
+  }
+
+  .heading-section {
+    @apply text-xl md:text-2xl font-bold text-gray-800;
+  }
+
+  .text-body {
+    @apply text-base md:text-lg text-gray-600 leading-relaxed;
+  }
+
+  .text-body-small {
+    @apply text-sm md:text-base text-gray-600 leading-relaxed;
+  }
+
+  /* Video container standardization */
+  .video-container {
+    @apply glass-card p-6 mb-8;
+  }
+
+  .video-wrapper {
+    @apply aspect-video rounded-xl overflow-hidden shadow-lg;
+  }
+
+  /* Activity card system */
+  .activity-card {
+    @apply glass-card glass-card-hover overflow-hidden cursor-pointer;
+  }
+
+  .activity-header {
+    @apply relative h-32 flex items-center justify-center overflow-hidden;
+  }
+
+  .activity-content {
+    @apply p-6 space-y-4;
+  }
+
+  .activity-title {
+    @apply text-xl font-bold text-gray-900 transition-colors duration-300;
+  }
+
+  .activity-description {
+    @apply text-body-small;
+  }
+
+  /* Enhanced animations */
+  .floating-element {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+  }
+
+  .shine-effect:hover::before {
+    left: 100%;
+  }
+
+  /* Spacing system */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24 px-4 md:px-6;
+  }
+
+  .container-max {
+    @apply container mx-auto max-w-7xl;
+  }
+
+  .content-max {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .grid-activities {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8;
+  }
+
+  .grid-courses {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+  }
+}
+
+/* Smooth animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Focus states for accessibility */
+.focus-visible {
+  @apply focus:outline-none focus:ring-4 focus:ring-kids-blue/30;
+}
