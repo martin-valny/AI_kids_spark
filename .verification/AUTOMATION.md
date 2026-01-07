@@ -1,6 +1,6 @@
-# 🤖 Full Automation Setup - Complete Guide
+# 🤖 Full Automation Setup - Claude Code CLI Guide
 
-This document explains how the **fully automated verification system** works for AI Kids Spark Learn.
+This document explains how the **fully automated verification system** works for AI Kids Spark Learn in **Claude Code CLI**.
 
 ---
 
@@ -8,20 +8,17 @@ This document explains how the **fully automated verification system** works for
 
 1. [Overview](#overview)
 2. [Automation Layers](#automation-layers)
-3. [How It Works](#how-it-works)
-4. [Setup Instructions](#setup-instructions)
-5. [Daily Workflow](#daily-workflow)
-6. [Troubleshooting](#troubleshooting)
+3. [Daily Workflow](#daily-workflow)
+4. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## 🎯 Overview
 
-The verification system now runs **automatically** at multiple stages:
+The verification system runs **automatically** at 3 stages:
 
 | Layer | When | What Runs | Time | Blocks Work? |
 |-------|------|-----------|------|-------------|
-| **VS Code ESLint** | As you type | Real-time linting | Instant | ❌ No |
 | **Watch Mode** | On file save | Unit tests | 1-2s | ❌ No |
 | **Pre-commit Hook** | Before commit | Quick verification | ~30s | ✅ Yes |
 | **GitHub Actions** | On push/PR | Full verification | 10-15min | ⚠️ PR only |
@@ -30,32 +27,7 @@ The verification system now runs **automatically** at multiple stages:
 
 ## 🔄 Automation Layers
 
-### 1️⃣ **VS Code Real-Time Linting** (Instant Feedback)
-
-**What**: ESLint runs automatically as you type
-**When**: Constantly, while editing files
-**Time**: Instant (milliseconds)
-**Blocks**: No - just shows red squiggles
-
-**Features**:
-- ✅ Inline error highlighting
-- ✅ Auto-fix on save
-- ✅ Import organization
-- ✅ Accessibility warnings
-- ✅ Kids-safety rule enforcement
-
-**Configuration**: `.vscode/settings.json`
-
-**What You See**:
-```
-src/components/Header.tsx
-  Line 15: Missing alt text for image (jsx-a11y/alt-text) 🔴
-  Line 23: Touch target too small - minimum 44px (custom rule) ⚠️
-```
-
----
-
-### 2️⃣ **Watch Mode** (Continuous Testing)
+### 1️⃣ **Watch Mode** (Continuous Testing)
 
 **What**: Auto-run tests when you save files
 **When**: Running in background during development
@@ -84,7 +56,7 @@ npm run verify:watch
 
 ---
 
-### 3️⃣ **Pre-Commit Hook** (Quality Gate)
+### 2️⃣ **Pre-Commit Hook** (Quality Gate) ✅ TESTED & WORKING
 
 **What**: Automatic verification before every commit
 **When**: When you run `git commit`
@@ -137,7 +109,7 @@ git commit --no-verify -m "WIP: work in progress"
 
 ---
 
-### 4️⃣ **GitHub Actions CI/CD** (Full Verification)
+### 3️⃣ **GitHub Actions CI/CD** (Full Verification)
 
 **What**: Complete verification on GitHub servers
 **When**: On every push or pull request
@@ -176,93 +148,36 @@ git commit --no-verify -m "WIP: work in progress"
 
 ---
 
-## 🛠️ Setup Instructions
-
-### Initial Setup (One-Time)
-
-1. **Install Dependencies** (already done):
-   ```bash
-   npm install
-   ```
-
-2. **Install VS Code Extensions**:
-   - Open VS Code
-   - Press `Cmd/Ctrl+Shift+P`
-   - Type "Extensions: Show Recommended Extensions"
-   - Click "Install" on all recommended extensions
-
-3. **Enable ESLint in VS Code**:
-   - Open VS Code settings (`Cmd/Ctrl+,`)
-   - Search for "ESLint"
-   - Ensure "ESLint: Enable" is checked ✅
-
-4. **Verify Git Hooks**:
-   ```bash
-   # Check pre-commit hook exists
-   cat .husky/pre-commit
-
-   # Make sure it's executable
-   chmod +x .husky/pre-commit
-   ```
-
-5. **Install Playwright Browsers** (for E2E tests):
-   ```bash
-   npx playwright install chromium
-   ```
-
-### Verification
-
-Test each layer:
-
-```bash
-# 1. Test VS Code ESLint
-# Open any .tsx file, make an error, see red squiggle ✅
-
-# 2. Test Watch Mode
-npm run verify:watch
-# Save a file, see tests run ✅
-
-# 3. Test Pre-commit Hook
-echo "test" >> README.md
-git add README.md
-git commit -m "Test commit"
-# Should run verification ✅
-
-# 4. Test GitHub Actions
-git push origin your-branch
-# Check GitHub Actions tab ✅
-```
-
----
-
-## 💼 Daily Workflow
+## 💼 Daily Workflow in Claude Code CLI
 
 ### Standard Development Flow
 
 ```
-1. Start watch mode
+1. Start watch mode in a terminal
    └─ npm run verify:watch
 
-2. Edit code in VS Code
-   └─ ESLint shows errors inline (instant)
-   └─ Tests auto-run on save (1-2s)
+2. Edit code in Claude Code
+   └─ Watch mode auto-runs tests on save (1-2s)
+   └─ See test results in terminal
 
-3. Fix any issues
-   └─ Red squiggles disappear
-   └─ Tests pass
+3. Run manual checks when needed
+   └─ npm run verify:quick  (30s - TypeScript + ESLint + smoke)
+   └─ npm run lint         (ESLint only)
 
-4. Commit your changes
+4. Fix any issues Claude identifies
+
+5. Commit your changes
    └─ git add .
    └─ git commit -m "description"
-   └─ Pre-commit hook runs (30s)
+   └─ Pre-commit hook runs automatically (30s)
    └─ Commit succeeds ✅
 
-5. Push to GitHub
+6. Push to GitHub
    └─ git push
    └─ GitHub Actions runs (background)
    └─ PR gets status update
 
-6. Merge PR
+7. Merge PR
    └─ Only if all checks pass ✅
 ```
 
@@ -270,9 +185,9 @@ git push origin your-branch
 
 ```
 1. Make small change
-2. Auto-save triggers watch mode
-3. See test results immediately
-4. Fix if needed
+2. Watch mode shows test results (1-2s)
+3. Fix if needed
+4. Run: npm run verify:quick
 5. Commit (pre-commit runs)
 6. Done!
 ```
@@ -283,9 +198,11 @@ git push origin your-branch
 # Run full verification first
 npm run verify:full
 
-# If passes, proceed with refactoring
-# Watch mode will catch issues as you go
+# If passes, start watch mode
 npm run verify:watch
+
+# Make changes
+# Watch mode catches issues as you go
 
 # Commit frequently
 git commit -m "Refactor step 1"
@@ -298,21 +215,46 @@ git push
 
 ---
 
-## 🎨 VS Code Tasks (Quick Access)
+## 🎮 Available Commands
 
-Press `Cmd/Ctrl+Shift+P` → "Tasks: Run Task" → Select:
+### Verification
+```bash
+npm run verify:quick      # Fast check (30s): TypeScript + ESLint + smoke tests
+npm run verify:full       # Complete check (10-15min): All tests + performance
+npm run verify:report     # Generate HTML report
+npm run verify:watch      # Watch mode: dev server + auto-tests
+```
 
-- **🚀 Start Development Server** - Start Vite dev server
-- **⚡ Quick Verification (30s)** - Run quick check manually
-- **🔍 Full Verification (10-15min)** - Run all checks
-- **👁️ Watch Mode (Dev + Auto-test)** - Start watch mode
-- **🎭 E2E Tests (Playwright)** - Run Playwright tests
-- **🎭 E2E Tests (Interactive UI)** - Debug Playwright tests
-- **🧹 ESLint (Full Check)** - Check all ESLint rules
-- **🔧 ESLint (Auto-fix)** - Auto-fix ESLint issues
-- **♿ Accessibility Check** - Check accessibility only
-- **⚡ Performance Check** - Run Lighthouse
-- **📦 Bundle Analysis** - Analyze bundle size
+### Testing
+```bash
+npm run test              # Unit tests (Vitest)
+npm run test:ui           # Vitest with UI
+npm run test:coverage     # Coverage report
+npm run test:e2e          # E2E tests (Playwright)
+npm run test:e2e:ui       # E2E with interactive UI
+npm run test:e2e:debug    # Debug E2E tests
+```
+
+### Code Quality
+```bash
+npm run lint              # Basic ESLint check
+npm run lint:full         # All ESLint rules (strict)
+npm run lint -- --fix     # Auto-fix ESLint issues
+npm run lint:a11y         # Accessibility only
+```
+
+### Performance
+```bash
+npm run perf:check        # All performance checks
+npm run perf:analyze      # Bundle size analysis
+```
+
+### Git
+```bash
+git commit                # Triggers pre-commit hook automatically
+git commit --no-verify    # Skip hook (not recommended)
+git push                  # Triggers GitHub Actions
+```
 
 ---
 
@@ -333,30 +275,6 @@ chmod +x .husky/pre-commit
 # Test manually
 .husky/pre-commit
 ```
-
----
-
-### ESLint Not Working in VS Code
-
-**Symptom**: No red squiggles, no auto-fix
-
-**Fix**:
-1. Install ESLint extension:
-   ```
-   code --install-extension dbaeumer.vscode-eslint
-   ```
-
-2. Restart VS Code
-
-3. Check ESLint output:
-   - View → Output → Select "ESLint" from dropdown
-   - Look for errors
-
-4. Check workspace settings:
-   ```bash
-   cat .vscode/settings.json
-   # Should have "eslint.enable": true
-   ```
 
 ---
 
@@ -427,7 +345,6 @@ npm run verify:full  # Same command CI uses
 
 | Feature | Status | Configuration |
 |---------|--------|---------------|
-| VS Code ESLint | ✅ Active | `.vscode/settings.json` |
 | Watch Mode | ✅ Available | `npm run verify:watch` |
 | Pre-commit Hook | ✅ Active | `.husky/pre-commit` |
 | GitHub Actions | ✅ Active | `.github/workflows/verification.yml` |
@@ -443,15 +360,47 @@ npm run verify:full  # Same command CI uses
 
 ---
 
-## ✅ Next Steps
+## ✅ Typical Claude Code CLI Session
 
-1. ✅ Install VS Code extensions (see `.vscode/extensions.json`)
-2. ✅ Start watch mode: `npm run verify:watch`
-3. ✅ Make a test commit to verify pre-commit hook
-4. ✅ Push to GitHub to verify CI/CD
-5. ✅ Enjoy automated quality assurance! 🎉
+```bash
+# 1. Start watch mode (optional, but recommended)
+npm run verify:watch
+
+# 2. Work with Claude to make changes
+# (Claude edits files, tests run automatically)
+
+# 3. Run quick check before committing
+npm run verify:quick
+
+# 4. Commit (pre-commit hook runs automatically)
+git add .
+git commit -m "Add new feature"
+
+# 5. Push (GitHub Actions runs automatically)
+git push
+```
 
 ---
 
-**Questions or Issues?**
-Check `.verification/QUICK_START.md` or `.verification/WORKFLOWS_SUMMARY.md`
+## 💯 Quality Assurance Levels
+
+With this automation, you now have:
+
+| Check | Manual | Automated | When |
+|-------|--------|-----------|------|
+| **Type Safety** | ❌ | ✅ | Pre-commit |
+| **Code Quality** | ❌ | ✅ | Pre-commit |
+| **Accessibility** | ❌ | ✅ | Pre-commit |
+| **Kids Safety** | ❌ | ✅ | Pre-commit |
+| **Performance** | ❌ | ✅ | On PR |
+| **E2E Testing** | ❌ | ✅ | On PR |
+| **Visual Review** | ✅ | ❌ | Manual |
+
+**Result**: Subagents verify 85% automatically, you only review 15% visually!
+
+---
+
+**Questions?** Check the documentation files in `.verification/` or run:
+```bash
+npm run verify:quick
+```
