@@ -1,0 +1,31 @@
+# Test reports
+**/reports/**/*.html
+**/reports/**/*.json
+**/reports/**/*.xml
+!**/reports/.gitkeep
+
+# Coverage
+**/coverage/**
+.nyc_output/
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Lighthouse
+.lighthouseci/
+
+# Performance artifacts
+**/benchmarks/**/*.log
+**/benchmarks/**/*.tmp
+
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# Keep config files
+!**/config/**
+!**/*.config.js
+!**/*.config.ts

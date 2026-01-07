@@ -1,0 +1,23 @@
+{
+  "name": "UI Tester Agent",
+  "description": "Automated UI testing with Playwright",
+  "browser": {
+    "headless": true,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "testPatterns": [
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+  "coverage": {
+    "enabled": true,
+    "threshold": 80
+  },
+  "accessibility": {
+    "enabled": true,
+    "standard": "WCAG2AA"
+  }
+}
