@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, ThreeEvent } from '@react-three/fiber';
 import { OrbitControls, RoundedBox, Sphere, Cylinder } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -150,7 +150,7 @@ const Orb = ({ position, onDispose }: { position: [number, number, number], onDi
 export const MascotPlayground = () => {
     const [orbs, setOrbs] = useState<{ id: number; pos: [number, number, number] }[]>([]);
 
-    const handlePointerDown = (e: any) => {
+    const handlePointerDown = (e: ThreeEvent<PointerEvent>) => {
         // Spawn orb at click position (projected roughly or just random/center for fun)
         // For simplicity in this view, we spawn above the robot
         const id = Date.now();

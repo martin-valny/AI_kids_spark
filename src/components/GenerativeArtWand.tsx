@@ -12,11 +12,11 @@ const GenerativeArtWand = () => {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        let particles: Particle[] = [];
+        const particles: Particle[] = [];
         let animationFrameId: number;
         let hue = 0;
 
-        let mouse = { x: 0, y: 0, active: false };
+        const mouse = { x: 0, y: 0, active: false };
 
         class Particle {
             x: number;
