@@ -21,9 +21,11 @@
     "verify:full": "node .verification/workflows/full-verification.js",
     "verify:report": "node .verification/scripts/generate-report.js",
     "verify:ui": "npm run test:e2e:ui",
+    "verify:watch": "concurrently \"npm run dev\" \"npm run test -- --watch\" --names \"DEV,TEST\" --prefix-colors \"cyan,yellow\"",
     "perf:check": "node .verification/agents/performance-checker/scripts/run-lighthouse.js",
     "perf:analyze": "node .verification/agents/performance-checker/scripts/analyze-bundle.js",
-    "a11y:check": "node .verification/agents/ui-tester/helpers/check-accessibility.js"
+    "a11y:check": "node .verification/agents/ui-tester/helpers/check-accessibility.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -84,6 +86,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
     "@eslint/js": "^9.9.0",
+    "@lhci/cli": "^0.14.0",
     "@playwright/test": "^1.48.2",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/jest-dom": "^6.6.3",
@@ -105,9 +108,10 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "husky": "^9.1.7",
     "imagemin": "^9.0.0",
     "lighthouse": "^12.2.1",
-    "@lhci/cli": "^0.14.0",
+    "lint-staged": "^16.2.7",
     "lovable-tagger": "^1.1.7",
     "postcss": "^8.4.47",
     "rollup-plugin-visualizer": "^5.12.0",
