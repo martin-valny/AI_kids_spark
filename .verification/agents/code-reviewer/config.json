@@ -1,0 +1,26 @@
+{
+  "name": "Code Reviewer Agent",
+  "description": "Automated code quality and security checks",
+  "rules": {
+    "typescript": {
+      "strict": true,
+      "noUnusedVars": true,
+      "noImplicitAny": true
+    },
+    "react": {
+      "hooksRules": "error",
+      "propTypes": "warn",
+      "a11y": "error"
+    },
+    "security": {
+      "noEval": "error",
+      "noInnerHTML": "error",
+      "sensitiveDataCheck": true
+    }
+  },
+  "excludePatterns": [
+    "node_modules/**",
+    "dist/**",
+    "build/**"
+  ]
+}

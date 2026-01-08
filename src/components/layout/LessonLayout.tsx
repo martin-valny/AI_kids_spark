@@ -13,7 +13,7 @@ interface LessonLayoutProps {
   backLabel?: string;
   className?: string;
   showPattern?: boolean;
-  icon?: React.ComponentType<any>;
+  icon?: React.ComponentType<{ className?: string }>;
   iconBgColor?: string;
   iconColor?: string;
 }

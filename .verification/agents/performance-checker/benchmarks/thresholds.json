@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Performance thresholds and limits for AI Kids Spark",
+    "lastUpdated": "2026-01-07",
+    "severity": {
+      "error": "Deployment blocking - must be fixed",
+      "warning": "Should be fixed - creates notification",
+      "info": "Nice to have - tracked but not blocking"
+    }
+  },
+  "lighthouse": {
+    "performance": {
+      "error": 85,
+      "warning": 90,
+      "target": 95,
+      "description": "Overall Lighthouse performance score"
+    },
+    "accessibility": {
+      "error": 95,
+      "warning": 97,
+      "target": 100,
+      "description": "Accessibility score - critical for inclusive learning"
+    },
+    "bestPractices": {
+      "error": 90,
+      "warning": 93,
+      "target": 100,
+      "description": "Best practices score"
+    },
+    "seo": {
+      "error": 90,
+      "warning": 95,
+      "target": 100,
+      "description": "SEO score for discoverability"
+    }
+  },
+  "webVitals": {
+    "LCP": {
+      "good": 2500,
+      "needsImprovement": 4000,
+      "poor": 4000,
+      "unit": "ms",
+      "description": "Largest Contentful Paint - Main content visibility",
+      "severity": "error"
+    },
+    "FID": {
+      "good": 100,
+      "needsImprovement": 300,
+      "poor": 300,
+      "unit": "ms",
+      "description": "First Input Delay - Interactivity responsiveness",
+      "severity": "error"
+    },
+    "CLS": {
+      "good": 0.1,
+      "needsImprovement": 0.25,
+      "poor": 0.25,
+      "unit": "score",
+      "description": "Cumulative Layout Shift - Visual stability",
+      "severity": "error"
+    },
+    "FCP": {
+      "good": 1800,
+      "needsImprovement": 3000,
+      "poor": 3000,
+      "unit": "ms",
+      "description": "First Contentful Paint - Initial content render",
+      "severity": "warning"
+    },
+    "TBT": {
+      "good": 300,
+      "needsImprovement": 600,
+      "poor": 600,
+      "unit": "ms",
+      "description": "Total Blocking Time - Main thread blocking",
+      "severity": "warning"
+    },
+    "SI": {
+      "good": 3400,
+      "needsImprovement": 5800,
+      "poor": 5800,
+      "unit": "ms",
+      "description": "Speed Index - Visual progress",
+      "severity": "info"
+    },
+    "TTI": {
+      "good": 3800,
+      "needsImprovement": 7300,
+      "poor": 7300,
+      "unit": "ms",
+      "description": "Time to Interactive - Full interactivity",
+      "severity": "info"
+    }
+  },
+  "resourceBudgets": {
+    "javascript": {
+      "error": 400,
+      "warning": 350,
+      "target": 300,
+      "unit": "kb",
+      "description": "Total JavaScript bundle size",
+      "severity": "error"
+    },
+    "css": {
+      "error": 100,
+      "warning": 80,
+      "target": 60,
+      "unit": "kb",
+      "description": "Total CSS bundle size",
+      "severity": "error"
+    },
+    "images": {
+      "error": 1000,
+      "warning": 800,
+      "target": 600,
+      "unit": "kb",
+      "description": "Total image size per page",
+      "severity": "warning"
+    },
+    "fonts": {
+      "error": 150,
+      "warning": 120,
+      "target": 100,
+      "unit": "kb",
+      "description": "Total font files size",
+      "severity": "warning"
+    },
+    "total": {
+      "error": 2000,
+      "warning": 1500,
+      "target": 1000,
+      "unit": "kb",
+      "description": "Total page weight including all resources",
+      "severity": "warning"
+    }
+  },
+  "kidsSpecific": {
+    "colorContrast": {
+      "minimum": 4.5,
+      "enhanced": 7.0,
+      "description": "WCAG AA compliance for text readability",
+      "severity": "error"
+    },
+    "fontSize": {
+      "minimum": 16,
+      "recommended": 18,
+      "unit": "px",
+      "description": "Minimum font size for readability",
+      "severity": "error"
+    },
+    "touchTargetSize": {
+      "minimum": 44,
+      "recommended": 48,
+      "unit": "px",
+      "description": "Minimum touch target for kids' motor skills",
+      "severity": "warning"
+    },
+    "animationDuration": {
+      "maximum": 3000,
+      "recommended": 1500,
+      "unit": "ms",
+      "description": "Maximum animation duration to maintain attention",
+      "severity": "info"
+    },
+    "errorsInConsole": {
+      "maximum": 0,
+      "description": "Console errors can indicate broken features",
+      "severity": "error"
+    },
+    "imageAltText": {
+      "coverage": 100,
+      "unit": "%",
+      "description": "All images must have descriptive alt text",
+      "severity": "error"
+    }
+  },
+  "networkRequests": {
+    "totalRequests": {
+      "error": 100,
+      "warning": 75,
+      "target": 50,
+      "description": "Total number of network requests per page"
+    },
+    "thirdPartyRequests": {
+      "error": 20,
+      "warning": 15,
+      "target": 10,
+      "description": "Third-party requests (analytics, fonts, etc.)"
+    }
+  },
+  "caching": {
+    "staticAssets": {
+      "minCacheDuration": 31536000,
+      "unit": "seconds",
+      "description": "Cache duration for static assets (1 year)"
+    },
+    "dynamicContent": {
+      "minCacheDuration": 3600,
+      "unit": "seconds",
+      "description": "Cache duration for dynamic content (1 hour)"
+    }
+  },
+  "regressionThresholds": {
+    "performance": {
+      "maxDegradation": 5,
+      "unit": "points",
+      "description": "Maximum allowed performance score drop"
+    },
+    "bundleSize": {
+      "maxIncrease": 10,
+      "unit": "%",
+      "description": "Maximum allowed bundle size increase"
+    },
+    "LCP": {
+      "maxIncrease": 500,
+      "unit": "ms",
+      "description": "Maximum allowed LCP increase"
+    }
+  },
+  "mobile": {
+    "performance": {
+      "error": 75,
+      "warning": 80,
+      "target": 85,
+      "description": "Mobile performance score (more lenient)"
+    },
+    "LCP": {
+      "good": 4000,
+      "needsImprovement": 6000,
+      "poor": 6000,
+      "unit": "ms"
+    },
+    "FCP": {
+      "good": 2500,
+      "needsImprovement": 4000,
+      "poor": 4000,
+      "unit": "ms"
+    }
+  }
+}
