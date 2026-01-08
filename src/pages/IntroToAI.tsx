@@ -4,6 +4,7 @@ import { Sparkles, Brain, Zap } from 'lucide-react';
 import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ActivityCard from '@/components/ActivityCard';
+import { InnerCard, CardGrid, HighlightBox } from '@/components/design-system';
 
 const IntroToAI = () => {
     const activities = [
@@ -85,14 +86,8 @@ const IntroToAI = () => {
                             <div className="p-8 md:p-12 space-y-6 flex flex-col justify-center order-1 lg:order-2">
                                 <h3 className="text-3xl font-bold text-gray-800">Talk & Communicate</h3>
                                 <div className="space-y-4">
-                                    <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-purple/20 shadow-sm hover:border-kids-purple hover:-translate-y-0.5 transition-all duration-300">
-                                        <h4 className="font-bold text-kids-purple mb-2">Voice Assistants</h4>
-                                        <p className="text-sm text-gray-700">Siri, Alexa, and Google Assistant understand your voice and can chat with you like a helpful friend!</p>
-                                    </div>
-                                    <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-purple/20 shadow-sm hover:border-kids-purple hover:-translate-y-0.5 transition-all duration-300">
-                                        <h4 className="font-bold text-kids-purple mb-2">Language Translation</h4>
-                                        <p className="text-sm text-gray-700">Apps that instantly translate between over 100 languages — like having a universal translator!</p>
-                                    </div>
+                                    <InnerCard color="purple" title="Voice Assistants" description="Siri, Alexa, and Google Assistant understand your voice and can chat with you like a helpful friend!" className="p-4" />
+                                    <InnerCard color="purple" title="Language Translation" description="Apps that instantly translate between over 100 languages — like having a universal translator!" className="p-4" />
                                 </div>
                             </div>
                         </div>
@@ -106,14 +101,8 @@ const IntroToAI = () => {
                             <div className="p-8 md:p-12 space-y-6 flex flex-col justify-center">
                                 <h3 className="text-3xl font-bold text-gray-800">Play & Entertainment</h3>
                                 <div className="space-y-4">
-                                    <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-green/20 shadow-sm hover:border-kids-green hover:-translate-y-0.5 transition-all duration-300">
-                                        <h4 className="font-bold text-kids-green mb-2">Smart Game Characters</h4>
-                                        <p className="text-sm text-gray-700">AI controls characters in video games, making them act clever and challenge you in fun ways!</p>
-                                    </div>
-                                    <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-green/20 shadow-sm hover:border-kids-green hover:-translate-y-0.5 transition-all duration-300">
-                                        <h4 className="font-bold text-kids-green mb-2">Video Recommendations</h4>
-                                        <p className="text-sm text-gray-700">YouTube and Netflix suggest videos you might love based on what you've watched before.</p>
-                                    </div>
+                                    <InnerCard color="green" title="Smart Game Characters" description="AI controls characters in video games, making them act clever and challenge you in fun ways!" className="p-4" />
+                                    <InnerCard color="green" title="Video Recommendations" description="YouTube and Netflix suggest videos you might love based on what you've watched before." className="p-4" />
                                 </div>
                             </div>
                             <div className="relative h-64 lg:h-auto bg-gradient-to-br from-kids-green/80 to-kids-blue/80 flex items-center justify-center">
@@ -135,14 +124,8 @@ const IntroToAI = () => {
                             <div className="p-8 md:p-12 space-y-6 flex flex-col justify-center order-1 lg:order-2">
                                 <h3 className="text-3xl font-bold text-gray-800">Create & Capture</h3>
                                 <div className="space-y-4">
-                                    <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-pink/20 shadow-sm hover:border-kids-pink hover:-translate-y-0.5 transition-all duration-300">
-                                        <h4 className="font-bold text-kids-pink mb-2">Photo Magic</h4>
-                                        <p className="text-sm text-gray-700">Apps that recognize faces, add fun filters, and automatically organize your pictures!</p>
-                                    </div>
-                                    <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-pink/20 shadow-sm hover:border-kids-pink hover:-translate-y-0.5 transition-all duration-300">
-                                        <h4 className="font-bold text-kids-pink mb-2">Creative AI</h4>
-                                        <p className="text-sm text-gray-700">AI that helps create art, music, and stories — like having a creative robot assistant!</p>
-                                    </div>
+                                    <InnerCard color="pink" title="Photo Magic" description="Apps that recognize faces, add fun filters, and automatically organize your pictures!" className="p-4" />
+                                    <InnerCard color="pink" title="Creative AI" description="AI that helps create art, music, and stories — like having a creative robot assistant!" className="p-4" />
                                 </div>
                             </div>
                         </div>
@@ -372,7 +355,7 @@ const IntroToAI = () => {
                         </div>
                     </div>
 
-                    <div className="bg-kids-yellow/20 border border-kids-yellow/40 p-6 rounded-xl text-center mt-8">
+                    <HighlightBox variant="tip" showIcon={false} className="mt-8 p-6 text-center">
                         <h4 className="text-xl font-bold mb-3 flex items-center justify-center gap-2">
                             💭 Dream Big Question!
                         </h4>
@@ -383,7 +366,7 @@ const IntroToAI = () => {
                         <p className="text-sm text-gray-600 mt-2 italic">
                             Think about it as you try the activities below! 🌟
                         </p>
-                    </div>
+                    </HighlightBox>
                 </GlassCard>
 
                 {/* Activities Section */}
