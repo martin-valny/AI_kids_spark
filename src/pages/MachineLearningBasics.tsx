@@ -5,6 +5,7 @@ import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import MachineLearningSteps from '@/components/MachineLearningSteps';
 import ActivityCard from '@/components/ActivityCard';
+import { InnerCard, CardGrid, HighlightBox } from '@/components/design-system';
 
 const MachineLearningBasics = () => {
     const activities = [
@@ -83,61 +84,49 @@ const MachineLearningBasics = () => {
                             Remember all those amazing AI examples? Machine learning is what makes them all work!
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-blue/20 shadow-sm hover:border-kids-blue hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-kids-blue mb-3 flex items-center gap-2">
-                                    🗣️ Voice Assistants (Siri, Alexa)
-                                </h4>
+                        <CardGrid columns={2}>
+                            <InnerCard color="blue" title="🗣️ Voice Assistants (Siri, Alexa)">
                                 <p className="text-sm mb-2">
                                     <strong>The AI:</strong> Understands what you say and responds helpfully
                                 </p>
                                 <p className="text-sm text-gray-600">
                                     <strong>The ML Behind It:</strong> Trained on millions of voice recordings to recognize speech patterns
                                 </p>
-                            </div>
+                            </InnerCard>
 
-                            <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-purple/20 shadow-sm hover:border-kids-purple hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-kids-purple mb-3 flex items-center gap-2">
-                                    📸 Photo Recognition
-                                </h4>
+                            <InnerCard color="purple" title="📸 Photo Recognition">
                                 <p className="text-sm mb-2">
                                     <strong>The AI:</strong> Automatically tags faces and suggests who people are
                                 </p>
                                 <p className="text-sm text-gray-600">
                                     <strong>The ML Behind It:</strong> Learned from billions of labeled photos to recognize faces
                                 </p>
-                            </div>
+                            </InnerCard>
 
-                            <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-green/20 shadow-sm hover:border-kids-green hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-kids-green mb-3 flex items-center gap-2">
-                                    🎵 Music Recommendations
-                                </h4>
+                            <InnerCard color="green" title="🎵 Music Recommendations">
                                 <p className="text-sm mb-2">
                                     <strong>The AI:</strong> Suggests new songs you'll probably love
                                 </p>
                                 <p className="text-sm text-gray-600">
                                     <strong>The ML Behind It:</strong> Analyzes your listening history and finds patterns with other users
                                 </p>
-                            </div>
+                            </InnerCard>
 
-                            <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-red/20 shadow-sm hover:border-kids-red hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-kids-red mb-3 flex items-center gap-2">
-                                    🎮 Smart Game Characters
-                                </h4>
+                            <InnerCard color="red" title="🎮 Smart Game Characters">
                                 <p className="text-sm mb-2">
                                     <strong>The AI:</strong> Game characters that get better the more you play
                                 </p>
                                 <p className="text-sm text-gray-600">
                                     <strong>The ML Behind It:</strong> Learns from thousands of games to understand winning strategies
                                 </p>
-                            </div>
-                        </div>
+                            </InnerCard>
+                        </CardGrid>
 
-                        <div className="mt-8 p-6 bg-kids-yellow/20 rounded-xl border border-kids-yellow/30">
+                        <HighlightBox variant="tip" showIcon={false} className="mt-8 p-6">
                             <p className="text-center font-medium text-lg">
                                 💡 <strong>Key Insight:</strong> Machine Learning is like the "brain training" that gives AI systems their intelligence! Without ML, AI would just be regular computer programs following simple rules!
                             </p>
-                        </div>
+                        </HighlightBox>
                     </GlassCard>
                 </section>
 
@@ -217,40 +206,12 @@ const MachineLearningBasics = () => {
                         <p className="text-lg mb-8 text-center text-gray-700">
                             Machine learning is working behind the scenes in so many places. Here are some you might recognize!
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="bg-white/90 p-6 rounded-xl shadow-md border-2 border-kids-blue/20 hover:border-kids-blue hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-lg text-kids-blue mb-3 flex items-center gap-2">
-                                    📱 Your Phone's Camera
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    When your phone automatically focuses on faces — that's machine learning recognizing where people are in the photo!
-                                </p>
-                            </div>
-                            <div className="bg-white/90 p-6 rounded-xl shadow-md border-2 border-kids-green/20 hover:border-kids-green hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-lg text-kids-green mb-3 flex items-center gap-2">
-                                    🛒 Online Shopping
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    "People who bought this also bought..." comes from ML finding patterns in what customers like to buy together.
-                                </p>
-                            </div>
-                            <div className="bg-white/90 p-6 rounded-xl shadow-md border-2 border-kids-purple/20 hover:border-kids-purple hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-lg text-kids-purple mb-3 flex items-center gap-2">
-                                    🎮 Video Games
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    Some video game characters get better the more you play — that's machine learning helping them adapt!
-                                </p>
-                            </div>
-                            <div className="bg-white/90 p-6 rounded-xl shadow-md border-2 border-kids-red/20 hover:border-kids-red hover:-translate-y-1 transition-all duration-300">
-                                <h4 className="font-bold text-lg text-kids-red mb-3 flex items-center gap-2">
-                                    🌍 Language Translation
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    Google Translate uses machine learning to understand different languages and translate between them instantly!
-                                </p>
-                            </div>
-                        </div>
+                        <CardGrid columns={2}>
+                            <InnerCard color="blue" title="📱 Your Phone's Camera" description="When your phone automatically focuses on faces — that's machine learning recognizing where people are in the photo!" />
+                            <InnerCard color="green" title="🛒 Online Shopping" description={`"People who bought this also bought..." comes from ML finding patterns in what customers like to buy together.`} />
+                            <InnerCard color="purple" title="🎮 Video Games" description="Some video game characters get better the more you play — that's machine learning helping them adapt!" />
+                            <InnerCard color="red" title="🌍 Language Translation" description="Google Translate uses machine learning to understand different languages and translate between them instantly!" />
+                        </CardGrid>
                     </GlassCard>
                 </section>
 
@@ -272,41 +233,12 @@ const MachineLearningBasics = () => {
                     </h2>
 
                     <GlassCard className="p-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="bg-white/90 p-6 rounded-xl border border-white/20">
-                                <h4 className="font-bold text-kids-blue mb-3 flex items-center gap-2">
-                                    🧠 Super Speed Learning
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    A machine learning system can "read" and learn from 1 million books in the time it takes you to read one page!
-                                    That's like having a super-powered brain! 🚀
-                                </p>
-                            </div>
-                            <div className="bg-white/90 p-6 rounded-xl border border-white/20">
-                                <h4 className="font-bold text-kids-green mb-3 flex items-center gap-2">
-                                    🎨 Creative Machines
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    AI has learned to paint pictures, compose music, and even write stories! Some AI-created art has sold for thousands of dollars at art galleries! 🎭
-                                </p>
-                            </div>
-                            <div className="bg-white/90 p-6 rounded-xl border border-white/20">
-                                <h4 className="font-bold text-kids-purple mb-3 flex items-center gap-2">
-                                    🐕 Animal Expert
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    There's an AI that can identify over 300 different dog breeds just by looking at a photo — even better than most veterinarians! 🐶
-                                </p>
-                            </div>
-                            <div className="bg-white/90 p-6 rounded-xl border border-white/20">
-                                <h4 className="font-bold text-kids-red mb-3 flex items-center gap-2">
-                                    🌟 Pattern Master
-                                </h4>
-                                <p className="text-sm text-gray-700">
-                                    Machine learning can find patterns in data that humans would never notice, like predicting which songs will become popular! 🎵
-                                </p>
-                            </div>
-                        </div>
+                        <CardGrid columns={2}>
+                            <InnerCard color="blue" title="🧠 Super Speed Learning" description={`A machine learning system can "read" and learn from 1 million books in the time it takes you to read one page! That's like having a super-powered brain! 🚀`} />
+                            <InnerCard color="green" title="🎨 Creative Machines" description="AI has learned to paint pictures, compose music, and even write stories! Some AI-created art has sold for thousands of dollars at art galleries! 🎭" />
+                            <InnerCard color="purple" title="🐕 Animal Expert" description="There's an AI that can identify over 300 different dog breeds just by looking at a photo — even better than most veterinarians! 🐶" />
+                            <InnerCard color="red" title="🌟 Pattern Master" description="Machine learning can find patterns in data that humans would never notice, like predicting which songs will become popular! 🎵" />
+                        </CardGrid>
                     </GlassCard>
                 </section>
 
@@ -374,7 +306,7 @@ const MachineLearningBasics = () => {
                         </div>
                     </div>
 
-                    <div className="bg-kids-yellow/20 border border-kids-yellow/40 p-6 rounded-xl text-center mt-8">
+                    <HighlightBox variant="tip" showIcon={false} className="mt-8 p-6 text-center">
                         <h4 className="text-xl font-bold mb-3">
                             🎯 Coming Up Next: Hands-On Fun!
                         </h4>
@@ -383,7 +315,7 @@ const MachineLearningBasics = () => {
                             You'll draw shapes, and teach the computer what each shape is! It's like being an AI teacher!
                             <span className="font-bold text-kids-blue"> Ready to become an AI trainer?</span> 🚀
                         </p>
-                    </div>
+                    </HighlightBox>
                 </GlassCard>
 
                 {/* Activities Section */}

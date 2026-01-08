@@ -4,6 +4,7 @@ import { Sparkles, Brain, Zap } from 'lucide-react';
 import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ActivityCard from '@/components/ActivityCard';
+import { InnerCard, CardGrid, HighlightBox } from '@/components/design-system';
 
 const DataAndPatterns = () => {
     const activities = [
@@ -145,11 +146,11 @@ const DataAndPatterns = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-8 p-6 bg-kids-blue/10 rounded-xl border border-kids-blue/20 text-center">
+                        <HighlightBox variant="info" showIcon={false} className="mt-8 p-6 text-center">
                             <p className="font-medium text-lg">
                                 👉 <strong>Key Point:</strong> AI needs data to spot patterns, make decisions, and improve. The more data it has, the smarter it can get!
                             </p>
-                        </div>
+                        </HighlightBox>
                     </GlassCard>
                 </section>
 
@@ -219,11 +220,11 @@ const DataAndPatterns = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="mt-8 p-6 bg-kids-yellow/10 rounded-xl border border-kids-yellow/20 text-center">
+                        <HighlightBox variant="tip" showIcon={false} className="mt-8 p-6 text-center">
                             <p className="font-medium text-lg">
                                 🤖 Now here's the cool part: AI can learn to find patterns just like you!
                             </p>
-                        </div>
+                        </HighlightBox>
                     </GlassCard>
                 </section>
 
@@ -394,7 +395,7 @@ const DataAndPatterns = () => {
                         </div>
                     </div>
 
-                    <div className="bg-kids-yellow/20 border border-kids-yellow/40 p-6 rounded-xl">
+                    <HighlightBox variant="tip" showIcon={false} className="p-6">
                         <h4 className="text-xl font-bold mb-4 text-center">
                             🎯 That's how AI:
                         </h4>
@@ -415,7 +416,7 @@ const DataAndPatterns = () => {
                         <p className="text-center mt-6 font-bold text-kids-blue text-lg">
                             The better the pattern, the better the prediction! ✨
                         </p>
-                    </div>
+                    </HighlightBox>
                 </GlassCard>
 
                 {/* Challenge */}

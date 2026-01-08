@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import ModuleCard from '@/components/ModuleCard';
 import { ProjectCard } from '@/components/ProjectCard';
 import SubscriptionModal from '@/components/SubscriptionModal';
-import { Badge } from '@/components/ui/badge';
+import { HighlightBox } from '@/components/design-system';
 import {
   loadProgress,
   isLessonCompleted,
@@ -137,13 +137,11 @@ const Lessons = () => {
           <div key={`project-${projectToShow.id}`} className="my-8">
             {/* Project Unlocked Banner */}
             {unlocked && !projectComplete && (
-              <div className="mb-4 p-4 bg-gradient-to-r from-kids-yellow/20 to-kids-orange/20 border-2 border-kids-yellow rounded-xl text-center animate-pulse">
-                <p className="text-lg font-bold text-kids-orange flex items-center justify-center gap-2">
-                  <Sparkles className="w-5 h-5" />
+              <HighlightBox variant="tip" icon={<Sparkles className="w-5 h-5" />} className="mb-4 text-center animate-pulse bg-gradient-to-r from-kids-yellow/20 to-kids-orange/20 border-2 border-kids-yellow">
+                <span className="text-lg font-bold text-kids-orange">
                   🎉 New Project Unlocked!
-                  <Sparkles className="w-5 h-5" />
-                </p>
-              </div>
+                </span>
+              </HighlightBox>
             )}
 
             <ProjectCard
@@ -211,13 +209,13 @@ const Lessons = () => {
             {/* Completion Message */}
             {progressSummary.completedLessons === progressSummary.totalLessons &&
               progressSummary.completedProjects === progressSummary.totalProjects && (
-                <div className="mt-8 p-6 bg-gradient-to-r from-kids-green/20 to-kids-blue/20 border-2 border-kids-green rounded-xl text-center">
+                <HighlightBox variant="success" showIcon={false} className="mt-8 p-6 bg-gradient-to-r from-kids-green/20 to-kids-blue/20 border-2 border-kids-green text-center">
                   <div className="text-4xl mb-3">🎓</div>
                   <h3 className="text-2xl font-bold text-kids-green mb-2">Congratulations!</h3>
                   <p className="text-gray-700">
                     You've completed all lessons and projects! You're now an AI expert! 🌟
                   </p>
-                </div>
+                </HighlightBox>
               )}
           </div>
         </div>
