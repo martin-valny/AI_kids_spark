@@ -1,33 +1,193 @@
-# Claude.md - AI Kids Spark Project Context
+# Claude.md - AI Kids Spark Project Guide
 
-## Project Overview
-
-**Name:** AI Kids Spark (→ AI Spark after pivot)
-**Type:** Educational web application teaching AI fundamentals
-**Tech Stack:** React 18, TypeScript, Vite, Tailwind, Supabase, Stripe
-**Current Status:** Feature-complete frontend, requires backend implementation for production
+**Last Updated:** 2026-01-08
+**Project:** AI Kids Spark → AI Spark (13+ pivot recommended)
+**Status:** Feature-complete frontend, backend implementation required for production
+**Branch:** claude/deployment-compliance-review-3NyeN
 
 ---
 
-## 🚨 CRITICAL DEPLOYMENT DECISION
+## 🚨 CRITICAL - READ FIRST
 
-### Current State (Pre-Production)
-- ✅ Complete educational content (7 lessons, 4 projects, multiple activities)
-- ✅ Beautiful UI with interactive components
-- ❌ **No authentication** - all content publicly accessible
-- ❌ **No payment system** - subscription is UI mockup only
-- ❌ **No compliance** - targeted at ages 6-12 but COPPA not implemented
-- ❌ **Security issues** - DEBUG flags active, debug routes exposed
+### Security Issues Requiring Immediate Attention
 
-### Recommended Path: **Option A - Pivot to 13+ Platform**
+**BEFORE ANY OTHER WORK, FIX THESE:**
 
-**Why:** Avoids COPPA compliance while maintaining educational value and expanding audience.
+1. **`src/utils/progressTracker.ts` Line 4:**
+   ```typescript
+   // CURRENT - SECURITY HOLE!
+   const DEBUG_UNLOCK_ALL = true;
 
-**Key Changes:**
-1. **Branding:** "AI Kids Spark" → "AI Spark"
-2. **Target Audience:** Ages 6-12 → Ages 13+
-3. **Messaging:** "Fun for kids" → "Master fundamentals for beginners"
-4. **Compliance:** COPPA (complex) → GDPR + age gate (simpler)
+   // CHANGE TO:
+   const DEBUG_UNLOCK_ALL = import.meta.env.DEV;
+   ```
+   **Impact:** Currently unlocks ALL content without completing lessons. Production security vulnerability.
+
+2. **`src/App.tsx` Line 112:**
+   ```typescript
+   // REMOVE THIS ENTIRE LINE:
+   <Route path="/debug/progress" element={<ProgressDebugger />} />
+   ```
+   **Impact:** Exposes progress manipulation tools publicly.
+
+3. **Environment Variables:**
+   - Verify `.env` is in `.gitignore`
+   - Create `.env.example` (safe to commit)
+   - Never commit actual `.env` file with Supabase keys
+
+**Estimated Fix Time:** 30 minutes
+**Priority:** 🔴 CRITICAL
+
+---
+
+## 🎯 Project Overview
+
+**AI Kids Spark** is an educational web platform teaching AI concepts through interactive lessons, activities, and games.
+
+**Current State:**
+- ✅ Complete educational content (7 lessons, 4 projects, 40+ activities)
+- ✅ Beautiful glass-morphism UI with accessibility standards
+- ❌ No authentication (all content publicly accessible)
+- ❌ No payment system (subscription UI is mockup only)
+- ❌ No COPPA compliance (targets ages 6-12 but not implemented)
+
+**Recommended Path:** Pivot to 13+ platform to avoid COPPA complexity
+**See:** `IMPLEMENTATION_PLAN_OPTION_A.md` for detailed deployment strategy
+
+---
+
+## 📊 Current Tech Stack
+
+### Frontend (Complete ✅)
+- **Framework:** React 18.3.1 + TypeScript 5.5.3
+- **Build Tool:** Vite 5.4.1
+- **Routing:** React Router v6
+- **Styling:** Tailwind CSS 3.4.11 + shadcn/ui
+- **Animations:** Framer Motion 12.23
+- **3D Graphics:** Three.js + React Three Fiber
+- **Testing:** Playwright (53+ E2E tests), Vitest
+- **CI/CD:** GitHub Actions + Husky pre-commit hooks
+
+### Backend (Configured but Incomplete ⚠️)
+- **Database:** Supabase (no schema yet)
+- **Auth:** Supabase Auth (configured but not implemented)
+- **Storage:** Currently localStorage only (needs cloud migration)
+- **Payments:** None (needs Stripe integration)
+
+### Content
+- **7 Core Lessons:** intro-to-ai, machine-learning-basics, data-and-patterns, image-recognition, simple-algorithms, ai-ethics, future-of-ai
+- **4 Major Projects:** music-ai-creator, ai-art-studio, build-chatbot, ai-video-magic
+- **40+ Activities:** Interactive games, coding challenges, drawing activities
+
+---
+
+## 🏗️ Architecture & Design System
+
+### "High-Opacity Glass" Design Language
+
+**Source of Truth:** `src/pages/DesignPilot.tsx`
+
+**Opacity Standards (NEVER DEVIATE):**
+- `/90` - Main containers (GlassCard, InnerCard backgrounds)
+- `/80` - Highlight boxes (tips, warnings)
+- `/10` - Icon backgrounds
+- `/20` - Inner card borders
+- `/50` - GlassCard borders
+- `/45` - Decorative gradients
+
+### Kids-Friendly Color Palette
+
+Defined in `tailwind.config.ts`:
+
+```typescript
+colors: {
+  'kids-blue': '#3B82F6',    // Primary
+  'kids-purple': '#A855F7',  // Secondary
+  'kids-green': '#10B981',   // Success
+  'kids-pink': '#EC4899',    // Accent
+  'kids-orange': '#F97316',  // Energy
+  'kids-yellow': '#FBBF24',  // Warning
+  'kids-red': '#EF4444',     // Error
+  'kids-teal': '#14B8A6',    // Info
+}
+```
+
+**Note:** Keep these CSS variable names even after 13+ pivot. They're just color names, not age references.
+
+### Component Helper Functions
+
+**Location:** `src/design-system/tokens.ts`
+
+```typescript
+getInnerCardClasses('blue')           // Grid item cards
+getIconContainerClasses('purple', 'md') // Icon containers
+getHighlightBoxClasses('yellow')      // Tips/warnings
+```
+
+**Pattern Reference:** `src/design-system/patterns.md`
+**Live Examples:** Visit `/design-pilot` in browser
+
+---
+
+## 📁 Project Structure
+
+```
+AI_kids_spark/
+├── src/
+│   ├── pages/              # 40+ route components
+│   │   ├── Index.tsx       # Homepage (needs 6-12 → 13+ updates)
+│   │   ├── Lessons.tsx     # Lesson overview
+│   │   ├── DesignPilot.tsx # ⚠️ DESIGN REFERENCE - DO NOT MODIFY
+│   │   └── projects/       # 4 project pages
+│   ├── components/
+│   │   ├── layout/         # LessonLayout, MainLayout
+│   │   ├── ui/             # shadcn/ui components
+│   │   ├── Header.tsx      # Main nav (needs brand update)
+│   │   └── Footer.tsx      # Site footer (needs age disclaimer)
+│   ├── design-system/
+│   │   ├── tokens.ts       # Design tokens & helpers
+│   │   ├── patterns.md     # Pattern documentation
+│   │   └── examples/       # PatternExamples.tsx
+│   ├── utils/
+│   │   └── progressTracker.ts # ⚠️ SECURITY: Fix DEBUG_UNLOCK_ALL
+│   ├── integrations/supabase/
+│   │   └── client.ts       # Supabase client (needs auth implementation)
+│   └── App.tsx             # ⚠️ SECURITY: Remove /debug/progress route
+│
+├── .verification/          # Automated verification system
+│   ├── agents/
+│   │   ├── code-reviewer/  # 125+ ESLint rules
+│   │   ├── ui-tester/      # 53+ Playwright tests
+│   │   └── documentation-checker/
+│   └── workflows/
+│       ├── quick-check.js  # ~7s (TypeScript + ESLint)
+│       └── full-verification.js # ~10-15min (all tests)
+│
+├── public/resources/       # Downloadable worksheets (need footer updates)
+│
+├── IMPLEMENTATION_PLAN_OPTION_A.md  # Deployment strategy (13+ pivot)
+├── CONTENT_CHANGES_CHECKLIST.md    # File-by-file changes needed
+├── BEFORE_AFTER_COMPARISON.md      # Visual before/after guide
+└── Claude.md               # This file
+```
+
+---
+
+## 🚀 Deployment Strategy: Option A (13+ Pivot)
+
+### Why Pivot from 6-12 to 13+?
+
+**Current Problem:**
+- Targeting ages 6-12 requires COPPA compliance (US law)
+- COPPA = months of implementation + $5k-10k legal fees
+- Verifiable parental consent mechanisms required
+- Extremely complex ongoing compliance
+
+**Recommended Solution:**
+- Change target audience to "Ages 13+"
+- Update branding: "AI Kids Spark" → "AI Spark"
+- Update messaging: "fun for kids" → "fundamentals for beginners"
+- Implement basic GDPR compliance instead
 
 **Benefits:**
 - ✅ 70% less legal complexity
@@ -36,169 +196,285 @@
 - ✅ Broader global audience
 - ✅ Still family-friendly (parents can supervise 13+ on their account)
 
----
+### Implementation Phases
 
-## 📋 IMPLEMENTATION PLAN
+**See `IMPLEMENTATION_PLAN_OPTION_A.md` for detailed code examples**
 
-**Detailed documentation in:**
-- `IMPLEMENTATION_PLAN_OPTION_A.md` - Full technical guide with code examples
-- `CONTENT_CHANGES_CHECKLIST.md` - File-by-file change list
-- `BEFORE_AFTER_COMPARISON.md` - Visual before/after comparison
+#### Phase 1: Critical Security Fixes (30 min) 🔴
+- Fix `DEBUG_UNLOCK_ALL` flag
+- Remove `/debug/progress` route
+- Secure environment variables
 
-### Phase 1: Critical Security Fixes (30 min) 🔴 URGENT
-
-**Files to fix immediately:**
-
-1. **`src/utils/progressTracker.ts` Line 4:**
-   ```typescript
-   // CURRENT (SECURITY HOLE!)
-   const DEBUG_UNLOCK_ALL = true;
-
-   // CHANGE TO:
-   const DEBUG_UNLOCK_ALL = import.meta.env.DEV;
-   ```
-
-2. **`src/App.tsx` Line 112:**
-   ```typescript
-   // REMOVE THIS LINE:
-   <Route path="/debug/progress" element={<ProgressDebugger />} />
-   ```
-
-3. **Environment Variables:**
-   - Verify `.env` is in `.gitignore`
-   - Create `.env.example` (safe to commit)
-   - Never commit actual `.env` file
-
-### Phase 2: Branding Updates (2-3 hours)
-
-**Global Find/Replace:**
-- `aged 6-12` → `ages 13+`
-- `AI Kids Spark` → `AI Spark` (except CSS vars)
-- `kid-friendly` → `beginner-friendly`
-- `Your Child` → `You` / `Learners`
+#### Phase 2: Branding Updates (2-3 hours) 🟡
+- Update "Ages 6-12" → "Ages 13+"
+- Change "AI Kids Spark" → "AI Spark"
+- Update testimonials with 13+ personas
+- Add age disclaimer to footer
 
 **Key Files:**
-- `index.html` - Update title and meta tags
-- `src/pages/Index.tsx` - Hero section, testimonials, stats
+- `index.html` - Meta tags
+- `src/pages/Index.tsx` - Hero, stats, testimonials
 - `src/components/Header.tsx` - Brand name
-- `src/components/Footer.tsx` - Add age disclaimer
-- `public/resources/*.html` - Update footers
+- `src/components/Footer.tsx` - Age disclaimer
+- `public/resources/*.html` - Footer updates
 
-### Phase 3: Authentication & Database (4-6 hours)
+#### Phase 3: Authentication & Database (4-6 hours)
+- Create Supabase schema with Row-Level Security
+- Implement authentication context
+- Build signup form with age verification (13+ check)
+- Migrate progress from localStorage to database
 
-**Create Supabase Schema:**
-```sql
--- profiles table with age verification
--- lesson_progress table
--- project_progress table
--- subscription_events table
--- audit_log table (GDPR)
--- Row-level security policies
+**New Files:**
+- `src/contexts/AuthContext.tsx`
+- `src/components/auth/SignUpForm.tsx`
+- `src/components/auth/SignInForm.tsx`
+- `supabase/migrations/001_initial_schema.sql`
+
+#### Phase 4: Stripe Integration (4-6 hours)
+- Set up Stripe account + API keys
+- Create product: "AI Spark Premium" ($9.99/month)
+- Implement Stripe Checkout
+- Create webhook handlers for subscription events
+- Implement feature gating
+
+**New Files:**
+- `src/components/payment/SubscriptionCheckout.tsx`
+- `src/hooks/useSubscription.ts`
+- `supabase/functions/create-checkout-session/`
+- `supabase/functions/stripe-webhook/`
+
+#### Phase 5: GDPR Compliance (2-3 hours)
+- Add cookie consent banner
+- Create Privacy Policy page
+- Create Terms of Service page
+- Implement data export (download as JSON)
+- Implement account deletion
+
+**New Files:**
+- `src/components/CookieConsent.tsx`
+- `src/pages/Privacy.tsx`
+- `src/pages/Terms.tsx`
+- `src/components/account/DataExport.tsx`
+- `src/components/account/DeleteAccount.tsx`
+
+#### Phase 6: Testing & Deployment (2-3 hours)
+- Test authentication flows
+- Test payment flows (Stripe test cards)
+- Test GDPR features
+- Deploy to Vercel with SSL
+- Update Stripe webhook URLs
+
+**Total Time:** 15-20 hours over 2-3 weeks
+
+---
+
+## 💰 Cost Structure & Revenue Model
+
+### Monthly Operating Costs
+
+| Service | Free Tier | 100 Users | 1000 Users |
+|---------|-----------|-----------|------------|
+| Supabase | 500MB, 2GB | $25/mo | $599/mo |
+| Stripe | Pay-per-use | ~$30/mo | ~$300/mo |
+| Vercel | 100GB | Free | $20/mo |
+| Domain | - | $12/year | $12/year |
+| SendGrid | 100/day | $15/mo | $50/mo |
+| Sentry | 5K events | Free | $26/mo |
+| **TOTAL** | **$0** | **~$70/mo** | **~$975/mo** |
+
+### Revenue Potential
+- **Pricing:** $9.99/month for premium
+- **Break-even:** ~7-10 paying subscribers
+- **100 users:** ~$1,000/month
+- **1,000 users:** ~$10,000/month
+
+---
+
+## 📋 Code Standards & Development Workflow
+
+### TypeScript Rules
+- ❌ NEVER use `any` type
+- ✅ Use `const` instead of `let` when not reassigned
+- ✅ Proper interface definitions
+- ✅ ES6 imports (no `require()`)
+
+### React Patterns
+- ✅ Functional components with hooks
+- ✅ TypeScript interfaces for props
+- ✅ Descriptive component names
+- ✅ One component per file
+- ✅ Export at bottom
+
+### Accessibility (WCAG 2.1 AA - Required)
+- ✅ Touch targets: minimum 44px × 44px
+- ✅ ARIA labels on interactive elements
+- ✅ Keyboard navigation support
+- ✅ Visible focus states (`focus:ring-4 focus:ring-{color}/30`)
+- ✅ Alt text on all images
+- ✅ Semantic HTML
+
+### Kids Safety & COPPA Compliance
+
+**Location:** `.verification/agents/code-reviewer/rules/kids-safety.eslint.js`
+
+**Rules (enforced by ESLint):**
+- ❌ NO external links without parental consent warning
+- ❌ NO data collection without clear privacy notice
+- ❌ NO third-party tracking without disclosure
+- ✅ Age-appropriate content only
+- ✅ Safe color contrast for readability
+
+**Note:** After 13+ pivot, these become "beginner-friendly safety rules" rather than COPPA compliance.
+
+### NPM Scripts
+
+```bash
+# Development
+npm run dev              # Start dev server (port 8080)
+
+# Verification (automated)
+npm run verify:quick     # Fast (~7s) - TypeScript + ESLint
+npm run verify:full      # Full (~10-15min) - All tests
+npm run verify:docs      # Check Claude.md is up-to-date
+
+# Testing
+npm run test:e2e         # Playwright tests (53+ scenarios)
+npm run test             # Vitest unit tests
+
+# Linting
+npm run lint             # ESLint check
+npm run lint:fix         # Auto-fix issues
+
+# Build
+npm run build            # Production build
+npm run preview          # Preview production build
 ```
 
-**Create Components:**
-- `src/contexts/AuthContext.tsx` - Auth provider
-- `src/components/auth/SignUpForm.tsx` - With age verification (13+ check)
-- `src/components/auth/SignInForm.tsx` - Standard login
-- Protected routes wrapper
+### Pre-commit Hook
 
-### Phase 4: Stripe Integration (4-6 hours)
+**Automatic on `git commit`:**
+- Runs `verify:quick` (TypeScript + ESLint + smoke tests)
+- Blocks commit if verification fails
+- Takes ~7 seconds
 
-**Setup:**
-- Create Stripe account & get API keys
-- Create product: "AI Spark Premium" ($9.99/month)
-- Install `@stripe/stripe-js`
-
-**Create Edge Functions:**
-- `supabase/functions/create-checkout-session/` - Start subscription
-- `supabase/functions/stripe-webhook/` - Handle subscription events
-- `supabase/functions/cancel-subscription/` - Handle cancellations
-
-**Components:**
-- `src/components/payment/SubscriptionCheckout.tsx`
-- `src/hooks/useSubscription.ts` - Check subscription status
-- Feature gating based on subscription
-
-### Phase 5: GDPR Compliance (2-3 hours)
-
-**Required:**
-1. **Cookie Consent:** Install `react-cookie-consent`, add banner
-2. **Privacy Policy:** Create `src/pages/Privacy.tsx`
-3. **Terms of Service:** Create `src/pages/Terms.tsx`
-4. **Data Export:** `src/components/account/DataExport.tsx` - Download user data as JSON
-5. **Account Deletion:** `src/components/account/DeleteAccount.tsx` - Self-service deletion
-
-### Phase 6: Testing & Deployment (2-3 hours)
-
-**Test Checklist:**
-- [ ] Age verification (13+ pass, <13 fail)
-- [ ] Authentication flows (signup, login, logout)
-- [ ] Payment (test card: 4242 4242 4242 4242)
-- [ ] Webhooks update subscription status
-- [ ] Feature gating works
-- [ ] Data export downloads JSON
-- [ ] Account deletion works
-
-**Deploy:**
-- Platform: Vercel (recommended)
-- SSL: Automatic with Vercel
-- Environment variables in Vercel dashboard
-- Update Stripe webhook URL to production
+**Bypass (use sparingly):**
+```bash
+git commit --no-verify -m "message"
+```
 
 ---
 
-## 🔒 CURRENT SECURITY ISSUES
+## 🧪 Testing Strategy
 
-**CRITICAL - Fix Immediately:**
+### E2E Tests (Playwright)
+- **Location:** `.verification/agents/ui-tester/test-suites/`
+- **Coverage:** 53+ test scenarios
+- **Devices:** Desktop Chrome, Mobile Chrome, iPad
+- **Tests:** Navigation, lessons, activities, accessibility, performance
 
-1. **DEBUG_UNLOCK_ALL = true** (Line 4 in `src/utils/progressTracker.ts`)
-   - Currently unlocks ALL content without completing lessons
-   - Bypasses all progress requirements
-   - **MUST** be set to `import.meta.env.DEV` for dev-only
-
-2. **Debug Route Exposed** (`/debug/progress` in `src/App.tsx`)
-   - Comment says "Remove in production" but still present
-   - Exposes progress manipulation tools
-   - **MUST** be removed before deployment
-
-3. **Environment Variables** (`.env` file)
-   - Contains Supabase publishable key
-   - Verify it's in `.gitignore`
-   - Create `.env.example` for contributors
+### Unit Tests (Vitest)
+- **Location:** `src/**/*.test.ts(x)`
+- **Coverage:** Components, utilities, Supabase logic
 
 ---
 
-## 📊 CURRENT ARCHITECTURE
+## 🔍 Common Issues & Solutions
 
-### Frontend (Complete ✅)
-- **Framework:** React 18.3.1 + TypeScript 5.5.3
-- **Build:** Vite 5.4.1
-- **Routing:** React Router v6
-- **Styling:** Tailwind CSS 3.4 + shadcn/ui
-- **Animations:** Framer Motion
-- **3D:** React Three Fiber
+### "ESLint errors blocking commit"
+**Solution:** Run `npm run lint` to see errors, fix them, then re-commit.
 
-### Backend (Partially Configured ⚠️)
-- **Database:** Supabase (configured but no schema)
-- **Auth:** Supabase Auth (configured but not implemented)
-- **Storage:** Currently localStorage only (needs migration to Supabase)
-- **Payments:** None (needs Stripe integration)
+### "Opacity looks wrong"
+**Solution:** Check `src/pages/DesignPilot.tsx` and use correct opacity from design tokens.
 
-### Content Structure
-- **7 Core Lessons:** intro-to-ai, machine-learning-basics, data-and-patterns, image-recognition, simple-algorithms, ai-ethics, future-of-ai
-- **4 Projects:** music-ai-creator, ai-art-studio, build-chatbot, ai-video-magic
-- **Multiple Activities:** Games, coding challenges, ethics scenarios
+### "Component doesn't match design"
+**Solution:** Use helper functions from `src/design-system/tokens.ts` instead of manual Tailwind.
+
+### "Pre-commit hook too slow"
+**Solution:** Expected (~7s). It's preventing bugs before they reach codebase.
+
+### "Can't find IMPLEMENTATION_PLAN_OPTION_A.md"
+**Solution:** Make sure you're on branch `claude/deployment-compliance-review-3NyeN`, not main.
 
 ---
 
-## 🎯 PROJECT GOALS
+## 📚 Critical Files - NEVER MODIFY
+
+1. **`src/pages/DesignPilot.tsx`** - Design system reference
+2. **`src/design-system/tokens.ts`** - Design tokens
+3. **`.verification/agents/code-reviewer/rules/kids-safety.eslint.js`** - Safety rules
+
+---
+
+## 🎓 Important Context for AI Assistants
+
+### When Starting a New Session
+
+1. **Read this file first** - Contains critical context
+2. **Check current branch** - Should have implementation docs
+3. **Understand deployment decision** - 13+ pivot vs COPPA compliance
+4. **Review security issues** - Fix DEBUG_UNLOCK_ALL before other work
+5. **Reference implementation plan** - `IMPLEMENTATION_PLAN_OPTION_A.md`
+
+### When Making Changes
+
+1. **Always run verification** after changes (`npm run verify:quick`)
+2. **Update Claude.md** when making architectural changes
+3. **Never skip ESLint errors** - They enforce critical standards
+4. **Use DesignPilot.tsx** as visual reference
+5. **Check existing components** before creating new ones
+6. **Prioritize accessibility** - WCAG 2.1 AA required
+
+### Communication Style
+
+- ✅ Technical accuracy over validation
+- ✅ Concise explanations
+- ✅ Show actual results
+- ❌ No emojis unless user requests
+- ❌ No over-engineering
+
+### Self-Healing Workflow
+
+When user requests a change:
+1. Make the change
+2. If architectural → Update Claude.md (Last Updated, status)
+3. Run `verify:quick`
+4. If errors → Fix them
+5. Re-run `verify:quick`
+6. Repeat until ✅ all pass
+7. Commit changes
+8. Tell user "Done! Verification passed."
+
+**Never say "you're done" until verification actually passes.**
+
+---
+
+## 📖 Documentation Reference
+
+### In This Repository
+- **`Claude.md`** - This file (master context)
+- **`IMPLEMENTATION_PLAN_OPTION_A.md`** - Deployment strategy (1,828 lines)
+- **`CONTENT_CHANGES_CHECKLIST.md`** - File-by-file changes (384 lines)
+- **`BEFORE_AFTER_COMPARISON.md`** - Visual before/after (851 lines)
+- **`README.md`** - Original Lovable platform setup
+- **`src/design-system/patterns.md`** - Design patterns
+- **`.verification/workflows/claude-feedback-loop.md`** - Verification docs
+
+### External Resources
+- **Supabase:** https://supabase.com/docs
+- **Stripe:** https://stripe.com/docs
+- **GDPR Guide:** https://gdpr.eu/
+- **WCAG 2.1:** https://www.w3.org/WAI/WCAG21/quickref/
+
+---
+
+## 🎯 Current Project Goals
 
 ### Immediate (Pre-Launch)
-1. ✅ Fix security vulnerabilities
-2. ⚠️ Implement authentication
-3. ⚠️ Integrate payment system
-4. ⚠️ Achieve GDPR compliance
-5. ⚠️ Deploy to production with SSL
+1. ✅ Fix security vulnerabilities (Phase 1)
+2. ⚠️ Implement authentication (Phase 3)
+3. ⚠️ Integrate Stripe payments (Phase 4)
+4. ⚠️ Achieve GDPR compliance (Phase 5)
+5. ⚠️ Deploy to production with SSL (Phase 6)
 
 ### Short-term (Month 1-2)
 - Launch with 13+ branding
@@ -211,7 +487,7 @@
 - Email notifications
 - Progress certificates
 - Referral program
-- Mobile-responsive improvements
+- Mobile improvements
 
 ### Long-term (Month 7-12)
 - Mobile apps (React Native)
@@ -222,128 +498,58 @@
 
 ---
 
-## 💰 COST STRUCTURE
+## 🚦 Project Status
 
-### Monthly Operating Costs (Projected)
+### Architecture & Design System
+- ✅ Design tokens created
+- ✅ Component patterns documented
+- ✅ Live examples available
+- ✅ ESLint rules enforced
+- ✅ Accessibility standards implemented
 
-| Service | Free Tier | 100 Users | 1000 Users |
-|---------|-----------|-----------|------------|
-| **Supabase** | 500MB, 2GB bandwidth | $25/mo | $599/mo |
-| **Stripe** | Pay-per-use | ~$30/mo | ~$300/mo |
-| **Vercel** | 100GB bandwidth | Free | $20/mo |
-| **Domain** | - | $12/year | $12/year |
-| **Email (SendGrid)** | 100/day | $15/mo | $50/mo |
-| **Sentry (errors)** | 5K events | Free | $26/mo |
-| **TOTAL** | **$0** | **~$70/mo** | **~$975/mo** |
+### Content & Features
+- ✅ 7 core lessons complete
+- ✅ 4 major projects complete
+- ✅ 40+ activities complete
+- ✅ Interactive components built
+- ✅ Beautiful UI designed
 
-### Revenue Potential
-- 100 subscribers × $9.99 = ~$1,000/month
-- 1,000 subscribers × $9.99 = ~$10,000/month
-- Break-even: ~7-10 paying subscribers
+### Backend & Deployment
+- ⚠️ Supabase configured (no schema)
+- ❌ Authentication not implemented
+- ❌ Payments not integrated
+- ❌ COPPA/GDPR not compliant
+- ❌ Security issues present
+- ❌ Not production-ready
 
----
-
-## 🚀 QUICK START FOR NEW AI SESSIONS
-
-### For Implementation Work:
-1. **Check current branch:** Should be on `claude/deployment-compliance-review-3NyeN`
-2. **Read implementation plan:** `IMPLEMENTATION_PLAN_OPTION_A.md`
-3. **Start with Phase 1:** Security fixes (30 minutes, critical)
-4. **Reference checklist:** `CONTENT_CHANGES_CHECKLIST.md` for file changes
-
-### For Content Updates:
-1. **Age references:** Change all "6-12" to "13+"
-2. **Branding:** "AI Kids Spark" → "AI Spark"
-3. **Messaging:** "kids" → "students/learners", "kid-friendly" → "beginner-friendly"
-4. **CSS colors:** Keep `kids-blue`, `kids-purple` etc. (just variable names)
-
-### For Feature Development:
-1. **Authentication:** Use Supabase Auth context pattern (see Phase 3)
-2. **Payments:** Use Stripe Checkout + webhooks (see Phase 4)
-3. **Data:** Migrate from localStorage to Supabase tables with RLS
-4. **Progress tracking:** Update `progressTracker.ts` to sync with database
+### Decision Point
+- 📍 **YOU ARE HERE:** Choosing deployment path
+- 🎯 **Recommended:** Option A (13+ pivot)
+- 📅 **Timeline:** 2-3 weeks to launch
+- 💰 **Cost:** ~$0-500 (free tiers + legal templates)
 
 ---
 
-## 📖 KEY DOCUMENTATION
-
-### In This Repository
-- **`README.md`** - Original project setup (Lovable platform integration)
-- **`IMPLEMENTATION_PLAN_OPTION_A.md`** - Complete technical implementation guide (1,828 lines)
-- **`CONTENT_CHANGES_CHECKLIST.md`** - File-by-file change list (384 lines)
-- **`BEFORE_AFTER_COMPARISON.md`** - Visual before/after guide (851 lines)
-- **`Claude.md`** - This file (project context for AI assistants)
-
-### External Resources
-- **Supabase Docs:** https://supabase.com/docs
-- **Stripe Docs:** https://stripe.com/docs
-- **GDPR Guide:** https://gdpr.eu/
-- **React Query:** https://tanstack.com/query/latest
-
----
-
-## ⚠️ IMPORTANT NOTES FOR AI ASSISTANTS
-
-### When Making Changes:
-1. **Always read files before editing** - Don't assume current state
-2. **Test incrementally** - Each phase should be tested before moving on
-3. **Use branches** - Create feature branches, don't commit directly to main
-4. **Security first** - Phase 1 (security) must be done before anything else
-5. **Commit frequently** - Small, atomic commits with clear messages
-
-### When Answering Questions:
-1. **Context matters** - This is a pivot from 6-12 to 13+ to avoid COPPA
-2. **Legal complexity** - COPPA is extremely complex; 13+ with GDPR is much simpler
-3. **Timeline realism** - Full implementation is 15-20 hours, not days
-4. **Cost transparency** - Most services have generous free tiers initially
-
-### When Stuck:
-1. **Check existing docs** - Answer is likely in one of the implementation docs
-2. **Supabase Discord** - Excellent community support
-3. **Stripe Discord** - Fast responses on payment integration
-4. **Don't guess on legal** - Use templates from Termly/iubenda or consult lawyer
-
----
-
-## 🎓 EDUCATIONAL PHILOSOPHY
-
-Despite the 13+ pivot, the platform maintains its core educational values:
-
-- **Beginner-Friendly:** Clear explanations, no prior knowledge assumed
-- **Hands-On:** Learn by doing, not just reading
-- **Interactive:** Games, projects, and activities reinforce concepts
-- **Ethical:** AI Ethics is a core lesson, not an afterthought
-- **Accessible:** Beautiful UI, inclusive design, multi-device support
-
-The content works perfectly for:
-- High school students (13-18) exploring AI
-- College students supplementing coursework
-- Adult learners career-changing into tech
-- Educators looking for teaching resources
-- Parents supervising 13+ kids on family accounts
-
----
-
-## 📞 CONTACT & SUPPORT
+## 📞 Contact & Support
 
 - **Project Owner:** martin-valny
 - **Repository:** https://github.com/martin-valny/AI_kids_spark
+- **Current Branch:** claude/deployment-compliance-review-3NyeN
 - **Support Email:** hello@aikidsspark.com (update after rebrand)
 
 ---
 
-**Last Updated:** 2026-01-08
-**Branch:** claude/deployment-compliance-review-3NyeN
-**Status:** Implementation plan complete, awaiting approval to proceed
+## 🔄 Version History
 
----
-
-## 🔄 VERSION HISTORY
-
-- **2026-01-08:** Created comprehensive Option A implementation plan (13+ pivot)
+- **2026-01-08:** Merged architecture + deployment context into master Claude.md
+- **2026-01-08:** Created Option A implementation plan (13+ pivot)
+- **2026-01-08:** Design system refactoring (Phase 1 & 2 complete)
 - **2026-01-07:** Initial project upload with complete frontend
-- **Earlier:** Development on Lovable platform
 
 ---
 
-**For new AI sessions:** Read this file first, then refer to the detailed implementation plans in the links above.
+**For new AI sessions:** Read this file first, then refer to implementation plans. This is the single source of truth for project context, architecture, and deployment strategy.
+
+---
+
+*This document is maintained by AI assistants. Update "Last Updated" date and relevant sections when making architectural or strategic changes.*
