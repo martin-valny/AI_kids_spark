@@ -6,7 +6,7 @@ Automatically verifies that `CLAUDE.md` is kept up-to-date when architectural ch
 
 ## Why This Matters
 
-`CLAUDE.md` is the single source of truth for AI assistants working on this project. If it becomes stale:
+`Claude.md` is the single source of truth for AI assistants working on this project. If it becomes stale:
 - New AI sessions will have outdated context
 - Design decisions and patterns won't be documented
 - Refactoring status will be inaccurate
@@ -16,7 +16,7 @@ This agent ensures documentation quality by catching outdated documentation **be
 
 ## What It Checks
 
-### 1. **CLAUDE.md Exists**
+### 1. **Claude.md Exists**
 - Verifies the file exists in repository root
 - **Severity:** Error (blocks)
 
@@ -26,7 +26,7 @@ This agent ensures documentation quality by catching outdated documentation **be
 - **Severity:** Warning
 
 ### 3. **Refactoring Status Accuracy**
-- Compares phase status (✅/⏸️) with actual file existence
+- Compares phase status (✅/⏸️/❌) with actual file existence
 - Detects when Phase 1 is complete but marked as pending
 - Detects when component library exists but Phase 3 is pending
 - **Severity:** Warning
@@ -50,7 +50,7 @@ This agent ensures documentation quality by catching outdated documentation **be
 
 ### 6. **Recent Commits vs Updates**
 - Analyzes last 10 commits for architectural keywords
-- Warns if architectural changes were made but CLAUDE.md wasn't updated
+- Warns if architectural changes were made but Claude.md wasn't updated
 - Keywords: `feat:`, `refactor:`, `design system`, `pattern`, `phase`, etc.
 - **Severity:** Warning
 
@@ -134,7 +134,7 @@ Consider updating CLAUDE.md to improve documentation quality.
 ### ✅ Phase 1: Design System Setup (COMPLETE)  ← Change ⏸️ to ✅
 ```
 
-### "Architectural commits but no CLAUDE.md update"
+### "Architectural commits but no Claude.md update"
 Update relevant sections:
 - Add new components to "Component Patterns"
 - Update "Refactoring Plan Status"
@@ -142,7 +142,7 @@ Update relevant sections:
 - Update "Last Updated" date
 
 ### "Missing critical sections"
-Ensure CLAUDE.md has all required sections (see "What It Checks" above).
+Ensure Claude.md has all required sections (see "What It Checks" above).
 
 ## Configuration
 
@@ -169,13 +169,13 @@ const requiredSections = [
 
 When making architectural changes:
 
-1. ✅ **Update CLAUDE.md in the same commit**
+1. ✅ **Update Claude.md in the same commit**
    ```bash
-   git add src/design-system/tokens.ts CLAUDE.md
+   git add src/design-system/tokens.ts Claude.md
    git commit -m "feat: Add new design tokens
 
    - Added spacing variants
-   - Updated CLAUDE.md with new token documentation"
+   - Updated Claude.md with new token documentation"
    ```
 
 2. ✅ **Update "Last Updated" date**
@@ -218,7 +218,7 @@ Warnings are non-blocking because:
 ## Maintenance
 
 This agent should be updated when:
-- New critical sections are added to CLAUDE.md
+- New critical sections are added to Claude.md
 - Refactoring plan changes (new phases)
 - Project structure changes significantly
 - New documentation standards are established

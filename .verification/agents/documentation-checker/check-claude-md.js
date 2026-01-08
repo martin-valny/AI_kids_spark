@@ -21,7 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '../../..');
 
-const CLAUDE_MD_PATH = path.join(rootDir, 'CLAUDE.md');
+const CLAUDE_MD_PATH = path.join(rootDir, 'Claude.md');
 const DESIGN_SYSTEM_PATH = path.join(rootDir, 'src/design-system');
 
 // ANSI color codes
@@ -204,7 +204,7 @@ function checkRecentCommitsVsClaudeMd() {
       cwd: rootDir
     }).trim().split('\n');
 
-    const claudeMdCommits = execSync('git log -10 --oneline CLAUDE.md', {
+    const claudeMdCommits = execSync('git log -10 --oneline Claude.md', {
       encoding: 'utf-8',
       cwd: rootDir
     }).trim().split('\n').filter(line => line.trim());
