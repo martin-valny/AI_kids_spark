@@ -1,0 +1,91 @@
+{
+  "name": "code-reviewer",
+  "version": "1.0.0",
+  "description": "Automated code review agent for AI Kids Spark platform with focus on accessibility, performance, safety, and React best practices",
+  "checks": [
+    {
+      "id": "accessibility",
+      "name": "Accessibility Checks",
+      "description": "Ensures WCAG 2.1 AA compliance and kids-friendly accessibility patterns",
+      "type": "eslint",
+      "config": "./rules/accessibility.eslint.js",
+      "severity": "error",
+      "autoFix": false,
+      "enabled": true,
+      "priority": 1
+    },
+    {
+      "id": "performance",
+      "name": "Performance Checks",
+      "description": "Validates performance best practices and optimization patterns",
+      "type": "eslint",
+      "config": "./rules/performance.eslint.js",
+      "severity": "warning",
+      "autoFix": true,
+      "enabled": true,
+      "priority": 2
+    },
+    {
+      "id": "kids-safety",
+      "name": "Kids Safety Checks",
+      "description": "Enforces child safety patterns including external link protection and content filtering",
+      "type": "eslint",
+      "config": "./rules/kids-safety.eslint.js",
+      "severity": "error",
+      "autoFix": false,
+      "enabled": true,
+      "priority": 1
+    },
+    {
+      "id": "react-best-practices",
+      "name": "React & TypeScript Best Practices",
+      "description": "Validates React patterns, TypeScript strict typing, and component architecture",
+      "type": "eslint",
+      "config": "./rules/react-best-practices.eslint.js",
+      "severity": "warning",
+      "autoFix": true,
+      "enabled": true,
+      "priority": 3
+    },
+    {
+      "id": "manual-review",
+      "name": "Manual Review Checklist",
+      "description": "Human-reviewed quality checks for educational content and UX",
+      "type": "manual",
+      "config": "./checklist.md",
+      "severity": "info",
+      "enabled": true,
+      "priority": 4
+    }
+  ],
+  "settings": {
+    "runOnSave": false,
+    "runOnCommit": true,
+    "failOnError": true,
+    "failOnWarning": false,
+    "reportFormat": "json",
+    "outputPath": "./.verification/reports",
+    "excludePatterns": [
+      "**/*.test.{ts,tsx}",
+      "**/*.spec.{ts,tsx}",
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/*.config.{js,ts}"
+    ],
+    "includePatterns": [
+      "src/**/*.{ts,tsx}",
+      "src/**/*.{js,jsx}"
+    ]
+  },
+  "integrations": {
+    "git": {
+      "enabled": true,
+      "preCommitHook": true,
+      "prComments": true
+    },
+    "ci": {
+      "enabled": true,
+      "platform": "github-actions"
+    }
+  }
+}

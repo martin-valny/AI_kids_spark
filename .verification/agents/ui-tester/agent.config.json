@@ -1,0 +1,110 @@
+{
+  "agentName": "UI Testing Agent",
+  "agentType": "ui-tester",
+  "version": "1.0.0",
+  "description": "Automated UI testing agent for AI Kids Spark learning platform",
+  "testingFramework": "playwright",
+  "configPath": "../../config/playwright.config.ts",
+
+  "viewportSettings": {
+    "desktop": {
+      "width": 1280,
+      "height": 720,
+      "description": "Standard desktop viewport for main testing"
+    },
+    "tablet": {
+      "width": 1024,
+      "height": 1366,
+      "description": "iPad Pro viewport for tablet testing"
+    },
+    "mobile": {
+      "width": 393,
+      "height": 851,
+      "description": "Pixel 5 viewport for mobile testing"
+    }
+  },
+
+  "testSuitePriorities": {
+    "smoke": {
+      "priority": 1,
+      "runOn": ["push", "pull_request", "schedule"],
+      "description": "Critical path tests - must pass before deployment",
+      "estimatedDuration": "2-3 minutes"
+    },
+    "interactive": {
+      "priority": 2,
+      "runOn": ["pull_request", "schedule"],
+      "description": "Tests for interactive elements and user interactions",
+      "estimatedDuration": "5-7 minutes"
+    },
+    "responsive": {
+      "priority": 3,
+      "runOn": ["pull_request", "schedule"],
+      "description": "Responsive design and cross-device compatibility tests",
+      "estimatedDuration": "8-10 minutes"
+    }
+  },
+
+  "kidsFriendlyChecks": {
+    "minimumTouchTargetSize": {
+      "enabled": true,
+      "minWidth": 44,
+      "minHeight": 44,
+      "description": "Ensure touch targets meet WCAG AAA standards for children"
+    },
+    "textReadability": {
+      "enabled": true,
+      "minimumFontSize": 16,
+      "minimumContrast": 4.5,
+      "description": "Verify text is readable for young users"
+    },
+    "animationSafety": {
+      "enabled": true,
+      "maxAnimationSpeed": 500,
+      "checkReducedMotion": true,
+      "description": "Ensure animations are safe and not overwhelming"
+    },
+    "consoleErrors": {
+      "enabled": true,
+      "failOnError": true,
+      "allowedPatterns": [],
+      "description": "Monitor for JavaScript errors that could break functionality"
+    },
+    "navigationClarity": {
+      "enabled": true,
+      "checkBackButton": true,
+      "checkBreadcrumbs": true,
+      "description": "Ensure children can easily navigate and return to previous pages"
+    }
+  },
+
+  "testEnvironment": {
+    "baseUrl": "http://localhost:8080",
+    "apiEndpoint": "http://localhost:8080/api",
+    "timeout": {
+      "default": 30000,
+      "navigation": 30000,
+      "action": 10000
+    },
+    "retries": {
+      "ci": 2,
+      "local": 0
+    }
+  },
+
+  "reporting": {
+    "formats": ["html", "json", "list"],
+    "outputDirectory": "../../test-results",
+    "reportDirectory": "../../playwright-report",
+    "screenshots": "only-on-failure",
+    "videos": "retain-on-failure",
+    "traces": "on-first-retry"
+  },
+
+  "customAssertions": {
+    "accessibilityChecks": true,
+    "performanceMetrics": true,
+    "visualRegression": false,
+    "crossBrowserCompatibility": true
+  }
+}

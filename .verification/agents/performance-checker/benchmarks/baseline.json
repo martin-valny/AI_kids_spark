@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-01-07",
+    "description": "Performance baselines for AI Kids Spark application",
+    "environment": "production",
+    "device": "desktop"
+  },
+  "pages": {
+    "/": {
+      "name": "Home Page",
+      "metrics": {
+        "performance": 90,
+        "accessibility": 98,
+        "bestPractices": 95,
+        "seo": 95,
+        "LCP": 1800,
+        "FCP": 1200,
+        "CLS": 0.05,
+        "TBT": 200,
+        "SI": 2800,
+        "TTI": 3200
+      },
+      "resources": {
+        "javascript": 320,
+        "css": 80,
+        "images": 500,
+        "fonts": 120,
+        "total": 1200
+      },
+      "notes": "Main landing page with hero section and feature overview"
+    },
+    "/lessons": {
+      "name": "Lessons Page",
+      "metrics": {
+        "performance": 88,
+        "accessibility": 97,
+        "bestPractices": 93,
+        "seo": 94,
+        "LCP": 2000,
+        "FCP": 1400,
+        "CLS": 0.08,
+        "TBT": 250,
+        "SI": 3000,
+        "TTI": 3400
+      },
+      "resources": {
+        "javascript": 350,
+        "css": 85,
+        "images": 600,
+        "fonts": 120,
+        "total": 1300
+      },
+      "notes": "Lessons overview with grid layout and interactive cards"
+    },
+    "/activities/pattern-detective": {
+      "name": "Pattern Detective Activity",
+      "metrics": {
+        "performance": 86,
+        "accessibility": 96,
+        "bestPractices": 92,
+        "seo": 92,
+        "LCP": 2200,
+        "FCP": 1500,
+        "CLS": 0.09,
+        "TBT": 280,
+        "SI": 3200,
+        "TTI": 3600
+      },
+      "resources": {
+        "javascript": 380,
+        "css": 90,
+        "images": 450,
+        "fonts": 120,
+        "total": 1150
+      },
+      "notes": "Interactive pattern recognition game"
+    },
+    "/activities/draw-ai-friend": {
+      "name": "Draw AI Friend Activity",
+      "metrics": {
+        "performance": 85,
+        "accessibility": 97,
+        "bestPractices": 91,
+        "seo": 91,
+        "LCP": 2300,
+        "FCP": 1600,
+        "CLS": 0.07,
+        "TBT": 290,
+        "SI": 3300,
+        "TTI": 3700
+      },
+      "resources": {
+        "javascript": 390,
+        "css": 95,
+        "images": 400,
+        "fonts": 120,
+        "total": 1100
+      },
+      "notes": "Drawing canvas activity with ML integration"
+    },
+    "/lessons/intro-to-ai": {
+      "name": "Intro to AI Lesson",
+      "metrics": {
+        "performance": 89,
+        "accessibility": 98,
+        "bestPractices": 94,
+        "seo": 96,
+        "LCP": 1900,
+        "FCP": 1300,
+        "CLS": 0.06,
+        "TBT": 220,
+        "SI": 2900,
+        "TTI": 3300
+      },
+      "resources": {
+        "javascript": 340,
+        "css": 88,
+        "images": 550,
+        "fonts": 120,
+        "total": 1250
+      },
+      "notes": "Educational content with images and interactive elements"
+    }
+  },
+  "mobile": {
+    "/": {
+      "name": "Home Page (Mobile)",
+      "metrics": {
+        "performance": 82,
+        "accessibility": 98,
+        "bestPractices": 94,
+        "seo": 95,
+        "LCP": 3200,
+        "FCP": 2000,
+        "CLS": 0.08,
+        "TBT": 400,
+        "SI": 4500,
+        "TTI": 5000
+      },
+      "resources": {
+        "javascript": 320,
+        "css": 80,
+        "images": 400,
+        "fonts": 100,
+        "total": 1000
+      }
+    }
+  },
+  "globalMetrics": {
+    "avgPerformance": 87.6,
+    "avgAccessibility": 97.2,
+    "avgBestPractices": 93.0,
+    "avgSEO": 93.6,
+    "avgLCP": 2040,
+    "avgFCP": 1400,
+    "avgCLS": 0.07,
+    "avgTBT": 248,
+    "avgJavaScriptSize": 356,
+    "avgCSSSize": 87.6,
+    "avgImageSize": 500,
+    "avgTotalSize": 1200
+  },
+  "trends": {
+    "lastUpdated": "2026-01-07",
+    "performanceChange": "+2%",
+    "bundleSizeChange": "-5%",
+    "lcpChange": "-200ms"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "name": "Performance Checker",
+  "version": "1.0.0",
+  "description": "Automated performance monitoring and optimization for AI Kids Spark",
+  "enabled": true,
+  "lighthouse": {
+    "settings": {
+      "onlyCategories": ["performance", "accessibility", "best-practices", "seo"],
+      "formFactor": "desktop",
+      "throttling": {
+        "rttMs": 40,
+        "throughputKbps": 10240,
+        "cpuSlowdownMultiplier": 1,
+        "requestLatencyMs": 0,
+        "downloadThroughputKbps": 0,
+        "uploadThroughputKbps": 0
+      },
+      "screenEmulation": {
+        "mobile": false,
+        "width": 1350,
+        "height": 940,
+        "deviceScaleFactor": 1,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    },
+    "mobileSettings": {
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 375,
+        "height": 667,
+        "deviceScaleFactor": 2
+      }
+    }
+  },
+  "thresholds": {
+    "performance": 85,
+    "accessibility": 95,
+    "bestPractices": 90,
+    "seo": 90,
+    "pwa": 50
+  },
+  "budgets": {
+    "javascript": {
+      "size": 400,
+      "unit": "kb",
+      "description": "Total JavaScript bundle size"
+    },
+    "css": {
+      "size": 100,
+      "unit": "kb",
+      "description": "Total CSS bundle size"
+    },
+    "images": {
+      "size": 1000,
+      "unit": "kb",
+      "description": "Total image size per page"
+    },
+    "fonts": {
+      "size": 150,
+      "unit": "kb",
+      "description": "Total font size"
+    },
+    "total": {
+      "size": 2000,
+      "unit": "kb",
+      "description": "Total page weight"
+    }
+  },
+  "webVitals": {
+    "LCP": {
+      "threshold": 2500,
+      "unit": "ms",
+      "description": "Largest Contentful Paint - Should be under 2.5s"
+    },
+    "FID": {
+      "threshold": 100,
+      "unit": "ms",
+      "description": "First Input Delay - Should be under 100ms"
+    },
+    "CLS": {
+      "threshold": 0.1,
+      "unit": "score",
+      "description": "Cumulative Layout Shift - Should be under 0.1"
+    },
+    "FCP": {
+      "threshold": 1800,
+      "unit": "ms",
+      "description": "First Contentful Paint - Should be under 1.8s"
+    },
+    "TBT": {
+      "threshold": 300,
+      "unit": "ms",
+      "description": "Total Blocking Time - Should be under 300ms"
+    },
+    "SI": {
+      "threshold": 3400,
+      "unit": "ms",
+      "description": "Speed Index - Should be under 3.4s"
+    },
+    "TTI": {
+      "threshold": 3800,
+      "unit": "ms",
+      "description": "Time to Interactive - Should be under 3.8s"
+    }
+  },
+  "kidsSpecific": {
+    "minFontSize": 16,
+    "minTouchTarget": 44,
+    "minColorContrast": 4.5,
+    "maxAnimationDuration": 3000,
+    "description": "Kid-friendly UI requirements"
+  },
+  "schedule": {
+    "frequency": "daily",
+    "time": "02:00",
+    "timezone": "UTC"
+  },
+  "notifications": {
+    "enabled": true,
+    "channels": ["console", "file"],
+    "thresholdFailures": true,
+    "budgetExceeded": true
+  },
+  "reporting": {
+    "outputDir": ".verification/reports/performance",
+    "formats": ["json", "html", "csv"],
+    "historical": true,
+    "retention": 30
+  }
+}

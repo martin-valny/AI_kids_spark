@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "agents": {
+    "ui-tester": {
+      "enabled": true,
+      "priority": 1,
+      "runOn": [
+        "pre-commit",
+        "pre-push",
+        "ci"
+      ]
+    },
+    "code-reviewer": {
+      "enabled": true,
+      "priority": 2,
+      "runOn": [
+        "pre-commit",
+        "ci"
+      ]
+    },
+    "performance-checker": {
+      "enabled": true,
+      "priority": 3,
+      "runOn": [
+        "pre-push",
+        "ci"
+      ]
+    }
+  },
+  "workflows": {
+    "quick-verify": [
+      "code-reviewer"
+    ],
+    "full-verify": [
+      "ui-tester",
+      "code-reviewer",
+      "performance-checker"
+    ]
+  },
+  "reporting": {
+    "format": [
+      "json",
+      "html"
+    ],
+    "outputDir": ".verification/reports/latest",
+    "keepHistory": 10
+  }
+}

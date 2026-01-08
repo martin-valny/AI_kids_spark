@@ -1,0 +1,25 @@
+{
+  "name": "Performance Checker Agent",
+  "description": "Performance monitoring and optimization",
+  "metrics": {
+    "lighthouse": {
+      "performance": 90,
+      "accessibility": 90,
+      "bestPractices": 90,
+      "seo": 90
+    },
+    "bundleSize": {
+      "maxSizeKB": 500,
+      "warnThresholdKB": 400
+    },
+    "loadTime": {
+      "maxMs": 3000,
+      "warnMs": 2000
+    }
+  },
+  "checkAssets": {
+    "images": true,
+    "fonts": true,
+    "scripts": true
+  }
+}

@@ -118,13 +118,13 @@
 
 @layer components {
 
-  /* Enhanced Glassmorphism System */
+  /* Enhanced Glassmorphism System - Based on DesignPilot standard */
   .glass-card {
-    @apply bg-white/95 backdrop-blur-md border border-white/20 rounded-3xl shadow-lg transition-all duration-300;
+    @apply bg-white/90 backdrop-blur-md border border-white/20 rounded-3xl shadow-lg transition-all duration-300;
   }
 
   .glass-card-strong {
-    @apply bg-white/95 backdrop-blur-xl border border-white/30 rounded-3xl shadow-xl transition-all duration-300;
+    @apply bg-white/90 backdrop-blur-xl border border-white/30 rounded-3xl shadow-xl transition-all duration-300;
   }
 
   .glass-card-hover {
@@ -132,31 +132,71 @@
   }
 
   .glass-blue {
-    @apply bg-white/95 backdrop-blur-md border border-blue-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-md border border-blue-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   .glass-purple {
-    @apply bg-white/95 backdrop-blur-md border border-purple-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-md border border-purple-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   .glass-green {
-    @apply bg-white/95 backdrop-blur-md border border-green-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-md border border-green-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   .glass-pink {
-    @apply bg-white/95 backdrop-blur-md border border-pink-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-md border border-pink-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   .glass-orange {
-    @apply bg-white/95 backdrop-blur-md border border-orange-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-md border border-orange-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   .glass-yellow {
-    @apply bg-white/95 backdrop-blur-md border border-yellow-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-md border border-yellow-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   .glass-red {
-    @apply bg-white/95 backdrop-blur-md border border-red-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply bg-white/90 backdrop-blur-md border border-red-200/50 rounded-3xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Inner Card Pattern - From DesignPilot */
+  .inner-card {
+    @apply bg-white/90 p-6 rounded-2xl border-2 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+  }
+
+  /* Icon Container Pattern - From DesignPilot */
+  .icon-container {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform;
+  }
+
+  .icon-container-sm {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform;
+  }
+
+  .icon-container-lg {
+    @apply w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform;
+  }
+
+  /* Highlight Box Pattern - From DesignPilot */
+  .highlight-box {
+    @apply bg-white/80 p-4 rounded-xl border transition-all duration-300;
+  }
+
+  /* Pastel Gradient Backgrounds - From DesignPilot (45% opacity) */
+  .gradient-pastel-blue {
+    @apply bg-gradient-to-br from-kids-blue/45 to-cyan-400/45;
+  }
+
+  .gradient-pastel-purple {
+    @apply bg-gradient-to-br from-kids-purple/45 to-kids-pink/45;
+  }
+
+  .gradient-pastel-green {
+    @apply bg-gradient-to-br from-kids-green/45 to-emerald-400/45;
+  }
+
+  .gradient-pastel-orange {
+    @apply bg-gradient-to-br from-kids-orange/45 to-kids-yellow/45;
   }
 
   /* Unified Button System */
