@@ -87,9 +87,29 @@ Extended `Button` component includes:
 - Replaced inline Tailwind patterns with InnerCard, CardGrid, HighlightBox
 - Established patterns for remaining pages to follow
 
-### Phase 5: Testing & Polish (PENDING)
-- Add component tests
-- Final accessibility audit
+### ✅ Phase 5: Testing & Polish (COMPLETE)
+- Set up Vitest testing framework with React Testing Library
+- Created comprehensive component tests (102 tests passing)
+- Added axe-core accessibility testing with vitest-axe
+- Fixed keyboard accessibility in InnerCard component
+- Verified WCAG 2.1 AA compliance for all design system components
+
+## Testing
+
+The project includes comprehensive testing for design system components:
+
+```bash
+npm run test        # Run tests in watch mode
+npm run test:run    # Run tests once
+npm run test:coverage  # Run tests with coverage report
+```
+
+Test files are located alongside components in `src/components/design-system/`:
+- `InnerCard.test.tsx` - 23 tests
+- `HighlightBox.test.tsx` - 18 tests
+- `CardGrid.test.tsx` - 14 tests
+- `IconContainer.test.tsx` - 26 tests
+- `accessibility.test.tsx` - 21 tests (axe-core audit)
 
 ## Key Files
 
@@ -101,10 +121,13 @@ Extended `Button` component includes:
 ## Commands
 
 ```bash
-npm run dev      # Start dev server
-npm run build    # Build for production
-npm run lint     # Run ESLint
-npm run preview  # Preview production build
+npm run dev           # Start dev server
+npm run build         # Build for production
+npm run lint          # Run ESLint
+npm run preview       # Preview production build
+npm run test          # Run tests in watch mode
+npm run test:run      # Run tests once
+npm run test:coverage # Run tests with coverage
 ```
 
 ## Color Reference

@@ -53,6 +53,8 @@ export const InnerCard = React.forwardRef<HTMLDivElement, InnerCardProps>(
       interactive = false,
       className,
       'aria-label': ariaLabel,
+      onClick,
+      onKeyDown,
       ...props
     },
     ref
@@ -65,6 +67,19 @@ export const InnerCard = React.forwardRef<HTMLDivElement, InnerCardProps>(
     const role = interactive ? 'button' : undefined;
     const tabIndex = interactive ? 0 : undefined;
 
+    // Handle keyboard activation for interactive cards (WCAG 2.1 AA)
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (interactive && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        // Trigger click event for keyboard activation
+        if (onClick) {
+          onClick(event as unknown as React.MouseEvent<HTMLDivElement>);
+        }
+      }
+      // Call any custom onKeyDown handler
+      onKeyDown?.(event);
+    };
+
     return (
       <div
         ref={ref}
@@ -72,6 +87,8 @@ export const InnerCard = React.forwardRef<HTMLDivElement, InnerCardProps>(
         role={role}
         tabIndex={tabIndex}
         aria-label={ariaLabel || title}
+        onClick={onClick}
+        onKeyDown={handleKeyDown}
         {...props}
       >
         {/* Icon Container */}
