@@ -111,10 +111,11 @@ AI_kids_spark/
 │   │   ├── code-reviewer/  # ESLint rules (125+ custom rules)
 │   │   │   └── rules/      # accessibility, performance, kids-safety, react
 │   │   ├── ui-tester/      # Playwright tests (53+ tests)
-│   │   └── performance-checker/ # Lighthouse CI
+│   │   ├── performance-checker/ # Lighthouse CI
+│   │   └── documentation-checker/ # CLAUDE.md verification
 │   └── workflows/
 │       ├── quick-check.js  # Fast (7s) - TypeScript + ESLint + Smoke tests
-│       └── full-verification.js # Complete (10-15min) - All tests
+│       └── full-verification.js # Complete (10-15min) - All tests + docs
 │
 ├── .husky/                 # Git hooks
 │   └── pre-commit          # Runs verify:quick before every commit
@@ -166,6 +167,7 @@ npm run dev              # Start dev server (port 8080)
 # Verification (runs automatically)
 npm run verify:quick     # Fast check (7s) - Run after every change
 npm run verify:full      # Full check (10-15min) - Run before PR
+npm run verify:docs      # Check CLAUDE.md is up-to-date
 
 # Testing
 npm run test:e2e         # Playwright E2E tests
@@ -389,12 +391,13 @@ npm run test
 ### When Working on This Project:
 
 1. **Always run verification after making changes** (`npm run verify:quick`)
-2. **Never skip ESLint errors** - They enforce accessibility, performance, and kids-safety rules
-3. **Use DesignPilot.tsx as visual reference** - All UI should match its aesthetic
-4. **Favor existing components over creating new ones** - Check `src/components/` first
-5. **Kids-first mindset** - Language should be simple, encouraging, and age-appropriate
-6. **Accessibility is non-negotiable** - WCAG 2.1 AA compliance required
-7. **COPPA compliance is critical** - This app is for children, privacy is paramount
+2. **Update CLAUDE.md when making architectural changes** - New patterns, rules, phases, or components
+3. **Never skip ESLint errors** - They enforce accessibility, performance, and kids-safety rules
+4. **Use DesignPilot.tsx as visual reference** - All UI should match its aesthetic
+5. **Favor existing components over creating new ones** - Check `src/components/` first
+6. **Kids-first mindset** - Language should be simple, encouraging, and age-appropriate
+7. **Accessibility is non-negotiable** - WCAG 2.1 AA compliance required
+8. **COPPA compliance is critical** - This app is for children, privacy is paramount
 
 ### Communication Style:
 
@@ -408,14 +411,46 @@ npm run test
 
 When user requests a change:
 1. Make the change
-2. Run `verify:quick`
-3. If errors → Fix them
-4. Re-run `verify:quick`
-5. Repeat until ✅ all pass
-6. Commit changes
-7. Tell user "Done! Verification passed."
+2. **If architectural change** → Update CLAUDE.md (Last Updated date, phase status, new patterns)
+3. Run `verify:quick`
+4. If errors → Fix them
+5. Re-run `verify:quick`
+6. Repeat until ✅ all pass
+7. Commit changes (include CLAUDE.md if updated)
+8. Tell user "Done! Verification passed."
 
 **Never say "you're done" until verification actually passes.**
+
+**Architectural changes include:** New design patterns, new components, new ESLint rules, phase completions, new helper functions, significant refactoring.
+
+### Documentation Verification:
+
+The **documentation-checker** agent automatically verifies CLAUDE.md quality:
+
+**What it checks:**
+- ✅ CLAUDE.md exists in repository root
+- ✅ "Last Updated" date is current (warns if >30 days old with recent commits)
+- ✅ Refactoring phase status matches actual code (e.g., Phase 1 files exist → should be marked ✅)
+- ✅ Critical sections are present (Project Overview, Architecture, Code Standards, etc.)
+- ✅ New components are documented
+- ✅ Recent architectural commits have corresponding CLAUDE.md updates
+
+**When it runs:**
+- `npm run verify:docs` - Standalone check
+- `npm run verify:full` - Included in full verification
+- GitHub Actions CI - On PR branches
+
+**Exit behavior:**
+- **Warnings** (⚠️) - Non-blocking, encourages updates
+- **Errors** (❌) - Blocks only if critical (missing file, missing sections)
+
+**How to keep it happy:**
+1. Update "Last Updated" date when making architectural changes
+2. Mark phases ✅ when complete (change ⏸️ → ✅)
+3. Document new patterns in relevant sections
+4. Commit CLAUDE.md with implementation changes
+
+See `.verification/agents/documentation-checker/README.md` for full details.
 
 ---
 

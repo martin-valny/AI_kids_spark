@@ -19,6 +19,7 @@
     "verify:setup": "node .verification/scripts/setup-agents.js",
     "verify:quick": "node .verification/workflows/quick-check.js",
     "verify:full": "node .verification/workflows/full-verification.js",
+    "verify:docs": "node .verification/agents/documentation-checker/check-claude-md.js",
     "verify:report": "node .verification/scripts/generate-report.js",
     "verify:ui": "npm run test:e2e:ui",
     "verify:watch": "concurrently \"npm run dev\" \"npm run test -- --watch\" --names \"DEV,TEST\" --prefix-colors \"cyan,yellow\"",

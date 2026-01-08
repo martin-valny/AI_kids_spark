@@ -48,6 +48,14 @@ const AGENTS = [
     critical: false, // Performance issues are warnings, not blockers
     timeout: 600000, // 10 minutes
   },
+  {
+    name: 'Documentation Checker',
+    id: 'documentation-checker',
+    command: 'node',
+    args: ['.verification/agents/documentation-checker/check-claude-md.js'],
+    critical: false, // Documentation warnings, not blockers
+    timeout: 30000, // 30 seconds
+  },
 ];
 
 // Logging utilities
