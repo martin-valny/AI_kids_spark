@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/code-simplifier-tracker.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  },
+  "codeSimplifier": {
+    "threshold": 5,
+    "autoRemind": true,
+    "description": "Tracks file changes and reminds to run code simplification after major coding phases"
+  }
+}

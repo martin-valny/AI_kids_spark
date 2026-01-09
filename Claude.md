@@ -1,6 +1,6 @@
 # Claude.md - AI Kids Spark Project Guide
 
-**Last Updated:** 2026-01-08
+**Last Updated:** 2026-01-09
 **Project:** AI Kids Spark → AI Spark (13+ pivot recommended)
 **Status:** Feature-complete frontend, backend implementation required for production
 **Branch:** claude/deployment-compliance-review-3NyeN
@@ -445,6 +445,107 @@ When user requests a change:
 8. Tell user "Done! Verification passed."
 
 **Never say "you're done" until verification actually passes.**
+
+---
+
+## 🔧 Code Simplifier (Automatic Post-Coding Cleanup)
+
+### Overview
+
+The code-simplifier is a hook-based workflow that automatically tracks file changes during coding sessions and reminds you to run code simplification after major coding phases. This helps keep the codebase clean and maintainable.
+
+### How It Works
+
+1. **Automatic Tracking**: A PostToolUse hook tracks every Write/Edit operation
+2. **Threshold Detection**: After 5+ file changes (configurable), a reminder appears
+3. **Manual Trigger**: Ask Claude to "simplify recent code changes" or run the workflow manually
+
+### Configuration
+
+**Location:** `.claude/settings.json`
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/code-simplifier-tracker.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  },
+  "codeSimplifier": {
+    "threshold": 5,
+    "autoRemind": true
+  }
+}
+```
+
+**Threshold Configuration:** Set `CODE_SIMPLIFIER_THRESHOLD` environment variable to change the default (5 files).
+
+### Hook Files
+
+- `.claude/hooks/code-simplifier-tracker.sh` - Tracks file changes and triggers reminders
+- `.claude/hooks/reset-code-simplifier.sh` - Resets tracker after simplification
+
+### Code Simplification Checklist
+
+When triggered (or when asked to simplify code), Claude should:
+
+1. **Remove Dead Code**
+   - Unused imports
+   - Commented-out code blocks
+   - Unused variables and functions
+
+2. **Simplify Logic**
+   - Replace complex conditionals with early returns
+   - Extract repeated code into functions (only if 3+ repetitions)
+   - Simplify nested ternaries
+
+3. **Clean Up Temporary Code**
+   - Remove `console.log` statements (unless intentional)
+   - Remove `TODO` comments for completed items
+   - Remove debug flags and test data
+
+4. **Improve Readability**
+   - Use descriptive variable names
+   - Break long functions (50+ lines) if naturally separable
+   - Ensure consistent formatting
+
+5. **Verify Changes**
+   - Run `npm run verify:quick` after simplification
+   - Ensure no functionality was broken
+
+### Usage Examples
+
+**After a coding session:**
+```
+User: Simplify recent code changes
+Claude: [Reviews tracked files, applies simplification checklist, runs verification]
+```
+
+**Reset tracker after simplification:**
+```bash
+./.claude/hooks/reset-code-simplifier.sh
+```
+
+**Check current tracker state:**
+```bash
+cat ~/.claude/code-simplifier-state.json
+```
+
+### Best Practices
+
+- Run code simplification after completing a feature or bug fix
+- Always run verification after simplification
+- Don't over-simplify - readability trumps brevity
+- Keep simplification commits separate from feature commits
 
 ---
 
