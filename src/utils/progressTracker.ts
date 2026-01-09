@@ -1,4 +1,4 @@
-// Progress Tracking Utility for AI Kids Spark Learn
+// Progress Tracking Utility for AI Spark
 
 // Debug flag - MUST be false in production
 const DEBUG_UNLOCK_ALL = false;

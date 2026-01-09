@@ -1,7 +1,7 @@
-# Component Patterns - AI Kids Spark Learn
+# Component Patterns - AI Spark
 
 **Based on**: `src/pages/DesignPilot.tsx` (official design reference)
-**Design System**: "High-Opacity Glass" with kid-friendly colors
+**Design System**: "High-Opacity Glass" with beginner-friendly colors
 
 This document contains copy-paste ready patterns for building consistent UI.
 

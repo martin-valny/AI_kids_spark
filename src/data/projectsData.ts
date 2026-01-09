@@ -107,7 +107,7 @@ export const LESSON_NAMES: Record<string, string> = {
     'data-and-patterns': 'Data and Patterns',
     'image-recognition': 'Image Recognition',
     'simple-algorithms': 'Simple Algorithms',
-    'ai-ethics': 'AI Ethics for Kids',
+    'ai-ethics': 'AI Ethics Fundamentals',
     'future-of-ai': 'The Future of AI'
 };
 

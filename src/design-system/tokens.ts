@@ -1,5 +1,5 @@
 /**
- * Design Tokens - AI Kids Spark Learn
+ * Design Tokens - AI Spark
  * Based on: src/pages/DesignPilot.tsx
  *
  * Use these constants throughout the app for consistency.

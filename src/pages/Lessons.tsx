@@ -60,7 +60,7 @@ const modules = [
   },
   {
     id: "ai-ethics",
-    title: "AI Ethics for Kids",
+    title: "AI Ethics Fundamentals",
     description: "Using AI responsibly and safely",
     icon: <ShieldCheck className="w-6 h-6 text-kids-blue" />,
     path: "/lessons/ai-ethics",

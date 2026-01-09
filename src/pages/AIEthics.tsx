@@ -29,7 +29,7 @@ const AIEthics = () => {
 
   return (
     <LessonLayout
-      title="AI Ethics for Kids"
+      title="AI Ethics Fundamentals"
       subtitle="Using AI responsibly and safely"
       backLink="/lessons"
     >
@@ -54,13 +54,13 @@ const AIEthics = () => {
         {/* Video Section */}
         <GlassCard variant="blue" className="p-8">
           <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">
-            📺 Watch: AI Ethics Explained for Kids
+            📺 Watch: AI Ethics Explained
           </h3>
           <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
             <iframe
               className="absolute top-0 left-0 w-full h-full rounded-xl shadow-lg"
               src="https://www.youtube.com/embed/tJQSyzBUAew"
-              title="AI Ethics for Kids"
+              title="AI Ethics Fundamentals"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

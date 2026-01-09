@@ -8,9 +8,9 @@ const Footer = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="text-xl font-bold mb-6 text-gray-900">AI Kids Spark</h3>
+            <h3 className="text-xl font-bold mb-6 text-gray-900">AI Spark</h3>
             <p className="text-gray-600 mb-6">
-              Making AI fun and accessible for kids ages 6-12!
+              Making AI fun and accessible for learners ages 13 and up!
             </p>
             <div className="flex space-x-4">
               {/* Social icons */}
@@ -56,15 +56,15 @@ const Footer = () => {
               Have questions? Email us at:
             </p>
             <a
-              href="mailto:hello@aikidsspark.com"
+              href="mailto:hello@aispark.com"
               className="text-kids-blue hover:underline font-medium"
             >
-              hello@aikidsspark.com
+              hello@aispark.com
             </a>
           </div>
         </div>
         <div className="mt-16 pt-8 border-t border-gray-100 text-center text-gray-500">
-          <p>© {new Date().getFullYear()} AI Kids Spark. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} AI Spark. All rights reserved.</p>
         </div>
       </div>
     </footer>
