@@ -1,7 +1,7 @@
 // Progress Tracking Utility for AI Kids Spark Learn
 
-// SET TO true TO UNLOCK EVERYTHING FOR DEBUGGING
-const DEBUG_UNLOCK_ALL = true;
+// Debug flag - MUST be false in production
+const DEBUG_UNLOCK_ALL = false;
 
 export interface LessonProgress {
     lessonId: string;

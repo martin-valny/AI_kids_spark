@@ -44,7 +44,6 @@ import MusicAIProject from "./pages/projects/MusicAIProject";
 import AIArtStudioProject from "./pages/projects/AIArtStudioProject";
 import BuildChatbotProject from "./pages/projects/BuildChatbotProject";
 import AIVideoProject from "./pages/projects/AIVideoProject";
-import ProgressDebugger from "./pages/ProgressDebugger";
 
 import DesignPilot from "./pages/DesignPilot";
 
@@ -108,8 +107,6 @@ const App = () => (
           <Route path="/projects/ai-art-studio" element={<AIArtStudioProject />} />
           <Route path="/projects/build-chatbot" element={<BuildChatbotProject />} />
           <Route path="/projects/ai-video-magic" element={<AIVideoProject />} />
-          {/* Debug Route - Remove in production */}
-          <Route path="/debug/progress" element={<ProgressDebugger />} />
           <Route path="/games" element={<Games />} />
           <Route path="/resources" element={<Resources />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
