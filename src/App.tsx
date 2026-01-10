@@ -46,6 +46,9 @@ import BuildChatbotProject from "./pages/projects/BuildChatbotProject";
 import AIVideoProject from "./pages/projects/AIVideoProject";
 
 import DesignPilot from "./pages/DesignPilot";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -53,12 +56,13 @@ import NeuralGalaxy from "@/components/NeuralGalaxy";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <NeuralGalaxy />
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
+    <AuthProvider>
+      <TooltipProvider>
+        <NeuralGalaxy />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/lessons" element={<Lessons />} />
@@ -109,11 +113,15 @@ const App = () => (
           <Route path="/projects/ai-video-magic" element={<AIVideoProject />} />
           <Route path="/games" element={<Games />} />
           <Route path="/resources" element={<Resources />} />
+          {/* Auth Routes */}
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
