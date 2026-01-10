@@ -48,7 +48,9 @@ import AIVideoProject from "./pages/projects/AIVideoProject";
 import DesignPilot from "./pages/DesignPilot";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Pricing from "./pages/Pricing";
 import { AuthProvider } from "./contexts/AuthContext";
+import { SubscriptionProvider } from "./contexts/SubscriptionContext";
 
 const queryClient = new QueryClient();
 
@@ -57,7 +59,8 @@ import NeuralGalaxy from "@/components/NeuralGalaxy";
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <TooltipProvider>
+      <SubscriptionProvider>
+        <TooltipProvider>
         <NeuralGalaxy />
         <Toaster />
         <Sonner />
@@ -116,11 +119,14 @@ const App = () => (
           {/* Auth Routes */}
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
+          {/* Pricing Route */}
+          <Route path="/pricing" element={<Pricing />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </TooltipProvider>
+        </TooltipProvider>
+      </SubscriptionProvider>
     </AuthProvider>
   </QueryClientProvider>
 );

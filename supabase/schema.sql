@@ -126,3 +126,45 @@ CREATE INDEX IF NOT EXISTS idx_lesson_progress_user_id ON public.lesson_progress
 CREATE INDEX IF NOT EXISTS idx_lesson_progress_lesson_id ON public.lesson_progress(lesson_id);
 CREATE INDEX IF NOT EXISTS idx_project_progress_user_id ON public.project_progress(user_id);
 CREATE INDEX IF NOT EXISTS idx_project_progress_project_id ON public.project_progress(project_id);
+
+-- ============================================
+-- STRIPE SUBSCRIPTIONS
+-- ============================================
+
+-- Subscriptions table
+CREATE TABLE IF NOT EXISTS public.subscriptions (
+  id TEXT PRIMARY KEY, -- Stripe subscription ID
+  user_id UUID NOT NULL REFERENCES public.user_profiles(id) ON DELETE CASCADE,
+  status TEXT NOT NULL CHECK (status IN ('active', 'canceled', 'past_due', 'trialing', 'inactive')),
+  price_id TEXT NOT NULL,
+  current_period_start TIMESTAMPTZ NOT NULL,
+  current_period_end TIMESTAMPTZ NOT NULL,
+  cancel_at_period_end BOOLEAN DEFAULT FALSE,
+  stripe_customer_id TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable RLS on subscriptions
+ALTER TABLE public.subscriptions ENABLE ROW LEVEL SECURITY;
+
+-- Subscription policies
+CREATE POLICY "Users can view their own subscription"
+  ON public.subscriptions FOR SELECT
+  USING (auth.uid() = user_id);
+
+-- Only service role can insert/update subscriptions (via webhooks)
+CREATE POLICY "Service role can manage subscriptions"
+  ON public.subscriptions FOR ALL
+  USING (auth.role() = 'service_role');
+
+-- Indexes for subscriptions
+CREATE INDEX IF NOT EXISTS idx_subscriptions_user_id ON public.subscriptions(user_id);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_status ON public.subscriptions(status);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_stripe_customer ON public.subscriptions(stripe_customer_id);
+
+-- Trigger to auto-update updated_at on subscriptions
+CREATE TRIGGER update_subscriptions_updated_at
+  BEFORE UPDATE ON public.subscriptions
+  FOR EACH ROW EXECUTE FUNCTION public.update_updated_at();
+
