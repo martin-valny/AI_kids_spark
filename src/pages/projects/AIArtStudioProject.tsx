@@ -123,7 +123,7 @@ const AIArtStudioProject = () => {
                     <div className="mt-6 p-4 bg-kids-blue/10 border border-kids-blue/30 rounded-lg">
                         <p className="text-sm font-semibold text-kids-blue mb-1">👨‍👩‍👧 Parent Note:</p>
                         <p className="text-sm text-gray-700">
-                            We recommend using Craiyon (completely free, no account) or Bing Image Creator (free with Microsoft account). Both have content filters to ensure kid-appropriate results. Supervise younger children when creating prompts.
+                            We recommend using Craiyon (completely free, no account) or Bing Image Creator (free with Microsoft account). Both have content filters to ensure appropriate results. Parents may want to explore these tools together with younger teens.
                         </p>
                     </div>
                 </GlassCard>

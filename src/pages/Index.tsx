@@ -12,7 +12,7 @@ const features = [
   {
     icon: <Brain className="w-10 h-10 text-kids-blue" />,
     title: "What is AI?",
-    description: "Learn about artificial intelligence in a fun, kid-friendly way"
+    description: "Learn about artificial intelligence in a fun, beginner-friendly way"
   },
   {
     icon: <Bot className="w-10 h-10 text-kids-purple" />,
@@ -65,7 +65,7 @@ const courses = [
 ];
 
 const benefitsList = [
-  "Kid-friendly explanations of complex AI concepts",
+  "Beginner-friendly explanations of complex AI concepts",
   "Interactive games and activities that make learning fun",
   "Real-world AI applications they can actually build",
   "Safe, guided exploration of AI technologies",
@@ -74,9 +74,9 @@ const benefitsList = [
 ];
 
 const stats = [
-  { value: 10000, label: "Kids Learning", icon: <Users className="w-5 h-5" /> },
+  { value: 10000, label: "Learners", icon: <Users className="w-5 h-5" /> },
   { value: 50, label: "Interactive Lessons", icon: <BookOpen className="w-5 h-5" /> },
-  { value: 100, label: "Kid-Safe Content", suffix: "%", icon: <Shield className="w-5 h-5" /> },
+  { value: 100, label: "Safe Content", suffix: "%", icon: <Shield className="w-5 h-5" /> },
   { value: 25, label: "Fun Projects", icon: <Award className="w-5 h-5" /> }
 ];
 
@@ -167,7 +167,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  Fun, interactive lessons and games designed specifically for kids aged 6-12 to discover the exciting world of AI.
+                  Fun, interactive lessons and games designed for beginners aged 13 and up to discover the exciting world of AI.
                 </motion.p>
                 <motion.div
                   className="flex flex-col sm:flex-row gap-4"
@@ -340,7 +340,7 @@ const Index = () => {
                 <div className="relative z-10">
                   <Shield className="w-12 h-12 mb-4" />
                   <h3 className="text-xl font-bold mb-2">100% Safe</h3>
-                  <p className="text-sm text-green-100">Kid-friendly content, no ads, completely secure</p>
+                  <p className="text-sm text-green-100">Beginner-friendly content, no ads, completely secure</p>
                 </div>
               </motion.div>
 
@@ -496,7 +496,7 @@ const Index = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
-                Loved by Kids & <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">Parents</span>
+                Loved by Students & <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">Parents</span>
               </h2>
               <p className="text-xl text-gray-600">
                 See what families are saying about their AI learning journey
@@ -508,7 +508,7 @@ const Index = () => {
                 {
                   quote: "My daughter loves the interactive lessons! She's already built her first chatbot and can't stop talking about AI.",
                   author: "Sarah M.",
-                  role: "Parent of 9-year-old",
+                  role: "Parent",
                   avatar: "👩",
                   rating: 5
                 },
@@ -520,9 +520,9 @@ const Index = () => {
                   rating: 5
                 },
                 {
-                  quote: "Finally, a platform that makes AI accessible for kids. The content is age-appropriate and genuinely educational.",
+                  quote: "Finally, a platform that makes AI accessible for beginners. The content is well-structured and genuinely educational.",
                   author: "David K.",
-                  role: "Parent of 7-year-old",
+                  role: "Parent",
                   avatar: "👨",
                   rating: 5
                 }
@@ -585,7 +585,7 @@ const Index = () => {
                 Ready to Start Your AI Adventure?
               </h2>
               <p className="text-xl md:text-2xl mb-12 text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of kids who are already learning about AI and preparing for the future!
+                Join thousands of learners who are already exploring AI and preparing for the future!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">

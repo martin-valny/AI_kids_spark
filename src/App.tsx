@@ -44,9 +44,17 @@ import MusicAIProject from "./pages/projects/MusicAIProject";
 import AIArtStudioProject from "./pages/projects/AIArtStudioProject";
 import BuildChatbotProject from "./pages/projects/BuildChatbotProject";
 import AIVideoProject from "./pages/projects/AIVideoProject";
-import ProgressDebugger from "./pages/ProgressDebugger";
 
 import DesignPilot from "./pages/DesignPilot";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import Pricing from "./pages/Pricing";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import AccountSettings from "./pages/AccountSettings";
+import { AuthProvider } from "./contexts/AuthContext";
+import { SubscriptionProvider } from "./contexts/SubscriptionContext";
+import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -54,12 +62,14 @@ import NeuralGalaxy from "@/components/NeuralGalaxy";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <NeuralGalaxy />
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
+    <AuthProvider>
+      <SubscriptionProvider>
+        <TooltipProvider>
+        <NeuralGalaxy />
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/lessons" element={<Lessons />} />
@@ -108,15 +118,25 @@ const App = () => (
           <Route path="/projects/ai-art-studio" element={<AIArtStudioProject />} />
           <Route path="/projects/build-chatbot" element={<BuildChatbotProject />} />
           <Route path="/projects/ai-video-magic" element={<AIVideoProject />} />
-          {/* Debug Route - Remove in production */}
-          <Route path="/debug/progress" element={<ProgressDebugger />} />
           <Route path="/games" element={<Games />} />
           <Route path="/resources" element={<Resources />} />
+          {/* Auth Routes */}
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          {/* Pricing Route */}
+          <Route path="/pricing" element={<Pricing />} />
+          {/* Legal & Account Routes */}
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/account" element={<AccountSettings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+          </Routes>
+          <CookieConsent />
+        </BrowserRouter>
+        </TooltipProvider>
+      </SubscriptionProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 

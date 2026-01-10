@@ -1583,7 +1583,7 @@ const lessonsData: {
   },
   "ai-ethics": {
     id: "ai-ethics",
-    title: "AI Ethics for Kids",
+    title: "AI Ethics Fundamentals",
     description: "Using AI responsibly and safely",
     videoId: "oVvYIUChDEg",
     duration: "25 minutes",

@@ -126,7 +126,7 @@ const BuildChatbotProject = () => {
                     <div className="mt-6 p-4 bg-kids-blue/10 border border-kids-blue/30 rounded-lg">
                         <p className="text-sm font-semibold text-kids-blue mb-1">👨‍👩‍👧 Parent Note:</p>
                         <p className="text-sm text-gray-700">
-                            Character.AI is a free platform designed for creating AI chatbots. It requires email registration. The platform has safety features and content moderation. We recommend parents help younger children create accounts and supervise chatbot interactions.
+                            Character.AI is a free platform designed for creating AI chatbots. It requires email registration. The platform has safety features and content moderation. Parents may want to help younger teens create accounts and explore the platform together.
                         </p>
                     </div>
                 </GlassCard>

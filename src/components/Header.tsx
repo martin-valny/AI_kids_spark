@@ -42,7 +42,7 @@ const Header = () => {
             <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-kids-yellow animate-bounce-gentle shadow-md"></div>
           </div>
           <span className="font-extrabold text-2xl heading-primary">
-            AI Kids Spark
+            AI Spark
           </span>
         </Link>
 
