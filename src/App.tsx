@@ -49,8 +49,12 @@ import DesignPilot from "./pages/DesignPilot";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import AccountSettings from "./pages/AccountSettings";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SubscriptionProvider } from "./contexts/SubscriptionContext";
+import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -121,9 +125,14 @@ const App = () => (
           <Route path="/sign-in" element={<SignIn />} />
           {/* Pricing Route */}
           <Route path="/pricing" element={<Pricing />} />
+          {/* Legal & Account Routes */}
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/account" element={<AccountSettings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
+          <CookieConsent />
         </BrowserRouter>
         </TooltipProvider>
       </SubscriptionProvider>
