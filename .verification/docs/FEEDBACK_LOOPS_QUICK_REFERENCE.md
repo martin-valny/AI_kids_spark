@@ -5,6 +5,9 @@
 ## 🚀 Quick Commands
 
 ```bash
+# Get smart recommendations (based on your changes)
+npm run feedback:remind
+
 # List available loops
 npm run feedback:list
 

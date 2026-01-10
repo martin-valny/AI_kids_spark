@@ -33,6 +33,7 @@
     "feedback:all": "node .verification/workflows/feedback-loop-orchestrator.js all",
     "feedback:log": "node .verification/workflows/feedback-loop-orchestrator.js log",
     "feedback:list": "node .verification/workflows/feedback-loop-orchestrator.js list",
+    "feedback:remind": "node .verification/workflows/feedback-reminder.js",
     "prepare": "husky"
   },
   "dependencies": {

@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo ""
+echo "✅ Commit successful!"
+echo ""
+
+# Show feedback loop recommendations based on what was committed
+node .verification/workflows/feedback-reminder.js --compact
+
+# Optional: Show timing suggestion
+echo "⏰ Suggested timing:"
+echo "   • Now: Quick smoke tests if time permits"
+echo "   • Before push: Run recommended loops"
+echo "   • Before PR: Run all loops (npm run feedback:all)"
+echo ""
