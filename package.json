@@ -27,6 +27,12 @@
     "perf:check": "node .verification/agents/performance-checker/scripts/run-lighthouse.js",
     "perf:analyze": "node .verification/agents/performance-checker/scripts/analyze-bundle.js",
     "a11y:check": "node .verification/agents/ui-tester/helpers/check-accessibility.js",
+    "feedback:browser": "node .verification/workflows/browser-testing-loop.js",
+    "feedback:visual": "node .verification/workflows/visual-comparison-loop.js",
+    "feedback:tdd": "node .verification/workflows/test-driven-loop.js",
+    "feedback:all": "node .verification/workflows/feedback-loop-orchestrator.js all",
+    "feedback:log": "node .verification/workflows/feedback-loop-orchestrator.js log",
+    "feedback:list": "node .verification/workflows/feedback-loop-orchestrator.js list",
     "prepare": "husky"
   },
   "dependencies": {
@@ -118,6 +124,7 @@
     "lighthouse": "^12.2.1",
     "lint-staged": "^16.2.7",
     "lovable-tagger": "^1.1.7",
+    "pngjs": "^7.0.0",
     "postcss": "^8.4.47",
     "rollup-plugin-visualizer": "^5.12.0",
     "sharp": "^0.33.5",
