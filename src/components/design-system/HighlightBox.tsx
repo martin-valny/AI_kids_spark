@@ -122,4 +122,36 @@ export const HighlightBox = React.forwardRef<HTMLDivElement, HighlightBoxProps>(
 
 HighlightBox.displayName = 'HighlightBox';
 
+/**
+ * TipBox - Shorthand for HighlightBox with tip variant
+ */
+export const TipBox: React.FC<Omit<HighlightBoxProps, 'variant'>> = (props) => (
+  <HighlightBox variant="tip" {...props} />
+);
+TipBox.displayName = 'TipBox';
+
+/**
+ * WarningBox - Shorthand for HighlightBox with warning variant
+ */
+export const WarningBox: React.FC<Omit<HighlightBoxProps, 'variant'>> = (props) => (
+  <HighlightBox variant="warning" {...props} />
+);
+WarningBox.displayName = 'WarningBox';
+
+/**
+ * SuccessBox - Shorthand for HighlightBox with success variant
+ */
+export const SuccessBox: React.FC<Omit<HighlightBoxProps, 'variant'>> = (props) => (
+  <HighlightBox variant="success" {...props} />
+);
+SuccessBox.displayName = 'SuccessBox';
+
+/**
+ * InfoBox - Shorthand for HighlightBox with info variant
+ */
+export const InfoBox: React.FC<Omit<HighlightBoxProps, 'variant'>> = (props) => (
+  <HighlightBox variant="info" {...props} />
+);
+InfoBox.displayName = 'InfoBox';
+
 export default HighlightBox;

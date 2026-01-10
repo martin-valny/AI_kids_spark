@@ -31,7 +31,7 @@ import {
   Code
 } from 'lucide-react';
 
-// Import new component library
+// Import design system components
 import {
   FeatureCard,
   ActivityCard,
@@ -41,9 +41,12 @@ import {
   SuccessBox,
   InfoBox,
   CardGrid,
-  SectionHeader
-} from '@/components/cards';
-import { DesignTokens, getInnerCardClasses, getIconContainerClasses, getHighlightBoxClasses } from '@/design-system/tokens';
+  SectionHeader,
+  DesignTokens,
+  getInnerCardClasses,
+  getIconContainerClasses,
+  getHighlightBoxClasses
+} from '@/components/design-system';
 
 const PatternExamples = () => {
   return (

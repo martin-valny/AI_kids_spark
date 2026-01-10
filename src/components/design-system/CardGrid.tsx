@@ -69,4 +69,58 @@ export const CardGrid = React.forwardRef<HTMLDivElement, CardGridProps>(
 
 CardGrid.displayName = 'CardGrid';
 
+/**
+ * SectionHeader - Consistent header for content sections
+ */
+export interface SectionHeaderProps {
+  title: string;
+  description?: string;
+  className?: string;
+}
+
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, description, className }) => (
+  <div className={cn('space-y-2', className)}>
+    <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
+    {description && <p className="text-lg text-gray-600">{description}</p>}
+  </div>
+);
+SectionHeader.displayName = 'SectionHeader';
+
+/**
+ * SplitSection - Two-column layout that stacks on mobile
+ */
+export interface SplitSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  reverse?: boolean;
+}
+
+export const SplitSection = React.forwardRef<HTMLDivElement, SplitSectionProps>(
+  ({ children, reverse = false, className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('grid md:grid-cols-2 gap-8', reverse && 'md:[&>*:first-child]:order-2', className)}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+);
+SplitSection.displayName = 'SplitSection';
+
+/**
+ * SectionContainer - Wrapper with consistent vertical spacing
+ */
+export interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
+  children: React.ReactNode;
+}
+
+export const SectionContainer = React.forwardRef<HTMLElement, SectionContainerProps>(
+  ({ children, className, ...props }, ref) => (
+    <section ref={ref} className={cn('space-y-8', className)} {...props}>
+      {children}
+    </section>
+  )
+);
+SectionContainer.displayName = 'SectionContainer';
+
 export default CardGrid;
