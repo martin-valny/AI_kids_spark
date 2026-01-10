@@ -291,17 +291,17 @@ export function getIconContainerClasses(
 /**
  * Helper function to get icon inner size classes
  *
- * @param size - Size variant
- * @returns Tailwind classes for icon inner size
+ * @param size - Size variant (sm, md, lg, xl)
+ * @returns Tailwind classes for icon size
  */
 export function getIconInnerSize(size: 'sm' | 'md' | 'lg' | 'xl' = 'md'): string {
-  const sizeClasses = {
+  const sizes = {
     sm: 'w-4 h-4',
     md: 'w-6 h-6',
     lg: 'w-8 h-8',
     xl: 'w-10 h-10',
   };
-  return sizeClasses[size];
+  return sizes[size];
 }
 
 /**
@@ -327,22 +327,22 @@ export function getHighlightBoxClasses(
  * Type definitions for design tokens
  */
 export type ColorVariant = 'blue' | 'purple' | 'green' | 'pink' | 'orange' | 'yellow' | 'red' | 'teal';
+export type HighlightVariant = 'tip' | 'warning' | 'success' | 'info' | 'note';
+export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
+export type GridColumns = 1 | 2 | 3 | 4;
 export type SizeVariant = 'sm' | 'md' | 'lg' | 'xl';
 export type SpacingVariant = keyof typeof DesignTokens.spacing;
 export type TypographyVariant = keyof typeof DesignTokens.typography;
-export type HighlightVariant = 'info' | 'success' | 'warning' | 'tip' | 'note';
-export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
-export type GridColumns = 1 | 2 | 3 | 4;
 
 /**
- * Map highlight variants to color variants
+ * Map highlight variant to color variant
  */
 export function highlightToColor(variant: HighlightVariant): ColorVariant {
   const map: Record<HighlightVariant, ColorVariant> = {
-    info: 'blue',
-    success: 'green',
-    warning: 'yellow',
     tip: 'purple',
+    warning: 'yellow',
+    success: 'green',
+    info: 'blue',
     note: 'teal',
   };
   return map[variant];
@@ -351,15 +351,15 @@ export function highlightToColor(variant: HighlightVariant): ColorVariant {
 /**
  * Helper function to get grid layout classes
  *
- * @param columns - Number of columns
+ * @param columns - Number of columns (1, 2, 3, or 4)
  * @returns Tailwind classes for grid layout
  */
 export function getGridClasses(columns: GridColumns = 3): string {
   const columnClasses: Record<GridColumns, string> = {
-    1: 'grid-cols-1',
-    2: 'grid-cols-1 md:grid-cols-2',
-    3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
+    1: 'grid grid-cols-1 gap-6',
+    2: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+    3: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6',
+    4: 'grid grid-cols-2 md:grid-cols-4 gap-4',
   };
-  return `grid ${columnClasses[columns]} gap-6`;
+  return columnClasses[columns];
 }

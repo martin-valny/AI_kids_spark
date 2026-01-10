@@ -25,9 +25,28 @@ import {
   Lightbulb,
   Target,
   Rocket,
-  X
+  X,
+  BookOpen,
+  Palette,
+  Code
 } from 'lucide-react';
-import { DesignTokens, getInnerCardClasses, getIconContainerClasses, getHighlightBoxClasses } from '@/design-system/tokens';
+
+// Import design system components
+import {
+  FeatureCard,
+  ActivityCard,
+  LessonCard,
+  TipBox,
+  WarningBox,
+  SuccessBox,
+  InfoBox,
+  CardGrid,
+  SectionHeader,
+  DesignTokens,
+  getInnerCardClasses,
+  getIconContainerClasses,
+  getHighlightBoxClasses
+} from '@/components/design-system';
 
 const PatternExamples = () => {
   return (
@@ -587,6 +606,133 @@ const PatternExamples = () => {
               {`  <Icon />`}
               <br />
               {`</button>`}
+            </p>
+          </div>
+        </section>
+
+        {/* NEW: Component Library Showcase */}
+        <section>
+          <div className="mb-6">
+            <span className="px-3 py-1 bg-gradient-to-r from-kids-blue/20 to-kids-purple/20 text-kids-purple rounded-full text-sm font-bold border border-kids-purple/20">
+              NEW COMPONENTS
+            </span>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Component Library</h2>
+          <p className="text-gray-600 mb-8">
+            Reusable React components that encapsulate all the patterns above. Import from <code className="bg-gray-100 px-2 py-1 rounded">@/components/cards</code>
+          </p>
+
+          {/* FeatureCard Examples */}
+          <SectionHeader title="FeatureCard" description="For displaying features and benefits" />
+          <CardGrid columns={3} className="mt-4 mb-12">
+            <FeatureCard
+              title="Interactive Learning"
+              description="Hands-on exercises that make concepts stick"
+              icon={Brain}
+              color="blue"
+            />
+            <FeatureCard
+              title="Creative Projects"
+              description="Build real AI applications with guidance"
+              icon={Palette}
+              color="purple"
+            />
+            <FeatureCard
+              title="Code Challenges"
+              description="Test your skills with fun puzzles"
+              icon={Code}
+              color="green"
+            />
+          </CardGrid>
+
+          {/* ActivityCard Examples */}
+          <SectionHeader title="ActivityCard" description="For interactive activities and exercises" />
+          <CardGrid columns={3} className="mt-4 mb-12">
+            <ActivityCard
+              title="Pattern Detective"
+              description="Can you spot the patterns in data?"
+              icon={Target}
+              color="purple"
+              duration="10 min"
+              difficulty="easy"
+              onClick={() => alert('Activity started!')}
+            />
+            <ActivityCard
+              title="AI Art Generator"
+              description="Create amazing art with AI assistance"
+              icon={Palette}
+              color="pink"
+              duration="15 min"
+              difficulty="medium"
+              badge="Popular"
+            />
+            <ActivityCard
+              title="Code Challenge"
+              description="Solve real-world coding problems"
+              icon={Code}
+              color="orange"
+              duration="20 min"
+              difficulty="hard"
+            />
+          </CardGrid>
+
+          {/* LessonCard Examples */}
+          <SectionHeader title="LessonCard" description="For educational lessons with progress tracking" />
+          <CardGrid columns={3} className="mt-4 mb-12">
+            <LessonCard
+              title="What is AI?"
+              description="Introduction to artificial intelligence concepts"
+              icon={Brain}
+              color="blue"
+              lessonNumber={1}
+              duration="15 min"
+              status="completed"
+              progress={100}
+            />
+            <LessonCard
+              title="Machine Learning"
+              description="How computers learn from data"
+              icon={Sparkles}
+              color="purple"
+              lessonNumber={2}
+              duration="20 min"
+              status="in-progress"
+              progress={60}
+            />
+            <LessonCard
+              title="Neural Networks"
+              description="Building blocks of modern AI"
+              icon={BookOpen}
+              color="green"
+              lessonNumber={3}
+              duration="25 min"
+              status="locked"
+            />
+          </CardGrid>
+
+          {/* HighlightBox Examples */}
+          <SectionHeader title="HighlightBox Variants" description="For tips, warnings, and callouts" />
+          <div className="space-y-4 mt-4 mb-12">
+            <TipBox>Use TipBox for helpful hints and best practices!</TipBox>
+            <WarningBox>WarningBox highlights important cautions.</WarningBox>
+            <SuccessBox>SuccessBox celebrates achievements and confirmations.</SuccessBox>
+            <InfoBox>InfoBox provides additional context and information.</InfoBox>
+          </div>
+
+          {/* Code Example */}
+          <div className="bg-gray-100 p-4 rounded-xl">
+            <p className="text-sm text-gray-700 font-mono">
+              {`import { FeatureCard, ActivityCard, LessonCard, TipBox, CardGrid } from '@/components/cards';`}
+              <br /><br />
+              {`<CardGrid columns={3}>`}
+              <br />
+              {`  <FeatureCard title="..." description="..." icon={Brain} color="blue" />`}
+              <br />
+              {`  <ActivityCard title="..." icon={Star} duration="10 min" difficulty="easy" />`}
+              <br />
+              {`  <LessonCard title="..." icon={Book} status="completed" progress={100} />`}
+              <br />
+              {`</CardGrid>`}
             </p>
           </div>
         </section>
