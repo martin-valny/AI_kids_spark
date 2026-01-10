@@ -289,6 +289,21 @@ export function getIconContainerClasses(
 }
 
 /**
+ * Helper function to get icon inner size classes
+ *
+ * @param size - Size variant (sm, md, lg)
+ * @returns Tailwind classes for icon size
+ */
+export function getIconInnerSize(size: 'sm' | 'md' | 'lg' = 'md'): string {
+  const sizes = {
+    sm: 'w-5 h-5',
+    md: 'w-6 h-6',
+    lg: 'w-8 h-8',
+  };
+  return sizes[size];
+}
+
+/**
  * Helper function to build highlight box classes
  *
  * @param color - Color variant
@@ -311,6 +326,34 @@ export function getHighlightBoxClasses(
  * Type definitions for design tokens
  */
 export type ColorVariant = 'blue' | 'purple' | 'green' | 'pink' | 'orange' | 'yellow' | 'red' | 'teal';
+export type HighlightVariant = 'tip' | 'warning' | 'success' | 'info';
+export type IconSize = 'sm' | 'md' | 'lg';
+export type GridColumns = 2 | 3 | 4;
 export type SizeVariant = 'sm' | 'md' | 'lg' | 'xl';
 export type SpacingVariant = keyof typeof DesignTokens.spacing;
 export type TypographyVariant = keyof typeof DesignTokens.typography;
+
+/**
+ * Map highlight variant to color variant
+ */
+export function highlightToColor(variant: HighlightVariant): ColorVariant {
+  const map: Record<HighlightVariant, ColorVariant> = {
+    tip: 'purple',
+    warning: 'yellow',
+    success: 'green',
+    info: 'blue',
+  };
+  return map[variant];
+}
+
+/**
+ * Get grid classes based on column count
+ */
+export function getGridClasses(columns: GridColumns): string {
+  const classes: Record<GridColumns, string> = {
+    2: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+    3: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6',
+    4: 'grid grid-cols-2 md:grid-cols-4 gap-4',
+  };
+  return classes[columns];
+}
