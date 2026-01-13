@@ -163,6 +163,9 @@ export const DesignTokens = {
     /** Icon scale on hover: hover:scale-110 (inside group) */
     iconScale: 'group-hover:scale-110',
 
+    /** Icon scale on hover (alias): group-hover:scale-110 */
+    scaleIcon: 'group-hover:scale-110',
+
     /** Full hover combination for cards */
     card: 'hover:shadow-lg hover:-translate-y-1 transition-all duration-300',
   },
@@ -228,6 +231,79 @@ export const DesignTokens = {
   },
 
   /**
+   * Icon Container Sizes - Container dimensions for icons
+   */
+  iconSize: {
+    /** Small container: 32x32px */
+    sm: 'w-8 h-8',
+
+    /** Medium container: 48x48px */
+    md: 'w-12 h-12',
+
+    /** Large container: 64x64px */
+    lg: 'w-16 h-16',
+
+    /** Extra large container: 96x96px */
+    xl: 'w-24 h-24',
+  },
+
+  /**
+   * Background Colors - Color-specific background classes
+   */
+  background: {
+    blue: 'bg-kids-blue/10',
+    purple: 'bg-kids-purple/10',
+    green: 'bg-kids-green/10',
+    pink: 'bg-kids-pink/10',
+    orange: 'bg-kids-orange/10',
+    yellow: 'bg-kids-yellow/10',
+    red: 'bg-kids-red/10',
+    teal: 'bg-kids-teal/10',
+  },
+
+  /**
+   * Text Colors - Color-specific text classes
+   */
+  text: {
+    blue: 'text-kids-blue',
+    purple: 'text-kids-purple',
+    green: 'text-kids-green',
+    pink: 'text-kids-pink',
+    orange: 'text-kids-orange',
+    yellow: 'text-kids-yellow',
+    red: 'text-kids-red',
+    teal: 'text-kids-teal',
+  },
+
+  /**
+   * Group Hover Text Colors - Text colors that change on parent group hover
+   */
+  groupHoverText: {
+    blue: 'group-hover:text-kids-blue',
+    purple: 'group-hover:text-kids-purple',
+    green: 'group-hover:text-kids-green',
+    pink: 'group-hover:text-kids-pink',
+    orange: 'group-hover:text-kids-orange',
+    yellow: 'group-hover:text-kids-yellow',
+    red: 'group-hover:text-kids-red',
+    teal: 'group-hover:text-kids-teal',
+  },
+
+  /**
+   * Transitions (alias) - For component compatibility
+   */
+  transitions: {
+    /** Standard transition for all properties: transition-all duration-300 */
+    standard: 'transition-all duration-300',
+
+    /** Transform-only transition: transition-transform duration-300 */
+    transform: 'transition-transform duration-300',
+
+    /** Color-only transition: transition-colors duration-300 */
+    colors: 'transition-colors duration-300',
+  },
+
+  /**
    * Accessibility - Touch targets and contrast
    */
   a11y: {
@@ -256,9 +332,12 @@ export const DesignTokens = {
  * ```
  */
 export function getInnerCardClasses(
-  color: 'blue' | 'purple' | 'green' | 'pink' | 'orange' | 'yellow' | 'red' | 'teal'
+  color: 'blue' | 'purple' | 'green' | 'pink' | 'orange' | 'yellow' | 'red' | 'teal',
+  interactive: boolean = false
 ): string {
-  return `group bg-white/90 p-6 rounded-2xl border-2 border-kids-${color}/20 shadow-sm hover:border-kids-${color} hover:shadow-lg hover:-translate-y-1 transition-all duration-300`;
+  const baseClasses = `group bg-white/90 p-6 rounded-2xl border-2 border-kids-${color}/20 shadow-sm hover:border-kids-${color} hover:shadow-lg hover:-translate-y-1 transition-all duration-300`;
+  const interactiveClasses = interactive ? ' cursor-pointer focus:outline-none focus:ring-2 focus:ring-kids-' + color + '/50' : '';
+  return baseClasses + interactiveClasses;
 }
 
 /**
