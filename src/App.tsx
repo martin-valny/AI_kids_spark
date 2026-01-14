@@ -91,10 +91,6 @@ const App = () => (
           <Route path="/activities/ai-ethics-scenarios" element={<AIEthicsScenariosActivity />} />
           <Route path="/activities/design-responsible-ai" element={<DesignResponsibleAIActivity />} />
           <Route path="/activities/future-ai-invention" element={<FutureAIInventionActivity />} />
-
-          // ... existing imports ...
-
-          <Route path="/activities/future-ai-invention" element={<FutureAIInventionActivity />} />
           <Route path="/activities/ai-career-explorer" element={<AICareerExplorerActivity />} />
 
           {/* Legacy/Short Routes maintained for backward compatibility */}
