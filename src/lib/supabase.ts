@@ -15,16 +15,40 @@ const createMockClient = () => {
     onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
   };
 
+  // Create chainable query builder mock
+  const createQueryBuilder = () => {
+    const builder: Record<string, unknown> = {};
+    const methods = ['select', 'insert', 'update', 'delete', 'eq', 'neq', 'gt', 'gte', 'lt', 'lte', 'like', 'ilike', 'is', 'in', 'contains', 'containedBy', 'range', 'overlaps', 'match', 'not', 'or', 'filter', 'order', 'limit', 'single', 'maybeSingle'];
+
+    methods.forEach(method => {
+      builder[method] = () => {
+        // Return async result for terminal methods
+        if (method === 'single' || method === 'maybeSingle') {
+          return Promise.resolve({ data: null, error: null });
+        }
+        // Return builder for chaining
+        return builder;
+      };
+    });
+
+    // Add then for async/await support
+    builder.then = (resolve: (value: { data: unknown[]; error: null }) => void) => resolve({ data: [], error: null });
+
+    return builder;
+  };
+
+  // Mock channel for realtime subscriptions
+  const createChannel = () => ({
+    on: () => createChannel(),
+    subscribe: () => ({ unsubscribe: () => {} }),
+    unsubscribe: () => {},
+  });
+
   return {
     auth: mockAuth,
-    from: () => ({
-      select: () => ({ data: [], error: null }),
-      insert: () => mockResponse,
-      update: () => mockResponse,
-      delete: () => mockResponse,
-      eq: () => ({ data: [], error: null }),
-      single: () => mockResponse,
-    }),
+    from: () => createQueryBuilder(),
+    channel: () => createChannel(),
+    removeChannel: () => {},
   } as unknown as SupabaseClient;
 };
 
