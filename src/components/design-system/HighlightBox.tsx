@@ -72,8 +72,8 @@ export const HighlightBox = React.forwardRef<HTMLDivElement, HighlightBoxProps>(
     },
     ref
   ) => {
-    const boxClasses = getHighlightBoxClasses(variant);
     const color = highlightToColor(variant);
+    const boxClasses = getHighlightBoxClasses(color);
     const DefaultIcon = variantIcons[variant];
 
     // Determine the icon to display
