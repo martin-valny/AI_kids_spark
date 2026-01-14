@@ -1,13 +1,44 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
-}
+// Create a mock client for development without Supabase credentials
+const createMockClient = () => {
+  const mockResponse = { data: null, error: null };
+  const mockAuth = {
+    getSession: async () => ({ data: { session: null }, error: null }),
+    getUser: async () => ({ data: { user: null }, error: null }),
+    signUp: async () => mockResponse,
+    signInWithPassword: async () => mockResponse,
+    signOut: async () => ({ error: null }),
+    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
+  };
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+  return {
+    auth: mockAuth,
+    from: () => ({
+      select: () => ({ data: [], error: null }),
+      insert: () => mockResponse,
+      update: () => mockResponse,
+      delete: () => mockResponse,
+      eq: () => ({ data: [], error: null }),
+      single: () => mockResponse,
+    }),
+  } as unknown as SupabaseClient;
+};
+
+// Use real client if credentials exist, otherwise use mock
+export const supabase = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : createMockClient();
+
+// Flag to check if using real Supabase
+export const isSupabaseConfigured = !!(supabaseUrl && supabaseAnonKey);
+
+if (!isSupabaseConfigured) {
+  console.warn('Supabase not configured. Running in demo mode without authentication.');
+}
 
 // Database types for TypeScript
 export interface UserProfile {
