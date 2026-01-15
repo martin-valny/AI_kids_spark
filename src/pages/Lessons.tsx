@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Cpu, Brain, Database, PieChart, Search, ShieldCheck, Zap, Sparkles, TrendingUp } from 'lucide-react';
+import { BookOpen, Cpu, Brain, Database, PieChart, Search, ShieldCheck, Zap, Sparkles, TrendingUp, GraduationCap } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModuleCard from '@/components/ModuleCard';
@@ -22,7 +22,7 @@ const modules = [
     id: "intro-to-ai",
     title: "Introduction to AI",
     description: "Learn the basics of AI and how it's used in everyday life",
-    icon: <Brain className="w-6 h-6 text-kids-blue" />,
+    icon: <Brain className="w-6 h-6 text-indigo-600" />,
     path: "/lessons/intro-to-ai",
     isSubscriptionRequired: false,
   },
@@ -30,7 +30,7 @@ const modules = [
     id: "machine-learning-basics",
     title: "Machine Learning Basics",
     description: "Discover how machines learn from data",
-    icon: <Cpu className="w-6 h-6 text-kids-blue" />,
+    icon: <Cpu className="w-6 h-6 text-purple-600" />,
     path: "/lessons/machine-learning-basics",
     isSubscriptionRequired: false,
   },
@@ -38,7 +38,7 @@ const modules = [
     id: "data-and-patterns",
     title: "Data and Patterns",
     description: "Explore how AI finds patterns in data",
-    icon: <Database className="w-6 h-6 text-kids-blue" />,
+    icon: <Database className="w-6 h-6 text-cyan-600" />,
     path: "/lessons/data-and-patterns",
     isSubscriptionRequired: false,
   },
@@ -46,7 +46,7 @@ const modules = [
     id: "image-recognition",
     title: "Image Recognition",
     description: "How AI sees and recognizes images",
-    icon: <Search className="w-6 h-6 text-kids-blue" />,
+    icon: <Search className="w-6 h-6 text-emerald-600" />,
     path: "/lessons/image-recognition",
     isSubscriptionRequired: false,
   },
@@ -54,7 +54,7 @@ const modules = [
     id: "simple-algorithms",
     title: "Simple Algorithms",
     description: "Learn about the building blocks of AI",
-    icon: <PieChart className="w-6 h-6 text-kids-blue" />,
+    icon: <PieChart className="w-6 h-6 text-amber-600" />,
     path: "/lessons/simple-algorithms",
     isSubscriptionRequired: false,
   },
@@ -62,7 +62,7 @@ const modules = [
     id: "ai-ethics",
     title: "AI Ethics Fundamentals",
     description: "Using AI responsibly and safely",
-    icon: <ShieldCheck className="w-6 h-6 text-kids-blue" />,
+    icon: <ShieldCheck className="w-6 h-6 text-rose-600" />,
     path: "/lessons/ai-ethics",
     isSubscriptionRequired: false,
   },
@@ -70,7 +70,7 @@ const modules = [
     id: "future-of-ai",
     title: "The Future of AI",
     description: "What's next in the world of AI?",
-    icon: <Zap className="w-6 h-6 text-kids-blue" />,
+    icon: <Zap className="w-6 h-6 text-violet-600" />,
     path: "/lessons/future-of-ai",
     isSubscriptionRequired: false,
   },
@@ -137,9 +137,9 @@ const Lessons = () => {
           <div key={`project-${projectToShow.id}`} className="my-8">
             {/* Project Unlocked Banner */}
             {unlocked && !projectComplete && (
-              <HighlightBox variant="tip" icon={<Sparkles className="w-5 h-5" />} className="mb-4 text-center animate-pulse bg-gradient-to-r from-kids-yellow/20 to-kids-orange/20 border-2 border-kids-yellow">
-                <span className="text-lg font-bold text-kids-orange">
-                  🎉 New Project Unlocked!
+              <HighlightBox variant="tip" icon={<Sparkles className="w-5 h-5" />} className="mb-4 text-center bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300">
+                <span className="text-lg font-bold text-amber-600">
+                  New Project Unlocked!
                 </span>
               </HighlightBox>
             )}
@@ -167,32 +167,32 @@ const Lessons = () => {
           <div className="max-w-3xl mx-auto">
             {/* Header with Progress */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold mb-2">Your Learning Journey</h1>
+              <h1 className="text-3xl font-bold mb-2 text-gray-900">Your Learning Journey</h1>
               <p className="text-gray-600 mb-4">
                 Complete lessons to unlock exciting hands-on projects!
               </p>
 
               {/* Progress Summary */}
-              <div className="bg-gradient-to-r from-kids-blue/10 to-kids-purple/10 border border-kids-blue/30 rounded-xl p-4">
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-200/60 rounded-xl p-5 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-semibold text-gray-700">Overall Progress</span>
-                  <span className="text-sm font-bold text-kids-blue">{progressSummary.overallProgress}%</span>
+                  <span className="text-sm font-bold text-indigo-600">{progressSummary.overallProgress}%</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
+                <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
                   <div
-                    className="bg-gradient-to-r from-kids-blue to-kids-purple h-3 rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full transition-all duration-500"
                     style={{ width: `${progressSummary.overallProgress}%` }}
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-kids-blue" />
+                    <BookOpen className="w-4 h-4 text-indigo-600" />
                     <span className="text-gray-600">
                       <strong>{progressSummary.completedLessons}</strong>/{progressSummary.totalLessons} Lessons
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-kids-purple" />
+                    <TrendingUp className="w-4 h-4 text-purple-600" />
                     <span className="text-gray-600">
                       <strong>{progressSummary.completedProjects}</strong>/{progressSummary.totalProjects} Projects
                     </span>
@@ -209,13 +209,15 @@ const Lessons = () => {
             {/* Completion Message */}
             {progressSummary.completedLessons === progressSummary.totalLessons &&
               progressSummary.completedProjects === progressSummary.totalProjects && (
-                <HighlightBox variant="success" showIcon={false} className="mt-8 p-6 bg-gradient-to-r from-kids-green/20 to-kids-blue/20 border-2 border-kids-green text-center">
-                  <div className="text-4xl mb-3">🎓</div>
-                  <h3 className="text-2xl font-bold text-kids-green mb-2">Congratulations!</h3>
+                <div className="mt-8 p-8 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl text-center shadow-sm">
+                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <GraduationCap className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-emerald-700 mb-2">Congratulations!</h3>
                   <p className="text-gray-700">
-                    You've completed all lessons and projects! You're now an AI expert! 🌟
+                    You've completed all lessons and projects! You're now an AI expert!
                   </p>
-                </HighlightBox>
+                </div>
               )}
           </div>
         </div>

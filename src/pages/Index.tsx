@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { ArrowRight, Brain, BookOpen, Lightbulb, Rocket, Bot, Check, Play, Clock, Star, Zap, Users, Award, Shield, Cpu, MessageSquare } from 'lucide-react';
+import { ArrowRight, Brain, BookOpen, Lightbulb, Rocket, Bot, Check, Play, Star, Users, Award, Shield, Cpu, MessageSquare, User, GraduationCap } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CourseCard from '@/components/CourseCard';
@@ -10,22 +10,22 @@ import { AIMascot } from '@/components/AIMascot';
 
 const features = [
   {
-    icon: <Brain className="w-10 h-10 text-kids-blue" />,
+    icon: <Brain className="w-10 h-10 text-indigo-600" />,
     title: "What is AI?",
     description: "Learn about artificial intelligence in a fun, beginner-friendly way"
   },
   {
-    icon: <Bot className="w-10 h-10 text-kids-purple" />,
+    icon: <Bot className="w-10 h-10 text-purple-600" />,
     title: "Hands-on Projects",
     description: "Create cool AI projects like chatbots and image recognizers"
   },
   {
-    icon: <Lightbulb className="w-10 h-10 text-kids-yellow" />,
+    icon: <Lightbulb className="w-10 h-10 text-amber-500" />,
     title: "Interactive Games",
     description: "Play games that teach you AI concepts while having fun"
   },
   {
-    icon: <Rocket className="w-10 h-10 text-kids-red" />,
+    icon: <Rocket className="w-10 h-10 text-rose-500" />,
     title: "Future Skills",
     description: "Develop skills that will be important in the world of tomorrow"
   }
@@ -74,10 +74,10 @@ const benefitsList = [
 ];
 
 const stats = [
-  { value: 10000, label: "Learners", icon: <Users className="w-5 h-5" /> },
-  { value: 50, label: "Interactive Lessons", icon: <BookOpen className="w-5 h-5" /> },
-  { value: 100, label: "Safe Content", suffix: "%", icon: <Shield className="w-5 h-5" /> },
-  { value: 25, label: "Fun Projects", icon: <Award className="w-5 h-5" /> }
+  { value: 10000, label: "Learners", icon: <Users className="w-5 h-5" />, color: "text-indigo-600" },
+  { value: 50, label: "Interactive Lessons", icon: <BookOpen className="w-5 h-5" />, color: "text-purple-600" },
+  { value: 100, label: "Safe Content", suffix: "%", icon: <Shield className="w-5 h-5" />, color: "text-emerald-600" },
+  { value: 25, label: "Fun Projects", icon: <Award className="w-5 h-5" />, color: "text-amber-500" }
 ];
 
 // Animated counter component
@@ -128,14 +128,14 @@ const Index = () => {
           className="relative overflow-hidden bg-transparent pt-32 pb-20 px-4 md:px-6 z-0"
         >
           {/* Animated background gradient */}
-          <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 opacity-20">
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-kids-blue/20 via-kids-purple/20 to-kids-pink/20"
+              className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-violet-500/20"
               animate={{
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
               transition={{
-                duration: 15,
+                duration: 20,
                 repeat: Infinity,
                 ease: "linear"
               }}
@@ -159,7 +159,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Learn <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">Artificial Intelligence</span> Through Play
+                  Learn <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Artificial Intelligence</span> Through Play
                 </motion.h1>
                 <motion.p
                   className="text-xl text-gray-600 mb-8 max-w-lg"
@@ -177,9 +177,9 @@ const Index = () => {
                 >
                   <Link to="/lessons">
                     <motion.button
-                      whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.3)" }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-kids-blue to-kids-purple text-white font-bold transition-all"
+                      whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.3)" }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/25 transition-all"
                     >
                       Start Learning
                       <ArrowRight className="ml-2 w-5 h-5" />
@@ -187,9 +187,9 @@ const Index = () => {
                   </Link>
                   <Link to="/about">
                     <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-gray-800 font-bold hover:bg-gray-50 transition-colors border border-gray-200"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-white/90 text-gray-800 font-bold hover:bg-white transition-colors border border-gray-200/80 shadow-sm"
                     >
                       Learn More
                     </motion.button>
@@ -225,7 +225,7 @@ const Index = () => {
         </motion.section>
 
         {/* Stats Section */}
-        <section className="py-12 px-4 md:px-6 bg-white/40 backdrop-blur-sm border-y border-gray-200/50">
+        <section className="py-12 px-4 md:px-6 bg-gradient-to-r from-white/60 to-gray-50/60 backdrop-blur-sm border-y border-gray-200/50">
           <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
@@ -237,7 +237,7 @@ const Index = () => {
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   className="text-center"
                 >
-                  <div className="flex justify-center mb-2 text-kids-blue">
+                  <div className={`flex justify-center mb-2 ${stat.color}`}>
                     {stat.icon}
                   </div>
                   <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-1">
@@ -262,49 +262,49 @@ const Index = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
-                Everything Your Child Needs to <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">Master AI</span>
+                Everything You Need to <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Master AI</span>
               </h2>
               <p className="text-xl text-gray-600">
-                A complete learning platform designed specifically for young minds
+                A complete learning platform designed for beginners of all ages
               </p>
             </motion.div>
 
             {/* Bento Grid Layout */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-6xl mx-auto">
               {/* Large feature card */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden group"
+                className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-indigo-600 via-purple-600 to-violet-600 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden group shadow-xl shadow-indigo-500/20"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/85 rounded-full -mr-32 -mt-32 group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/85 rounded-full -ml-24 -mb-24 group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24 group-hover:scale-110 transition-transform duration-700" />
 
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-white/90 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
-                    <Brain className="w-8 h-8" />
+                  <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-6 backdrop-blur-sm">
+                    <Brain className="w-7 h-7" />
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold mb-4">Interactive Learning</h3>
-                  <p className="text-lg text-blue-100 mb-6 max-w-md">
-                    Hands-on lessons that make complex AI concepts easy to understand through play and experimentation
+                  <p className="text-lg text-indigo-100 mb-6 max-w-md">
+                    Hands-on lessons that make complex AI concepts easy to understand through practice and experimentation
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                      <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                         <Check className="w-4 h-4" />
                       </div>
                       <span>Step-by-step guided lessons</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                      <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                         <Check className="w-4 h-4" />
                       </div>
                       <span>Real-time feedback and hints</span>
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                      <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                         <Check className="w-4 h-4" />
                       </div>
                       <span>Progress tracking dashboard</span>
@@ -319,13 +319,13 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-shadow"
+                className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl hover:shadow-amber-500/20 transition-all shadow-lg"
               >
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/90 rounded-full group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative z-10">
-                  <Lightbulb className="w-12 h-12 mb-4" />
+                  <Lightbulb className="w-10 h-10 mb-4" />
                   <h3 className="text-xl font-bold mb-2">Fun Games</h3>
-                  <p className="text-sm text-yellow-100">Learn through interactive games and challenges</p>
+                  <p className="text-sm text-amber-100">Learn through interactive games and challenges</p>
                 </div>
               </motion.div>
 
@@ -334,13 +334,13 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="bg-gradient-to-br from-green-400 to-emerald-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-shadow"
+                className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl hover:shadow-emerald-500/20 transition-all shadow-lg"
               >
-                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-white/90 rounded-full group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative z-10">
-                  <Shield className="w-12 h-12 mb-4" />
+                  <Shield className="w-10 h-10 mb-4" />
                   <h3 className="text-xl font-bold mb-2">100% Safe</h3>
-                  <p className="text-sm text-green-100">Beginner-friendly content, no ads, completely secure</p>
+                  <p className="text-sm text-emerald-100">Beginner-friendly content, no ads, completely secure</p>
                 </div>
               </motion.div>
 
@@ -349,11 +349,11 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="bg-gradient-to-br from-pink-400 to-rose-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-shadow"
+                className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl hover:shadow-pink-500/20 transition-all shadow-lg"
               >
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/20 rounded-full group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative z-10">
-                  <Bot className="w-12 h-12 mb-4" />
+                  <Bot className="w-10 h-10 mb-4" />
                   <h3 className="text-xl font-bold mb-2">Build Projects</h3>
                   <p className="text-sm text-pink-100">Create real AI projects like chatbots and games</p>
                 </div>
@@ -364,21 +364,21 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="bg-gradient-to-br from-indigo-400 to-purple-600 rounded-3xl p-6 text-white relative overflow-hidden group hover:shadow-2xl transition-shadow"
+                className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl p-6 text-white relative overflow-hidden group hover:shadow-xl hover:shadow-cyan-500/20 transition-all shadow-lg"
               >
-                <div className="absolute -top-4 -left-4 w-24 h-24 bg-white/20 rounded-full group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-white/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
                 <div className="relative z-10">
-                  <Rocket className="w-12 h-12 mb-4" />
+                  <Rocket className="w-10 h-10 mb-4" />
                   <h3 className="text-xl font-bold mb-2">Future Ready</h3>
-                  <p className="text-sm text-indigo-100">Skills that matter for tomorrow's world</p>
+                  <p className="text-sm text-cyan-100">Skills that matter for tomorrow's world</p>
                 </div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Learning Path Section - NEW */}
-        <section className="py-24 px-4 md:px-6 bg-white/90 backdrop-blur-sm">
+        {/* Learning Path Section */}
+        <section className="py-24 px-4 md:px-6 bg-gradient-to-b from-white/95 to-gray-50/95 backdrop-blur-sm">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -387,33 +387,33 @@ const Index = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
-                A Clear Path to <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">AI Mastery</span>
+                A Clear Path to <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">AI Mastery</span>
               </h2>
               <p className="text-xl text-gray-600">
-                From beginner to builder in just a few weeks
+                From beginner to builder at your own pace
               </p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
-                { step: "01", title: "Learn the Basics", desc: "Start with fun, simple lessons about what AI is and how it works", icon: <BookOpen className="w-8 h-8" />, color: "from-blue-500 to-cyan-500" },
-                { step: "02", title: "Practice & Play", desc: "Try interactive games and activities that reinforce concepts", icon: <Play className="w-8 h-8" />, color: "from-purple-500 to-pink-500" },
-                { step: "03", title: "Build Projects", desc: "Create your own AI projects like chatbots and image recognizers", icon: <Rocket className="w-8 h-8" />, color: "from-orange-500 to-red-500" }
+                { step: "01", title: "Learn the Basics", desc: "Start with engaging lessons about what AI is and how it works", icon: <BookOpen className="w-7 h-7" />, color: "from-indigo-500 to-blue-600" },
+                { step: "02", title: "Practice & Play", desc: "Try interactive activities and exercises that reinforce concepts", icon: <Play className="w-7 h-7" />, color: "from-purple-500 to-violet-600" },
+                { step: "03", title: "Build Projects", desc: "Create your own AI projects like chatbots and image recognizers", icon: <Rocket className="w-7 h-7" />, color: "from-orange-500 to-rose-600" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  transition={{ delay: index * 0.15 }}
                   className="relative"
                 >
-                  <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all group">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
+                  <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-lg transition-all group border border-gray-100">
+                    <div className={`w-14 h-14 bg-gradient-to-br ${item.color} rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-105 transition-transform shadow-lg`}>
                       {item.icon}
                     </div>
-                    <div className="text-sm font-bold text-gray-400 mb-2">STEP {item.step}</div>
-                    <h3 className="text-2xl font-bold mb-3 text-gray-900">{item.title}</h3>
+                    <div className="text-xs font-bold text-gray-400 mb-2 tracking-wider">STEP {item.step}</div>
+                    <h3 className="text-xl font-bold mb-3 text-gray-900">{item.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{item.desc}</p>
                   </div>
                   {index < 2 && (
@@ -437,7 +437,7 @@ const Index = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-                  Featured <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">Courses</span>
+                  Featured <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Courses</span>
                 </h2>
                 <p className="text-lg text-gray-600">Start your AI journey with these popular lessons</p>
               </motion.div>
@@ -448,9 +448,9 @@ const Index = () => {
               >
                 <Link to="/lessons">
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-kids-blue to-kids-purple text-white font-bold rounded-full hover:shadow-lg transition-shadow"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/25 hover:shadow-xl transition-all"
                   >
                     View All Courses
                     <ArrowRight className="w-5 h-5" />
@@ -486,8 +486,8 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Testimonials Section - NEW */}
-        <section className="py-24 px-4 md:px-6 bg-white/40 backdrop-blur-sm">
+        {/* Testimonials Section */}
+        <section className="py-24 px-4 md:px-6 bg-gradient-to-b from-gray-50/80 to-white/80 backdrop-blur-sm">
           <div className="container mx-auto max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -496,34 +496,37 @@ const Index = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
-                Loved by Students & <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">Parents</span>
+                Loved by Learners & <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Parents</span>
               </h2>
               <p className="text-xl text-gray-600">
-                See what families are saying about their AI learning journey
+                See what others are saying about their AI learning journey
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {[
                 {
                   quote: "My daughter loves the interactive lessons! She's already built her first chatbot and can't stop talking about AI.",
                   author: "Sarah M.",
                   role: "Parent",
-                  avatar: "👩",
+                  icon: <User className="w-5 h-5 text-white" />,
+                  color: "from-indigo-500 to-purple-600",
                   rating: 5
                 },
                 {
-                  quote: "The games make learning so fun! I didn't know AI could be this cool. My favorite is the pattern detective game.",
-                  author: "Alex, Age 10",
+                  quote: "The activities make learning so engaging! I didn't know AI could be this interesting. My favorite is the pattern recognition.",
+                  author: "Alex, Age 14",
                   role: "Student",
-                  avatar: "🧒",
+                  icon: <GraduationCap className="w-5 h-5 text-white" />,
+                  color: "from-emerald-500 to-teal-600",
                   rating: 5
                 },
                 {
                   quote: "Finally, a platform that makes AI accessible for beginners. The content is well-structured and genuinely educational.",
                   author: "David K.",
                   role: "Parent",
-                  avatar: "👨",
+                  icon: <User className="w-5 h-5 text-white" />,
+                  color: "from-orange-500 to-rose-600",
                   rating: 5
                 }
               ].map((testimonial, index) => (
@@ -533,20 +536,20 @@ const Index = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all"
+                  className="bg-white rounded-xl p-7 shadow-md hover:shadow-lg transition-all border border-gray-100"
                 >
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-6 leading-relaxed italic">"{testimonial.quote}"</p>
+                  <p className="text-gray-700 mb-6 leading-relaxed">"{testimonial.quote}"</p>
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-kids-blue to-kids-purple rounded-full flex items-center justify-center text-2xl">
-                      {testimonial.avatar}
+                    <div className={`w-10 h-10 bg-gradient-to-br ${testimonial.color} rounded-full flex items-center justify-center shadow-md`}>
+                      {testimonial.icon}
                     </div>
                     <div>
-                      <div className="font-bold text-gray-900">{testimonial.author}</div>
+                      <div className="font-semibold text-gray-900">{testimonial.author}</div>
                       <div className="text-sm text-gray-500">{testimonial.role}</div>
                     </div>
                   </div>
@@ -556,44 +559,44 @@ const Index = () => {
           </div>
         </section>
 
-        {/* CTA Section - Redesigned */}
-        <section className="relative py-32 px-4 md:px-6 overflow-hidden">
+        {/* CTA Section */}
+        <section className="relative py-24 px-4 md:px-6 overflow-hidden">
           <div className="container mx-auto max-w-5xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card-strong p-12 md:p-16 rounded-3xl text-center relative overflow-hidden"
+              className="bg-gradient-to-br from-white/98 to-gray-50/98 backdrop-blur-lg p-12 md:p-16 rounded-2xl text-center relative overflow-hidden shadow-xl border border-gray-200/60"
             >
               {/* Decorative background blobs inside the card */}
               <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-                <div className="absolute top-0 left-0 w-64 h-64 bg-kids-blue/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-kids-purple/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+                <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
               </div>
 
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
                 className="inline-block mb-8"
               >
                 <AIMascot size="lg" animate={true} />
               </motion.div>
 
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-kids-purple via-kids-blue to-kids-cyan bg-clip-text text-transparent">
-                Ready to Start Your AI Adventure?
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">
+                Ready to Start Your AI Journey?
               </h2>
               <p className="text-xl md:text-2xl mb-12 text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of learners who are already exploring AI and preparing for the future!
+                Join thousands of learners who are already exploring AI and building skills for the future!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                 <Link to="/lessons">
                   <motion.button
-                    whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)" }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-gradient-to-r from-kids-blue to-kids-purple text-white font-bold text-lg shadow-xl transition-all"
+                    whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.35)" }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center justify-center px-10 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg shadow-xl shadow-indigo-500/25 transition-all"
                   >
                     Start Learning Free
                     <ArrowRight className="ml-2 w-6 h-6" />
@@ -601,9 +604,9 @@ const Index = () => {
                 </Link>
                 <Link to="/about">
                   <motion.button
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-white/50 backdrop-blur-sm text-gray-800 font-bold text-lg border border-white/60 shadow-lg transition-all"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center justify-center px-10 py-4 rounded-xl bg-white text-gray-800 font-bold text-lg border border-gray-200 shadow-md hover:shadow-lg transition-all"
                   >
                     Learn More
                   </motion.button>
@@ -612,11 +615,11 @@ const Index = () => {
 
               <div className="flex flex-wrap justify-center gap-8 text-gray-500">
                 <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-kids-green" />
+                  <Check className="w-5 h-5 text-emerald-500" />
                   <span>No Credit Card Required</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-5 h-5 text-kids-green" />
+                  <Check className="w-5 h-5 text-emerald-500" />
                   <span>100% Free Lessons</span>
                 </div>
               </div>
