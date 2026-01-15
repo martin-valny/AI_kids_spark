@@ -6,7 +6,7 @@ import { GlassCard } from '@/components/ui/GlassCard';
 import { Button } from '@/components/ui/button';
 import { ACTIVITIES, ACTIVITY_CATEGORIES, Activity } from '@/data/activitiesData';
 import { isLessonCompleted } from '@/utils/progressTracker';
-import { Gamepad2, Lock, CheckCircle, Filter, Sparkles, ExternalLink } from 'lucide-react';
+import { Gamepad2, Lock, CheckCircle, Filter, Sparkles, ExternalLink, PartyPopper } from 'lucide-react';
 
 const Games = () => {
   const [selectedCategory, setSelectedCategory] = useState<Activity['category'] | 'all'>('all');
@@ -40,35 +40,35 @@ const Games = () => {
 
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-kids-purple to-kids-blue rounded-full mb-4">
+            <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl mb-4 shadow-lg shadow-indigo-500/25">
               <Gamepad2 className="w-8 h-8 text-white" />
             </div>
 
-            <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-kids-purple to-kids-blue bg-clip-text text-transparent">
-              🎮 AI Activity Playground
+            <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">
+              AI Activity Playground
             </h1>
 
             <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
-              Practice what you've learned with these fun interactive activities! Complete lessons to unlock more games.
+              Practice what you've learned with these interactive activities! Complete lessons to unlock more.
             </p>
 
             {/* Progress Summary */}
-            <div className="bg-gradient-to-r from-kids-blue/10 to-kids-purple/10 border border-kids-blue/30 rounded-xl p-5 max-w-2xl mx-auto">
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-200/60 rounded-xl p-5 max-w-2xl mx-auto shadow-sm">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm font-semibold text-gray-700">Your Activity Progress</span>
-                <span className="text-sm font-bold text-kids-blue">
+                <span className="text-sm font-bold text-indigo-600">
                   {unlockedActivities.length}/{totalActivities} Unlocked
                 </span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
+              <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
                 <div
-                  className="bg-gradient-to-r from-kids-blue to-kids-purple h-3 rounded-full transition-all duration-500"
+                  className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full transition-all duration-500"
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
               <div className="flex items-center justify-center gap-6 text-sm">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-kids-yellow" />
+                  <Sparkles className="w-4 h-4 text-amber-500" />
                   <span className="text-gray-600">
                     <strong>{unlockedActivities.length}</strong> Ready to Play
                   </span>
@@ -93,7 +93,7 @@ const Games = () => {
               <button
                 onClick={() => setSelectedCategory('all')}
                 className={`px-4 py-2 rounded-lg font-medium transition-all ${selectedCategory === 'all'
-                    ? 'bg-gradient-to-r from-kids-purple to-kids-blue text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
               >
@@ -106,7 +106,7 @@ const Games = () => {
                     key={key}
                     onClick={() => setSelectedCategory(key as Activity['category'])}
                     className={`px-4 py-2 rounded-lg font-medium transition-all ${selectedCategory === key
-                        ? 'bg-gradient-to-r from-kids-purple to-kids-blue text-white shadow-lg'
+                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                   >
@@ -159,9 +159,9 @@ const Games = () => {
                                   )}
                                 </h3>
                                 <div className="flex items-center gap-2 mt-1">
-                                  <span className={`text-xs px-2 py-0.5 rounded-full ${activity.difficulty === 'Easy' ? 'bg-kids-green text-white' :
-                                      activity.difficulty === 'Medium' ? 'bg-kids-yellow text-gray-800' :
-                                        'bg-kids-red text-white'
+                                  <span className={`text-xs px-2 py-0.5 rounded-full ${activity.difficulty === 'Easy' ? 'bg-emerald-500 text-white' :
+                                      activity.difficulty === 'Medium' ? 'bg-amber-500 text-white' :
+                                        'bg-rose-500 text-white'
                                     }`}>
                                     {activity.difficulty}
                                   </span>
@@ -174,7 +174,7 @@ const Games = () => {
 
                             {/* Status Icon */}
                             {isUnlocked ? (
-                              <div className="bg-kids-green text-white p-1.5 rounded-full">
+                              <div className="bg-emerald-500 text-white p-1.5 rounded-full">
                                 <CheckCircle className="w-4 h-4" />
                               </div>
                             ) : (
@@ -217,13 +217,15 @@ const Games = () => {
 
           {/* Completion Message */}
           {unlockedActivities.length === totalActivities && (
-            <div className="mt-8 p-6 bg-gradient-to-r from-kids-green/20 to-kids-blue/20 border-2 border-kids-green rounded-xl text-center">
-              <div className="text-4xl mb-3">🎉</div>
-              <h3 className="text-2xl font-bold text-kids-green mb-2">
+            <div className="mt-8 p-8 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl text-center shadow-sm">
+              <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <PartyPopper className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-emerald-700 mb-2">
                 All Activities Unlocked!
               </h3>
               <p className="text-gray-700">
-                You've unlocked every activity! Keep playing and learning! 🌟
+                You've unlocked every activity! Keep playing and learning!
               </p>
             </div>
           )}
