@@ -34,6 +34,9 @@
     "feedback:log": "node .verification/workflows/feedback-loop-orchestrator.js log",
     "feedback:list": "node .verification/workflows/feedback-loop-orchestrator.js list",
     "feedback:remind": "node .verification/workflows/feedback-reminder.js",
+    "mcp:scenarios": "node .verification/workflows/chrome-mcp-testing.js scenarios",
+    "mcp:routes": "node .verification/workflows/chrome-mcp-testing.js routes",
+    "mcp:help": "node .verification/workflows/chrome-mcp-testing.js help",
     "prepare": "husky"
   },
   "dependencies": {

@@ -1,0 +1,489 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Chrome MCP UI Test Scenarios for AI Kids Spark",
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-16",
+  "scenarios": [
+    {
+      "id": "homepage-smoke",
+      "name": "Homepage Smoke Test",
+      "description": "Verify homepage loads correctly with key elements visible",
+      "category": "smoke",
+      "priority": "critical",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Navigate to homepage"
+        },
+        {
+          "action": "screenshot",
+          "filename": "homepage-initial.png"
+        },
+        {
+          "action": "verify_element",
+          "selector": "header",
+          "description": "Header is visible"
+        },
+        {
+          "action": "verify_element",
+          "selector": "footer",
+          "description": "Footer is visible"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50,
+          "description": "Page starts at top"
+        },
+        {
+          "action": "check_console",
+          "allow_warnings": true,
+          "allow_errors": false
+        }
+      ],
+      "expectedOutcome": "Homepage loads with header, footer, no console errors"
+    },
+    {
+      "id": "link-verification-header",
+      "name": "Header Navigation Links",
+      "description": "Verify all header navigation links go to correct destinations",
+      "category": "navigation",
+      "priority": "critical",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Start at homepage"
+        },
+        {
+          "action": "click",
+          "target": "Lessons link in header",
+          "description": "Click Lessons nav link"
+        },
+        {
+          "action": "verify_url",
+          "expected": "/lessons",
+          "description": "Should navigate to /lessons"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50,
+          "description": "Lessons page starts at top"
+        },
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Return to homepage"
+        },
+        {
+          "action": "click",
+          "target": "Projects link in header",
+          "description": "Click Projects nav link"
+        },
+        {
+          "action": "verify_url",
+          "expected": "/projects",
+          "description": "Should navigate to /projects"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50,
+          "description": "Projects page starts at top"
+        }
+      ],
+      "expectedOutcome": "All header links navigate correctly with scroll position at top"
+    },
+    {
+      "id": "start-learning-cta",
+      "name": "Start Learning CTA Button",
+      "description": "Verify the 'Start learning free' button navigates correctly",
+      "category": "navigation",
+      "priority": "critical",
+      "knownIssues": ["May scroll to bottom instead of top"],
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Start at homepage"
+        },
+        {
+          "action": "click",
+          "target": "Start learning free button",
+          "description": "Click the main CTA button"
+        },
+        {
+          "action": "verify_url",
+          "expected": "/lessons",
+          "description": "Should navigate to lessons page"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50,
+          "description": "CRITICAL: Page should start at top, not bottom"
+        },
+        {
+          "action": "screenshot",
+          "filename": "start-learning-result.png"
+        }
+      ],
+      "expectedOutcome": "CTA navigates to /lessons with scroll position at top"
+    },
+    {
+      "id": "lesson-navigation-flow",
+      "name": "Lesson Navigation Flow",
+      "description": "Navigate through a lesson and verify back button works",
+      "category": "navigation",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/lessons",
+          "description": "Go to lessons page"
+        },
+        {
+          "action": "click",
+          "target": "First lesson card (intro-to-ai)",
+          "description": "Click on Introduction to AI lesson"
+        },
+        {
+          "action": "verify_url",
+          "expected": "/lessons/intro-to-ai",
+          "description": "Should be on lesson page"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50,
+          "description": "Lesson page starts at top"
+        },
+        {
+          "action": "click",
+          "target": "Back to Lessons button",
+          "description": "Click back button"
+        },
+        {
+          "action": "verify_url",
+          "expected": "/lessons",
+          "description": "Should return to lessons page"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50,
+          "description": "Lessons page at top after back navigation"
+        }
+      ],
+      "expectedOutcome": "Lesson navigation works with correct scroll positions"
+    },
+    {
+      "id": "activity-navigation",
+      "name": "Activity Page Navigation",
+      "description": "Navigate to an activity and verify it loads correctly",
+      "category": "navigation",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/activities/ai-drawing",
+          "description": "Navigate directly to AI Drawing activity"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50,
+          "description": "Activity page starts at top"
+        },
+        {
+          "action": "screenshot",
+          "filename": "activity-ai-drawing.png"
+        },
+        {
+          "action": "check_console",
+          "allow_warnings": true,
+          "allow_errors": false,
+          "description": "Check for canvas/WebGL errors"
+        }
+      ],
+      "expectedOutcome": "Activity loads without errors"
+    },
+    {
+      "id": "responsive-mobile",
+      "name": "Mobile Responsive Test",
+      "description": "Test mobile viewport displays correctly",
+      "category": "responsive",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "resize_window",
+          "width": 375,
+          "height": 667,
+          "description": "Set iPhone SE viewport"
+        },
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Load homepage"
+        },
+        {
+          "action": "screenshot",
+          "filename": "mobile-homepage.png"
+        },
+        {
+          "action": "verify_element",
+          "selector": "mobile menu button or hamburger",
+          "description": "Mobile menu should be visible"
+        },
+        {
+          "action": "navigate",
+          "url": "/lessons",
+          "description": "Load lessons page"
+        },
+        {
+          "action": "screenshot",
+          "filename": "mobile-lessons.png"
+        }
+      ],
+      "expectedOutcome": "Mobile layout displays correctly with hamburger menu"
+    },
+    {
+      "id": "responsive-tablet",
+      "name": "Tablet Responsive Test",
+      "description": "Test tablet viewport displays correctly",
+      "category": "responsive",
+      "priority": "medium",
+      "steps": [
+        {
+          "action": "resize_window",
+          "width": 768,
+          "height": 1024,
+          "description": "Set iPad viewport"
+        },
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Load homepage"
+        },
+        {
+          "action": "screenshot",
+          "filename": "tablet-homepage.png"
+        },
+        {
+          "action": "navigate",
+          "url": "/lessons",
+          "description": "Load lessons page"
+        },
+        {
+          "action": "screenshot",
+          "filename": "tablet-lessons.png"
+        }
+      ],
+      "expectedOutcome": "Tablet layout displays correctly"
+    },
+    {
+      "id": "form-validation-signup",
+      "name": "Sign Up Form Validation",
+      "description": "Test sign up form validation behaviors",
+      "category": "forms",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/sign-up",
+          "description": "Go to sign up page"
+        },
+        {
+          "action": "screenshot",
+          "filename": "signup-initial.png"
+        },
+        {
+          "action": "click",
+          "target": "Submit button",
+          "description": "Submit empty form"
+        },
+        {
+          "action": "verify_element",
+          "selector": "error message or validation feedback",
+          "description": "Validation errors should appear"
+        },
+        {
+          "action": "screenshot",
+          "filename": "signup-validation-errors.png"
+        }
+      ],
+      "expectedOutcome": "Form shows validation errors on empty submit"
+    },
+    {
+      "id": "accessibility-focus-states",
+      "name": "Keyboard Navigation & Focus States",
+      "description": "Test keyboard navigation and visible focus indicators",
+      "category": "accessibility",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Load homepage"
+        },
+        {
+          "action": "key",
+          "text": "Tab",
+          "repeat": 5,
+          "description": "Tab through first 5 focusable elements"
+        },
+        {
+          "action": "screenshot",
+          "filename": "focus-state-visible.png",
+          "description": "Capture visible focus indicator"
+        },
+        {
+          "action": "verify_element",
+          "selector": "focused element with visible focus ring",
+          "description": "Focus indicator should be visible"
+        }
+      ],
+      "expectedOutcome": "Visible focus indicators on keyboard navigation"
+    },
+    {
+      "id": "console-errors-all-pages",
+      "name": "Console Error Check - Critical Pages",
+      "description": "Check for JavaScript errors on critical pages",
+      "category": "smoke",
+      "priority": "critical",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/",
+          "description": "Homepage"
+        },
+        {
+          "action": "check_console",
+          "allow_warnings": true,
+          "allow_errors": false
+        },
+        {
+          "action": "navigate",
+          "url": "/lessons",
+          "description": "Lessons page"
+        },
+        {
+          "action": "check_console",
+          "allow_warnings": true,
+          "allow_errors": false
+        },
+        {
+          "action": "navigate",
+          "url": "/pricing",
+          "description": "Pricing page"
+        },
+        {
+          "action": "check_console",
+          "allow_warnings": true,
+          "allow_errors": false
+        },
+        {
+          "action": "navigate",
+          "url": "/projects",
+          "description": "Projects page"
+        },
+        {
+          "action": "check_console",
+          "allow_warnings": true,
+          "allow_errors": false
+        }
+      ],
+      "expectedOutcome": "No JavaScript errors on critical pages"
+    },
+    {
+      "id": "project-page-loading",
+      "name": "Project Pages Load Test",
+      "description": "Verify all 4 project pages load correctly",
+      "category": "smoke",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/projects/music-ai-creator",
+          "description": "Music AI Creator project"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50
+        },
+        {
+          "action": "screenshot",
+          "filename": "project-music.png"
+        },
+        {
+          "action": "navigate",
+          "url": "/projects/ai-art-studio",
+          "description": "AI Art Studio project"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50
+        },
+        {
+          "action": "screenshot",
+          "filename": "project-art.png"
+        },
+        {
+          "action": "navigate",
+          "url": "/projects/build-chatbot",
+          "description": "Build a Chatbot project"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50
+        },
+        {
+          "action": "screenshot",
+          "filename": "project-chatbot.png"
+        },
+        {
+          "action": "navigate",
+          "url": "/projects/ai-video-magic",
+          "description": "AI Video Magic project"
+        },
+        {
+          "action": "verify_scroll_position",
+          "expected": 0,
+          "tolerance": 50
+        },
+        {
+          "action": "screenshot",
+          "filename": "project-video.png"
+        }
+      ],
+      "expectedOutcome": "All 4 project pages load with correct scroll position"
+    }
+  ],
+  "categories": {
+    "smoke": {
+      "description": "Basic functionality tests",
+      "runOnQuickCheck": true
+    },
+    "navigation": {
+      "description": "Link and navigation verification",
+      "runOnQuickCheck": false
+    },
+    "responsive": {
+      "description": "Viewport and responsive design tests",
+      "runOnQuickCheck": false
+    },
+    "forms": {
+      "description": "Form validation and input tests",
+      "runOnQuickCheck": false
+    },
+    "accessibility": {
+      "description": "Accessibility and keyboard navigation",
+      "runOnQuickCheck": false
+    }
+  }
+}

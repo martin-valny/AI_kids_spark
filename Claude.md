@@ -1,6 +1,6 @@
 # Claude.md - AI Kids Spark Project Guide
 
-**Last Updated:** 2026-01-09
+**Last Updated:** 2026-01-16
 **Project:** AI Kids Spark → AI Spark (13+ pivot recommended)
 **Status:** Feature-complete frontend, backend implementation required for production
 **Branch:** claude/deployment-compliance-review-3NyeN
@@ -159,9 +159,13 @@ AI_kids_spark/
 │   │   ├── code-reviewer/  # 125+ ESLint rules
 │   │   ├── ui-tester/      # 53+ Playwright tests
 │   │   └── documentation-checker/
+│   ├── chrome-mcp-tests/   # Chrome MCP UI testing configs
+│   │   ├── scenarios.json  # Test scenarios for interactive testing
+│   │   └── routes.json     # All routes to test
 │   └── workflows/
 │       ├── quick-check.js  # ~7s (TypeScript + ESLint)
-│       └── full-verification.js # ~10-15min (all tests)
+│       ├── full-verification.js # ~10-15min (all tests)
+│       └── chrome-mcp-testing.js # MCP test helper script
 │
 ├── public/resources/       # Downloadable worksheets (need footer updates)
 │
@@ -340,6 +344,11 @@ npm run verify:docs      # Check Claude.md is up-to-date
 # Testing
 npm run test:e2e         # Playwright tests (53+ scenarios)
 npm run test             # Vitest unit tests
+
+# Chrome MCP UI Testing
+npm run mcp:scenarios    # Display available test scenarios
+npm run mcp:routes       # Display all routes to test
+npm run mcp:help         # Show Chrome MCP testing help
 
 # Linting
 npm run lint             # ESLint check
@@ -546,6 +555,146 @@ cat ~/.claude/code-simplifier-state.json
 - Always run verification after simplification
 - Don't over-simplify - readability trumps brevity
 - Keep simplification commits separate from feature commits
+
+---
+
+## 🌐 Chrome MCP UI Testing Workflow
+
+### Overview
+
+The Chrome MCP UI Testing workflow provides interactive browser-based testing using Claude's Chrome MCP tools. This complements the existing Playwright E2E tests by enabling real-time visual inspection, interactive debugging, and exploratory testing.
+
+### When to Use Chrome MCP Testing
+
+| Scenario | Use This Workflow |
+|----------|-------------------|
+| Visual regression check | Yes - take screenshots and compare |
+| Console error debugging | Yes - read browser console in real-time |
+| Form interaction testing | Yes - interactive form validation |
+| Quick smoke test | Yes - "quick UI check" command |
+| Automated CI testing | No - use Playwright instead |
+| Cross-browser testing | No - use Playwright instead |
+
+### Quick Commands
+
+When the user says any of the following, execute the corresponding workflow:
+
+| User Says | What to Do |
+|-----------|------------|
+| "test the UI" | Run full 4-phase workflow (see below) |
+| "quick UI check" | Take homepage screenshot, check console for errors |
+| "test forms" | Run form validation scenarios from scenarios.json |
+| "test responsive" | Test mobile viewport (375x667), tablet (768x1024), desktop (1440x900) |
+| "test all pages" | Iterate through routes.json, screenshot each page |
+| "test links" | Verify all navigation links go to correct destinations |
+| "check scroll position" | Verify pages load at top after navigation |
+
+### Full 4-Phase Testing Workflow
+
+When user asks to "test the UI", execute all 4 phases:
+
+**Phase 1: Setup**
+1. Get browser context with `tabs_context_mcp`
+2. Create new tab with `tabs_create_mcp`
+3. Navigate to `http://localhost:8080`
+4. Take initial screenshot
+
+**Phase 2: Navigation Testing**
+1. Load routes from `.verification/chrome-mcp-tests/routes.json`
+2. For each critical route:
+   - Navigate to the route
+   - Verify page loads (check title or key element)
+   - Check `window.scrollY === 0` (page at top)
+   - Take screenshot
+   - Check console for errors
+
+**Phase 3: Interactive Testing**
+1. Load scenarios from `.verification/chrome-mcp-tests/scenarios.json`
+2. For each scenario:
+   - Execute the steps (click, type, etc.)
+   - Verify expected outcomes
+   - Report failures
+
+**Phase 4: Accessibility & Reporting**
+1. Run accessibility checks on key pages
+2. Compile test results
+3. Report summary to user
+
+### Critical Testing Requirements
+
+**Link & Button Verification:**
+Every clickable element must be tested for:
+
+1. **Correct Destination** - Links go where they should
+   - "Back to lesson" returns to the correct lesson
+   - Navigation links go to correct routes
+   - CTA buttons lead to expected pages
+
+2. **Scroll Position** - Pages load at TOP
+   - After clicking any link, page should scroll to top (`scrollY = 0`)
+   - "Start learning free" must open lessons page at top
+   - Lesson navigation buttons must land at page top
+
+**Testing Approach:**
+```javascript
+// For each clickable element:
+// 1. Click the element
+// 2. Verify URL matches expected destination
+// 3. Check window.scrollY === 0 (or near 0)
+// 4. If scroll position wrong, report: "Link X scrolls to Y instead of top"
+// 5. Navigate back and continue
+```
+
+### Configuration Files
+
+**Routes Config:** `.verification/chrome-mcp-tests/routes.json`
+- All testable routes organized by category
+- Critical routes, lessons, activities, projects
+
+**Scenarios Config:** `.verification/chrome-mcp-tests/scenarios.json`
+- Test scenarios with steps and expected outcomes
+- Homepage smoke test, link verification, scroll checks, form validation
+
+### NPM Scripts
+
+```bash
+npm run mcp:scenarios   # Display available test scenarios
+npm run mcp:routes      # Display all routes to test
+```
+
+### Known Issues to Check
+
+- "Start learning free" button may scroll to bottom of lessons page
+- Back/forward navigation buttons may not reset scroll position
+- Hash links (#section) should scroll to section, not page bottom
+
+### Reporting Format
+
+After testing, report results in this format:
+
+```
+## Chrome MCP UI Test Results
+
+**Tested:** [date/time]
+**Environment:** localhost:8080
+
+### Summary
+- Total pages tested: X
+- Passed: X
+- Failed: X
+- Warnings: X
+
+### Failures
+1. [Page/Element]: [Issue description]
+   - Expected: [what should happen]
+   - Actual: [what happened]
+
+### Warnings
+1. [Console warning or minor issue]
+
+### Screenshots
+- [List of screenshots taken]
+```
 
 ---
 
