@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "All testable routes for AI Kids Spark application",
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-16",
+  "baseUrl": "http://localhost:8080",
+  "routes": {
+    "critical": {
+      "description": "Must-test pages for smoke testing",
+      "routes": [
+        {
+          "path": "/",
+          "name": "Homepage",
+          "expectedTitle": "AI Kids Spark",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/lessons",
+          "name": "Lessons Overview",
+          "expectedTitle": "Lessons",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/projects",
+          "name": "Projects Overview",
+          "expectedTitle": "Projects",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/pricing",
+          "name": "Pricing",
+          "expectedTitle": "Pricing",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/sign-up",
+          "name": "Sign Up",
+          "expectedTitle": "Sign Up",
+          "testScrollPosition": true,
+          "hasForm": true
+        },
+        {
+          "path": "/sign-in",
+          "name": "Sign In",
+          "expectedTitle": "Sign In",
+          "testScrollPosition": true,
+          "hasForm": true
+        }
+      ]
+    },
+    "lessons": {
+      "description": "All 7 core lesson pages",
+      "routes": [
+        {
+          "path": "/lessons/intro-to-ai",
+          "name": "Introduction to AI",
+          "lessonId": "intro-to-ai",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        },
+        {
+          "path": "/lessons/machine-learning-basics",
+          "name": "Machine Learning Basics",
+          "lessonId": "machine-learning-basics",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        },
+        {
+          "path": "/lessons/data-and-patterns",
+          "name": "Data and Patterns",
+          "lessonId": "data-and-patterns",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        },
+        {
+          "path": "/lessons/image-recognition",
+          "name": "Image Recognition",
+          "lessonId": "image-recognition",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        },
+        {
+          "path": "/lessons/simple-algorithms",
+          "name": "Simple Algorithms",
+          "lessonId": "simple-algorithms",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        },
+        {
+          "path": "/lessons/ai-ethics",
+          "name": "AI Ethics",
+          "lessonId": "ai-ethics",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        },
+        {
+          "path": "/lessons/future-of-ai",
+          "name": "Future of AI",
+          "lessonId": "future-of-ai",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        },
+        {
+          "path": "/lessons/music-and-ai",
+          "name": "Music and AI",
+          "lessonId": "music-and-ai",
+          "testScrollPosition": true,
+          "expectedBackLink": "/lessons"
+        }
+      ]
+    },
+    "activities": {
+      "description": "Activity pages - some have canvas/interactive elements",
+      "routes": [
+        {
+          "path": "/activities/pattern-detective",
+          "name": "Pattern Detective",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/weather-predictor",
+          "name": "Weather Predictor",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/build-image-classifier",
+          "name": "Build Image Classifier",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/emoji-detector",
+          "name": "Emoji Detector",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/sorting-challenge",
+          "name": "Sorting Challenge",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/ai-ethics-scenarios",
+          "name": "AI Ethics Scenarios",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/design-responsible-ai",
+          "name": "Design Responsible AI",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/future-ai-invention",
+          "name": "Future AI Invention",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/ai-career-explorer",
+          "name": "AI Career Explorer",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/train-drawing-recognizer",
+          "name": "Train Drawing Recognizer",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/guess-who-ai-edition",
+          "name": "Guess Who AI Edition",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/ai-detective",
+          "name": "AI Detective",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/draw-ai-friend",
+          "name": "Draw AI Friend",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        }
+      ]
+    },
+    "activitiesNested": {
+      "description": "Nested activity routes (category/activity format)",
+      "routes": [
+        {
+          "path": "/activities/image-recognition/quick-draw",
+          "name": "Quick Draw",
+          "category": "image-recognition",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/image-recognition/picture-cipher",
+          "name": "Picture Cipher",
+          "category": "image-recognition",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/image-recognition/picture-sorting",
+          "name": "Picture Sorting",
+          "category": "image-recognition",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/algorithms/rodocodo",
+          "name": "Rodocodo",
+          "category": "algorithms",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/algorithms/robot-islands",
+          "name": "Robot Islands",
+          "category": "algorithms",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/algorithms/ai-detective",
+          "name": "AI Detective (Algorithms)",
+          "category": "algorithms",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/activities/algorithms/draw-ai-friend",
+          "name": "Draw AI Friend (Algorithms)",
+          "category": "algorithms",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        }
+      ]
+    },
+    "projects": {
+      "description": "4 major project pages",
+      "routes": [
+        {
+          "path": "/projects/music-ai-creator",
+          "name": "Music AI Creator",
+          "projectId": "music-ai-creator",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/projects/ai-art-studio",
+          "name": "AI Art Studio",
+          "projectId": "ai-art-studio",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/projects/build-chatbot",
+          "name": "Build a Chatbot",
+          "projectId": "build-chatbot",
+          "hasCanvas": false,
+          "testScrollPosition": true
+        },
+        {
+          "path": "/projects/ai-video-magic",
+          "name": "AI Video Magic",
+          "projectId": "ai-video-magic",
+          "hasCanvas": true,
+          "testScrollPosition": true
+        }
+      ]
+    },
+    "other": {
+      "description": "Other pages (about, games, resources, legal)",
+      "routes": [
+        {
+          "path": "/about",
+          "name": "About",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/games",
+          "name": "Games",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/resources",
+          "name": "Resources",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/privacy",
+          "name": "Privacy Policy",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/terms",
+          "name": "Terms of Service",
+          "testScrollPosition": true
+        },
+        {
+          "path": "/account",
+          "name": "Account Settings",
+          "testScrollPosition": true,
+          "requiresAuth": true
+        }
+      ]
+    },
+    "internal": {
+      "description": "Internal/development pages (not for production testing)",
+      "routes": [
+        {
+          "path": "/design-pilot",
+          "name": "Design Pilot",
+          "internal": true,
+          "testScrollPosition": false
+        }
+      ]
+    }
+  },
+  "testGroups": {
+    "smoke": {
+      "description": "Quick smoke test - critical pages only",
+      "include": ["critical"]
+    },
+    "full": {
+      "description": "Full test - all public pages",
+      "include": ["critical", "lessons", "activities", "activitiesNested", "projects", "other"]
+    },
+    "lessons-only": {
+      "description": "Test only lesson pages",
+      "include": ["lessons"]
+    },
+    "activities-only": {
+      "description": "Test only activity pages",
+      "include": ["activities", "activitiesNested"]
+    },
+    "canvas-activities": {
+      "description": "Activities with canvas/WebGL elements",
+      "filter": {
+        "hasCanvas": true
+      }
+    }
+  },
+  "scrollPositionCheck": {
+    "description": "After navigation, verify window.scrollY equals expected value",
+    "expectedValue": 0,
+    "tolerance": 50,
+    "checkDelay": 500
+  }
+}
