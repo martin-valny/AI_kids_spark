@@ -1,5 +1,5 @@
 /**
- * Design Tokens - AI Spark
+ * Design Tokens - Lumora
  * Based on: src/pages/DesignPilot.tsx
  *
  * Use these constants throughout the app for consistency.

@@ -148,7 +148,7 @@ const Resources = () => {
                 If you need help with any resources or have questions about AI learning, feel free to contact us.
               </p>
               <a
-                href="mailto:help@aikidsspark.com"
+                href="mailto:help@lumora.ai"
                 className="inline-block bg-white text-kids-blue font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition-colors"
               >
                 Contact Us

@@ -1,4 +1,4 @@
-// Progress Tracking Utility for AI Spark
+// Progress Tracking Utility for Lumora
 
 // Debug flag - MUST be false in production
 const DEBUG_UNLOCK_ALL = false;
