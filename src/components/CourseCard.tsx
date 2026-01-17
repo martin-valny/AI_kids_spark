@@ -75,7 +75,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             </div>
 
             <span className="inline-flex items-center text-sm font-semibold text-kids-blue group-hover:translate-x-1 transition-transform cursor-pointer">
-              Start Learning
+              Start Creating
               <ArrowRight className="w-4 h-4 ml-1" />
             </span>
           </div>

@@ -335,7 +335,7 @@ const PatternExamples = () => {
               <h3 className="text-lg font-bold text-gray-800 mb-3">Buttons with Icons</h3>
               <div className="flex flex-wrap gap-4">
                 <Button className="bg-kids-purple hover:bg-kids-purple/90 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
-                  Start Learning <ArrowRight className="ml-2 w-4 h-4" />
+                  Start Creating <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
                 <Button className="bg-kids-blue hover:bg-kids-blue/90 text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
                   <Play className="mr-2 w-4 h-4" /> Watch Video
