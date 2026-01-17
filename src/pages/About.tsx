@@ -9,10 +9,10 @@ import { GlassCard } from '@/components/ui/GlassCard';
 const features = [{
   icon: <Brain className="w-8 h-8 text-kids-blue" />,
   title: "Made for Curious Minds",
-  description: "Our lessons are crafted for learners ages 13 and up, using clear language, relatable stories, and real-world examples to make complex ideas click."
+  description: "Our lessons are crafted for creators ages 13-25, using clear language, relatable stories, and real-world examples to make complex ideas click."
 }, {
   icon: <Heart className="w-8 h-8 text-kids-red" />,
-  title: "Safe, Trusted, Learner-First",
+  title: "Safe, Trusted, Creator-First",
   description: "Every course is carefully reviewed to ensure it's appropriate, accurate, and provides a quality learning experience."
 }, {
   icon: <Shield className="w-8 h-8 text-kids-green" />,
@@ -20,7 +20,7 @@ const features = [{
   description: "We protect your digital space with secure, ad-free features - because safety is non-negotiable."
 }, {
   icon: <Users className="w-8 h-8 text-kids-purple" />,
-  title: "Learn Together",
+  title: "Create Together",
   description: "Whether you're a parent or a teacher, you'll find guides and resources to help you join the journey - and maybe even learn a little AI magic yourself."
 }];
 
@@ -61,7 +61,7 @@ const About = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-5xl md:text-7xl font-bold mb-6 text-gray-900 tracking-tight"
             >
-              About <span className="bg-gradient-to-r from-kids-blue via-kids-purple to-kids-pink bg-clip-text text-transparent">AI Spark</span>
+              About <span className="bg-gradient-to-r from-kids-blue via-kids-purple to-kids-pink bg-clip-text text-transparent">Lumora</span>
             </motion.h1>
 
             <motion.p
@@ -70,7 +70,11 @@ const About = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed"
             >
-              We're on a mission to make artificial intelligence accessible, fun, and educational for the next generation of young innovators.
+              We're building the creative AI platform for Gen Z and beyond.
+
+              AI is transforming every creative industry - from film to music to design. At Lumora, we don't just teach AI concepts. We teach you how to create with AI, using the same tools professionals use.
+
+              Our mission: Empower the next generation of digital creators to shape culture, not just consume it.
             </motion.p>
 
             <motion.div
@@ -84,7 +88,7 @@ const About = () => {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-kids-blue to-kids-purple text-white font-bold text-lg shadow-xl"
                 >
-                  Start Learning Today
+                  Start Creating Today
                   <Rocket className="ml-2 w-5 h-5" />
                 </motion.button>
               </Link>
@@ -100,7 +104,7 @@ const About = () => {
                 <div>
                   <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">Our Mission</h2>
                   <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                    We believe everyone deserves the chance to explore, understand, and shape the future of technology. At AI Spark, we turn complex AI concepts into fun, accessible learning experiences for beginners.
+                    We believe everyone deserves the chance to explore, understand, and shape the future of technology. At Lumora, we empower you to master AI through hands-on creative projects using industry-standard tools.
                   </p>
                   <p className="text-lg text-gray-700 mb-8 leading-relaxed">
                     Through interactive lessons, creative projects, and hands-on play, we empower the next generation to become confident creators - not just passive users - of tomorrow’s technology.
@@ -137,7 +141,7 @@ const About = () => {
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-                Why Choose <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">AI Spark?</span>
+                Why Choose <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">Lumora?</span>
               </h2>
               <p className="text-xl text-gray-600">Built with love, backed by science</p>
             </div>
@@ -218,8 +222,8 @@ const About = () => {
                 <div className="w-24 h-24 rounded-full bg-kids-green/10 flex items-center justify-center mx-auto mb-6 shadow-inner">
                   <span className="text-4xl">🤖</span>
                 </div>
-                <h3 className="font-bold text-2xl mb-3 text-gray-900">AI & Tech for Learners</h3>
-                <p className="text-gray-600">AI specialists turning cutting-edge tech into engaging, hands-on experiences that help learners understand the world and build the future</p>
+                <h3 className="font-bold text-2xl mb-3 text-gray-900">AI & Tech for Creators</h3>
+                <p className="text-gray-600">AI specialists turning cutting-edge tech into engaging, hands-on experiences that help creators understand the world and build the future</p>
               </GlassCard>
             </div>
           </div>

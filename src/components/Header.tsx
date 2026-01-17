@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import { GradientButton } from '@/components/ui/GradientButton';
 import {
   DropdownMenu,
@@ -37,11 +37,9 @@ const Header = () => {
     >
       <div className="container-max flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-3 z-10">
-          <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-            <span className="text-white font-bold text-lg">AI</span>
-          </div>
-          <span className="font-extrabold text-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">
-            AI Spark
+          <Sparkles className="w-8 h-8 text-kids-purple" />
+          <span className="font-extrabold text-2xl bg-gradient-to-r from-kids-blue via-kids-purple to-kids-pink bg-clip-text text-transparent">
+            Lumora
           </span>
         </Link>
 

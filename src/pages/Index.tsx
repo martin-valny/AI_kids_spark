@@ -74,7 +74,7 @@ const benefitsList = [
 ];
 
 const stats = [
-  { value: 10000, label: "Learners", icon: <Users className="w-5 h-5" />, color: "text-indigo-600" },
+  { value: 10000, label: "Creators", icon: <Users className="w-5 h-5" />, color: "text-indigo-600" },
   { value: 50, label: "Interactive Lessons", icon: <BookOpen className="w-5 h-5" />, color: "text-purple-600" },
   { value: 100, label: "Safe Content", suffix: "%", icon: <Shield className="w-5 h-5" />, color: "text-emerald-600" },
   { value: 25, label: "Fun Projects", icon: <Award className="w-5 h-5" />, color: "text-amber-500" }
@@ -159,7 +159,10 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Learn <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Artificial Intelligence</span> Through Play
+                  Master AI. <br />
+                  <span className="bg-gradient-to-r from-kids-blue via-kids-purple to-kids-pink bg-clip-text text-transparent">
+                    Create Everything.
+                  </span>
                 </motion.h1>
                 <motion.p
                   className="text-xl text-gray-600 mb-8 max-w-lg"
@@ -167,7 +170,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  Fun, interactive lessons and games designed for beginners aged 13 and up to discover the exciting world of AI.
+                  The creative AI platform for the next generation of digital artists, musicians, storytellers, and innovators. From prompt engineer to digital creator - build art, music, videos, and interactive experiences with cutting-edge AI tools.
                 </motion.p>
                 <motion.div
                   className="flex flex-col sm:flex-row gap-4"
@@ -181,7 +184,7 @@ const Index = () => {
                       whileTap={{ scale: 0.98 }}
                       className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/25 transition-all"
                     >
-                      Start Learning
+                      Start Creating
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </motion.button>
                   </Link>
