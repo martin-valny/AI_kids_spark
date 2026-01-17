@@ -62,7 +62,7 @@ const Pricing: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
               Unlock Your Full{' '}
               <span className="bg-gradient-to-r from-kids-blue to-kids-purple bg-clip-text text-transparent">
-                AI Learning
+                AI Creative
               </span>{' '}
               Potential
             </h1>
