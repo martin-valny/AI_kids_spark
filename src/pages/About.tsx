@@ -240,11 +240,11 @@ const About = () => {
               </div>
 
               <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-kids-purple via-kids-blue to-kids-cyan bg-clip-text text-transparent">
-                Ready to Start Your Child's AI Journey?
+                Ready to Start Your Creative AI Journey?
               </h2>
 
               <p className="text-xl mb-10 text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of families already exploring the exciting world of artificial intelligence together.
+                Join thousands of creators already mastering AI and building the future.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">

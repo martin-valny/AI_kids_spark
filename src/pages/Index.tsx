@@ -268,7 +268,7 @@ const Index = () => {
                 Everything You Need to <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Master AI</span>
               </h2>
               <p className="text-xl text-gray-600">
-                A complete learning platform designed for beginners of all ages
+                A complete creative platform designed for ages 13-25
               </p>
             </motion.div>
 
@@ -601,7 +601,7 @@ const Index = () => {
                     whileTap={{ scale: 0.98 }}
                     className="inline-flex items-center justify-center px-10 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg shadow-xl shadow-indigo-500/25 transition-all"
                   >
-                    Start Learning Free
+                    Start Creating
                     <ArrowRight className="ml-2 w-6 h-6" />
                   </motion.button>
                 </Link>
