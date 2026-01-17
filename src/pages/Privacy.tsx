@@ -27,7 +27,7 @@ const Privacy: React.FC = () => {
             <GlassCard className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
               <p className="text-gray-600 leading-relaxed">
-                AI Spark ("we", "our", or "us") is committed to protecting your privacy.
+                Lumora ("we", "our", or "us") is committed to protecting your privacy.
                 This Privacy Policy explains how we collect, use, disclose, and safeguard
                 your information when you use our website and services.
               </p>
@@ -99,7 +99,7 @@ const Privacy: React.FC = () => {
                 <li><strong>Objection:</strong> Object to certain processing activities</li>
               </ul>
               <p className="text-gray-600 leading-relaxed mt-4">
-                To exercise these rights, visit your Account Settings or contact us at privacy@aispark.com.
+                To exercise these rights, visit your Account Settings or contact us at privacy@lumora.ai.
               </p>
             </GlassCard>
 
@@ -148,8 +148,8 @@ const Privacy: React.FC = () => {
               </p>
               <div className="mt-4 p-4 bg-gray-50 rounded-xl">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> privacy@aispark.com<br />
-                  <strong>Data Protection Officer:</strong> dpo@aispark.com
+                  <strong>Email:</strong> privacy@lumora.ai<br />
+                  <strong>Data Protection Officer:</strong> dpo@lumora.ai
                 </p>
               </div>
             </GlassCard>

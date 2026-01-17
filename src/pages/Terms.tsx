@@ -27,7 +27,7 @@ const Terms: React.FC = () => {
             <GlassCard className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
               <p className="text-gray-600 leading-relaxed">
-                By accessing or using AI Spark ("Service"), you agree to be bound by these
+                By accessing or using Lumora ("Service"), you agree to be bound by these
                 Terms of Service. If you do not agree to these terms, please do not use our Service.
               </p>
             </GlassCard>
@@ -35,7 +35,7 @@ const Terms: React.FC = () => {
             <GlassCard className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Eligibility</h2>
               <p className="text-gray-600 leading-relaxed">
-                You must be at least 13 years old to use AI Spark. By creating an account,
+                You must be at least 13 years old to use Lumora. By creating an account,
                 you represent that you are at least 13 years of age. Users between 13 and 18
                 should have parental or guardian consent to use our services.
               </p>
@@ -86,8 +86,8 @@ const Terms: React.FC = () => {
             <GlassCard className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Intellectual Property</h2>
               <p className="text-gray-600 leading-relaxed">
-                All content on AI Spark, including lessons, projects, graphics, and software,
-                is owned by AI Spark or its licensors and is protected by copyright and other
+                All content on Lumora, including lessons, projects, graphics, and software,
+                is owned by Lumora or its licensors and is protected by copyright and other
                 intellectual property laws. You may not reproduce, distribute, or create
                 derivative works without our express permission.
               </p>
@@ -121,7 +121,7 @@ const Terms: React.FC = () => {
             <GlassCard className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Limitation of Liability</h2>
               <p className="text-gray-600 leading-relaxed">
-                To the maximum extent permitted by law, AI Spark shall not be liable for any
+                To the maximum extent permitted by law, Lumora shall not be liable for any
                 indirect, incidental, special, consequential, or punitive damages arising from
                 your use of the Service. Our total liability shall not exceed the amount you
                 paid for the Service in the 12 months preceding the claim.
@@ -151,7 +151,7 @@ const Terms: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Governing Law</h2>
               <p className="text-gray-600 leading-relaxed">
                 These Terms shall be governed by and construed in accordance with the laws of
-                the jurisdiction in which AI Spark operates, without regard to conflict of law principles.
+                the jurisdiction in which Lumora operates, without regard to conflict of law principles.
               </p>
             </GlassCard>
 
@@ -162,7 +162,7 @@ const Terms: React.FC = () => {
               </p>
               <div className="mt-4 p-4 bg-gray-50 rounded-xl">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> legal@aispark.com
+                  <strong>Email:</strong> legal@lumora.ai
                 </p>
               </div>
             </GlassCard>
