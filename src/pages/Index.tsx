@@ -569,7 +569,7 @@ const Index = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-white/98 to-gray-50/98 backdrop-blur-lg p-12 md:p-16 rounded-2xl text-center relative overflow-hidden shadow-xl border border-gray-200/60"
+              className="bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-lg p-12 md:p-16 rounded-2xl text-center relative overflow-hidden shadow-xl border border-gray-200/60"
             >
               {/* Decorative background blobs inside the card */}
               <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">

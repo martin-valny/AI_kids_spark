@@ -74,7 +74,7 @@ const Header = () => {
                 <Menu className="h-5 w-5 text-gray-700" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-white/98 backdrop-blur-lg border border-gray-200/60 p-2 shadow-lg rounded-xl">
+            <DropdownMenuContent align="end" className="w-56 bg-white/95 backdrop-blur-lg border border-gray-200/60 p-2 shadow-lg rounded-xl">
               <div className="flex flex-col space-y-1">
                 <DropdownMenuItem asChild className="rounded-lg px-3 py-2.5 hover:bg-indigo-50 cursor-pointer">
                   <Link to="/lessons" className="text-gray-700 hover:text-indigo-600">Lessons</Link>

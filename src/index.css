@@ -124,7 +124,7 @@
   }
 
   .glass-card-strong {
-    @apply bg-white/98 backdrop-blur-xl border border-gray-200/70 rounded-2xl shadow-lg transition-all duration-300;
+    @apply bg-white/95 backdrop-blur-xl border border-gray-200/70 rounded-2xl shadow-lg transition-all duration-300;
   }
 
   .glass-card-hover {
