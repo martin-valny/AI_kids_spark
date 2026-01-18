@@ -54,6 +54,7 @@ import Terms from "./pages/Terms";
 import AccountSettings from "./pages/AccountSettings";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SubscriptionProvider } from "./contexts/SubscriptionContext";
+import { AITutorProvider } from "./contexts/AITutorContext";
 import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
@@ -64,11 +65,12 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <SubscriptionProvider>
-        <TooltipProvider>
-        <NeuralGalaxy />
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+        <AITutorProvider>
+          <TooltipProvider>
+          <NeuralGalaxy />
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
@@ -131,6 +133,7 @@ const App = () => (
           <CookieConsent />
         </BrowserRouter>
         </TooltipProvider>
+        </AITutorProvider>
       </SubscriptionProvider>
     </AuthProvider>
   </QueryClientProvider>

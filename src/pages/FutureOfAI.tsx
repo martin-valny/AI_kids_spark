@@ -4,6 +4,7 @@ import { Sparkles, Brain, Users } from 'lucide-react';
 import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ActivityCard from '@/components/ActivityCard';
+import AITutor from '@/components/AITutor';
 
 const FutureOfAI = () => {
     const activities = [
@@ -240,6 +241,7 @@ const FutureOfAI = () => {
                     </section>
                 )}
             </div>
+            <AITutor lessonContext="Lesson: Future of AI. Topic: Exploring emerging trends and career opportunities in AI" />
         </LessonLayout>
     );
 };

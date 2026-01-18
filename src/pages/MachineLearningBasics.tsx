@@ -6,6 +6,7 @@ import { GlassCard } from '@/components/ui/GlassCard';
 import MachineLearningSteps from '@/components/MachineLearningSteps';
 import ActivityCard from '@/components/ActivityCard';
 import { InnerCard, CardGrid, HighlightBox } from '@/components/design-system';
+import AITutor from '@/components/AITutor';
 
 const MachineLearningBasics = () => {
     const activities = [
@@ -339,6 +340,7 @@ const MachineLearningBasics = () => {
                     </section>
                 )}
             </div>
+            <AITutor lessonContext="Lesson: Machine Learning Basics. Topic: Understanding how machines learn from data and examples" />
         </LessonLayout>
     );
 };

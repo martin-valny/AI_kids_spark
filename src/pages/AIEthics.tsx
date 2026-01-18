@@ -4,6 +4,7 @@ import { Sparkles, Brain, Users } from 'lucide-react';
 import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ActivityCard from '@/components/ActivityCard';
+import AITutor from '@/components/AITutor';
 
 const AIEthics = () => {
   const activities = [
@@ -293,6 +294,7 @@ const AIEthics = () => {
           </section>
         )}
       </div>
+      <AITutor lessonContext="Lesson: AI Ethics. Topic: Responsible AI development and ethical considerations" />
     </LessonLayout>
   );
 };
