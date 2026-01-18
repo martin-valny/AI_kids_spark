@@ -1,4 +1,4 @@
-# Component Patterns - AI Spark
+# Component Patterns - Lumora
 
 **Based on**: `src/pages/DesignPilot.tsx` (official design reference)
 **Design System**: "High-Opacity Glass" with beginner-friendly colors
@@ -193,7 +193,7 @@ import { DesignTokens } from '@/design-system/tokens';
 <Button className="bg-kids-purple hover:bg-kids-purple/90 text-white
                    shadow-lg hover:shadow-xl hover:-translate-y-0.5
                    transition-all">
-  Start Learning <ArrowRight className="ml-2 w-4 h-4" />
+  Start Creating <ArrowRight className="ml-2 w-4 h-4" />
 </Button>
 ```
 
@@ -242,7 +242,7 @@ import { DesignTokens } from '@/design-system/tokens';
       </div>
 
       <Button className="w-fit bg-kids-purple hover:bg-kids-purple/90 text-white">
-        Start Learning <ArrowRight className="ml-2 w-4 h-4" />
+        Start Creating <ArrowRight className="ml-2 w-4 h-4" />
       </Button>
     </div>
 

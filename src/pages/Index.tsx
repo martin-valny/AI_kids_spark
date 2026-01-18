@@ -499,10 +499,10 @@ const Index = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">
-                Loved by Learners & <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Parents</span>
+                Loved by <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Creators</span>
               </h2>
               <p className="text-xl text-gray-600">
-                See what others are saying about their AI learning journey
+                See what others are saying about their AI creative journey
               </p>
             </motion.div>
 
@@ -591,7 +591,7 @@ const Index = () => {
                 Ready to Start Your AI Journey?
               </h2>
               <p className="text-xl md:text-2xl mb-12 text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of learners who are already exploring AI and building skills for the future!
+                Join thousands of creators who are already mastering AI and building their creative portfolios!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">

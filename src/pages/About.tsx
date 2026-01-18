@@ -21,12 +21,12 @@ const features = [{
 }, {
   icon: <Users className="w-8 h-8 text-kids-purple" />,
   title: "Create Together",
-  description: "Whether you're a parent or a teacher, you'll find guides and resources to help you join the journey - and maybe even learn a little AI magic yourself."
+  description: "Join a vibrant community of creators, share your work, get feedback, and collaborate on creative AI projects with peers around the world."
 }];
 
 const stats = [{
   number: "10,000+",
-  label: "Learners"
+  label: "Creators"
 }, {
   number: "50+",
   label: "Interactive Lessons"
@@ -35,7 +35,7 @@ const stats = [{
   label: "Fun Projects"
 }, {
   number: "98%",
-  label: "Parent Satisfaction"
+  label: "Satisfaction Rate"
 }];
 
 const About = () => {
@@ -116,7 +116,7 @@ const About = () => {
                     </div>
                     <div className="flex items-center bg-kids-yellow/10 rounded-lg p-3 border border-white/20">
                       <Star className="w-6 h-6 text-kids-yellow mr-3" />
-                      <span className="font-bold text-kids-yellow-dark">Trusted by Parents</span>
+                      <span className="font-bold text-kids-yellow-dark">Trusted Platform</span>
                     </div>
                   </div>
                 </div>
@@ -124,7 +124,7 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-kids-blue to-kids-purple rounded-2xl transform rotate-3 opacity-20 blur-lg"></div>
                   <img
                     src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=800&q=80"
-                    alt="Kids learning together"
+                    alt="Students creating with AI"
                     className="relative rounded-2xl shadow-2xl z-10 border-4 border-white/50"
                   />
                   <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center animate-bounce-gentle z-20 shadow-xl border border-white/60">

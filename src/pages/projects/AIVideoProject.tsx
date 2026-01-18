@@ -48,7 +48,7 @@ const AIVideoProject = () => {
             title="AI Video Magic"
             subtitle="Create amazing AI-generated videos and animations!"
             backLink="/lessons"
-            backLabel="Back to Learning Journey"
+            backLabel="Back to Projects"
         >
             <div className="max-w-5xl mx-auto space-y-12">
 
@@ -544,7 +544,7 @@ const AIVideoProject = () => {
                         <Link to="/lessons">
                             <Button variant="outline">
                                 <ArrowLeft className="w-4 h-4 mr-2" />
-                                Back to Learning Journey
+                                Back to Projects
                             </Button>
                         </Link>
                     </div>

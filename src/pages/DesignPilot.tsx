@@ -116,7 +116,7 @@ const DesignPilot = () => {
                                     </p>
                                 </div>
                                 <Button className="w-fit bg-kids-purple hover:bg-kids-purple/90 text-white">
-                                    Start Learning <ArrowRight className="ml-2 w-4 h-4" />
+                                    Start Creating <ArrowRight className="ml-2 w-4 h-4" />
                                 </Button>
                             </div>
 

@@ -26,7 +26,7 @@ const MusicAIProject = () => {
             title="Music & AI Creator"
             subtitle="Create AI-generated music and explore how AI understands musical patterns!"
             backLink="/lessons"
-            backLabel="Back to Learning Journey"
+            backLabel="Back to Projects"
         >
             <div className="max-w-5xl mx-auto space-y-12">
 
@@ -355,7 +355,7 @@ const MusicAIProject = () => {
                         <Link to="/lessons">
                             <Button variant="outline">
                                 <ArrowLeft className="w-4 h-4 mr-2" />
-                                Back to Learning Journey
+                                Back to Projects
                             </Button>
                         </Link>
                     </div>

@@ -98,9 +98,9 @@ const Resources = () => {
       <main className="flex-1 py-10 px-4 md:px-6">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold mb-2">AI Learning Resources</h1>
+            <h1 className="text-3xl font-bold mb-2">AI Creative Resources</h1>
             <p className="text-gray-600 mb-8">
-              Explore these additional resources to continue your AI learning journey.
+              Explore these additional resources to continue your AI creative journey.
             </p>
 
             <div className="space-y-10">
@@ -145,10 +145,10 @@ const Resources = () => {
             <div className="mt-12 p-6 bg-gradient-to-r from-kids-blue to-kids-purple rounded-xl text-white shadow-lg">
               <h2 className="text-2xl font-bold mb-3">Have a Question?</h2>
               <p className="mb-4">
-                If you need help with any resources or have questions about AI learning, feel free to contact us.
+                If you need help with any resources or have questions about AI creativity, feel free to contact us.
               </p>
               <a
-                href="mailto:help@aikidsspark.com"
+                href="mailto:help@lumora.ai"
                 className="inline-block bg-white text-kids-blue font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition-colors"
               >
                 Contact Us

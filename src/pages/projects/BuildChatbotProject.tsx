@@ -33,7 +33,7 @@ const BuildChatbotProject = () => {
             title="Build Your AI Chatbot"
             subtitle="Create a chatbot with personality and learn about conversation design!"
             backLink="/lessons"
-            backLabel="Back to Learning Journey"
+            backLabel="Back to Projects"
         >
             <div className="max-w-5xl mx-auto space-y-12">
 
@@ -513,7 +513,7 @@ const BuildChatbotProject = () => {
                         <Link to="/lessons">
                             <Button variant="outline">
                                 <ArrowLeft className="w-4 h-4 mr-2" />
-                                Back to Learning Journey
+                                Back to Projects
                             </Button>
                         </Link>
                     </div>

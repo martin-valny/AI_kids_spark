@@ -167,7 +167,7 @@ const Lessons = () => {
           <div className="max-w-3xl mx-auto">
             {/* Header with Progress */}
             <div className="mb-8">
-              <h1 className="text-3xl font-bold mb-2 text-gray-900">Your Learning Journey</h1>
+              <h1 className="text-3xl font-bold mb-2 text-gray-900">Your Creative Journey</h1>
               <p className="text-gray-600 mb-4">
                 Complete lessons to unlock exciting hands-on projects!
               </p>
