@@ -53,6 +53,14 @@ const ImageRecognition = () => {
 
         {/* Video Section */}
         <GlassCard variant="purple" className="p-8">
+          <div className="bg-purple-50 border-l-4 border-purple-500 p-4 mb-6 rounded-r-2xl">
+            <p className="font-semibold text-purple-900 mb-2">📺 Recommended Watch</p>
+            <p className="text-gray-700">
+              This video reveals how AI processes and recognizes images. Watch to understand
+              how computers "see" the world through pixels and patterns, then experiment with image
+              recognition concepts in the activities below.
+            </p>
+          </div>
           <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">
             📺 Watch: How Computers See Images
           </h3>

@@ -57,6 +57,14 @@ const MachineLearningBasics = () => {
 
                 {/* Video Section */}
                 <GlassCard variant="purple" className="p-8">
+                    <div className="bg-purple-50 border-l-4 border-purple-500 p-4 mb-6 rounded-r-2xl">
+                        <p className="font-semibold text-purple-900 mb-2">📺 Recommended Watch</p>
+                        <p className="text-gray-700">
+                            This video breaks down how machines learn from patterns and data. Watch to understand
+                            the core concepts behind machine learning, then complete the hands-on activities below to
+                            see pattern recognition in action.
+                        </p>
+                    </div>
                     <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">
                         📺 Watch: Machine Learning Explained
                     </h3>

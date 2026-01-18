@@ -55,6 +55,14 @@ const IntroToAI = () => {
 
                 {/* Video Section */}
                 <GlassCard variant="blue" className="p-8">
+                    <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-2xl">
+                        <p className="font-semibold text-blue-900 mb-2">📺 Recommended Watch</p>
+                        <p className="text-gray-700">
+                            This video provides an excellent introduction to artificial intelligence fundamentals. Watch to see
+                            real-world examples of AI in action, then complete the hands-on activities below to
+                            apply what you've learned.
+                        </p>
+                    </div>
                     <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">
                         📺 Watch: What is AI?
                     </h3>

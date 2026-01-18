@@ -54,6 +54,14 @@ const DataAndPatterns = () => {
 
                 {/* Video Section */}
                 <GlassCard variant="blue" className="p-8">
+                    <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-2xl">
+                        <p className="font-semibold text-blue-900 mb-2">📺 Recommended Watch</p>
+                        <p className="text-gray-700">
+                            This video explores how data powers AI and why patterns matter. Watch to discover
+                            how AI recognizes trends and makes predictions, then practice identifying patterns yourself
+                            in the activities below.
+                        </p>
+                    </div>
                     <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">
                         📺 Watch: What is Data?
                     </h3>

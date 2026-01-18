@@ -123,8 +123,8 @@ const About = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-kids-blue to-kids-purple rounded-2xl transform rotate-3 opacity-20 blur-lg"></div>
                   <img
-                    src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=800&q=80"
-                    alt="Students creating with AI"
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                    alt="Young creators collaborating with technology"
                     className="relative rounded-2xl shadow-2xl z-10 border-4 border-white/50"
                   />
                   <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center animate-bounce-gentle z-20 shadow-xl border border-white/60">
