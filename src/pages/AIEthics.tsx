@@ -45,7 +45,7 @@ const AIEthics = () => {
                 ⚖️ What Are AI Ethics?
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                AI Ethics means thinking about what's right and wrong when we create and use artificial intelligence. Just like we have rules for how people should treat each other, we need rules for how we create and use AI.
+                AI Ethics examines the moral implications of artificial intelligence systems—addressing bias in training data, algorithmic accountability, privacy concerns, and societal impact. As AI increasingly influences critical decisions in hiring, lending, criminal justice, and healthcare, ethical frameworks become essential to ensure responsible development and deployment.
               </p>
             </div>
           </div>
@@ -87,11 +87,11 @@ const AIEthics = () => {
             <GlassCard variant="blue" className="p-8">
               <h3 className="font-bold text-2xl text-kids-blue mb-4">🔒 Privacy</h3>
               <p className="text-gray-700 leading-relaxed">
-                How do we protect people's private information when AI uses it?
+                How do we balance data collection for model improvement against individual privacy rights in an era of surveillance capitalism?
               </p>
               <div className="mt-4 bg-white/50 p-4 rounded-xl border-2 border-kids-blue/10">
                 <p className="text-sm text-gray-600">
-                  Your personal data should be kept safe and only used with your permission.
+                  <strong>Real-world case:</strong> Facial recognition databases raise questions about consent, data retention, and potential misuse by authorities or corporations.
                 </p>
               </div>
             </GlassCard>
@@ -99,11 +99,11 @@ const AIEthics = () => {
             <GlassCard variant="purple" className="p-8">
               <h3 className="font-bold text-2xl text-kids-purple mb-4">⚖️ Fairness</h3>
               <p className="text-gray-700 leading-relaxed">
-                How do we make sure AI treats everyone fairly, no matter who they are?
+                How do we address algorithmic bias when training data reflects historical inequities and societal prejudices?
               </p>
               <div className="mt-4 bg-white/50 p-4 rounded-xl border-2 border-kids-purple/10">
                 <p className="text-sm text-gray-600">
-                  AI should work equally well for everyone, regardless of background.
+                  <strong>Real-world case:</strong> Hiring algorithms trained on historical data may perpetuate gender and racial biases, systematically disadvantaging qualified candidates from underrepresented groups.
                 </p>
               </div>
             </GlassCard>
@@ -123,11 +123,11 @@ const AIEthics = () => {
             <GlassCard variant="yellow" className="p-8">
               <h3 className="font-bold text-2xl text-kids-yellow mb-4">🔍 Transparency</h3>
               <p className="text-gray-700 leading-relaxed">
-                How can we understand what AI is doing and why it makes certain decisions?
+                How do we ensure explainability in complex neural networks when even their creators can't fully interpret decision-making processes?
               </p>
               <div className="mt-4 bg-white/50 p-4 rounded-xl border-2 border-kids-yellow/10">
                 <p className="text-sm text-gray-600">
-                  We should be able to explain how AI works and why it makes decisions.
+                  <strong>Real-world case:</strong> Credit scoring algorithms using deep learning may deny loans without providing interpretable reasons, raising concerns about due process and regulatory compliance.
                 </p>
               </div>
             </GlassCard>
@@ -144,20 +144,20 @@ const AIEthics = () => {
           <GlassCard variant="red" className="p-8 md:p-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-red/20 shadow-sm hover:border-kids-red transition-colors">
-                <h4 className="font-bold text-lg text-kids-red mb-3">✓ Be Truthful</h4>
-                <p className="text-gray-700">Don't use AI to spread false information</p>
+                <h4 className="font-bold text-lg text-kids-red mb-3">✓ Combat Misinformation</h4>
+                <p className="text-gray-700">Critically evaluate AI-generated content and understand deepfake detection techniques</p>
               </div>
               <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-blue/20 shadow-sm hover:border-kids-blue transition-colors">
-                <h4 className="font-bold text-lg text-kids-blue mb-3">✓ Be Kind</h4>
-                <p className="text-gray-700">Don't use AI to be mean to others</p>
+                <h4 className="font-bold text-lg text-kids-blue mb-3">✓ Advocate for Transparency</h4>
+                <p className="text-gray-700">Support open-source AI development and algorithmic accountability</p>
               </div>
               <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-green/20 shadow-sm hover:border-kids-green transition-colors">
-                <h4 className="font-bold text-lg text-kids-green mb-3">✓ Be Careful</h4>
-                <p className="text-gray-700">Think about the information you share with AI</p>
+                <h4 className="font-bold text-lg text-kids-green mb-3">✓ Understand Privacy Trade-offs</h4>
+                <p className="text-gray-700">Make informed decisions about data sharing and model personalization</p>
               </div>
               <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-purple/20 shadow-sm hover:border-kids-purple transition-colors">
-                <h4 className="font-bold text-lg text-kids-purple mb-3">✓ Be Thoughtful</h4>
-                <p className="text-gray-700">Use AI to help people, not hurt them</p>
+                <h4 className="font-bold text-lg text-kids-purple mb-3">✓ Design for Inclusivity</h4>
+                <p className="text-gray-700">Build AI systems that serve diverse populations equitably</p>
               </div>
             </div>
           </GlassCard>
@@ -173,16 +173,16 @@ const AIEthics = () => {
           <GlassCard variant="blue" className="p-8">
             <div className="space-y-4">
               <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-blue/20 shadow-sm hover:border-kids-blue transition-colors">
-                <h4 className="font-bold text-lg text-kids-blue mb-2">📚 AI that helps students learn</h4>
-                <p className="text-gray-700">AI tutors that adapt to different learning styles</p>
+                <h4 className="font-bold text-lg text-kids-blue mb-2">📚 Adaptive Learning Platforms</h4>
+                <p className="text-gray-700">Personalized education systems that adjust difficulty and content delivery while protecting student data privacy</p>
               </div>
               <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-green/20 shadow-sm hover:border-kids-green transition-colors">
-                <h4 className="font-bold text-lg text-kids-green mb-2">🏥 AI that helps doctors treat patients</h4>
-                <p className="text-gray-700">AI that can detect diseases in medical images</p>
+                <h4 className="font-bold text-lg text-kids-green mb-2">🏥 Medical Diagnosis Assistance</h4>
+                <p className="text-gray-700">AI systems augmenting physician expertise with diverse training data to reduce diagnostic bias across demographics</p>
               </div>
               <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-purple/20 shadow-sm hover:border-kids-purple transition-colors">
-                <h4 className="font-bold text-lg text-kids-purple mb-2">♿ AI that makes technology accessible</h4>
-                <p className="text-gray-700">Voice assistants that help people with disabilities</p>
+                <h4 className="font-bold text-lg text-kids-purple mb-2">♿ Accessibility Technology</h4>
+                <p className="text-gray-700">Real-time captioning, image description, and navigation assistance designed with disabled communities' input</p>
               </div>
             </div>
           </GlassCard>

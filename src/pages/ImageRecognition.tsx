@@ -45,7 +45,7 @@ const ImageRecognition = () => {
                 📷 How Computers See Images
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Did you know that computers don't see images like we do? When we look at a picture, we instantly recognize objects, people, and animals. But computers see images as grids of numbers!
+                Computer vision systems process images as numerical matrices representing pixel values. Through deep learning, particularly Convolutional Neural Networks (CNNs), these systems extract hierarchical features—from basic edges to complex objects—enabling applications across creative industries, healthcare, and autonomous systems.
               </p>
             </div>
           </div>
@@ -85,33 +85,33 @@ const ImageRecognition = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <GlassCard variant="purple" className="p-8">
-              <h3 className="font-bold text-2xl text-kids-purple mb-4">👁️ How We See</h3>
-              <p className="mb-4 text-gray-700">Our brains can instantly:</p>
+              <h3 className="font-bold text-2xl text-kids-purple mb-4">👁️ Human Vision</h3>
+              <p className="mb-4 text-gray-700">Human visual processing leverages:</p>
               <ul className="space-y-3">
                 <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-purple/20 hover:border-kids-purple transition-colors">
-                  <p className="font-medium">✓ Recognize a cat is a cat, no matter the angle</p>
+                  <p className="font-medium">✓ Invariant object recognition across viewpoints and occlusions</p>
                 </div>
                 <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-purple/20 hover:border-kids-purple transition-colors">
-                  <p className="font-medium">✓ Tell the difference between different cats</p>
+                  <p className="font-medium">✓ Contextual understanding and semantic reasoning</p>
                 </div>
                 <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-purple/20 hover:border-kids-purple transition-colors">
-                  <p className="font-medium">✓ Know it's still a cat even if part is hidden</p>
+                  <p className="font-medium">✓ Rapid adaptation to novel visual categories</p>
                 </div>
               </ul>
             </GlassCard>
 
             <GlassCard variant="green" className="p-8">
-              <h3 className="font-bold text-2xl text-kids-green mb-4">🤖 How AI Sees</h3>
-              <p className="mb-4 text-gray-700">AI needs to be trained with many examples to:</p>
+              <h3 className="font-bold text-2xl text-kids-green mb-4">🤖 Computer Vision Systems</h3>
+              <p className="mb-4 text-gray-700">CNNs learn through supervised training to:</p>
               <ul className="space-y-3">
                 <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-green/20 hover:border-kids-green transition-colors">
-                  <p className="font-medium">⚙️ Learn what features make a cat a cat</p>
+                  <p className="font-medium">⚙️ Extract hierarchical feature representations through convolutional layers</p>
                 </div>
                 <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-green/20 hover:border-kids-green transition-colors">
-                  <p className="font-medium">⚙️ Find patterns in the numbers that represent images</p>
+                  <p className="font-medium">⚙️ Optimize millions of parameters through backpropagation</p>
                 </div>
                 <div className="bg-white/90 p-4 rounded-xl border-2 border-kids-green/20 hover:border-kids-green transition-colors">
-                  <p className="font-medium">⚙️ Recognize those patterns in new images</p>
+                  <p className="font-medium">⚙️ Generalize learned patterns to unseen data</p>
                 </div>
               </ul>
             </GlassCard>
@@ -129,10 +129,10 @@ const ImageRecognition = () => {
             <GlassCard variant="blue" className="p-8 border-l-4 border-kids-blue">
               <h3 className="font-bold text-2xl text-kids-blue mb-4">Step 1: Training</h3>
               <p className="mb-4 text-gray-700 leading-relaxed">
-                AI is shown thousands of images labeled "cat," "dog," "bird," etc. It learns the patterns that identify each object.
+                Models train on large labeled datasets (e.g., ImageNet with 14M images across 20K categories), learning statistical patterns through iterative optimization.
               </p>
               <div className="bg-gray-100 p-4 rounded-xl text-center border-2 border-kids-blue/10">
-                <p className="font-medium">"This is a cat" → AI remembers: pointy ears, whiskers, certain shapes</p>
+                <p className="font-medium">Supervised learning with labeled data → CNN layers extract features → Parameters adjust via gradient descent</p>
               </div>
             </GlassCard>
 
@@ -167,30 +167,30 @@ const ImageRecognition = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <GlassCard variant="red" className="p-8">
-              <h3 className="font-bold text-xl text-kids-red mb-3">👤 Face Recognition</h3>
+              <h3 className="font-bold text-xl text-kids-red mb-3">🎨 AI Art Generation</h3>
               <p className="text-gray-700">
-                AI can recognize people's faces in photos and videos, like how your phone might unlock when it sees your face!
+                Diffusion models (Midjourney, Stable Diffusion) and GANs enable artists to generate professional imagery from text prompts, transforming creative workflows in film, advertising, and game design.
               </p>
             </GlassCard>
 
             <GlassCard variant="blue" className="p-8">
-              <h3 className="font-bold text-xl text-kids-blue mb-3">🏥 Medical Imaging</h3>
+              <h3 className="font-bold text-xl text-kids-blue mb-3">🎬 Style Transfer & Video Production</h3>
               <p className="text-gray-700">
-                Doctors use AI to help find things in X-rays and scans that might be hard to see with just human eyes.
+                Neural style transfer applies artistic styles to video footage in real-time. Tools like Runway ML enable video editing, rotoscoping, and effects generation for creators.
               </p>
             </GlassCard>
 
             <GlassCard variant="green" className="p-8">
-              <h3 className="font-bold text-xl text-kids-green mb-3">🚗 Self-Driving Cars</h3>
+              <h3 className="font-bold text-xl text-kids-green mb-3">📸 Content-Aware Editing</h3>
               <p className="text-gray-700">
-                Cars with AI use cameras to recognize stop signs, traffic lights, pedestrians, and other cars on the road.
+                Computer vision powers intelligent object removal, sky replacement, and portrait enhancement in Adobe Photoshop, Lightroom, and mobile photography apps.
               </p>
             </GlassCard>
 
             <GlassCard variant="yellow" className="p-8">
-              <h3 className="font-bold text-xl text-kids-yellow mb-3">📱 Augmented Reality</h3>
+              <h3 className="font-bold text-xl text-kids-yellow mb-3">🕹️ Motion Capture & Animation</h3>
               <p className="text-gray-700">
-                Apps that put fun filters on your face are using image recognition to find your facial features!
+                Pose estimation models enable real-time motion capture for character animation, VR experiences, and interactive installations without specialized hardware.
               </p>
             </GlassCard>
           </div>

@@ -47,9 +47,8 @@ const MachineLearningBasics = () => {
                                 🧠 What is Machine Learning?
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                Machine Learning is how computers learn from examples instead of being told exactly what to do.
-                                It's like how you learn to recognize dogs after seeing many different dogs, rather than someone
-                                explaining all the rules about what makes a dog a dog.
+                                Machine Learning enables computers to identify patterns in data and make predictions without explicit programming for every scenario.
+                                Instead of following rigid rules, ML algorithms improve their performance by analyzing examples and adjusting their internal parameters—similar to how the human brain recognizes patterns through exposure and experience.
                             </p>
                         </div>
                     </div>
@@ -89,50 +88,50 @@ const MachineLearningBasics = () => {
 
                     <GlassCard variant="blue" className="p-8 md:p-12">
                         <p className="text-lg mb-8 text-center text-gray-700">
-                            Remember all those amazing AI examples? Machine learning is what makes them all work!
+                            Machine learning powers the AI applications transforming creative industries and digital experiences. Here's how ML drives modern platforms:
                         </p>
 
                         <CardGrid columns={2}>
                             <InnerCard color="blue" title="🗣️ Voice Assistants (Siri, Alexa)">
                                 <p className="text-sm mb-2">
-                                    <strong>The AI:</strong> Understands what you say and responds helpfully
+                                    <strong>The Application:</strong> Natural language understanding and contextual response generation
                                 </p>
                                 <p className="text-sm text-gray-600">
-                                    <strong>The ML Behind It:</strong> Trained on millions of voice recordings to recognize speech patterns
+                                    <strong>The ML Behind It:</strong> Deep neural networks trained on billions of audio samples, processing speech recognition, intent classification, and semantic understanding
                                 </p>
                             </InnerCard>
 
-                            <InnerCard color="purple" title="📸 Photo Recognition">
+                            <InnerCard color="purple" title="📸 Computer Vision">
                                 <p className="text-sm mb-2">
-                                    <strong>The AI:</strong> Automatically tags faces and suggests who people are
+                                    <strong>The Application:</strong> Facial recognition, object detection, and automated image tagging
                                 </p>
                                 <p className="text-sm text-gray-600">
-                                    <strong>The ML Behind It:</strong> Learned from billions of labeled photos to recognize faces
+                                    <strong>The ML Behind It:</strong> Convolutional Neural Networks (CNNs) trained on massive image datasets, learning hierarchical visual features from edges to complex objects
                                 </p>
                             </InnerCard>
 
-                            <InnerCard color="green" title="🎵 Music Recommendations">
+                            <InnerCard color="green" title="🎵 Recommendation Systems (Spotify, Netflix)">
                                 <p className="text-sm mb-2">
-                                    <strong>The AI:</strong> Suggests new songs you'll probably love
+                                    <strong>The Application:</strong> Personalized content discovery based on user preferences and behavior
                                 </p>
                                 <p className="text-sm text-gray-600">
-                                    <strong>The ML Behind It:</strong> Analyzes your listening history and finds patterns with other users
+                                    <strong>The ML Behind It:</strong> Collaborative filtering and deep learning models analyze listening patterns, engagement signals, and similarities across millions of users to predict preferences
                                 </p>
                             </InnerCard>
 
-                            <InnerCard color="red" title="🎮 Smart Game Characters">
+                            <InnerCard color="red" title="🎮 Adaptive Game AI">
                                 <p className="text-sm mb-2">
-                                    <strong>The AI:</strong> Game characters that get better the more you play
+                                    <strong>The Application:</strong> Dynamic difficulty adjustment and intelligent NPC behavior
                                 </p>
                                 <p className="text-sm text-gray-600">
-                                    <strong>The ML Behind It:</strong> Learns from thousands of games to understand winning strategies
+                                    <strong>The ML Behind It:</strong> Reinforcement learning agents train through millions of simulated games, learning optimal strategies and adapting to player skill levels
                                 </p>
                             </InnerCard>
                         </CardGrid>
 
                         <HighlightBox variant="tip" showIcon={false} className="mt-8 p-6">
                             <p className="text-center font-medium text-lg">
-                                💡 <strong>Key Insight:</strong> Machine Learning is like the "brain training" that gives AI systems their intelligence! Without ML, AI would just be regular computer programs following simple rules!
+                                💡 <strong>Key Insight:</strong> Machine Learning is the foundational technology that enables AI to generalize from examples. Traditional programming uses explicit instructions; ML discovers patterns in data to make intelligent decisions.
                             </p>
                         </HighlightBox>
                     </GlassCard>
@@ -159,14 +158,13 @@ const MachineLearningBasics = () => {
                                 <h3 className="font-bold text-2xl text-kids-blue flex items-center gap-2">
                                     👨‍🏫 Supervised Learning
                                 </h3>
-                                <p className="text-sm italic text-kids-blue/70">Like learning with a teacher</p>
+                                <p className="text-sm italic text-kids-blue/70">Learning from labeled training data</p>
                                 <p className="text-gray-700 leading-relaxed">
-                                    We give the computer examples with the correct answers. It's like flashcards where
-                                    a teacher shows you the right answers so you can learn.
+                                    The algorithm receives input-output pairs (features and labels) and learns to map inputs to correct outputs. Used extensively in classification and regression tasks.
                                 </p>
                                 <div className="bg-kids-blue/30 p-4 rounded-xl border border-kids-blue/40">
                                     <p className="text-sm font-medium">
-                                        <strong>Real Example:</strong> Showing thousands of photos labeled "cat" or "dog" so the computer learns to tell them apart.
+                                        <strong>Industry Application:</strong> Image classification models trained on millions of labeled images power content moderation, medical diagnosis, and creative tools like style transfer.
                                     </p>
                                 </div>
                             </div>
@@ -180,14 +178,13 @@ const MachineLearningBasics = () => {
                                 <h3 className="font-bold text-2xl text-kids-purple flex items-center gap-2">
                                     🔍 Unsupervised Learning
                                 </h3>
-                                <p className="text-sm italic text-kids-purple/70">Learning by finding patterns</p>
+                                <p className="text-sm italic text-kids-purple/70">Discovering hidden patterns in unlabeled data</p>
                                 <p className="text-gray-700 leading-relaxed">
-                                    We give the computer examples without answers. It finds patterns on its own.
-                                    Like sorting toys by color without being told how.
+                                    The algorithm identifies structure and relationships in data without predefined labels. Essential for clustering, dimensionality reduction, and anomaly detection.
                                 </p>
                                 <div className="bg-kids-purple/30 p-4 rounded-xl border border-kids-purple/40">
                                     <p className="text-sm font-medium">
-                                        <strong>Real Example:</strong> Giving customer shopping data and discovering different types of shoppers.
+                                        <strong>Industry Application:</strong> Customer segmentation for targeted marketing, content recommendation systems, and identifying emerging trends in user behavior without explicit categories.
                                     </p>
                                 </div>
                             </div>
@@ -212,13 +209,13 @@ const MachineLearningBasics = () => {
 
                     <GlassCard variant="orange" className="p-8 md:p-12">
                         <p className="text-lg mb-8 text-center text-gray-700">
-                            Machine learning is working behind the scenes in so many places. Here are some you might recognize!
+                            ML algorithms power critical systems across industries, often invisible but essential to modern digital experiences:
                         </p>
                         <CardGrid columns={2}>
-                            <InnerCard color="blue" title="📱 Your Phone's Camera" description="When your phone automatically focuses on faces — that's machine learning recognizing where people are in the photo!" />
-                            <InnerCard color="green" title="🛒 Online Shopping" description={`"People who bought this also bought..." comes from ML finding patterns in what customers like to buy together.`} />
-                            <InnerCard color="purple" title="🎮 Video Games" description="Some video game characters get better the more you play — that's machine learning helping them adapt!" />
-                            <InnerCard color="red" title="🌍 Language Translation" description="Google Translate uses machine learning to understand different languages and translate between them instantly!" />
+                            <InnerCard color="blue" title="📱 Computational Photography" description="Real-time scene detection, portrait mode depth mapping, and low-light enhancement use ML to transform smartphone photography into professional-quality imaging." />
+                            <InnerCard color="green" title="🛒 E-Commerce Optimization" description="Product recommendations, dynamic pricing, fraud detection, and inventory prediction leverage ML to process billions of transactions and optimize the shopping experience." />
+                            <InnerCard color="purple" title="🎮 Procedural Content Generation" description="Modern games use ML for level design, character behavior, dialogue generation, and balancing—creating unique experiences that adapt to individual players." />
+                            <InnerCard color="red" title="🌍 Neural Machine Translation" description="Transformer models trained on parallel text corpora enable near-instantaneous translation across languages, maintaining context and cultural nuance." />
                         </CardGrid>
                     </GlassCard>
                 </section>
@@ -242,10 +239,10 @@ const MachineLearningBasics = () => {
 
                     <GlassCard className="p-8">
                         <CardGrid columns={2}>
-                            <InnerCard color="blue" title="🧠 Super Speed Learning" description={`A machine learning system can "read" and learn from 1 million books in the time it takes you to read one page! That's like having a super-powered brain! 🚀`} />
-                            <InnerCard color="green" title="🎨 Creative Machines" description="AI has learned to paint pictures, compose music, and even write stories! Some AI-created art has sold for thousands of dollars at art galleries! 🎭" />
-                            <InnerCard color="purple" title="🐕 Animal Expert" description="There's an AI that can identify over 300 different dog breeds just by looking at a photo — even better than most veterinarians! 🐶" />
-                            <InnerCard color="red" title="🌟 Pattern Master" description="Machine learning can find patterns in data that humans would never notice, like predicting which songs will become popular! 🎵" />
+                            <InnerCard color="blue" title="🧠 Processing Scale" description="Large language models process billions of parameters across trillions of tokens during training, enabling capabilities that emerge from scale rather than explicit programming." />
+                            <InnerCard color="green" title="🎨 Generative AI" description="Diffusion models and GANs create professional-quality art, music, and video. AI-generated works have sold at major auction houses and entered gallery collections." />
+                            <InnerCard color="purple" title="🐕 Fine-Grained Classification" description="Computer vision models achieve superhuman accuracy in specialized tasks like species identification, medical imaging analysis, and quality control—surpassing expert human performance." />
+                            <InnerCard color="red" title="🌟 Trend Prediction" description="ML algorithms analyze streaming data, social signals, and engagement patterns to forecast cultural trends, hit songs, and viral content before they peak." />
                         </CardGrid>
                     </GlassCard>
                 </section>
@@ -316,12 +313,13 @@ const MachineLearningBasics = () => {
 
                     <HighlightBox variant="tip" showIcon={false} className="mt-8 p-6 text-center">
                         <h4 className="text-xl font-bold mb-3">
-                            🎯 Coming Up Next: Hands-On Fun!
+                            🎯 Career Pathways in Machine Learning
                         </h4>
                         <p className="text-lg">
-                            In the activity section, you'll get to train a simple AI to recognize drawings.
-                            You'll draw shapes, and teach the computer what each shape is! It's like being an AI teacher!
-                            <span className="font-bold text-kids-blue"> Ready to become an AI trainer?</span> 🚀
+                            ML expertise opens doors to roles like <strong>Machine Learning Engineer</strong> (building and deploying models), <strong>Data Scientist</strong> (extracting insights from data), and <strong>AI Research Scientist</strong> (advancing the field). Creative applications include <strong>AI Artist</strong>, <strong>Computational Designer</strong>, and <strong>ML Product Manager</strong>.
+                        </p>
+                        <p className="text-sm text-gray-600 mt-3 italic">
+                            Explore ML concepts hands-on in the activities below.
                         </p>
                     </HighlightBox>
                 </GlassCard>
