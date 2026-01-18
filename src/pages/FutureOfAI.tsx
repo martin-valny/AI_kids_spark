@@ -45,7 +45,7 @@ const FutureOfAI = () => {
                                 🚀 The Future of AI
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                Artificial Intelligence is still growing and changing. Scientists and engineers are working on new AI technologies every day. Let's explore what AI might be like in the future!
+                                AI development continues to accelerate across research frontiers—from multimodal models combining vision, language, and audio to autonomous systems reshaping industries. Understanding emerging trends positions you to capitalize on opportunities in this rapidly evolving field.
                             </p>
                         </div>
                     </div>
@@ -85,30 +85,30 @@ const FutureOfAI = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <GlassCard variant="purple" className="p-8">
-                            <h3 className="font-bold text-2xl text-kids-purple mb-4">🤖 Smarter Robots</h3>
+                            <h3 className="font-bold text-2xl text-kids-purple mb-4">🎨 Generative AI Evolution</h3>
                             <p className="text-gray-700 leading-relaxed">
-                                Future robots might be able to do more complex tasks, like helping around the house, assisting elderly people, or working in dangerous environments where humans can't go.
+                                Next-generation models will offer fine-grained control over style, composition, and narrative—enabling creators to iterate rapidly from concept to production-ready assets in film, gaming, and advertising.
                             </p>
                         </GlassCard>
 
                         <GlassCard variant="green" className="p-8">
-                            <h3 className="font-bold text-2xl text-kids-green mb-4">📚 AI Teachers</h3>
+                            <h3 className="font-bold text-2xl text-kids-green mb-4">🎵 AI in Music Production</h3>
                             <p className="text-gray-700 leading-relaxed">
-                                Imagine having an AI tutor that knows exactly how you learn best and can teach any subject in a way that makes sense to you, available whenever you have questions!
+                                Advanced AI will handle mixing, mastering, and stem separation while generating custom soundscapes—transforming music production workflows and democratizing professional-quality audio creation.
                             </p>
                         </GlassCard>
 
                         <GlassCard variant="blue" className="p-8">
-                            <h3 className="font-bold text-2xl text-kids-blue mb-4">🏥 Medical Breakthroughs</h3>
+                            <h3 className="font-bold text-2xl text-kids-blue mb-4">🎬 Autonomous Video Production</h3>
                             <p className="text-gray-700 leading-relaxed">
-                                AI could help doctors discover new medicines and treatments by analyzing huge amounts of medical information faster than any human could.
+                                AI-driven editing, color grading, and effects generation will accelerate post-production timelines, enabling independent creators to achieve cinematic quality without large production budgets.
                             </p>
                         </GlassCard>
 
                         <GlassCard variant="red" className="p-8">
-                            <h3 className="font-bold text-2xl text-kids-red mb-4">🏙️ Smart Cities</h3>
+                            <h3 className="font-bold text-2xl text-kids-red mb-4">🕹️ Procedural Content in Gaming</h3>
                             <p className="text-gray-700 leading-relaxed">
-                                Cities might use AI to manage traffic, reduce pollution, save energy, and make life better and safer for the people who live there.
+                                AI will generate dynamic game worlds, adaptive narratives, and personalized experiences—each playthrough unique, driven by player behavior and preferences analyzed in real-time.
                             </p>
                         </GlassCard>
                     </div>
@@ -124,28 +124,28 @@ const FutureOfAI = () => {
                     <GlassCard variant="yellow" className="p-8 md:p-12">
                         <h3 className="font-bold text-2xl text-kids-yellow mb-6 text-center">Learn and Explore</h3>
                         <p className="text-lg mb-6 text-center text-gray-700">
-                            There are many ways you can prepare to be part of AI's exciting future:
+                            Build skills that position you for emerging roles at the intersection of AI and creative industries:
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-blue/20 hover:border-kids-blue shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-blue mb-2">💻 Learn to code</h4>
-                                <p className="text-gray-700">Programming is the language AI speaks</p>
+                                <h4 className="font-bold text-lg text-kids-blue mb-2">💻 Master Programming & ML</h4>
+                                <p className="text-gray-700">Python, PyTorch, TensorFlow—foundational tools for implementing and fine-tuning models</p>
                             </div>
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-purple/20 hover:border-kids-purple shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-purple mb-2">🔢 Study math</h4>
-                                <p className="text-gray-700">Math is the foundation of AI</p>
+                                <h4 className="font-bold text-lg text-kids-purple mb-2">📊 Understand Data Pipelines</h4>
+                                <p className="text-gray-700">Data collection, cleaning, and preprocessing determine model quality and performance</p>
                             </div>
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-green/20 hover:border-kids-green shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-green mb-2">🎨 Be creative</h4>
-                                <p className="text-gray-700">AI needs creative thinkers to solve problems</p>
+                                <h4 className="font-bold text-lg text-kids-green mb-2">🎨 Develop Creative-Technical Fluency</h4>
+                                <p className="text-gray-700">Combine artistic vision with technical implementation to direct AI tools effectively</p>
                             </div>
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-red/20 hover:border-kids-red shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-red mb-2">🤔 Stay curious</h4>
-                                <p className="text-gray-700">Always ask questions and keep learning</p>
+                                <h4 className="font-bold text-lg text-kids-red mb-2">🔬 Engage with Research</h4>
+                                <p className="text-gray-700">Follow arXiv papers, implement novel architectures, contribute to open-source projects</p>
                             </div>
                             <div className="bg-white/90 p-6 rounded-xl md:col-span-2 border-2 border-kids-purple/20 hover:border-kids-purple shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-purple mb-2">⚖️ Think ethically</h4>
-                                <p className="text-gray-700">Consider how technology affects people</p>
+                                <h4 className="font-bold text-lg text-kids-purple mb-2">🧠 Study Cognitive Science & Design</h4>
+                                <p className="text-gray-700">Understanding human perception and UX principles informs better AI product development</p>
                             </div>
                         </div>
                     </GlassCard>
@@ -161,20 +161,20 @@ const FutureOfAI = () => {
                     <GlassCard variant="purple" className="p-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-blue/20 hover:border-kids-blue shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-blue mb-3">🎓 AI Trainer</h4>
-                                <p className="text-gray-700">Teaching AI systems how to understand human behavior</p>
+                                <h4 className="font-bold text-lg text-kids-blue mb-3">🎨 AI Creative Director</h4>
+                                <p className="text-gray-700">Leading creative teams using generative AI for advertising, film production, and brand development—combining artistic vision with technical AI literacy</p>
                             </div>
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-green/20 hover:border-kids-green shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-green mb-3">🤖 Robot Designer</h4>
-                                <p className="text-gray-700">Creating helpful robots for homes and businesses</p>
+                                <h4 className="font-bold text-lg text-kids-green mb-3">🔬 ML Research Engineer</h4>
+                                <p className="text-gray-700">Developing novel architectures, optimizing training procedures, and publishing research advancing the state of the art in AI capabilities</p>
                             </div>
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-purple/20 hover:border-kids-purple shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-purple mb-3">⚖️ AI Ethics Expert</h4>
-                                <p className="text-gray-700">Making sure AI is fair and used responsibly</p>
+                                <h4 className="font-bold text-lg text-kids-purple mb-3">⚖️ AI Ethics & Policy Specialist</h4>
+                                <p className="text-gray-700">Shaping regulations, conducting bias audits, and ensuring responsible AI deployment across industries and governmental applications</p>
                             </div>
                             <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-red/20 hover:border-kids-red shadow-sm transition-colors">
-                                <h4 className="font-bold text-lg text-kids-red mb-3">🎨 AI Artist</h4>
-                                <p className="text-gray-700">Working with AI to create new forms of art and entertainment</p>
+                                <h4 className="font-bold text-lg text-kids-red mb-3">🎵 AI Music Producer</h4>
+                                <p className="text-gray-700">Composing with generative models, creating custom sound design, and producing adaptive game soundtracks using AI-assisted workflows</p>
                             </div>
                         </div>
                     </GlassCard>
@@ -205,19 +205,22 @@ const FutureOfAI = () => {
 
                     <div className="bg-kids-yellow/20 border border-kids-yellow/40 p-6 rounded-xl text-center mt-8">
                         <h4 className="text-xl font-bold mb-3">
-                            🤯 Fun Fact!
+                            💡 Industry Insight
                         </h4>
                         <p className="text-lg">
-                            Many of the jobs that will exist when you grow up haven't even been invented yet! Just like people 30 years ago couldn't imagine jobs like "social media manager" or "app developer," there will be exciting new AI careers in your future!
+                            The creative AI market is projected to grow exponentially. <strong>Prompt engineering</strong>, <strong>AI fine-tuning</strong>, and <strong>model evaluation</strong> are becoming essential skills. Professionals who combine domain expertise (art, music, design) with AI proficiency command premium positions in entertainment, advertising, and tech.
                         </p>
                     </div>
 
                     <div className="bg-gradient-to-r from-kids-blue/15 to-kids-purple/15 border-2 border-kids-blue/40 p-8 rounded-xl mt-8">
                         <h4 className="text-2xl font-bold mb-4 text-center">
-                            🎓 Congratulations!
+                            🎓 Next Steps in Your AI Journey
                         </h4>
-                        <p className="text-lg text-center text-gray-700">
-                            You've completed all the AI lessons! You now understand the basics of artificial intelligence, how it works, and how it might shape our future. Keep learning, stay curious, and remember to use technology responsibly! 🌟
+                        <p className="text-lg text-center text-gray-700 mb-4">
+                            You've completed foundational AI concepts. Continue building expertise through hands-on projects, research paper implementation, and open-source contributions. The field evolves rapidly—staying current with arxiv.org, attending conferences, and experimenting with cutting-edge tools positions you at the forefront of creative AI innovation.
+                        </p>
+                        <p className="text-sm text-gray-600 italic text-center">
+                            Resources: Hugging Face transformers, PyTorch tutorials, Papers with Code, AI alignment research, and creative AI communities on Discord and GitHub.
                         </p>
                     </div>
                 </GlassCard>
@@ -227,7 +230,7 @@ const FutureOfAI = () => {
                     <section>
                         <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
                             <Sparkles className="w-8 h-8 text-kids-yellow" />
-                            Fun Activities
+                            Hands-on Activities
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {activities.map((activity) => (

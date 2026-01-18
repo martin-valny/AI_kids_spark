@@ -29,15 +29,15 @@ const SimpleAlgorithms = () => {
                 What Is an Algorithm?
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                An algorithm is a set of step-by-step instructions that tell a computer how to solve a problem or complete a task. Think of it like a recipe for a computer to follow!
+                An algorithm is a precise sequence of computational steps that transforms input data into desired output. Algorithms form the foundation of computer science—from simple sorting to complex machine learning optimization.
               </p>
               <div className="bg-white/50 p-4 rounded-xl border-2 border-white/50 mt-4 hover:border-kids-green/40 transition-colors">
-                <h4 className="font-bold mb-2 text-kids-green">🍪 Algorithms in Everyday Life:</h4>
+                <h4 className="font-bold mb-2 text-kids-green">⚙️ Algorithms in Digital Systems:</h4>
                 <ul className="text-sm text-gray-700 space-y-1 list-disc pl-5">
-                  <li>Following a recipe to bake cookies</li>
-                  <li>Instructions for building a LEGO set</li>
-                  <li>Directions to get from home to school</li>
-                  <li>Rules for playing a board game</li>
+                  <li>Social media feed ranking (engagement optimization)</li>
+                  <li>Search engine results ordering (PageRank, relevance scoring)</li>
+                  <li>Recommendation systems (collaborative filtering)</li>
+                  <li>Compression algorithms (efficient data storage)</li>
                 </ul>
               </div>
             </div>
@@ -56,24 +56,24 @@ const SimpleAlgorithms = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <GlassCard variant="blue" className="p-8">
-              <h3 className="font-bold text-2xl text-kids-blue mb-4">🔢 Sorting Algorithms</h3>
+              <h3 className="font-bold text-2xl text-kids-blue mb-4">🔢 Sorting & Ranking Algorithms</h3>
               <p className="mb-4 text-gray-700 leading-relaxed">
-                These help computers put things in order (like numbers from smallest to largest, or names in alphabetical order).
+                Sorting algorithms organize data for efficient retrieval. Modern platforms use sophisticated ranking algorithms that combine multiple signals to personalize content feeds.
               </p>
               <div className="bg-gray-100 p-4 rounded-xl text-center border-2 border-kids-blue/10">
-                <p className="font-mono text-sm mb-2">Unsorted: 5, 2, 9, 1, 7</p>
-                <p className="font-mono text-sm font-bold text-kids-blue">Sorted: 1, 2, 5, 7, 9</p>
+                <p className="font-mono text-sm mb-2">Social Feed Ranking: [engagement_score, recency, relevance, user_affinity]</p>
+                <p className="font-mono text-sm font-bold text-kids-blue">Optimized by weighted algorithm → Personalized feed</p>
               </div>
             </GlassCard>
 
             <GlassCard variant="purple" className="p-8">
-              <h3 className="font-bold text-2xl text-kids-purple mb-4">🔍 Search Algorithms</h3>
+              <h3 className="font-bold text-2xl text-kids-purple mb-4">🔍 Information Retrieval Algorithms</h3>
               <p className="mb-4 text-gray-700 leading-relaxed">
-                These help computers find specific items in a list or database (like finding a specific contact in your phone).
+                Search algorithms process queries against massive datasets using indexing, hashing, and semantic understanding to return relevant results in milliseconds.
               </p>
               <div className="bg-gray-100 p-4 rounded-xl text-center border-2 border-kids-purple/10">
-                <p className="font-mono text-sm mb-2">Find "apple" in fruits list</p>
-                <p className="font-mono text-sm font-bold text-kids-purple">Found at position 3!</p>
+                <p className="font-mono text-sm mb-2">Query: "AI music generation" → Index lookup + TF-IDF scoring + Semantic embedding</p>
+                <p className="font-mono text-sm font-bold text-kids-purple">Ranked results based on relevance & authority</p>
               </div>
             </GlassCard>
           </div>
@@ -94,23 +94,23 @@ const SimpleAlgorithms = () => {
                 </div>
                 <h3 className="text-3xl font-bold text-gray-800">Making Choices</h3>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Algorithms need to make decisions. We use "if-then" statements to help them choose what to do next.
+                  Control flow structures (conditionals, loops) enable algorithms to make dynamic decisions based on data state and execute operations efficiently.
                 </p>
                 <div className="bg-white/50 p-4 rounded-xl border-2 border-white/50 hover:border-kids-green/30 transition-colors">
-                  <h4 className="font-bold mb-3 text-kids-green">☔ If-Then Example:</h4>
+                  <h4 className="font-bold mb-3 text-kids-green">🎯 Conditional Logic in Recommendation Systems:</h4>
                   <div className="font-mono text-sm bg-gray-100 p-4 rounded-lg">
-                    <p><span className="text-purple-600 font-bold">IF</span> it is raining <span className="text-purple-600 font-bold">THEN</span></p>
-                    <p className="pl-4 my-1">Bring an umbrella</p>
+                    <p><span className="text-purple-600 font-bold">IF</span> user_engagement_score &gt; threshold <span className="text-purple-600 font-bold">THEN</span></p>
+                    <p className="pl-4 my-1">Boost content visibility in feed</p>
                     <p><span className="text-purple-600 font-bold">ELSE</span></p>
-                    <p className="pl-4 my-1">Wear sunglasses</p>
+                    <p className="pl-4 my-1">Apply time-decay penalty</p>
                   </div>
                 </div>
                 <div className="bg-white/50 p-4 rounded-xl border-2 border-white/50 hover:border-kids-yellow/30 transition-colors">
-                  <h4 className="font-bold mb-3 text-kids-yellow">⭐ Loop Example:</h4>
+                  <h4 className="font-bold mb-3 text-kids-yellow">⭐ Iteration in Data Processing:</h4>
                   <div className="font-mono text-sm bg-gray-100 p-4 rounded-lg">
-                    <p><span className="text-purple-600 font-bold">REPEAT 5 TIMES</span></p>
-                    <p className="pl-4 my-1">Draw a star</p>
-                    <p><span className="text-purple-600 font-bold">END REPEAT</span></p>
+                    <p><span className="text-purple-600 font-bold">FOR EACH</span> user in active_users</p>
+                    <p className="pl-4 my-1">Calculate personalized_feed_ranking()</p>
+                    <p><span className="text-purple-600 font-bold">END FOR</span></p>
                   </div>
                 </div>
               </div>
@@ -125,7 +125,7 @@ const SimpleAlgorithms = () => {
         {/* Interactive Demo - Algorithms in AI */}
         <AlgorithmInteractiveDemo />
 
-        {/* Fun Activities */}
+        {/* Hands-on Activities */}
         <AlgorithmFunActivities />
 
         {/* Summary */}
@@ -153,13 +153,13 @@ const SimpleAlgorithms = () => {
 
           <div className="bg-kids-red/20 border border-kids-red/40 p-6 rounded-xl mt-8">
             <h4 className="text-xl font-bold mb-3 text-center">
-              🎯 Try This!
+              🎯 Career Application
             </h4>
             <p className="text-lg mb-3">
-              Think of an algorithm (set of steps) for getting ready for school in the morning. What steps would you include? In what order?
+              <strong>Algorithm Design</strong> is crucial in roles like Software Engineer, Data Scientist, and ML Engineer. Understanding algorithmic complexity (Big O notation), optimization techniques, and data structures enables you to build scalable systems.
             </p>
             <p className="text-sm italic text-gray-600">
-              Example: 1) Wake up, 2) Brush teeth, 3) Get dressed, 4) Eat breakfast, 5) Pack backpack, 6) Leave for school
+              Key skills: Algorithm analysis, time/space complexity optimization, choosing appropriate data structures for specific use cases.
             </p>
           </div>
         </GlassCard>

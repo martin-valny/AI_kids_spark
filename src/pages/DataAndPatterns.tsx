@@ -46,7 +46,7 @@ const DataAndPatterns = () => {
                                 📊 What is Data?
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed">
-                                Data is the information computers use to learn. It's like the ingredients in a recipe — without data, the AI has nothing to work with!
+                                Data is the foundation of all AI systems—structured or unstructured information that algorithms analyze to identify patterns, make predictions, and generate insights. Quality data is essential: models are only as good as the data they're trained on.
                             </p>
                         </div>
                     </div>
@@ -83,8 +83,8 @@ const DataAndPatterns = () => {
                         <Sparkles className="w-8 h-8 text-kids-blue" />
                         Types of Data AI Uses
                     </h2>
-                    <p className="text-lg mb-8 text-center text-gray-700">
-                        Data can be many different things! Let's explore the main types that AI loves to learn from:
+                            <p className="text-lg mb-8 text-center text-gray-700">
+                        AI processes diverse data modalities, each requiring specialized preprocessing and model architectures:
                     </p>
 
                     <GlassCard variant="blue" className="p-8 md:p-12">
@@ -95,7 +95,7 @@ const DataAndPatterns = () => {
                                     Pictures
                                 </h4>
                                 <p className="text-sm text-gray-600 text-center mb-3">
-                                    Like cat photos, drawings, or screenshots that AI can analyze to find objects, people, or animals!
+                                    Image data (pixels with RGB values) powers computer vision applications in creative tools, medical imaging, and autonomous systems through CNNs.
                                 </p>
                                 <div className="text-2xl text-center">
                                     📸 🎨 🖼️
@@ -108,7 +108,7 @@ const DataAndPatterns = () => {
                                     Text
                                 </h4>
                                 <p className="text-sm text-gray-600 text-center mb-3">
-                                    Words and sentences from books, websites, or chats that AI can read and understand!
+                                    Natural language data enables sentiment analysis, content generation, and semantic search through transformer-based models like GPT and BERT.
                                 </p>
                                 <div className="text-2xl text-center">
                                     📚 💬 📝
@@ -176,7 +176,7 @@ const DataAndPatterns = () => {
                         What are Patterns?
                     </h2>
                     <p className="text-lg mb-8 text-center text-gray-700">
-                        Patterns are things that repeat or follow a rule. Humans are great at noticing patterns!
+                        Patterns are repeating structures or statistical regularities in data. Machine learning algorithms excel at discovering complex, non-linear patterns that inform predictions and classifications.
                     </p>
 
                     <GlassCard variant="yellow" className="p-8 md:p-12">
@@ -230,7 +230,7 @@ const DataAndPatterns = () => {
                         </div>
                         <HighlightBox variant="tip" showIcon={false} className="mt-8 p-6 text-center">
                             <p className="font-medium text-lg">
-                                🤖 Now here's the cool part: AI can learn to find patterns just like you!
+                                🤖 <strong>Data Science Application:</strong> Pattern recognition is fundamental to clustering algorithms, time series forecasting, and anomaly detection across industries from finance to healthcare.
                             </p>
                         </HighlightBox>
                     </GlassCard>
@@ -243,7 +243,7 @@ const DataAndPatterns = () => {
                         How AI Finds Patterns
                     </h2>
                     <p className="text-lg mb-8 text-center text-gray-700">
-                        Just like you, AI can learn to find patterns. But instead of using eyes or ears, it uses data!
+                        AI systems discover patterns through statistical analysis and optimization algorithms, processing datasets far larger than human analysis could handle:
                     </p>
 
                     <div className="space-y-8">
@@ -252,10 +252,10 @@ const DataAndPatterns = () => {
                                 🌤️ Weather Prediction
                             </h3>
                             <p className="mb-4 text-gray-700 leading-relaxed">
-                                AI looks at weather data — like temperature and clouds — from past days and learns how the weather changes.
+                                Time series models analyze historical weather data (temperature, pressure, humidity, wind patterns) to forecast future conditions with increasing accuracy.
                             </p>
                             <p className="mb-6 text-sm text-gray-600 italic">
-                                If it rains every time the air pressure drops, AI learns to expect rain next time the pressure drops!
+                                <strong>Real-world application:</strong> NOAA and weather services use ensemble ML models processing satellite imagery, sensor networks, and atmospheric data to generate forecasts.
                             </p>
 
                             <div className="bg-white/5 p-6 rounded-xl">
@@ -302,10 +302,10 @@ const DataAndPatterns = () => {
                                 🗣️ Language Patterns
                             </h3>
                             <p className="mb-4 text-gray-700 leading-relaxed">
-                                When you type or talk, AI can guess what word comes next based on language patterns.
+                                Language models predict next tokens based on learned probability distributions from massive text corpora, enabling autocomplete and text generation.
                             </p>
                             <p className="mb-6 text-sm text-gray-600 italic">
-                                "The cat is ___" → 🧠 AI might guess "sleeping" or "playing" based on similar sentences it has seen before.
+                                <strong>Technical detail:</strong> Transformer models use attention mechanisms to weigh context, generating coherent text by sampling from learned distributions over vocabulary.
                             </p>
 
                             <div className="bg-white/5 p-6 rounded-xl">
@@ -450,7 +450,7 @@ const DataAndPatterns = () => {
                     <section>
                         <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
                             <Sparkles className="w-8 h-8 text-kids-yellow" />
-                            Fun Activities
+                            Hands-on Activities
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {activities.map((activity) => (
