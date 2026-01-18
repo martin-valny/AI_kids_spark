@@ -188,6 +188,44 @@ const AIEthics = () => {
           </GlassCard>
         </section>
 
+        {/* AI Ethics Career Pathways */}
+        <section>
+          <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+            <Brain className="w-8 h-8 text-kids-purple" />
+            Career Pathways in AI Ethics
+          </h2>
+
+          <GlassCard variant="purple" className="p-8">
+            <p className="text-lg mb-6 text-center text-gray-700">
+              As AI systems become more prevalent, professionals who can ensure ethical deployment are increasingly valuable across industries:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-blue/20 hover:border-kids-blue shadow-sm transition-colors">
+                <h4 className="font-bold text-lg text-kids-blue mb-3">⚖️ AI Ethics Specialist</h4>
+                <p className="text-gray-700">Developing ethical frameworks, conducting impact assessments, and advising organizations on responsible AI deployment across applications</p>
+              </div>
+              <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-green/20 hover:border-kids-green shadow-sm transition-colors">
+                <h4 className="font-bold text-lg text-kids-green mb-3">🔍 Bias Auditor / Fairness Engineer</h4>
+                <p className="text-gray-700">Testing ML models for discriminatory patterns, implementing fairness metrics, and ensuring equitable outcomes across demographics</p>
+              </div>
+              <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-purple/20 hover:border-kids-purple shadow-sm transition-colors">
+                <h4 className="font-bold text-lg text-kids-purple mb-3">📜 AI Policy Officer</h4>
+                <p className="text-gray-700">Shaping regulations, establishing industry standards, and ensuring AI systems comply with legal and ethical requirements</p>
+              </div>
+              <div className="bg-white/90 p-6 rounded-xl border-2 border-kids-red/20 hover:border-kids-red shadow-sm transition-colors">
+                <h4 className="font-bold text-lg text-kids-red mb-3">🛡️ AI Safety Researcher</h4>
+                <p className="text-gray-700">Researching AI alignment, developing safety protocols, and preventing unintended harmful behaviors in advanced AI systems</p>
+              </div>
+            </div>
+
+            <div className="bg-kids-blue/10 p-6 rounded-xl mt-8">
+              <p className="text-center text-gray-700">
+                <strong>Growing Field:</strong> AI ethics roles are emerging across tech companies, government agencies, academic institutions, and consulting firms. Combining technical AI knowledge with philosophy, law, or social sciences creates strong career foundations.
+              </p>
+            </div>
+          </GlassCard>
+        </section>
+
         {/* Summary */}
         <GlassCard variant="default" className="p-8">
           <h2 className="text-2xl font-bold mb-6 text-center">
@@ -245,7 +283,7 @@ const AIEthics = () => {
           <section>
             <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
               <Sparkles className="w-8 h-8 text-kids-yellow" />
-              Fun Activities
+              Hands-on Activities
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {activities.map((activity) => (

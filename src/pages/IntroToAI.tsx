@@ -144,7 +144,7 @@ const IntroToAI = () => {
                 <section>
                     <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
                         <Brain className="w-8 h-8 text-kids-yellow" />
-                        Cool AI Superpowers!
+                        Advanced AI Capabilities
                     </h2>
 
                     <GlassCard variant="yellow" className="overflow-hidden p-0">
@@ -198,13 +198,13 @@ const IntroToAI = () => {
                 <section>
                     <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
                         <Zap className="w-8 h-8 text-kids-blue" />
-                        AI vs. Humans: Different Superpowers!
+                        AI vs. Humans: Complementary Strengths
                     </h2>
 
                     <GlassCard variant="blue" className="p-8 md:p-12">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-kids-blue mb-4">🤖 AI Superpowers</h3>
+                                <h3 className="text-2xl font-bold text-kids-blue mb-4">🤖 AI Capabilities</h3>
                                 <div className="space-y-3">
                                     <div className="bg-white/50 p-4 rounded-xl border-2 border-white/20 hover:border-kids-blue/30 transition-colors">
                                         <p className="font-medium">⚡ Lightning-fast calculations</p>
@@ -224,7 +224,7 @@ const IntroToAI = () => {
                                 </div>
                             </div>
                             <div className="space-y-4">
-                                <h3 className="text-2xl font-bold text-kids-purple mb-4">👨‍💻 Human Superpowers</h3>
+                                <h3 className="text-2xl font-bold text-kids-purple mb-4">👨‍💻 Human Strengths</h3>
                                 <div className="space-y-3">
                                     <div className="bg-white/50 p-4 rounded-xl border border-white/20">
                                         <p className="font-medium">🧠 Creative problem-solving</p>
@@ -251,12 +251,12 @@ const IntroToAI = () => {
                 <section>
                     <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
                         <span className="text-4xl">🕰️</span>
-                        How AI Evolved: From Science Fiction to Your Phone!
+                        Evolution of AI: From Theory to Ubiquitous Technology
                     </h2>
 
                     <GlassCard variant="orange" className="p-8">
                         <p className="text-lg mb-8 text-center text-gray-700">
-                            AI has been growing and evolving for decades! Let's take a journey through the most exciting moments in AI history.
+                            AI has evolved significantly over seven decades. Here are milestone achievements that shaped the field's development.
                         </p>
 
                         <div className="relative">
@@ -268,8 +268,8 @@ const IntroToAI = () => {
                                         <div className="timeline-year text-2xl font-bold text-kids-blue mt-2">1956</div>
                                         <div className="timeline-content bg-white/40 backdrop-blur-sm p-4 rounded-lg shadow-md mt-2 max-w-[180px]">
                                             <div className="text-2xl mb-2">🧠</div>
-                                            <h4 className="font-bold text-sm">AI Gets a Name!</h4>
-                                            <p className="text-xs text-gray-600">Scientists decide to call smart machines "Artificial Intelligence" — the name we still use today!</p>
+                                            <h4 className="font-bold text-sm">Field Founded</h4>
+                                            <p className="text-xs text-gray-600">Dartmouth Conference establishes "Artificial Intelligence" as a distinct research discipline</p>
                                         </div>
                                     </div>
 
@@ -281,8 +281,8 @@ const IntroToAI = () => {
                                         <div className="timeline-year text-2xl font-bold text-kids-green mt-2">1997</div>
                                         <div className="timeline-content bg-white/40 backdrop-blur-sm p-4 rounded-lg shadow-md mt-2 max-w-[180px]">
                                             <div className="text-2xl mb-2">♟️</div>
-                                            <h4 className="font-bold text-sm">Computer Beats Chess Master!</h4>
-                                            <p className="text-xs text-gray-600">Deep Blue defeats the world's best chess player — something people thought was impossible!</p>
+                                            <h4 className="font-bold text-sm">Deep Blue Defeats Kasparov</h4>
+                                            <p className="text-xs text-gray-600">IBM's Deep Blue defeats world chess champion, demonstrating AI's strategic capabilities</p>
                                         </div>
                                     </div>
 
@@ -294,8 +294,8 @@ const IntroToAI = () => {
                                         <div className="timeline-year text-2xl font-bold text-kids-yellow mt-2">2011</div>
                                         <div className="timeline-content bg-white/40 backdrop-blur-sm p-4 rounded-lg shadow-md mt-2 max-w-[180px]">
                                             <div className="text-2xl mb-2">📺</div>
-                                            <h4 className="font-bold text-sm">AI on Game Show!</h4>
-                                            <p className="text-xs text-gray-600">Watson goes on Jeopardy! and beats human contestants by answering tricky questions super fast!</p>
+                                            <h4 className="font-bold text-sm">Watson Wins Jeopardy!</h4>
+                                            <p className="text-xs text-gray-600">IBM Watson demonstrates natural language processing by defeating Jeopardy! champions</p>
                                         </div>
                                     </div>
 
@@ -307,8 +307,8 @@ const IntroToAI = () => {
                                         <div className="timeline-year text-2xl font-bold text-kids-red mt-2">2016</div>
                                         <div className="timeline-content bg-white/40 backdrop-blur-sm p-4 rounded-lg shadow-md mt-2 max-w-[180px]">
                                             <div className="text-2xl mb-2">🎮</div>
-                                            <h4 className="font-bold text-sm">AI Wins Ancient Game!</h4>
-                                            <p className="text-xs text-gray-600">AlphaGo masters Go, a board game that's been around for thousands of years!</p>
+                                            <h4 className="font-bold text-sm">AlphaGo Masters Go</h4>
+                                            <p className="text-xs text-gray-600">DeepMind's AlphaGo defeats world champion Lee Sedol at the ancient strategy game</p>
                                         </div>
                                     </div>
 
@@ -320,8 +320,8 @@ const IntroToAI = () => {
                                         <div className="timeline-year text-2xl font-bold text-kids-purple mt-2">2023</div>
                                         <div className="timeline-content bg-white/40 backdrop-blur-sm p-4 rounded-lg shadow-md mt-2 max-w-[180px]">
                                             <div className="text-2xl mb-2">💬</div>
-                                            <h4 className="font-bold text-sm">AI That Chats & Translates!</h4>
-                                            <p className="text-xs text-gray-600">ChatGPT and similar AI can chat like friends and communicate in over 100 languages!</p>
+                                            <h4 className="font-bold text-sm">Generative AI Emerges</h4>
+                                            <p className="text-xs text-gray-600">Large language models demonstrate sophisticated natural language understanding and generation capabilities</p>
                                         </div>
                                     </div>
                                 </div>
@@ -330,8 +330,7 @@ const IntroToAI = () => {
 
                         <div className="mt-6 p-4 bg-white/50 rounded-lg border border-kids-blue/20">
                             <p className="text-center text-sm">
-                                <strong>Amazing Journey!</strong> From getting its name to chatting with us — that's almost 70 years of incredible progress!
-                                <span className="font-bold text-kids-purple"> What do you think will happen next?</span> 🚀
+                                <strong>Significant Progress:</strong> Seven decades of development have transformed AI from theoretical concept to ubiquitous technology, with accelerating advancement in recent years.
                             </p>
                         </div>
                     </GlassCard>
@@ -379,7 +378,7 @@ const IntroToAI = () => {
                     <section>
                         <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
                             <Sparkles className="w-8 h-8 text-kids-yellow" />
-                            Fun Activities
+                            Hands-on Activities
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {activities.map((activity) => (

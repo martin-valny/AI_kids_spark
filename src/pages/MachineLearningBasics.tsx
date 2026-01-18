@@ -329,7 +329,7 @@ const MachineLearningBasics = () => {
                     <section>
                         <h2 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
                             <Sparkles className="w-8 h-8 text-kids-yellow" />
-                            Fun Activities
+                            Hands-on Activities
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {activities.map((activity) => (

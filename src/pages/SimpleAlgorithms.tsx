@@ -125,7 +125,7 @@ const SimpleAlgorithms = () => {
         {/* Interactive Demo - Algorithms in AI */}
         <AlgorithmInteractiveDemo />
 
-        {/* Fun Activities */}
+        {/* Hands-on Activities */}
         <AlgorithmFunActivities />
 
         {/* Summary */}
