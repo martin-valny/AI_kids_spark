@@ -79,7 +79,7 @@ const BuildImageClassifierActivity = () => {
                                         <div className="text-3xl">🐶 vs 🐱</div>
                                         <div>
                                             <h4 className="font-bold text-kids-green">Dog vs Cat</h4>
-                                            <p className="text-sm text-gray-600">Use toys or photos to teach it animals.</p>
+                                            <p className="text-sm text-gray-600">Use photos to train an animal classifier.</p>
                                         </div>
                                     </li>
                                     <li className="flex gap-4 p-4 bg-white/90 rounded-xl border-2 border-purple-100 items-center hover:border-purple-300 transition-colors">

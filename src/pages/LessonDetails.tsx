@@ -554,7 +554,7 @@ const lessonsData: {
               <p className="text-sm italic text-kids-purple/70">Learning by finding patterns</p>
               <p className="text-gray-700 leading-relaxed">
                 We give the computer examples without answers. It finds patterns on its own.
-                Like sorting toys by color without being told how.
+                Like clustering songs by audio features without predefined genres.
               </p>
               <div className="bg-kids-purple/10 p-4 rounded-xl border border-kids-purple/20">
                 <p className="text-sm font-medium">
