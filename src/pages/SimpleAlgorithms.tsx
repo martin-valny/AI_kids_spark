@@ -6,7 +6,6 @@ import { GlassCard } from '@/components/ui/GlassCard';
 import AlgorithmVideoSection from '@/components/algorithms/AlgorithmVideoSection';
 import AlgorithmInteractiveDemo from '@/components/algorithms/AlgorithmInteractiveDemo';
 import AlgorithmFunActivities from '@/components/algorithms/AlgorithmFunActivities';
-import AITutor from '@/components/AITutor';
 
 const SimpleAlgorithms = () => {
   return (
@@ -166,7 +165,6 @@ const SimpleAlgorithms = () => {
         </GlassCard>
 
       </div>
-      <AITutor lessonContext="Lesson: Simple Algorithms. Topic: Understanding step-by-step instructions and decision-making in AI" />
     </LessonLayout>
   );
 };

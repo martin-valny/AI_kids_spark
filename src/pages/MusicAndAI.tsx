@@ -3,7 +3,6 @@ import { Music, Mic, Play, ExternalLink } from 'lucide-react';
 import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { GradientButton } from '@/components/ui/GradientButton';
-import AITutor from '@/components/AITutor';
 
 const MusicAndAI = () => {
     return (
@@ -135,7 +134,6 @@ const MusicAndAI = () => {
                 </GlassCard>
 
             </div>
-            <AITutor lessonContext="Lesson: Music & AI. Topic: How AI is transforming music creation and production" />
         </LessonLayout>
     );
 };
