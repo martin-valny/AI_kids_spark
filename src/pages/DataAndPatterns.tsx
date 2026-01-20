@@ -5,6 +5,7 @@ import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ActivityCard from '@/components/ActivityCard';
 import { InnerCard, CardGrid, HighlightBox } from '@/components/design-system';
+import AITutor from '@/components/AITutor';
 
 const DataAndPatterns = () => {
     const activities = [
@@ -460,6 +461,7 @@ const DataAndPatterns = () => {
                     </section>
                 )}
             </div>
+            <AITutor lessonContext="Lesson: Data and Patterns. Topic: Understanding how AI recognizes patterns in data" />
         </LessonLayout>
     );
 };

@@ -4,6 +4,7 @@ import { Sparkles, Brain, Zap } from 'lucide-react';
 import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ActivityCard from '@/components/ActivityCard';
+import AITutor from '@/components/AITutor';
 
 const ImageRecognition = () => {
   const activities = [
@@ -244,6 +245,7 @@ const ImageRecognition = () => {
           </section>
         )}
       </div>
+      <AITutor lessonContext="Lesson: Image Recognition. Topic: How AI systems identify and classify images" />
     </LessonLayout>
   );
 };

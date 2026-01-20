@@ -5,6 +5,7 @@ import { LessonLayout } from '@/components/layout/LessonLayout';
 import { GlassCard } from '@/components/ui/GlassCard';
 import ActivityCard from '@/components/ActivityCard';
 import { InnerCard, CardGrid, HighlightBox } from '@/components/design-system';
+import AITutor from '@/components/AITutor';
 
 const IntroToAI = () => {
     const activities = [
@@ -388,6 +389,7 @@ const IntroToAI = () => {
                     </section>
                 )}
             </div>
+            <AITutor lessonContext="Lesson: Introduction to AI. Topic: Learn what AI is and how it's used in everyday life" />
         </LessonLayout>
     );
 };
