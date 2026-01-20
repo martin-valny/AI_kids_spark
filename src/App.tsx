@@ -55,6 +55,7 @@ import AccountSettings from "./pages/AccountSettings";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SubscriptionProvider } from "./contexts/SubscriptionContext";
 import { AITutorProvider } from "./contexts/AITutorContext";
+import AITutor from "./components/AITutor";
 import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
@@ -131,6 +132,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieConsent />
+          <AITutor />
         </BrowserRouter>
         </TooltipProvider>
         </AITutorProvider>
