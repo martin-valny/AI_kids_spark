@@ -1,9 +1,9 @@
 # Claude.md - AI Kids Spark Project Guide
 
-**Last Updated:** 2026-01-16
-**Project:** AI Kids Spark → AI Spark (13+ pivot recommended)
-**Status:** Feature-complete frontend, backend implementation required for production
-**Branch:** claude/deployment-compliance-review-3NyeN
+**Last Updated:** 2026-01-21
+**Project:** AI Kids Spark → Lumora (Creative AI Platform for Gen Z)
+**Status:** Master plan complete, ready for Phase 1 execution (design transformation)
+**Branch:** claude/session-6-execution-Xka7i
 
 ---
 
@@ -51,8 +51,8 @@
 - ❌ No payment system (subscription UI is mockup only)
 - ❌ No COPPA compliance (targets ages 6-12 but not implemented)
 
-**Recommended Path:** Pivot to 13+ platform to avoid COPPA complexity
-**See:** `IMPLEMENTATION_PLAN_OPTION_A.md` for detailed deployment strategy
+**Recommended Path:** Transform into Lumora - Creative AI Platform for Gen Z (ages 13-25)
+**See:** `LUMORA_MASTER_PLAN.md` for complete 12-18 month transformation strategy
 
 ---
 
@@ -169,10 +169,9 @@ AI_kids_spark/
 │
 ├── public/resources/       # Downloadable worksheets (need footer updates)
 │
-├── IMPLEMENTATION_PLAN_OPTION_A.md  # Deployment strategy (13+ pivot)
-├── CONTENT_CHANGES_CHECKLIST.md    # File-by-file changes needed
-├── BEFORE_AFTER_COMPARISON.md      # Visual before/after guide
-└── Claude.md               # This file
+├── LUMORA_MASTER_PLAN.md           # Complete transformation strategy (45 lessons, 4 domains)
+├── /archive/                       # Obsolete planning documents (preserved for reference)
+└── Claude.md                       # This file
 ```
 
 ---
@@ -202,7 +201,7 @@ AI_kids_spark/
 
 ### Implementation Phases
 
-**See `IMPLEMENTATION_PLAN_OPTION_A.md` for detailed code examples**
+**See `LUMORA_MASTER_PLAN.md` for comprehensive transformation plan (45 lessons, market research, execution framework)**
 
 #### Phase 1: Critical Security Fixes (30 min) 🔴
 - Fix `DEBUG_UNLOCK_ALL` flag
@@ -401,8 +400,8 @@ git commit --no-verify -m "message"
 ### "Pre-commit hook too slow"
 **Solution:** Expected (~7s). It's preventing bugs before they reach codebase.
 
-### "Can't find IMPLEMENTATION_PLAN_OPTION_A.md"
-**Solution:** Make sure you're on branch `claude/deployment-compliance-review-3NyeN`, not main.
+### "Can't find LUMORA_MASTER_PLAN.md"
+**Solution:** Make sure you're on branch `claude/session-6-execution-Xka7i`, not main.
 
 ---
 
@@ -420,9 +419,9 @@ git commit --no-verify -m "message"
 
 1. **Read this file first** - Contains critical context
 2. **Check current branch** - Should have implementation docs
-3. **Understand deployment decision** - 13+ pivot vs COPPA compliance
+3. **Understand Lumora transformation** - Complete platform redesign (45 lessons, 4 domains)
 4. **Review security issues** - Fix DEBUG_UNLOCK_ALL before other work
-5. **Reference implementation plan** - `IMPLEMENTATION_PLAN_OPTION_A.md`
+5. **Reference master plan** - `LUMORA_MASTER_PLAN.md`
 
 ### When Making Changes
 
@@ -702,12 +701,11 @@ After testing, report results in this format:
 
 ### In This Repository
 - **`Claude.md`** - This file (master context)
-- **`IMPLEMENTATION_PLAN_OPTION_A.md`** - Deployment strategy (1,828 lines)
-- **`CONTENT_CHANGES_CHECKLIST.md`** - File-by-file changes (384 lines)
-- **`BEFORE_AFTER_COMPARISON.md`** - Visual before/after (851 lines)
+- **`LUMORA_MASTER_PLAN.md`** - Complete transformation strategy (1,400+ lines, 45 lessons, market research)
 - **`README.md`** - Original Lovable platform setup
 - **`src/design-system/patterns.md`** - Design patterns
 - **`.verification/workflows/claude-feedback-loop.md`** - Verification docs
+- **`/archive/`** - Obsolete planning documents (preserved for reference)
 
 ### External Resources
 - **Supabase:** https://supabase.com/docs
