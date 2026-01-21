@@ -36,6 +36,76 @@ The only platform that teaches Gen Z to:
 - AI Art/Images - Oversaturated (63% failure rate, 100 competitors per 1K customers)
 - AI Code Generation - Too technical for general 13-25 audience
 
+---
+
+## 🛠️ COMPREHENSIVE AI TOOL ECOSYSTEM (50+ Tools)
+
+**Current Plan Coverage:** 12 tools across 4 core domains
+**Expanded Vision:** 50+ tools across 7+ creative categories
+
+### **Tool Strategy - Three Tiers:**
+
+**TIER 1: CORE CURRICULUM** (Deep Instruction - 45 Lessons)
+Tools taught with full lessons:
+- **Video:** CapCut (free), Runway ($12/mo), InVideo (free tier), HeyGen (free tier), Descript (free tier)
+- **Automation:** Make.com (1K free ops/mo), Zapier (free tier), n8n (unlimited self-hosted)
+- **Content:** ChatGPT (free), Claude (free), Copy.ai (free trial)
+- **Music:** Suno (50 free/day), Udio (free tier), Mubert (25/mo free)
+
+**TIER 2: TOOL CATALOG** (Reference Profiles - No Full Lessons)
+50+ tools with 1-2 page profiles each:
+
+| Category | Tools (Free Tier Status) | Count |
+|----------|-------------------------|-------|
+| **Design & Visual** | Canva AI ✅, Adobe Firefly (100 free/mo) ✅, Figma AI ✅, Gamma ✅, Beautiful.ai ✅, Tome ✅, Uizard ✅, Galileo AI ✅, v0 ✅, Lovable ✅, Framer AI ✅, Relume, Pitch ✅, Penpot ✅ (open source) | 15 |
+| **3D & Product** | Spline ✅, Polycam ✅, Luma AI ✅, nanoBanana ✅, Pomeli, Google Veo (limited free) | 6 |
+| **Marketing & Ads** | AdCreative.ai ✅, Jasper ($10-125/mo), Pencil, Smartly.io, Hoppy Copy ✅, Lavender ✅, Unbounce AI, Instapage AI, Writesonic ✅ | 9 |
+| **Web/App Building** | Lovable ✅, v0 (Vercel) ✅, Durable ✅, 10Web ✅, Framer AI ✅ | 5 |
+| **Long-Form Video** | Google Veo, HeyGen ✅, Synthesia (14-day free), Descript ✅, Loom AI ✅ | 5 |
+| **Productivity** | Notion AI ($10/mo addon), Otter.ai ✅, Mem ✅, Google Docs AI | 4 |
+| **Other Creative** | Scenario ✅ (game dev), Ludo.ai (games), Resleeve (fashion), Cala (fashion), Collov AI ✅ (interior), RoomGPT ✅, Luminar Neo (photo), Topaz ($99) | 8+ |
+
+**Total Tool Coverage:** 60+ tools (12 deep instruction + 48 catalog)
+
+**TIER 3: FUTURE DOMAINS** (Post-Launch Expansion)
+- **Design Mastery Domain** (Phase 3, Months 13-18): 8-10 lessons on Figma AI, Canva AI, web builders
+- **Web/App Building Domain** (Phase 4, Months 19-24): 6-8 lessons on no-code/low-code tools
+- **Specialty Domains** (Phase 5+): Game dev, fashion, interior design (demand-driven)
+
+### **Implementation Strategy:**
+
+**Month 1-3 (Phase 1):**
+- Focus on 4 core domains (proven ROI)
+- Create "AI Tool Finder" - searchable database of 50+ tools
+- Each tool gets 1-2 page profile: Pricing, free tier, use cases, student examples
+- Link contextually from lessons
+
+**Month 4-8 (Phase 2):**
+- Add Design domain (highest gap - Figma, Canva, web builders)
+- Create 5-min video walkthroughs for top 10 requested tools
+- Premium tier: Extended tool tutorials
+
+**Month 9-18 (Phase 3-4):**
+- Add 1-2 new domains per quarter based on student demand
+- Specialist certificates for each domain
+- Tool partnerships for student discounts
+
+**Tool Catalog Profile Format** (1-2 pages per tool):
+- 📋 What it does (1 sentence)
+- 💰 Pricing & free tier details
+- 👥 Best for (professionals/beginners/students)
+- 🎯 Key features for students
+- 🔗 Getting started link
+- 📱 Student example projects
+- ⭐ Why we recommend it
+
+**Philosophy:**
+- Core domains = deep instruction (45 comprehensive lessons)
+- Tool catalog = breadth coverage (50+ tools, lighter touch)
+- Future domains = demand-driven (expand based on student requests)
+
+---
+
 ### Strategic Decisions Made:
 
 - ✅ **Market-driven domain selection** (video #1, automation #2, avoid oversaturated art market)
@@ -492,6 +562,39 @@ colors: {
 ## 🚀 GETTING STARTED: PHASE 1 EXECUTION PLAN
 
 ### **MONTH 1: Design System Overhaul** (Week-by-Week)
+
+**🎨 LANDING PAGE SHOWCASE APPROACH:**
+
+Instead of implementing one design blindly, we'll create 3 landing page variations first:
+
+**Landing Page Showcase App:**
+- Build internal design directory to compare 3 different landing page styles
+- Dark-themed list view showing all options
+- Click each card to preview full landing page
+- Iterate on ALL 3 based on feedback
+- Learn design preferences over time
+- Apply winning patterns to full app
+
+**3 Landing Page Variations to Create:**
+1. **Tech/Professional** - Emphasis on data, metrics, professional credibility
+2. **Creative/Bold** - Focus on visuals, portfolio pieces, creative energy
+3. **Social/Community** - Highlight student work, testimonials, social proof
+
+**Process:**
+- Week 1-2: Build showcase app + create 3 landing page variations
+- Week 3: Get feedback on all 3 from 10-20 people
+- Week 4: Iterate on designs, pick winner, propagate to full platform
+
+**Implementation Details:**
+- Create `/src/pages/LandingShowcase.tsx` - Directory of all 3 options
+- Create `/src/pages/landing/TechProfessional.tsx` - Option 1
+- Create `/src/pages/landing/CreativeBold.tsx` - Option 2
+- Create `/src/pages/landing/SocialCommunity.tsx` - Option 3
+- Route: `/landing-showcase` (internal only, not public)
+
+This approach ensures we choose the RIGHT design instead of guessing!
+
+---
 
 #### **Week 1: Design System Foundation**
 **Deliverables:** New color palette, updated CSS, core components
@@ -2037,13 +2140,439 @@ After SESSION 6, Lumora will have:
 
 ## 🎉 NEXT STEPS AFTER SESSION 6
 
-Once complete, platform is ready for:
+Once Phase 1 (first 3 months) is complete, the platform is ready for:
 
-**SESSION 7:** Quiz System for new lessons
-**SESSION 8:** Certification based on portfolio projects
-**SESSION 9:** Community gallery (showcase student work)
-**SESSION 10:** Deploy & launch
+**SESSION 7:** Quiz System (5 questions per lesson, 225 total)
+**SESSION 8:** Certification Program (portfolio-based certificates)
+**SESSION 9:** Community Gallery (student showcase)
+**SESSION 10:** Deploy & Launch (Product Hunt, marketing, scale)
+
+**📌 IMPORTANT:** After completing SESSIONS 1-10, **IGNORE all previous session guides** (LUMORA_SESSION_GUIDE.md, CREATIVE_AI_PLATFORM_MASTER_PLAN.md). From that point forward, follow **ONLY this LUMORA_MASTER_PLAN.md** for all development work.
+
+This master plan supersedes all previous planning documents and provides the complete 12-18 month roadmap.
 
 ---
 
-**Ready to transform Lumora? This is the foundation of something exceptional.**
+## 📋 LINE-BY-LINE EXECUTION FRAMEWORK
+
+**How to Execute This 870-Line Plan Without Missing Anything**
+
+### **Problem:** This plan is comprehensive but overwhelming. How do you execute without omitting critical details?
+
+### **Solution:** Structured Session-by-Session Execution Framework
+
+---
+
+### **🔄 EXECUTION CYCLE (Repeat for Each Session)**
+
+**Before Each Session:**
+1. Read the full Phase/Month section (15-30 min)
+2. Create checklist from all bullets (use TodoWrite tool)
+3. Estimate time per task (validate against plan's estimates)
+4. Block calendar time (no distractions)
+
+**During Each Session:**
+1. Work through checklist item-by-item
+2. Mark complete ONLY when fully done
+3. Document blockers immediately
+4. Take screenshots/notes of decisions made
+
+**After Each Session:**
+1. Review checklist: 100% complete?
+2. Test what was built (QA)
+3. Get feedback (if applicable)
+4. Update plan with learnings
+
+---
+
+### **📊 SESSION-BY-SESSION BREAKDOWN**
+
+#### **MONTH 1: Design System Overhaul**
+
+**Session 1.1: Landing Page Showcase (Week 1-2, 16 hours)**
+- [ ] Create `/src/pages/LandingShowcase.tsx` directory
+- [ ] Build landing option 1: Tech/Professional
+- [ ] Build landing option 2: Creative/Bold
+- [ ] Build landing option 3: Social/Community
+- [ ] Test all 3 on mobile + desktop
+- [ ] Share with 10-20 people for feedback
+
+**Session 1.2: Color Palette & Tokens (Week 1, 8 hours)**
+- [ ] Update `/tailwind.config.ts` colors (lines 68-112 reference)
+- [ ] Add dark professional palette (surface-dark, accent-cyan, etc.)
+- [ ] Update `/src/design-system/tokens.ts` mappings
+- [ ] Create test page to preview new colors
+- [ ] Verify contrast ratios meet accessibility standards
+
+**Session 1.3: Global CSS Updates (Week 1, 10 hours)**
+- [ ] Update `/src/index.css` (20+ class updates documented in plan)
+- [ ] Transform `.glass-card` (lines 933-946 reference)
+- [ ] Transform `.glass-blue`, `.glass-purple` (8 variants)
+- [ ] Add new `.glass-neon-border` class
+- [ ] Update `.btn-primary`, `.btn-secondary`
+- [ ] Test all classes in isolation
+
+**Session 1.4: Core Components (Week 1, 6 hours)**
+- [ ] Update `GlassCard.tsx` variant classes (8 colors)
+- [ ] Update `GradientButton.tsx` with neon gradients
+- [ ] Update `Header.tsx` (dark nav, text colors)
+- [ ] Update `Footer.tsx` (dark background)
+- [ ] Update `NeuralGalaxy.tsx` (cyan/magenta/gold particles)
+
+**Session 1.5: Archive Existing Lessons (Week 2, 4 hours)**
+- [ ] Create `/src/pages/archived/` directory
+- [ ] Move 7 lesson files (IntroToAI, MachineLearningBasics, etc.)
+- [ ] Comment out routes in `App.tsx`
+- [ ] Update `progressTracker.ts` to ignore archived
+- [ ] Test: archived lessons still accessible via direct URL
+
+**Session 1.6: New Navigation Structure (Week 2, 12 hours)**
+- [ ] Create `/src/data/lessonsData.ts` with lesson metadata
+- [ ] Create `/src/components/LessonSection.tsx` component
+- [ ] Update `/src/pages/Lessons.tsx` (two-track system)
+- [ ] Update `ModuleCard.tsx` (portfolio badge, dark theme)
+- [ ] Test: Foundations visible, Creative Mastery locked
+
+**Session 1.7: Homepage Redesign (Week 2, 10 hours)**
+- [ ] Update `/src/pages/Index.tsx` hero section
+- [ ] New messaging: "Master AI. Create Everything. Monetize Fast."
+- [ ] Update feature cards (video, automation, writing, music)
+- [ ] Update CTA buttons (dark theme, hover effects)
+- [ ] Add social proof section
+- [ ] Test mobile responsiveness
+
+**Session 1.8: Final QA & Deploy (Week 3-4, 20 hours)**
+- [ ] Update all remaining pages with dark theme
+- [ ] Fix hardcoded color references
+- [ ] Test all interactive elements
+- [ ] Mobile responsive testing (375px, 768px, 1024px)
+- [ ] Accessibility check (contrast, ARIA labels)
+- [ ] Performance optimization (Lighthouse score >90)
+- [ ] Deploy to staging, test production-like
+- [ ] Get feedback from 5-10 beta testers
+- [ ] Iterate based on feedback
+
+**Month 1 Completion Criteria:**
+- ✅ Dark design system live
+- ✅ Old lessons archived
+- ✅ Navigation restructured
+- ✅ Homepage redesigned
+- ✅ Mobile tested
+- ✅ Ready for content creation
+
+---
+
+#### **MONTH 2: Foundation Lessons**
+
+**Session 2.1: F1 - AI Fundamentals Speed-Run (Week 1, 22 hours)**
+
+*Content Writing (12 hours):*
+- [ ] Write Section 1: What is AI? (5 min reading time)
+- [ ] Write Section 2: How AI Learns (10 min)
+- [ ] Write Section 3: How AI Creates (10 min)
+- [ ] Write Section 4: AI Tools Landscape (10 min)
+- [ ] Write Section 5: Ethics & Responsible Use (5 min)
+- [ ] Create visual diagrams (neural network, diffusion process)
+- [ ] Write 5 quiz questions with explanations
+- [ ] Find/embed video: "AI in 60 seconds"
+
+*Implementation (10 hours):*
+- [ ] Create `/src/pages/AIFundamentalsSpeedrun.tsx`
+- [ ] Implement with dark theme GlassCards
+- [ ] Add interactive step-through component
+- [ ] Embed video with responsive 16:9
+- [ ] Add downloadable resources
+- [ ] Implement quiz with scoring
+
+*Testing & Polish:*
+- [ ] Have 10 users complete lesson
+- [ ] Track completion time (target: 45 min)
+- [ ] Gather feedback (4/5 stars minimum)
+- [ ] Iterate based on feedback
+- [ ] Ensure quiz works correctly (80% pass threshold)
+
+**Session 2.2: F2 - Universal Prompt Engineering (Week 2, 28 hours)**
+
+*Content Creation (16 hours):*
+- [ ] Write Section 1: Prompt Anatomy (15 min)
+- [ ] Write Section 2: Frameworks by Domain (20 min)
+- [ ] Write Section 3: Iteration Techniques (15 min)
+- [ ] Write Section 4: Common Mistakes (5 min)
+- [ ] Write Section 5: Practice Exercises (15 min)
+- [ ] Create 100+ example prompts (downloadable)
+- [ ] Design interactive prompt builder component
+- [ ] Record demo videos (prompts in action)
+
+*Implementation & Testing (12 hours):*
+- [ ] Create `/src/pages/UniversalPromptEngineering.tsx`
+- [ ] Add interactive prompt examples
+- [ ] Create downloadable prompt library (PDF)
+- [ ] Test with 10 users
+- [ ] Refine based on feedback
+
+**Session 2.3: Testing & Refinement (Week 3-4, 30 hours)**
+- [ ] Recruit 50 beta testers
+- [ ] Track completion rates (target: >70%)
+- [ ] Track time spent (F1 = 45 min, F2 = 60 min)
+- [ ] Identify drop-off points in analytics
+- [ ] A/B test different explanations
+- [ ] Quiz pass rate analysis (target: >80%)
+- [ ] User feedback collection (target: >4/5 stars)
+- [ ] Iterate on weak sections
+- [ ] Final polish before domain launch
+
+**Month 2 Completion Criteria:**
+- ✅ F1 & F2 lessons live
+- ✅ 50 beta testers completed
+- ✅ >70% completion rate
+- ✅ >80% quiz pass rate
+- ✅ >4/5 star rating
+- ✅ Ready for first domain
+
+---
+
+#### **MONTH 3: Launch Video Editing Domain (First 6 Lessons)**
+
+**Session 3.1: V1 - CapCut AI Mastery (Week 1, 1.5h lesson, 16 hours to create)**
+- [ ] Research CapCut AI features (auto-captions, effects, templates)
+- [ ] Write lesson content (mobile-first editing workflows)
+- [ ] Create 3 example TikToks (portfolio output)
+- [ ] Record walkthrough video (screen recording)
+- [ ] Implement lesson page with dark theme
+- [ ] Test with 5 users, iterate
+
+**Session 3.2: V2 - Viral Video Formula (Week 1, 1.5h lesson, 16 hours to create)**
+- [ ] Research viral video patterns (hook, retention, CTA)
+- [ ] Write lesson content (algorithm hacking techniques)
+- [ ] Create viral-ready template (downloadable)
+- [ ] Provide 10 viral video case studies
+- [ ] Implement lesson page
+- [ ] Test with 5 users, iterate
+
+**Session 3.3: V3 - TikTok Trends & Timing (Week 2, 1h lesson, 12 hours to create)**
+- [ ] Research trend-jacking strategies
+- [ ] Write lesson content (sound selection, timing)
+- [ ] Create 5 trend variation examples
+- [ ] Implement lesson page
+- [ ] Test with 5 users, iterate
+
+**Session 3.4: V4 - Instagram Reels Strategy (Week 2, 1h lesson, 12 hours to create)**
+- [ ] Research IG algorithm updates (2025)
+- [ ] Write lesson content (discovery tactics)
+- [ ] Create 10-video Reel series example
+- [ ] Implement lesson page
+- [ ] Test with 5 users, iterate
+
+**Session 3.5: V5 - YouTube Shorts Creation (Week 3, 1.5h lesson, 16 hours to create)**
+- [ ] Research YouTube Shorts algorithm
+- [ ] Write lesson content (long-form funnel strategy)
+- [ ] Create 5-video Shorts series example
+- [ ] Implement lesson page
+- [ ] Test with 5 users, iterate
+
+**Session 3.6: V6 - Runway AI Video Generation (Week 3, 2h lesson, 20 hours to create)**
+- [ ] Research Runway Gen-4 features
+- [ ] Write lesson content (text-to-video techniques)
+- [ ] Create 3 AI-generated video examples
+- [ ] Implement lesson page (most comprehensive so far)
+- [ ] Test with 5 users, iterate
+
+**Session 3.7: Portfolio Project & Launch (Week 4, 20 hours)**
+- [ ] Create portfolio project template (30-day content calendar)
+- [ ] Write project brief & success criteria
+- [ ] Test all 6 lessons with 20 users (full beta)
+- [ ] Collect student video examples
+- [ ] Launch marketing push: "Master TikTok editing with AI"
+- [ ] Showcase best student videos (social proof)
+- [ ] Track first 100 paid user signups
+
+**Month 3 Completion Criteria:**
+- ✅ V1-V6 lessons live (6 of 12 video domain lessons)
+- ✅ Portfolio project template created
+- ✅ 20+ beta testers completed full track
+- ✅ 100 paid users acquired
+- ✅ $1K MRR milestone hit
+- ✅ Social proof (20+ student videos)
+
+---
+
+### **📌 EXECUTION BEST PRACTICES**
+
+**1. Daily Standup (5 min):**
+- What did I complete yesterday?
+- What am I working on today?
+- Any blockers?
+
+**2. Weekly Review (30 min):**
+- Review week's checklist: all items done?
+- Compare actual time vs estimated
+- Update plan if estimates were off
+- Celebrate wins!
+
+**3. Monthly Retrospective (1 hour):**
+- Review Month's completion criteria
+- What went well?
+- What went poorly?
+- Adjustments for next month?
+
+**4. Decision Log:**
+Keep a simple document tracking all decisions:
+```
+Date: 2026-01-22
+Decision: Chose "Creative/Bold" landing page design
+Rationale: Got 85% positive feedback from beta testers
+Files Affected: All pages will use this design system
+```
+
+**5. Blocker Escalation:**
+If stuck >2 hours on something:
+1. Document the blocker clearly
+2. Try 3 different approaches
+3. Ask for help (community, AI assistant, etc.)
+4. Consider alternate solution
+
+---
+
+### **🎯 TRACKING PROGRESS THROUGH THE PLAN**
+
+**Use a Progress Dashboard** (Notion/Trello/Spreadsheet):
+
+| Phase | Sessions | Completed | In Progress | Blocked | % Done |
+|-------|----------|-----------|-------------|---------|--------|
+| Month 1 | 8 | 5 | 2 | 1 | 62% |
+| Month 2 | 3 | 0 | 0 | 0 | 0% |
+| Month 3 | 7 | 0 | 0 | 0 | 0% |
+| **Total** | **18** | **5** | **2** | **1** | **28%** |
+
+**Color Code:**
+- 🟢 Green: Completed, tested, deployed
+- 🟡 Yellow: In progress, on track
+- 🔴 Red: Blocked, needs attention
+- ⚪ Gray: Not started
+
+---
+
+### **📝 SESSION TEMPLATE (Copy for Each Session)**
+
+```markdown
+## SESSION X.Y: [Name]
+
+**Estimated Time:** [X hours]
+**Actual Time:** [Track as you go]
+**Completion Date:** [When finished]
+
+### Checklist:
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3
+
+### Files Modified:
+- `/path/to/file1.tsx`
+- `/path/to/file2.ts`
+
+### Testing:
+- [ ] Manual testing completed
+- [ ] 5-10 users tested (if applicable)
+- [ ] Mobile tested
+- [ ] No console errors
+
+### Blockers:
+- None / [Describe blocker]
+
+### Learnings:
+- [What worked well]
+- [What didn't work]
+- [Adjustments for next session]
+
+### Screenshots:
+- [Attach screenshots of completed work]
+```
+
+---
+
+### **🚨 COMMON PITFALLS & HOW TO AVOID THEM**
+
+**Pitfall 1: Skipping "small" tasks**
+- **Risk:** Those small tasks add up, break things later
+- **Solution:** Check off EVERY item, no matter how small
+
+**Pitfall 2: Working without testing**
+- **Risk:** Build on broken foundation
+- **Solution:** Test after each session before moving on
+
+**Pitfall 3: Forgetting to update the plan**
+- **Risk:** Plan becomes stale, inaccurate
+- **Solution:** Update estimates in real-time as you work
+
+**Pitfall 4: Analysis paralysis**
+- **Risk:** Overthinking decisions, no progress
+- **Solution:** Time-box decisions (30 min max), then commit
+
+**Pitfall 5: Scope creep**
+- **Risk:** Adding features not in plan, missing deadlines
+- **Solution:** Write down new ideas in "Future Ideas" doc, don't implement now
+
+---
+
+### **✅ HOW TO KNOW YOU'RE ON TRACK**
+
+**Weekly Checkpoints:**
+- [ ] Completed all planned sessions for the week?
+- [ ] Actual time within 25% of estimated?
+- [ ] All tests passing?
+- [ ] No critical blockers?
+- [ ] Momentum feels sustainable?
+
+**Monthly Checkpoints:**
+- [ ] Met completion criteria for the month?
+- [ ] User feedback positive (>4/5 stars)?
+- [ ] Technical debt manageable?
+- [ ] Team morale good?
+- [ ] Ready to start next month?
+
+**Red Flags:**
+- ⚠️ Falling >2 weeks behind schedule
+- ⚠️ User feedback <3.5/5 stars
+- ⚠️ Same blocker recurring 3+ times
+- ⚠️ Skipping testing to "save time"
+- ⚠️ Burnout symptoms (exhaustion, cynicism)
+
+**If You See Red Flags:**
+1. Stop and assess (don't push through)
+2. Re-scope the phase (cut non-essentials)
+3. Ask for help (don't suffer in silence)
+4. Take a break if needed (marathon, not sprint)
+
+---
+
+### **🎉 CELEBRATION MILESTONES**
+
+**Celebrate these moments:**
+- ✅ First dark-themed page deployed
+- ✅ First new lesson completed
+- ✅ 10 beta testers complete a lesson
+- ✅ 50 beta testers in foundations
+- ✅ 100 paid users acquired
+- ✅ $1K MRR milestone
+- ✅ Month 1 complete (design transformation done!)
+- ✅ Month 2 complete (foundations solid!)
+- ✅ Month 3 complete (first domain launched!)
+
+Celebrating progress sustains motivation for the 12-18 month journey!
+
+---
+
+## 🚀 READY TO EXECUTE LINE-BY-LINE?
+
+**Your execution checklist:**
+1. ✅ Read entire plan (you're doing this now!)
+2. ⬜ Set up progress tracking system (Notion/Trello/Spreadsheet)
+3. ⬜ Create first month's session checklists
+4. ⬜ Block calendar time for each session
+5. ⬜ Start Session 1.1: Landing Page Showcase (16 hours)
+
+**Remember:** This plan is a guide, not a prison. Adjust as you learn, but don't skip steps. Every line exists for a reason.
+
+---
+
+**Ready to transform Lumora? This is the foundation of something exceptional. Let's build it line-by-line!** 🎨✨
