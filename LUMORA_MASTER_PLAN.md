@@ -8,6 +8,157 @@
 
 ---
 
+## 📍 SESSION CONTINUITY & PROGRESS TRACKING
+
+### HOW TO USE THIS PLAN ACROSS MULTIPLE SESSIONS
+
+This master plan contains 1,400+ lines covering 12-18 months of work. You'll execute it across dozens of sessions over many months. Here's how to ensure you never miss anything:
+
+#### 1. PROGRESS TRACKING FILE
+
+**File:** `/LUMORA_PROGRESS.md`
+
+This file tracks your current position in the plan:
+- Current phase, month, and session
+- Completed sessions (with dates, time spent, learnings)
+- In-progress session (with checklist status)
+- Upcoming sessions (next 2-3)
+- Blockers and learnings log
+- Velocity tracking (actual vs estimated time)
+
+**Status:** This file gets updated automatically after each session.
+
+#### 2. STARTING A NEW SESSION
+
+When you begin a new Claude session, use one of these commands:
+
+- **"Continue Lumora execution"**
+- **"Resume Lumora transformation"**
+- **"Next Lumora session"**
+- **"Pick up where we left off on Lumora"**
+
+Claude will automatically:
+1. ✅ Read `/LUMORA_PROGRESS.md` to see where you are
+2. ✅ Read the relevant section from this master plan
+3. ✅ Show current progress and next steps
+4. ✅ Ask for your confirmation before proceeding
+5. ✅ Execute the next session
+6. ✅ Update `/LUMORA_PROGRESS.md` when complete
+
+#### 3. SESSION WORKFLOW
+
+**Before Starting Work:**
+- Claude reads progress file → knows exact position
+- Shows you: "Currently on Session 1.3 (40% complete). Next: Update gradient classes. Ready to continue?"
+- You confirm or ask questions
+
+**During Work:**
+- Claude works through checklist item-by-item
+- Marks items complete as they finish
+- Documents any blockers or learnings
+- Uses TodoWrite tool to track progress
+
+**After Completing Work:**
+- Updates `/LUMORA_PROGRESS.md` with:
+  - Completed session details
+  - Time spent (actual vs estimated)
+  - Files modified
+  - Learnings/decisions made
+  - Next session preview
+- Commits changes to git
+- Shows overall progress increase
+
+#### 4. PROGRESS VISIBILITY
+
+At any time, you can ask:
+- **"Show Lumora progress"** → See overall completion %
+- **"What's next for Lumora?"** → See upcoming sessions
+- **"What Lumora sessions are complete?"** → See completion history
+- **"Any Lumora blockers?"** → See issues list
+- **"How long have I spent on Lumora?"** → See time tracking
+
+#### 5. HANDLING INTERRUPTIONS
+
+If you need to stop mid-session:
+- Say **"Pause Lumora - save progress"**
+- Claude updates progress file with partial completion
+- Marks current checklist items (completed vs remaining)
+- Next session resumes exactly where you left off
+
+#### 6. VERIFICATION CHECKPOINTS
+
+After each month completes:
+- Claude shows month completion criteria
+- Reviews all session checklists (100% done?)
+- Tests deliverables
+- Asks: "Ready to proceed to next month?"
+- Updates progress file with milestone achieved
+- Celebrates completion! 🎉
+
+---
+
+### WHY THIS SYSTEM WORKS
+
+**Problem:** 1,400-line plan executed over 12-18 months = easy to lose track
+**Solution:** Progress file acts as a bookmark + session log
+
+**Problem:** New Claude sessions have no memory of previous work
+**Solution:** Standard resume command → Claude reads progress file first
+
+**Problem:** Details get forgotten between sessions
+**Solution:** Learnings log captures decisions, blockers, time adjustments
+
+**Problem:** Unclear if you're on track
+**Solution:** Progress % + completion criteria + velocity tracking
+
+---
+
+### EXAMPLE: HOW IT LOOKS IN PRACTICE
+
+**Session 1 (January 21):**
+```
+You: "Start Lumora Session 1.1"
+Claude: Creates LUMORA_PROGRESS.md, executes landing page showcase
+Claude: Updates progress → Session 1.1 complete ✅ (18h actual vs 16h estimated)
+```
+
+**Session 2 (January 28):**
+```
+You: "Continue Lumora"
+Claude: *Reads LUMORA_PROGRESS.md*
+Claude: "Session 1.1 complete (landing page). Next: Session 1.2 (Color Palette & Tokens, 8h estimated). Ready?"
+You: "Yes"
+Claude: *Executes Session 1.2*
+Claude: Updates progress → Session 1.2 complete ✅
+```
+
+**Session 15 (March 10):**
+```
+You: "Continue Lumora"
+Claude: "You're on Month 2, Session 2.3. 32% complete overall. Last completed: F1 lesson (22h). Next: F2 lesson creation..."
+```
+
+Never loses place, never repeats work, always knows context.
+
+---
+
+### INITIAL SETUP (Before First Session)
+
+The initial `/LUMORA_PROGRESS.md` file has been created with:
+- Status: Ready to start Session 1.1
+- Progress: 0%
+- Next up: Landing Page Showcase (16 hours)
+
+**To start the transformation, say:**
+- **"Start Lumora Session 1.1"** or
+- **"Begin Lumora transformation"**
+
+---
+
+**With this system, you can work on Lumora across any number of sessions over 12-18 months and never lose your place. Every detail tracked, every decision logged, every session resumable.**
+
+---
+
 ## 🎯 STRATEGIC VISION
 
 **Transform From:** Generic "AI for kids" educational site

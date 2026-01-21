@@ -54,6 +54,72 @@
 **Recommended Path:** Transform into Lumora - Creative AI Platform for Gen Z (ages 13-25)
 **See:** `LUMORA_MASTER_PLAN.md` for complete 12-18 month transformation strategy
 
+### Lumora Transformation Execution
+
+When user says **"Continue Lumora"**, **"Resume Lumora"**, **"Next Lumora session"**, or **"Pick up where we left off on Lumora"**:
+
+**1. Read Progress File:**
+- Read `/LUMORA_PROGRESS.md` to understand current state
+- Identify current session, completion %, any blockers
+- Load checklist for current/next session
+
+**2. Read Relevant Section:**
+- Read the section from `/LUMORA_MASTER_PLAN.md` for current session
+- Load detailed requirements and deliverables
+- Understand success criteria
+
+**3. Show Status:**
+- Display: Current phase/month/session
+- Show progress: "Session X.Y (Z% complete)"
+- Show checklist: completed items ✅ vs remaining items ⬜
+- Show any blockers or notes
+
+**4. Ask Confirmation:**
+- "Ready to continue Session X.Y?" or "Should I proceed?"
+- Allow user to ask questions or adjust scope
+- Wait for explicit approval
+
+**5. Execute Work:**
+- Use TodoWrite to track session checklist items
+- Work through items one-by-one systematically
+- Mark complete as you go (never batch completions)
+- Test after each major change
+- Document decisions/learnings in real-time
+- Handle blockers immediately (don't push through)
+
+**6. Update Progress File:**
+- Mark session complete when 100% done
+- Update `/LUMORA_PROGRESS.md` with:
+  - Session completion date
+  - Time spent (actual vs estimated)
+  - Files modified (list all paths)
+  - Learnings logged (what worked, what didn't)
+  - Decisions made (with rationale)
+  - Next session preview
+- Commit changes with descriptive message
+- Push to current branch
+
+**7. Summary & Next Steps:**
+- Show what was accomplished (deliverables)
+- Show overall progress % increase
+- Preview next session (title, estimated time)
+- Ask: "Ready to continue to next session or pause here?"
+
+**Important Rules:**
+- ✅ Always read progress file FIRST before any Lumora work
+- ✅ Never assume state - always check current position
+- ✅ Update progress file AFTER every session (even partial)
+- ✅ Track actual time vs estimated (learn from variances)
+- ✅ Log all decisions with rationale
+- ✅ One session at a time (don't jump ahead)
+
+**If Starting Fresh:**
+User says **"Start Lumora Session 1.1"** or **"Begin Lumora transformation"**:
+- Verify `/LUMORA_PROGRESS.md` exists and is at 0%
+- Read Session 1.1 details from master plan
+- Execute first session
+- Update progress file
+
 ---
 
 ## 📊 Current Tech Stack
