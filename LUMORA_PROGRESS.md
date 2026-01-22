@@ -2,9 +2,26 @@
 
 **Last Updated:** 2026-01-21
 **Current Phase:** Phase 1: Foundation Transformation (Months 1-3)
-**Current Month:** Not Started - Ready to Begin
-**Current Session:** Ready to start Session 1.1
+**Current Month:** Month 1 - Design System Overhaul
+**Current Session:** Ready to start Session 0 (Design Foundation)
 **Overall Progress:** 0% (0 sessions complete)
+**Execution Mode:** Autonomous with checkpoints
+
+---
+
+## 🤖 AUTONOMOUS EXECUTION STATUS
+
+**Token Budget:**
+- Current session tokens used: ~122K / 200K (61%)
+- Next checkpoint at: 130K tokens (65%)
+- Estimated work remaining: ~1-2 hours before checkpoint
+
+**Last Checkpoint:** None (first session)
+
+**Commands to use:**
+- Say **"Execute Lumora"** to start Session 0
+- Say **"Continue Lumora"** after any checkpoint
+- Say **"Lumora status"** to check progress
 
 ---
 
@@ -89,34 +106,87 @@ None currently.
 
 ---
 
+## 📋 CHECKPOINT HISTORY
+
+None yet. First execution starting.
+
+---
+
 ## 📞 HOW TO RESUME IN NEW SESSION
 
-When starting a new Claude session, say one of these commands:
+### **Starting Fresh:**
+Say: **"Execute Lumora"** or **"Start Lumora Session 0"**
 
-- **"Continue Lumora execution"**
-- **"Resume Lumora transformation"**
-- **"Next Lumora session"**
-- **"Pick up where we left off on Lumora"**
+### **After Token Checkpoint:**
+When you see "⚠️ TOKEN CHECKPOINT", start a new session and say:
+- **"Continue Lumora"**
 
 Claude will automatically:
-1. Read this file to understand current state
+1. Read this file to know exact position
 2. Read relevant section from `LUMORA_MASTER_PLAN.md`
-3. Show current progress and next steps
-4. Ask for confirmation before proceeding
-5. Execute the next session
-6. Update this file when complete
+3. Show what was completed and what's next
+4. Resume autonomous execution
+5. Work until next checkpoint (130K tokens) or completion
+
+### **After User Input Checkpoint:**
+When you see "🛑 USER INPUT REQUIRED":
+1. Provide the requested input (design approval, feedback, etc.)
+2. Say **"Continue Lumora"**
+
+### **Check Status:**
+Say: **"Lumora status"** or **"Show Lumora progress"**
 
 ---
 
 ## 🎯 QUICK STATUS
 
-**To start the transformation:**
-Say: **"Start Lumora Session 1.1"** or **"Begin Lumora transformation"**
+**Current Position:** Ready to begin Month 1, Session 0 (Design Foundation)
 
-**Current Position:** Ready to begin Month 1, Session 1.1 (Landing Page Showcase)
+**What's Next:**
+- Session 0: Build design inspiration board, select typography, create mockups
+- Duration: 6-8 hours
+- Will pause at: ~130K tokens (checkpoint) or session complete
 
-**What's Next:** Build 3 landing page variations to determine design direction for entire platform
+**To Start:**
+Say: **"Execute Lumora"**
 
 ---
 
-*This file is automatically updated after each session. Last update: 2026-01-21 (Initial setup)*
+## 📝 SESSION TEMPLATE
+
+```markdown
+## SESSION X.Y: [Name]
+
+**Status:** Complete / In Progress (Z%)
+**Started:** [timestamp]
+**Completed:** [timestamp]
+**Duration:** X hours (estimated: Y hours)
+**Token Checkpoints:** N checkpoints during execution
+
+### Completed Tasks:
+- ✅ Task 1
+- ✅ Task 2
+
+### Files Modified:
+- `/path/to/file1.tsx`
+- `/path/to/file2.ts`
+
+### Commits:
+- abc1234: [commit message]
+
+### Decisions Made:
+- [Date] Decision: [what] Rationale: [why]
+
+### Learnings:
+- What worked: [insights]
+- Adjustments: [for next time]
+
+### Token Usage:
+- Checkpoints: [list if multiple]
+- Total tokens: [approximate]
+```
+
+---
+
+*This file is automatically updated after each checkpoint. Autonomous execution mode enabled.*
+*Last update: 2026-01-21 (Autonomous workflow implemented)*
