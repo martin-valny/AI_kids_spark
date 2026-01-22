@@ -2340,20 +2340,120 @@ This master plan supersedes all previous planning documents and provides the com
 
 #### **MONTH 1: Design System Overhaul**
 
-**Session 1.1: Landing Page Showcase (Week 1-2, 16 hours)**
+**🎨 SESSION 0: DESIGN FOUNDATION (CRITICAL - BEFORE ANY CODING)**
+
+**Duration:** 6-8 hours
+**Goal:** Build design foundation to guide all implementation
+
+**Why This Matters:** Design sells. Especially to Gen Z. Don't code blindly - design with intention.
+
+**Checklist:**
+- [ ] **Design Inspiration Board** (2 hours)
+  - Collect 50+ screenshots: Spotify, Discord, Notion, Linear, Behance
+  - Music production apps: Ableton Live, FL Studio, Logic Pro
+  - Tag by category: typography, color, layout, components, animations
+  - Create Pinterest board or Figma file
+  - Identify 3-5 patterns to emulate
+
+- [ ] **Typography System** (2 hours)
+  - Choose display font for headlines (bold, impact)
+  - Choose body font for readability (clean, modern)
+  - Test combinations (Space Grotesk + Inter recommended)
+  - Create type scale: 12px to 60px (mobile to desktop)
+  - Define font weights: when to use 400/500/600/700
+
+- [ ] **3 Landing Page Variations - Detailed Specs** (2 hours)
+  - **Option 1: Tech/Professional**
+    - Color: Cyan 70%, Magenta 30%
+    - Hero: Data viz, metrics, credibility
+    - Typography: Clean sans-serif
+    - Vibe: "LinkedIn meets Spotify"
+
+  - **Option 2: Creative/Bold**
+    - Color: Magenta 60%, Gold 25%, Cyan 15%
+    - Hero: Student portfolio work front and center
+    - Typography: Display fonts, strong hierarchy
+    - Vibe: "Behance meets TikTok"
+
+  - **Option 3: Social/Community**
+    - Color: Gold 55%, Cyan 45%
+    - Hero: Testimonials, student faces, community
+    - Typography: Friendly, approachable
+    - Vibe: "Discord meets Duolingo"
+
+- [ ] **Mobile-First Wireframes** (2 hours)
+  - Sketch mobile layouts (375px): homepage, lessons, profile
+  - Define navigation pattern (bottom tab bar)
+  - Map user flows (signup → first lesson → completion)
+  - Ensure thumb-friendly touch targets (44px minimum)
+
+**Deliverable:** Design foundation document that guides Sessions 1.1-1.8
+
+---
+
+**Session 1.1: Landing Page Showcase (Week 1-2, 20 hours)**
+
+**⚠️ TIME UPDATED:** 16h → 20h (added design approval gate + iteration buffer)
+
+**DESIGN-FIRST APPROACH (NEW):**
+
+*Before Coding (4 hours):*
+- [ ] Create low-fidelity mockups in Figma (all 3 variations)
+- [ ] Use detailed specs from Session 0
+- [ ] Get design feedback on mockups (5-10 people)
+- [ ] Iterate mockups until 1+ gets >60% approval
+- [ ] Document design decisions in learnings log
+
+*Implementation (12 hours):*
 - [ ] Create `/src/pages/LandingShowcase.tsx` directory
 - [ ] Build landing option 1: Tech/Professional
 - [ ] Build landing option 2: Creative/Bold
 - [ ] Build landing option 3: Social/Community
-- [ ] Test all 3 on mobile + desktop
-- [ ] Share with 10-20 people for feedback
+- [ ] Test all 3 on mobile (375px) + tablet (768px) + desktop (1440px)
 
-**Session 1.2: Color Palette & Tokens (Week 1, 8 hours)**
-- [ ] Update `/tailwind.config.ts` colors (lines 68-112 reference)
-- [ ] Add dark professional palette (surface-dark, accent-cyan, etc.)
-- [ ] Update `/src/design-system/tokens.ts` mappings
-- [ ] Create test page to preview new colors
-- [ ] Verify contrast ratios meet accessibility standards
+*Design Approval Gate (4 hours):*
+- [ ] **Test with exactly 20 people** (10 ages 13-18, 10 ages 19-25)
+- [ ] Use structured survey + screenshot uploads
+- [ ] Calculate approval % (positive / total responses)
+- [ ] **GATE:** At least 1 design must get ≥70% positive feedback
+- [ ] If none reach 70%: Budget 1 extra week for iteration
+- [ ] Document: Which design won? Why? What patterns to apply?
+
+*Quality Checks:*
+- [ ] Screenshot test: Looks good in Twitter card preview?
+- [ ] Share test: Would Gen Z screenshot and share this?
+- [ ] Brand test: Remove logo - still recognizable as Lumora?
+- [ ] Speed test: Lighthouse performance score >90
+
+**Session 1.2: Color Palette & Typography System (Week 1, 10 hours)**
+
+**⚠️ TIME UPDATED:** 8h → 10h (added typography system)
+
+*Color Palette (4 hours):*
+- [ ] Update `/tailwind.config.ts` colors (dark professional palette)
+- [ ] Add surfaces: `surface-dark`, `surface-elevated`, `surface-card`
+- [ ] Add text: `text-primary`, `text-secondary`, `text-muted`
+- [ ] Add accents: `accent-cyan`, `accent-magenta`, `accent-gold`
+- [ ] Add functional: `accent-teal` (success), `accent-coral` (warning), `accent-crimson` (error)
+- [ ] Verify contrast ratios meet WCAG AA (4.5:1 minimum)
+
+*Typography System (4 hours - NEW):*
+- [ ] Add font families to `tailwind.config.ts`
+  - Display: 'Space Grotesk' (headlines, impact)
+  - Body: 'Inter' (readable, clean)
+  - Mono: 'JetBrains Mono' (code, technical)
+- [ ] Define type scale (12px to 60px)
+- [ ] Define font weights (400/500/600/700)
+- [ ] Define line heights (tight/snug/normal/relaxed)
+- [ ] Define letter spacing (tight/normal/wide)
+- [ ] Test typography on mobile vs desktop
+- [ ] Document when to use each font/weight/size
+
+*Design Tokens Update (2 hours):*
+- [ ] Update `/src/design-system/tokens.ts` with new colors
+- [ ] Add typography tokens (font families, scales, weights)
+- [ ] Create test page to preview colors + typography together
+- [ ] Test readability on dark backgrounds
 
 **Session 1.3: Global CSS Updates (Week 1, 10 hours)**
 - [ ] Update `/src/index.css` (20+ class updates documented in plan)
@@ -2363,12 +2463,48 @@ This master plan supersedes all previous planning documents and provides the com
 - [ ] Update `.btn-primary`, `.btn-secondary`
 - [ ] Test all classes in isolation
 
-**Session 1.4: Core Components (Week 1, 6 hours)**
-- [ ] Update `GlassCard.tsx` variant classes (8 colors)
-- [ ] Update `GradientButton.tsx` with neon gradients
-- [ ] Update `Header.tsx` (dark nav, text colors)
-- [ ] Update `Footer.tsx` (dark background)
-- [ ] Update `NeuralGalaxy.tsx` (cyan/magenta/gold particles)
+**Session 1.4: Core Components with States (Week 1, 8 hours)**
+
+**⚠️ TIME UPDATED:** 6h → 8h (added component states documentation)
+
+*For EACH component, document ALL states:*
+
+**GlassCard.tsx (2 hours):**
+- [ ] Update 8 color variants (blue, purple, green, pink, orange, yellow, teal, magenta)
+- [ ] Define states:
+  - Default: `background: rgba(30, 30, 30, 0.85)`, `border: rgba(255, 255, 255, 0.08)`
+  - Hover: `border: rgba(0, 212, 255, 0.3)`, `transform: translateY(-2px)`, `transition: 300ms`
+  - Active: `transform: translateY(0)`, `shadow reduced`
+  - Disabled: `opacity: 0.5`, `cursor: not-allowed`
+- [ ] Test hover states feel responsive (<100ms)
+
+**GradientButton.tsx (2 hours):**
+- [ ] Add neon gradient: `linear-gradient(135deg, #00d4ff, #ff006e)`
+- [ ] Define states:
+  - Default: Gradient with glow `box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3)`
+  - Hover: Stronger glow + lift `translateY(-1px)`
+  - Active: Reset position
+  - Loading: Spinning icon, `cursor: wait`
+  - Disabled: Gray `rgba(128, 128, 128, 0.3)`, `cursor: not-allowed`
+- [ ] Animation timing: 200-300ms (snappy feel)
+
+**Header.tsx (1.5 hours):**
+- [ ] Dark nav background
+- [ ] Logo with gradient (cyan → magenta)
+- [ ] Text colors: `text-primary` for nav items
+- [ ] Hover: `text-accent-cyan` with underline animation
+- [ ] Sticky header with scroll shadow
+
+**Footer.tsx (1 hour):**
+- [ ] Dark background: `surface-elevated`
+- [ ] Text: `text-secondary`
+- [ ] Links: `hover:text-accent-cyan` with smooth transition
+
+**NeuralGalaxy.tsx (1.5 hours):**
+- [ ] Update particle colors: cyan, magenta, gold
+- [ ] Increase particle count for density
+- [ ] Smooth animation (60fps target)
+- [ ] Test performance on low-end devices
 
 **Session 1.5: Archive Existing Lessons (Week 2, 4 hours)**
 - [ ] Create `/src/pages/archived/` directory
@@ -2392,24 +2528,118 @@ This master plan supersedes all previous planning documents and provides the com
 - [ ] Add social proof section
 - [ ] Test mobile responsiveness
 
+**Session 1.9: Mobile Design Pass (Week 3, 8 hours - NEW)**
+
+**⚠️ CRITICAL:** Gen Z is mobile-first (89 min/day on TikTok). Desktop-first design will fail.
+
+**Goal:** Ensure mobile experience is PERFECT, not just "works"
+
+*Touch Targets & Thumb Zones (2 hours):*
+- [ ] All buttons/links: minimum 44px × 44px (iOS guideline)
+- [ ] Recommended: 48px × 48px (easier to tap)
+- [ ] Spacing between interactive elements: 8px minimum
+- [ ] Important actions in bottom 1/3 of screen (thumb-friendly)
+- [ ] No tiny links, no accidental taps
+
+*Mobile Navigation (2 hours):*
+- [ ] Implement bottom tab bar (home, lessons, profile, more)
+- [ ] Sticky header (collapses on scroll)
+- [ ] Hamburger menu for secondary items
+- [ ] Swipe gestures for cards/carousels
+- [ ] Test one-handed use (can reach everything with thumb)
+
+*Mobile Typography & Layout (2 hours):*
+- [ ] Mobile type scale (smaller than desktop)
+- [ ] Text: `text-base: 16px` (minimum readable)
+- [ ] Headlines: max `text-4xl: 32px` on mobile
+- [ ] Line length: 50-75 characters (optimal readability)
+- [ ] Generous spacing (not cramped)
+
+*Mobile-Specific Components (2 hours):*
+- [ ] Bottom sheet modals (not center modals)
+- [ ] Pull-to-refresh (if applicable)
+- [ ] Toast notifications (not alerts)
+- [ ] Swipeable cards
+- [ ] Touch-friendly forms (large inputs, auto-focus, keyboard-aware)
+
+*Real Device Testing:*
+- [ ] iPhone SE (375px - smallest modern iPhone)
+- [ ] iPhone 14 (standard size)
+- [ ] Android budget phone (slower performance test)
+- [ ] Performance: Page load <2s on 3G
+- [ ] No white flashes (dark mode)
+- [ ] Smooth scrolling (60fps)
+
 **Session 1.8: Final QA & Deploy (Week 3-4, 20 hours)**
+
+*Final Polish (8 hours):*
 - [ ] Update all remaining pages with dark theme
 - [ ] Fix hardcoded color references
 - [ ] Test all interactive elements
-- [ ] Mobile responsive testing (375px, 768px, 1024px)
-- [ ] Accessibility check (contrast, ARIA labels)
+- [ ] Accessibility check (contrast, ARIA labels, keyboard navigation)
 - [ ] Performance optimization (Lighthouse score >90)
-- [ ] Deploy to staging, test production-like
-- [ ] Get feedback from 5-10 beta testers
-- [ ] Iterate based on feedback
+
+*Design Quality Checklist (4 hours):*
+- [ ] **Visual Polish (Must pass 10/10):**
+  - All text readable (WCAG AA: 4.5:1 contrast)
+  - Consistent spacing (8px grid system)
+  - No orphaned text (headlines split awkwardly)
+  - Proper visual hierarchy
+  - Smooth animations (60fps)
+  - Loading states designed
+  - Mobile tested on real device
+  - Dark mode perfected (no white flashes)
+  - Icons consistent style
+  - Hover states <100ms response
+
+- [ ] **Gen Z Appeal (Must pass 8/10):**
+  - Shareable (looks cool in screenshots)
+  - Modern (feels 2026, not 2020)
+  - Fast (page loads <2s)
+  - Bold (not boring corporate)
+  - Authentic (not trying too hard)
+  - Professional (credible, trustworthy)
+  - Accessible (anyone can use it)
+  - Delightful (small surprises)
+  - Cohesive (every page feels same brand)
+  - Memorable (distinct from competitors)
+
+- [ ] **Screenshot Test:** Take screenshot, remove branding. Still recognizable as Lumora?
+
+*Deploy & Feedback (8 hours):*
+- [ ] Deploy to staging environment
+- [ ] Test in production-like conditions
+- [ ] Get feedback from 10 beta testers (exact target audience)
+- [ ] Iterate on critical feedback
+- [ ] Final commit to branch
 
 **Month 1 Completion Criteria:**
-- ✅ Dark design system live
+- ✅ Session 0 complete (design foundation built)
+- ✅ Dark design system live across platform
+- ✅ Typography system implemented
+- ✅ Component states documented and functional
+- ✅ Landing page approved (≥70% positive feedback)
 - ✅ Old lessons archived
 - ✅ Navigation restructured
 - ✅ Homepage redesigned
-- ✅ Mobile tested
-- ✅ Ready for content creation
+- ✅ Mobile-first design verified (Session 1.9)
+- ✅ Design quality checklist passed
+- ✅ Ready for content creation (Month 2)
+
+**Month 1 Updated Time Estimate:**
+- Session 0: 6-8h (NEW)
+- Session 1.1: 20h (was 16h)
+- Session 1.2: 10h (was 8h)
+- Session 1.3: 10h
+- Session 1.4: 8h (was 6h)
+- Session 1.5: 4h
+- Session 1.6: 12h
+- Session 1.7: 10h
+- Session 1.9: 8h (NEW)
+- Session 1.8: 20h
+- **TOTAL: 108-110 hours (was 86h)**
+
+**Realistic Timeline:** 6 weeks (18h/week) instead of 4 weeks
 
 ---
 
