@@ -1,9 +1,9 @@
 # Claude.md - AI Kids Spark Project Guide
 
-**Last Updated:** 2026-01-16
-**Project:** AI Kids Spark → AI Spark (13+ pivot recommended)
-**Status:** Feature-complete frontend, backend implementation required for production
-**Branch:** claude/deployment-compliance-review-3NyeN
+**Last Updated:** 2026-01-21
+**Project:** AI Kids Spark → Lumora (Creative AI Platform for Gen Z)
+**Status:** Master plan complete, ready for Phase 1 execution (design transformation)
+**Branch:** claude/session-6-execution-Xka7i
 
 ---
 
@@ -51,8 +51,74 @@
 - ❌ No payment system (subscription UI is mockup only)
 - ❌ No COPPA compliance (targets ages 6-12 but not implemented)
 
-**Recommended Path:** Pivot to 13+ platform to avoid COPPA complexity
-**See:** `IMPLEMENTATION_PLAN_OPTION_A.md` for detailed deployment strategy
+**Recommended Path:** Transform into Lumora - Creative AI Platform for Gen Z (ages 13-25)
+**See:** `LUMORA_MASTER_PLAN.md` for complete 12-18 month transformation strategy
+
+### Lumora Transformation Execution
+
+When user says **"Continue Lumora"**, **"Resume Lumora"**, **"Next Lumora session"**, or **"Pick up where we left off on Lumora"**:
+
+**1. Read Progress File:**
+- Read `/LUMORA_PROGRESS.md` to understand current state
+- Identify current session, completion %, any blockers
+- Load checklist for current/next session
+
+**2. Read Relevant Section:**
+- Read the section from `/LUMORA_MASTER_PLAN.md` for current session
+- Load detailed requirements and deliverables
+- Understand success criteria
+
+**3. Show Status:**
+- Display: Current phase/month/session
+- Show progress: "Session X.Y (Z% complete)"
+- Show checklist: completed items ✅ vs remaining items ⬜
+- Show any blockers or notes
+
+**4. Ask Confirmation:**
+- "Ready to continue Session X.Y?" or "Should I proceed?"
+- Allow user to ask questions or adjust scope
+- Wait for explicit approval
+
+**5. Execute Work:**
+- Use TodoWrite to track session checklist items
+- Work through items one-by-one systematically
+- Mark complete as you go (never batch completions)
+- Test after each major change
+- Document decisions/learnings in real-time
+- Handle blockers immediately (don't push through)
+
+**6. Update Progress File:**
+- Mark session complete when 100% done
+- Update `/LUMORA_PROGRESS.md` with:
+  - Session completion date
+  - Time spent (actual vs estimated)
+  - Files modified (list all paths)
+  - Learnings logged (what worked, what didn't)
+  - Decisions made (with rationale)
+  - Next session preview
+- Commit changes with descriptive message
+- Push to current branch
+
+**7. Summary & Next Steps:**
+- Show what was accomplished (deliverables)
+- Show overall progress % increase
+- Preview next session (title, estimated time)
+- Ask: "Ready to continue to next session or pause here?"
+
+**Important Rules:**
+- ✅ Always read progress file FIRST before any Lumora work
+- ✅ Never assume state - always check current position
+- ✅ Update progress file AFTER every session (even partial)
+- ✅ Track actual time vs estimated (learn from variances)
+- ✅ Log all decisions with rationale
+- ✅ One session at a time (don't jump ahead)
+
+**If Starting Fresh:**
+User says **"Start Lumora Session 1.1"** or **"Begin Lumora transformation"**:
+- Verify `/LUMORA_PROGRESS.md` exists and is at 0%
+- Read Session 1.1 details from master plan
+- Execute first session
+- Update progress file
 
 ---
 
@@ -169,10 +235,9 @@ AI_kids_spark/
 │
 ├── public/resources/       # Downloadable worksheets (need footer updates)
 │
-├── IMPLEMENTATION_PLAN_OPTION_A.md  # Deployment strategy (13+ pivot)
-├── CONTENT_CHANGES_CHECKLIST.md    # File-by-file changes needed
-├── BEFORE_AFTER_COMPARISON.md      # Visual before/after guide
-└── Claude.md               # This file
+├── LUMORA_MASTER_PLAN.md           # Complete transformation strategy (45 lessons, 4 domains)
+├── /archive/                       # Obsolete planning documents (preserved for reference)
+└── Claude.md                       # This file
 ```
 
 ---
@@ -202,7 +267,7 @@ AI_kids_spark/
 
 ### Implementation Phases
 
-**See `IMPLEMENTATION_PLAN_OPTION_A.md` for detailed code examples**
+**See `LUMORA_MASTER_PLAN.md` for comprehensive transformation plan (45 lessons, market research, execution framework)**
 
 #### Phase 1: Critical Security Fixes (30 min) 🔴
 - Fix `DEBUG_UNLOCK_ALL` flag
@@ -401,8 +466,8 @@ git commit --no-verify -m "message"
 ### "Pre-commit hook too slow"
 **Solution:** Expected (~7s). It's preventing bugs before they reach codebase.
 
-### "Can't find IMPLEMENTATION_PLAN_OPTION_A.md"
-**Solution:** Make sure you're on branch `claude/deployment-compliance-review-3NyeN`, not main.
+### "Can't find LUMORA_MASTER_PLAN.md"
+**Solution:** Make sure you're on branch `claude/session-6-execution-Xka7i`, not main.
 
 ---
 
@@ -420,9 +485,9 @@ git commit --no-verify -m "message"
 
 1. **Read this file first** - Contains critical context
 2. **Check current branch** - Should have implementation docs
-3. **Understand deployment decision** - 13+ pivot vs COPPA compliance
+3. **Understand Lumora transformation** - Complete platform redesign (45 lessons, 4 domains)
 4. **Review security issues** - Fix DEBUG_UNLOCK_ALL before other work
-5. **Reference implementation plan** - `IMPLEMENTATION_PLAN_OPTION_A.md`
+5. **Reference master plan** - `LUMORA_MASTER_PLAN.md`
 
 ### When Making Changes
 
@@ -702,12 +767,11 @@ After testing, report results in this format:
 
 ### In This Repository
 - **`Claude.md`** - This file (master context)
-- **`IMPLEMENTATION_PLAN_OPTION_A.md`** - Deployment strategy (1,828 lines)
-- **`CONTENT_CHANGES_CHECKLIST.md`** - File-by-file changes (384 lines)
-- **`BEFORE_AFTER_COMPARISON.md`** - Visual before/after (851 lines)
+- **`LUMORA_MASTER_PLAN.md`** - Complete transformation strategy (1,400+ lines, 45 lessons, market research)
 - **`README.md`** - Original Lovable platform setup
 - **`src/design-system/patterns.md`** - Design patterns
 - **`.verification/workflows/claude-feedback-loop.md`** - Verification docs
+- **`/archive/`** - Obsolete planning documents (preserved for reference)
 
 ### External Resources
 - **Supabase:** https://supabase.com/docs
