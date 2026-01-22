@@ -54,13 +54,26 @@
 **Recommended Path:** Transform into Lumora - Creative AI Platform for Gen Z (ages 13-25)
 **See:** `LUMORA_MASTER_PLAN.md` for complete 12-18 month transformation strategy
 
-### Lumora Transformation Execution
+### Lumora Transformation Execution - AUTONOMOUS MODE
 
-When user says **"Continue Lumora"**, **"Resume Lumora"**, **"Next Lumora session"**, or **"Pick up where we left off on Lumora"**:
+**Commands:**
+- **"Execute Lumora"** - Start autonomous execution
+- **"Continue Lumora"** - Resume after checkpoint
+- **"Lumora status"** - Check progress without executing
+- **"Pause Lumora"** - Emergency stop
+
+---
+
+## 🤖 AUTONOMOUS EXECUTION PROTOCOL
+
+When user says **"Execute Lumora"** or **"Continue Lumora"**:
+
+### **PHASE 1: INITIALIZATION**
 
 **1. Read Progress File:**
 - Read `/LUMORA_PROGRESS.md` to understand current state
 - Identify current session, completion %, any blockers
+- Check token usage from previous checkpoint
 - Load checklist for current/next session
 
 **2. Read Relevant Section:**
@@ -68,57 +81,290 @@ When user says **"Continue Lumora"**, **"Resume Lumora"**, **"Next Lumora sessio
 - Load detailed requirements and deliverables
 - Understand success criteria
 
-**3. Show Status:**
-- Display: Current phase/month/session
-- Show progress: "Session X.Y (Z% complete)"
-- Show checklist: completed items ✅ vs remaining items ⬜
-- Show any blockers or notes
+**3. Show Status & Get Approval:**
+```
+SESSION STATUS:
+- Current: Session X.Y (Z% complete)
+- Last completed: Session X.Y
+- Next tasks: [list 3-5 key items]
+- Estimated time: X hours
+- Token budget: 130K (will pause at 65% = ~130K tokens)
 
-**4. Ask Confirmation:**
-- "Ready to continue Session X.Y?" or "Should I proceed?"
-- Allow user to ask questions or adjust scope
-- Wait for explicit approval
+AUTONOMOUS MODE:
+- I'll work without asking until checkpoint
+- Commit & push every 20 minutes
+- Pause at: Token limit OR user input needed
 
-**5. Execute Work:**
-- Use TodoWrite to track session checklist items
-- Work through items one-by-one systematically
-- Mark complete as you go (never batch completions)
-- Test after each major change
-- Document decisions/learnings in real-time
-- Handle blockers immediately (don't push through)
+PROCEED? (Say "yes" to start autonomous execution)
+```
 
-**6. Update Progress File:**
-- Mark session complete when 100% done
-- Update `/LUMORA_PROGRESS.md` with:
-  - Session completion date
-  - Time spent (actual vs estimated)
-  - Files modified (list all paths)
-  - Learnings logged (what worked, what didn't)
-  - Decisions made (with rationale)
-  - Next session preview
-- Commit changes with descriptive message
-- Push to current branch
+### **PHASE 2: AUTONOMOUS EXECUTION**
 
-**7. Summary & Next Steps:**
-- Show what was accomplished (deliverables)
-- Show overall progress % increase
-- Preview next session (title, estimated time)
-- Ask: "Ready to continue to next session or pause here?"
+**Work Mode (No Interruptions):**
+- ✅ Create/edit files per master plan specs
+- ✅ Use TodoWrite to track checklist items
+- ✅ Mark items complete as they finish (never batch)
+- ✅ Commit every ~20 minutes or after logical units
+- ✅ Push commits to branch immediately
+- ✅ Run verification after major changes
+- ✅ Document decisions in LUMORA_PROGRESS.md
+- ✅ Monitor token usage continuously
 
-**Important Rules:**
-- ✅ Always read progress file FIRST before any Lumora work
-- ✅ Never assume state - always check current position
-- ✅ Update progress file AFTER every session (even partial)
-- ✅ Track actual time vs estimated (learn from variances)
-- ✅ Log all decisions with rationale
-- ✅ One session at a time (don't jump ahead)
+**Git Commit Pattern:**
+```bash
+# After completing sub-task
+git add [relevant files]
+git commit -m "Session X.Y (step N/M): [what was done]"
+git push -u origin claude/session-6-execution-Xka7i
 
-**If Starting Fresh:**
-User says **"Start Lumora Session 1.1"** or **"Begin Lumora transformation"**:
-- Verify `/LUMORA_PROGRESS.md` exists and is at 0%
-- Read Session 1.1 details from master plan
-- Execute first session
-- Update progress file
+# Pattern: Commit every 20 min OR logical completion
+```
+
+**Token Monitoring:**
+```
+Current tokens: Check after each major operation
+Threshold: 130,000 tokens (65% of 200K limit)
+Action: When approaching threshold, finish current task and checkpoint
+```
+
+### **PHASE 3: SMART CHECKPOINTS**
+
+**Automatic pause when:**
+
+**1. TOKEN LIMIT (130K tokens reached):**
+```
+⚠️ TOKEN CHECKPOINT (130K/200K used)
+
+COMPLETED THIS SESSION:
+- ✅ [List all completed tasks]
+- ✅ [Files modified with commit hashes]
+
+PROGRESS UPDATE:
+- Session X.Y: Z% complete
+- Overall: W% complete (session N of M)
+- Time spent: X hours (estimated: Y hours)
+
+ALL CHANGES COMMITTED TO:
+Branch: claude/session-6-execution-Xka7i
+Commits: [list last 3 commit messages]
+
+NEXT STEPS:
+1. Start new session (fresh 200K tokens)
+2. Say "Continue Lumora"
+3. I'll resume exactly where I left off
+
+Token checkpoint saved. Ready to resume in new session.
+```
+
+**2. USER INPUT REQUIRED:**
+```
+🛑 USER INPUT REQUIRED
+
+CHECKPOINT: [What needs approval]
+
+COMPLETED:
+- ✅ [What I finished]
+
+YOUR ACTION NEEDED:
+[Specific instructions on what to test/approve/provide]
+
+CANNOT PROCEED UNTIL:
+[What you need to provide]
+
+Say "Continue Lumora" after providing input.
+```
+
+**3. SESSION COMPLETE:**
+```
+✅ SESSION X.Y COMPLETE
+
+ACCOMPLISHED:
+- [List all deliverables]
+
+TIME TRACKING:
+- Actual: X hours
+- Estimated: Y hours
+- Variance: +/- Z%
+
+FILES MODIFIED:
+- [List all files with paths]
+
+COMMITS: N commits pushed
+BRANCH: claude/session-6-execution-Xka7i
+
+PROGRESS:
+- Month N: X% complete (Y of Z sessions)
+- Overall: W% complete
+
+NEXT SESSION: X.Y+1 - [Title] (estimated: X hours)
+
+OPTIONS:
+1. "Continue Lumora" - Start next session immediately
+2. "Pause" - Stop here for now
+3. "Show details" - Review what was done
+```
+
+**4. BLOCKER ENCOUNTERED:**
+```
+🚨 BLOCKER (cannot proceed autonomously)
+
+ISSUE: [Describe blocker]
+- [What I tried]
+- [Why it failed]
+
+NEED FROM YOU:
+- [Specific decision or action required]
+
+CONTEXT:
+- Current task: [what I was doing]
+- Files affected: [paths]
+
+Say "Continue Lumora" after resolving blocker.
+```
+
+### **PHASE 4: PROGRESS DOCUMENTATION**
+
+**After every checkpoint, update `/LUMORA_PROGRESS.md`:**
+```markdown
+## SESSION X.Y: [Name]
+
+**Status:** Complete / In Progress (Z% done)
+**Started:** [timestamp]
+**Completed:** [timestamp]
+**Duration:** X hours (estimated: Y hours)
+
+### Completed Tasks:
+- ✅ Task 1
+- ✅ Task 2
+
+### Files Modified:
+- `/path/to/file1.tsx`
+- `/path/to/file2.ts`
+
+### Commits:
+- abc1234: Session X.Y (1/3): [message]
+- def5678: Session X.Y (2/3): [message]
+- ghi9012: Session X.Y (3/3): [message]
+
+### Decisions Made:
+- [Date] Decision: [what] Rationale: [why]
+
+### Learnings:
+- What worked: [insights]
+- What didn't: [issues]
+- Adjustments: [for next time]
+
+### Token Usage:
+- Started with: [tokens remaining from previous]
+- Checkpoint at: 130K tokens
+- Estimated remaining work: X hours
+```
+
+---
+
+## 📊 TOKEN MANAGEMENT PROTOCOL
+
+**Token Budget per Session:**
+- Total: 200,000 tokens
+- Work until: 130,000 tokens (65%)
+- Reserve: 70,000 tokens (buffer)
+
+**Estimated Work Time:**
+- ~3-4 hours of autonomous work per session token budget
+- For longer sessions (10+ hours): Expect 3-4 checkpoints
+- User intervention: Say "Continue Lumora" at each checkpoint
+
+**Tracking Method:**
+- Monitor token usage after each major operation
+- When approaching 130K, complete current task cleanly
+- Commit, push, update progress, checkpoint
+
+---
+
+## 🔧 GIT OPERATIONS (FULLY AUTONOMOUS)
+
+**I handle all git operations without asking:**
+
+```bash
+# Create branches
+git checkout -b claude/new-branch-name
+git push -u origin claude/new-branch-name
+
+# Regular commits (every 20 min or logical unit)
+git add .
+git commit -m "Descriptive message"
+git push
+
+# Pull latest
+git pull origin claude/session-6-execution-Xka7i
+
+# Merge main (if no conflicts)
+git fetch origin main
+git merge origin/main
+git push
+```
+
+**Merge to main:**
+- I prepare PR description
+- You review and merge via GitHub UI (safer)
+
+---
+
+## 🎯 EXECUTION RULES
+
+**Autonomous Execution:**
+- ✅ Write code per LUMORA_MASTER_PLAN.md specs
+- ✅ Commit & push every 20 minutes
+- ✅ No questions until checkpoint
+- ✅ Document all decisions
+- ✅ Test after major changes
+- ✅ Update progress file continuously
+
+**Pause Points:**
+- ⚠️ Token limit (130K)
+- ⚠️ User input needed (design approval, feedback)
+- ⚠️ Session complete (natural break)
+- ⚠️ Blocker (merge conflict, verification failure)
+
+**Never:**
+- ❌ Don't ask for permission mid-task
+- ❌ Don't skip verification
+- ❌ Don't batch todo completions
+- ❌ Don't work past token limit
+- ❌ Don't guess on design decisions (pause instead)
+
+---
+
+## 💬 USER COMMANDS
+
+**To start autonomous execution:**
+```
+"Execute Lumora"
+"Start Lumora autonomous mode"
+```
+
+**To resume after checkpoint:**
+```
+"Continue Lumora"
+"Resume Lumora execution"
+```
+
+**To check status without executing:**
+```
+"Lumora status"
+"Show Lumora progress"
+"Where are we in Lumora?"
+```
+
+**To stop immediately:**
+```
+"Pause Lumora"
+"Stop Lumora execution"
+```
+
+---
+
+**With this protocol, I work autonomously with minimal interruption while ensuring nothing is lost at checkpoints.**
 
 ---
 
