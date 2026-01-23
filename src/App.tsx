@@ -47,11 +47,11 @@ import AIVideoProject from "./pages/projects/AIVideoProject";
 
 import DesignPilot from "./pages/DesignPilot";
 
-// Lumora Landing Pages (Session 1.1)
+// Lumora Landing Pages
 import LandingShowcase from "./pages/landing/LandingShowcase";
-import TechProfessional from "./pages/landing/TechProfessional";
-import CreativeBold from "./pages/landing/CreativeBold";
-import SocialCommunity from "./pages/landing/SocialCommunity";
+import NeoBrutalist from "./pages/landing/NeoBrutalist";
+import VaporStudio from "./pages/landing/VaporStudio";
+import LinearMotion from "./pages/landing/LinearMotion";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
@@ -134,11 +134,11 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/account" element={<AccountSettings />} />
-          {/* Lumora Landing Pages (Session 1.1) */}
+          {/* Lumora Landing Pages */}
           <Route path="/landing-showcase" element={<LandingShowcase />} />
-          <Route path="/landing/tech-professional" element={<TechProfessional />} />
-          <Route path="/landing/creative-bold" element={<CreativeBold />} />
-          <Route path="/landing/social-community" element={<SocialCommunity />} />
+          <Route path="/landing/neo-brutalist" element={<NeoBrutalist />} />
+          <Route path="/landing/vapor-studio" element={<VaporStudio />} />
+          <Route path="/landing/linear-motion" element={<LinearMotion />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
