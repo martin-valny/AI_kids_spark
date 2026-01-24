@@ -52,6 +52,10 @@ import LandingShowcase from "./pages/landing/LandingShowcase";
 import NeoBrutalist from "./pages/landing/NeoBrutalist";
 import VaporStudio from "./pages/landing/VaporStudio";
 import LinearMotion from "./pages/landing/LinearMotion";
+import CosmicData from "./pages/landing/CosmicData";
+import BrutalistRedline from "./pages/landing/BrutalistRedline";
+import BrutalistTerminal from "./pages/landing/BrutalistTerminal";
+import BrutalistHazard from "./pages/landing/BrutalistHazard";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
@@ -135,10 +139,15 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/account" element={<AccountSettings />} />
           {/* Lumora Landing Pages */}
+          <Route path="/landing" element={<LandingShowcase />} />
           <Route path="/landing-showcase" element={<LandingShowcase />} />
           <Route path="/landing/neo-brutalist" element={<NeoBrutalist />} />
           <Route path="/landing/vapor-studio" element={<VaporStudio />} />
           <Route path="/landing/linear-motion" element={<LinearMotion />} />
+          <Route path="/landing/cosmic-data" element={<CosmicData />} />
+          <Route path="/landing/brutalist-redline" element={<BrutalistRedline />} />
+          <Route path="/landing/brutalist-terminal" element={<BrutalistTerminal />} />
+          <Route path="/landing/brutalist-hazard" element={<BrutalistHazard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

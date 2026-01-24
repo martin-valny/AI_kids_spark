@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Layers } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -69,6 +69,70 @@ export default function LandingShowcase() {
         'Micro-animations',
       ],
     },
+    {
+      id: 'cosmic-data',
+      name: 'Cosmic Data',
+      path: '/landing/cosmic-data',
+      tagline: 'Futuristic data visualization',
+      description: 'Dark cosmic aesthetic with 3D particle systems, geometric wireframe sphere, and flowing data waves. Ethereal, tech-forward, mysterious.',
+      color: '#8b5cf6',
+      icon: <Atom className="w-8 h-8" />,
+      targetAudience: 'Tech-savvy Gen Z drawn to futuristic, data-driven aesthetics',
+      keyFeatures: [
+        '3D particle wave system',
+        'Wireframe geometric sphere',
+        'Bokeh light effects',
+        'Cosmic purple/cyan palette',
+      ],
+    },
+    {
+      id: 'brutalist-redline',
+      name: 'Redline Tabloid',
+      path: '/landing/brutalist-redline',
+      tagline: 'Punk zine newspaper aesthetic',
+      description: 'Sensationalist tabloid design with newsprint textures, halftone dots, torn paper edges. Headlines scream urgency and authenticity.',
+      color: '#e63946',
+      icon: <Newspaper className="w-8 h-8" />,
+      targetAudience: 'Gen Z who love bold statements and counter-culture vibes',
+      keyFeatures: [
+        'Newspaper column layouts',
+        'Breaking news ticker',
+        'Halftone dot textures',
+        'Torn paper effects',
+      ],
+    },
+    {
+      id: 'brutalist-terminal',
+      name: 'Terminal Hacker',
+      path: '/landing/brutalist-terminal',
+      tagline: 'Retro CRT hacker aesthetic',
+      description: 'Green-on-black terminal interface with CRT scan lines, typing animations, and command prompts. Matrix vibes meets 1980s computing.',
+      color: '#00ff00',
+      icon: <Terminal className="w-8 h-8" />,
+      targetAudience: 'Tech-obsessed Gen Z who romanticize hacker culture',
+      keyFeatures: [
+        'CRT screen effects',
+        'Typing animations',
+        'Command line interface',
+        'ASCII art elements',
+      ],
+    },
+    {
+      id: 'brutalist-hazard',
+      name: 'Hazard Zone',
+      path: '/landing/brutalist-hazard',
+      tagline: 'Industrial construction aesthetic',
+      description: 'Black and yellow hazard stripes, warning signs, stencil typography. Construction zone energy with blueprint grids and safety iconography.',
+      color: '#ffd000',
+      icon: <Construction className="w-8 h-8" />,
+      targetAudience: 'Gen Z who appreciate industrial, high-visibility aesthetics',
+      keyFeatures: [
+        'Hazard stripe patterns',
+        'Stencil spray-paint type',
+        'Warning sign UI',
+        'Blueprint grid backgrounds',
+      ],
+    },
   ];
 
   return (
@@ -99,7 +163,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 3 unique designs with Gen Z creators (ages 13-25)
+            Testing 7 unique designs with Gen Z creators (ages 13-25)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -108,7 +172,7 @@ export default function LandingShowcase() {
         </motion.div>
 
         {/* Variation Cards */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-20">
           {variations.map((variation, index) => (
             <motion.div
               key={variation.id}
@@ -259,13 +323,13 @@ export default function LandingShowcase() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold mb-2" style={{ color: '#BFFF00' }}>
-                    3
+                    7
                   </div>
                   <p className="font-medium mb-1" style={{ color: showcase.text }}>
                     Design Approaches
                   </p>
                   <p className="text-sm" style={{ color: showcase.textSecondary }}>
-                    Brutalist, Vapor Studio, Linear
+                    4 Brutalist + Vapor + Linear + Cosmic
                   </p>
                 </div>
               </div>
@@ -281,9 +345,8 @@ export default function LandingShowcase() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p className="text-sm" style={{ color: showcase.textMuted }}>
-            Each variation represents a distinct aesthetic philosophy: raw authenticity (Neo-Brutalist),
-            creative tool aesthetic (Vapor Studio), and refined sophistication (Linear Motion).
-            Testing which resonates most with the Gen Z creator audience.
+            7 distinct aesthetics: lime brutalist, tabloid punk, hacker terminal, industrial hazard,
+            vapor studio, refined SaaS, and cosmic data visualization. Testing which resonates with Gen Z creators.
           </p>
         </motion.div>
       </main>
