@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -133,6 +133,38 @@ export default function LandingShowcase() {
         'Blueprint grid backgrounds',
       ],
     },
+    {
+      id: 'y2k-chrome',
+      name: 'Y2K Chrome',
+      path: '/landing/y2k-chrome',
+      tagline: 'Early 2000s nostalgic cyber',
+      description: 'Chrome text effects, holographic buttons, floating stars, cursor trails. Nostalgic Y2K futurism that Gen Z ironically loves.',
+      color: '#ff69b4',
+      icon: <Star className="w-8 h-8" />,
+      targetAudience: 'Gen Z who love nostalgic early internet aesthetics',
+      keyFeatures: [
+        'Chrome metallic text',
+        'Holographic gradients',
+        'Floating star animations',
+        'Bubble glass cards',
+      ],
+    },
+    {
+      id: 'aurora-canvas',
+      name: 'Aurora Canvas',
+      path: '/landing/aurora-canvas',
+      tagline: 'Ethereal artist sanctuary',
+      description: 'Flowing aurora gradients, organic blob shapes, elegant serif typography. Dreamy, sophisticated creative studio vibe for young artists.',
+      color: '#00d4aa',
+      icon: <Palette className="w-8 h-8" />,
+      targetAudience: 'Creative Gen Z who want a refined, artistic aesthetic',
+      keyFeatures: [
+        'Flowing aurora backgrounds',
+        'Organic blob shapes',
+        'Elegant serif typography',
+        'Soft glass morphism',
+      ],
+    },
   ];
 
   return (
@@ -163,7 +195,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 7 unique designs with Gen Z creators (ages 13-25)
+            Testing 9 unique designs with Gen Z creators (ages 13-25)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -323,13 +355,13 @@ export default function LandingShowcase() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold mb-2" style={{ color: '#BFFF00' }}>
-                    7
+                    9
                   </div>
                   <p className="font-medium mb-1" style={{ color: showcase.text }}>
                     Design Approaches
                   </p>
                   <p className="text-sm" style={{ color: showcase.textSecondary }}>
-                    4 Brutalist + Vapor + Linear + Cosmic
+                    4 Brutalist + Vapor + Linear + Cosmic + Y2K + Aurora
                   </p>
                 </div>
               </div>
@@ -345,8 +377,8 @@ export default function LandingShowcase() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p className="text-sm" style={{ color: showcase.textMuted }}>
-            7 distinct aesthetics: lime brutalist, tabloid punk, hacker terminal, industrial hazard,
-            vapor studio, refined SaaS, and cosmic data visualization. Testing which resonates with Gen Z creators.
+            9 distinct aesthetics: lime brutalist, tabloid punk, hacker terminal, industrial hazard,
+            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, and aurora artist sanctuary. Testing which resonates with Gen Z creators.
           </p>
         </motion.div>
       </main>
