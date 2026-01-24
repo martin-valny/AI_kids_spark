@@ -58,6 +58,7 @@ import BrutalistTerminal from "./pages/landing/BrutalistTerminal";
 import BrutalistHazard from "./pages/landing/BrutalistHazard";
 import Y2KChrome from "./pages/landing/Y2KChrome";
 import AuroraCanvas from "./pages/landing/AuroraCanvas";
+import AuroraPro from "./pages/landing/AuroraPro";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
@@ -152,6 +153,7 @@ const App = () => (
           <Route path="/landing/brutalist-hazard" element={<BrutalistHazard />} />
           <Route path="/landing/y2k-chrome" element={<Y2KChrome />} />
           <Route path="/landing/aurora-canvas" element={<AuroraCanvas />} />
+          <Route path="/landing/aurora-pro" element={<AuroraPro />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
