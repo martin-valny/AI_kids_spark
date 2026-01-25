@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -181,6 +181,22 @@ export default function LandingShowcase() {
         'Crimson Pro + DM Sans typography',
       ],
     },
+    {
+      id: 'neural-stream',
+      name: 'Neural Stream',
+      path: '/landing/neural-stream',
+      tagline: 'Data-driven elegance',
+      description: 'Deep navy background with flowing data particles, wireframe geometry, hexagonal frames. Insitro-inspired aesthetic - sophisticated, tech-forward, premium.',
+      color: '#00d4ff',
+      icon: <Hexagon className="w-8 h-8" />,
+      targetAudience: 'Tech-savvy Gen Z who appreciate premium data visualization aesthetics',
+      keyFeatures: [
+        'Flowing data particle streams',
+        'Wireframe geometric sphere',
+        'Hexagonal image frames',
+        'Cyan/gold accent palette',
+      ],
+    },
   ];
 
   return (
@@ -211,7 +227,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 10 unique designs with Gen Z creators (ages 13-25)
+            Testing 11 unique designs with Gen Z creators (ages 13-25)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -371,13 +387,13 @@ export default function LandingShowcase() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold mb-2" style={{ color: '#BFFF00' }}>
-                    10
+                    11
                   </div>
                   <p className="font-medium mb-1" style={{ color: showcase.text }}>
                     Design Approaches
                   </p>
                   <p className="text-sm" style={{ color: showcase.textSecondary }}>
-                    4 Brutalist + Vapor + Linear + Cosmic + Y2K + 2 Aurora
+                    4 Brutalist + Vapor + Linear + Cosmic + Y2K + 2 Aurora + Neural
                   </p>
                 </div>
               </div>
@@ -393,8 +409,8 @@ export default function LandingShowcase() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p className="text-sm" style={{ color: showcase.textMuted }}>
-            10 distinct aesthetics: lime brutalist, tabloid punk, hacker terminal, industrial hazard,
-            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, and aurora pro hyperspace. Testing which resonates with Gen Z creators.
+            11 distinct aesthetics: lime brutalist, tabloid punk, hacker terminal, industrial hazard,
+            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro magic dust, and neural stream data elegance. Testing which resonates with Gen Z creators.
           </p>
         </motion.div>
       </main>
