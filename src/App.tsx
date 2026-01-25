@@ -60,6 +60,9 @@ import Y2KChrome from "./pages/landing/Y2KChrome";
 import AuroraCanvas from "./pages/landing/AuroraCanvas";
 import AuroraPro from "./pages/landing/AuroraPro";
 import NeuralStream from "./pages/landing/NeuralStream";
+import NeoBrutalistCyan from "./pages/landing/NeoBrutalistCyan";
+import NeoBrutalistMagenta from "./pages/landing/NeoBrutalistMagenta";
+import NeoBrutalistOrange from "./pages/landing/NeoBrutalistOrange";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
@@ -156,6 +159,9 @@ const App = () => (
           <Route path="/landing/aurora-canvas" element={<AuroraCanvas />} />
           <Route path="/landing/aurora-pro" element={<AuroraPro />} />
           <Route path="/landing/neural-stream" element={<NeuralStream />} />
+          <Route path="/landing/neo-brutalist-cyan" element={<NeoBrutalistCyan />} />
+          <Route path="/landing/neo-brutalist-magenta" element={<NeoBrutalistMagenta />} />
+          <Route path="/landing/neo-brutalist-orange" element={<NeoBrutalistOrange />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

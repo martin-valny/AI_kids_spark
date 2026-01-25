@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon, MonitorSmartphone, Flame, Circle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -197,6 +197,54 @@ export default function LandingShowcase() {
         'Cyan/gold accent palette',
       ],
     },
+    {
+      id: 'neo-brutalist-cyan',
+      name: 'Brutalist Cyan',
+      path: '/landing/neo-brutalist-cyan',
+      tagline: 'Digital cyberpunk edge',
+      description: 'Same raw brutalist energy as the original, but with electric cyan accent. Cold, digital, matrix-inspired vibe.',
+      color: '#00FFFF',
+      icon: <MonitorSmartphone className="w-8 h-8" />,
+      targetAudience: 'Gen Z drawn to cyberpunk and digital aesthetics',
+      keyFeatures: [
+        'Electric cyan accent',
+        'Thick borders, no gradients',
+        'Monospace typography',
+        'Glitchy animations',
+      ],
+    },
+    {
+      id: 'neo-brutalist-magenta',
+      name: 'Brutalist Magenta',
+      path: '/landing/neo-brutalist-magenta',
+      tagline: 'Punk rebellion vibes',
+      description: 'Same raw brutalist energy as the original, but with hot magenta accent. Bold, rebellious, Y2K punk energy.',
+      color: '#FF00FF',
+      icon: <Circle className="w-8 h-8" />,
+      targetAudience: 'Gen Z who love bold, rebellious punk aesthetics',
+      keyFeatures: [
+        'Hot magenta accent',
+        'Thick borders, no gradients',
+        'Monospace typography',
+        'Glitchy animations',
+      ],
+    },
+    {
+      id: 'neo-brutalist-orange',
+      name: 'Brutalist Orange',
+      path: '/landing/neo-brutalist-orange',
+      tagline: 'Industrial warning energy',
+      description: 'Same raw brutalist energy as the original, but with vibrant orange accent. Aggressive, high-visibility, industrial feel.',
+      color: '#FF6600',
+      icon: <Flame className="w-8 h-8" />,
+      targetAudience: 'Gen Z who appreciate industrial, high-energy aesthetics',
+      keyFeatures: [
+        'Vibrant orange accent',
+        'Thick borders, no gradients',
+        'Monospace typography',
+        'Glitchy animations',
+      ],
+    },
   ];
 
   return (
@@ -227,7 +275,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 11 unique designs with Gen Z creators (ages 13-25)
+            Testing 14 unique designs with Gen Z creators (ages 13-25)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -387,13 +435,13 @@ export default function LandingShowcase() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold mb-2" style={{ color: '#BFFF00' }}>
-                    11
+                    14
                   </div>
                   <p className="font-medium mb-1" style={{ color: showcase.text }}>
                     Design Approaches
                   </p>
                   <p className="text-sm" style={{ color: showcase.textSecondary }}>
-                    4 Brutalist + Vapor + Linear + Cosmic + Y2K + 2 Aurora + Neural
+                    7 Brutalist + Vapor + Linear + Cosmic + Y2K + 2 Aurora + Neural
                   </p>
                 </div>
               </div>
@@ -409,8 +457,8 @@ export default function LandingShowcase() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p className="text-sm" style={{ color: showcase.textMuted }}>
-            11 distinct aesthetics: lime brutalist, tabloid punk, hacker terminal, industrial hazard,
-            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro magic dust, and neural stream data elegance. Testing which resonates with Gen Z creators.
+            14 distinct aesthetics: lime/cyan/magenta/orange brutalist, tabloid punk, hacker terminal, industrial hazard,
+            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro, and neural stream. Testing which resonates with Gen Z creators.
           </p>
         </motion.div>
       </main>
