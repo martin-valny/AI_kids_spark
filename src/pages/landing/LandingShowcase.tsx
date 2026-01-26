@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon, MonitorSmartphone, Flame, Circle } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon, MonitorSmartphone, Flame, Circle, Crown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -275,6 +275,22 @@ export default function LandingShowcase() {
         'Thick borders, no gradients',
         'Monospace typography',
         'Glitchy animations',
+      ],
+    },
+    {
+      id: 'lumora-creative',
+      name: 'Lumora Creative',
+      path: '/landing/lumora-creative',
+      tagline: 'Dark luxury gold aesthetic',
+      description: 'Sophisticated dark palette with white gold accents. Premium, elegant design inspired by high-end creative tools. Clean animations, gold frames.',
+      color: '#d4c5a0',
+      icon: <Crown className="w-8 h-8" />,
+      targetAudience: 'Gen Z creators who want premium, sophisticated aesthetics',
+      keyFeatures: [
+        'White gold accent palette',
+        'Metallic gradient text',
+        'Elegant gold-framed cards',
+        'Smooth entrance animations',
       ],
     },
   ];
