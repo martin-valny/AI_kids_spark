@@ -64,6 +64,7 @@ import NeuralStream from "./pages/landing/NeuralStream";
 import NeoBrutalistCyan from "./pages/landing/NeoBrutalistCyan";
 import NeoBrutalistMagenta from "./pages/landing/NeoBrutalistMagenta";
 import NeoBrutalistOrange from "./pages/landing/NeoBrutalistOrange";
+import NeoBrutalistPro from "./pages/landing/NeoBrutalistPro";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
@@ -164,6 +165,7 @@ const App = () => (
           <Route path="/landing/neo-brutalist-cyan" element={<NeoBrutalistCyan />} />
           <Route path="/landing/neo-brutalist-magenta" element={<NeoBrutalistMagenta />} />
           <Route path="/landing/neo-brutalist-orange" element={<NeoBrutalistOrange />} />
+          <Route path="/landing/neo-brutalist-pro" element={<NeoBrutalistPro />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

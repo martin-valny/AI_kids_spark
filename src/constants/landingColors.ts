@@ -136,3 +136,21 @@ export const getParticleColor = (index: number): string => {
   if (mod < 95) return auroraMotion.purple; // 10% purple
   return auroraMotion.rose; // 5% rose
 };
+
+/**
+ * Neo-Brutalist Pro - Award-winning brutalist design
+ *
+ * Electric lime on black with thick borders, monospace typography
+ * Enhanced with trust elements and social proof
+ */
+export const neoBrutalist = {
+  lime: '#BFFF00',
+  limeGlow: 'rgba(191, 255, 0, 0.4)',
+  black: '#000000',
+  white: '#ffffff',
+  darkGray: '#1a1a1a',
+  mediumGray: '#666666',
+  borderThick: '8px',
+  borderMedium: '4px',
+  borderThin: '2px',
+};
