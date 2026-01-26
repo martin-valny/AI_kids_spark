@@ -154,3 +154,42 @@ export const neoBrutalist = {
   borderMedium: '4px',
   borderThin: '2px',
 };
+
+/**
+ * Lumora Creative - Dark luxury design with white gold accents
+ *
+ * Sophisticated dark palette with metallic gold accents
+ * Clean, premium aesthetic for Gen Z creators
+ */
+export const lumoraCreative = {
+  // Backgrounds - Deep luxury dark tones
+  bg: '#0a0a0a',
+  bgElevated: '#121212',
+  bgCard: '#171717',
+  bgSurface: '#0f0f0f',
+
+  // White Gold palette
+  gold: '#d4c5a0',
+  goldLight: '#e8dcc4',
+  goldDark: '#a89968',
+  goldGlow: 'rgba(212, 197, 160, 0.3)',
+  goldBorder: 'rgba(212, 197, 160, 0.25)',
+
+  // Text
+  text: '#f5f0e6',
+  textSecondary: '#a8a29e',
+  textMuted: '#6b6560',
+
+  // Accents
+  accent: '#d4c5a0',
+  accentHover: '#e8dcc4',
+};
+
+export const lumoraGradients = {
+  // Gold metallic gradient for text
+  goldText: 'linear-gradient(180deg, #f5f0e6 0%, #d4c5a0 50%, #a89968 100%)',
+  // Gold button gradient
+  goldButton: 'linear-gradient(180deg, #d4c5a0 0%, #a89968 100%)',
+  // Subtle gold glow
+  goldGlow: 'radial-gradient(circle at 50% 50%, rgba(212, 197, 160, 0.15) 0%, transparent 70%)',
+};
