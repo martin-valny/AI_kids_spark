@@ -182,6 +182,22 @@ export default function LandingShowcase() {
       ],
     },
     {
+      id: 'aurora-motion',
+      name: 'Aurora Motion',
+      path: '/landing/aurora-motion',
+      tagline: 'Professional + magic hybrid',
+      description: 'Research-backed hybrid combining Linear Motion\'s clean structure with Aurora Pro\'s magic particles and warm coral accents. Authentic image placeholders (NO stock photos).',
+      color: '#ff8a5c',
+      icon: <Star className="w-8 h-8" />,
+      targetAudience: 'Gen Z creators who want professional credibility with a whisper of enchantment',
+      keyFeatures: [
+        'Linear Motion structure + Aurora magic',
+        'Authentic content placeholders',
+        'Muted teal/purple/rose + coral',
+        'Research-backed image strategy',
+      ],
+    },
+    {
       id: 'neural-stream',
       name: 'Neural Stream',
       path: '/landing/neural-stream',
@@ -275,7 +291,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 14 unique designs with Gen Z creators (ages 13-25)
+            Testing 15 unique designs with Gen Z creators (ages 13-25)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -435,13 +451,13 @@ export default function LandingShowcase() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold mb-2" style={{ color: '#BFFF00' }}>
-                    14
+                    15
                   </div>
                   <p className="font-medium mb-1" style={{ color: showcase.text }}>
                     Design Approaches
                   </p>
                   <p className="text-sm" style={{ color: showcase.textSecondary }}>
-                    7 Brutalist + Vapor + Linear + Cosmic + Y2K + 2 Aurora + Neural
+                    7 Brutalist + Vapor + Linear + Cosmic + Y2K + 3 Aurora + Neural
                   </p>
                 </div>
               </div>
@@ -457,8 +473,8 @@ export default function LandingShowcase() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p className="text-sm" style={{ color: showcase.textMuted }}>
-            14 distinct aesthetics: lime/cyan/magenta/orange brutalist, tabloid punk, hacker terminal, industrial hazard,
-            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro, and neural stream. Testing which resonates with Gen Z creators.
+            15 distinct aesthetics: lime/cyan/magenta/orange brutalist, tabloid punk, hacker terminal, industrial hazard,
+            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro, aurora motion, and neural stream. Testing which resonates with Gen Z creators.
           </p>
         </motion.div>
       </main>

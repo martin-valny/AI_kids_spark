@@ -83,3 +83,56 @@ export const transitions = {
   slow: '400ms ease-in-out',
   vapor: '1500ms ease-in-out',
 };
+
+/**
+ * Aurora Motion - Hybrid design combining Linear Motion + Aurora Pro
+ *
+ * Professional credibility with a whisper of enchantment
+ * Muted sophisticated palette with warm coral accent
+ */
+export const auroraMotion = {
+  // Dark backgrounds (from Linear Motion)
+  bg: '#0f0f13',
+  bgElevated: '#16161c',
+  bgCard: '#1c1c24',
+
+  // Aurora Pro muted palette
+  teal: '#5eead4',
+  tealGlow: 'rgba(94, 234, 212, 0.4)',
+  purple: '#c4b5fd',
+  purpleGlow: 'rgba(196, 181, 253, 0.4)',
+  rose: '#fda4af',
+  roseGlow: 'rgba(253, 164, 175, 0.4)',
+
+  // NEW: Warm coral for human touches
+  coral: '#ff8a5c',
+  coralGlow: 'rgba(255, 138, 92, 0.4)',
+
+  // Text (Aurora Pro's warm white + Linear Motion's muted)
+  text: '#faf5ff',
+  textSecondary: '#9898a2',
+  textMuted: '#a8a29e',
+};
+
+export const auroraGradients = {
+  // Subtle Professional (Primary CTAs)
+  coral: 'linear-gradient(135deg, #ff8a5c 0%, #ff6b6b 100%)',
+
+  // Aurora Magic (Backgrounds, accents)
+  aurora: 'linear-gradient(135deg, #5eead4 0%, #c4b5fd 50%, #fda4af 100%)',
+
+  // Muted Overlay (Section transitions)
+  overlay: 'linear-gradient(180deg, rgba(15,15,19,0) 0%, rgba(15,15,19,0.8) 100%)',
+};
+
+/**
+ * Get particle color based on index (deterministic distribution)
+ * 70% neutral, 15% teal, 10% purple, 5% rose
+ */
+export const getParticleColor = (index: number): string => {
+  const mod = index % 100;
+  if (mod < 70) return `rgba(250, 245, 255, 0.2)`; // 70% neutral
+  if (mod < 85) return auroraMotion.teal; // 15% teal
+  if (mod < 95) return auroraMotion.purple; // 10% purple
+  return auroraMotion.rose; // 5% rose
+};

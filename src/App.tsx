@@ -59,6 +59,7 @@ import BrutalistHazard from "./pages/landing/BrutalistHazard";
 import Y2KChrome from "./pages/landing/Y2KChrome";
 import AuroraCanvas from "./pages/landing/AuroraCanvas";
 import AuroraPro from "./pages/landing/AuroraPro";
+import AuroraMotion from "./pages/landing/AuroraMotion";
 import NeuralStream from "./pages/landing/NeuralStream";
 import NeoBrutalistCyan from "./pages/landing/NeoBrutalistCyan";
 import NeoBrutalistMagenta from "./pages/landing/NeoBrutalistMagenta";
@@ -158,6 +159,7 @@ const App = () => (
           <Route path="/landing/y2k-chrome" element={<Y2KChrome />} />
           <Route path="/landing/aurora-canvas" element={<AuroraCanvas />} />
           <Route path="/landing/aurora-pro" element={<AuroraPro />} />
+          <Route path="/landing/aurora-motion" element={<AuroraMotion />} />
           <Route path="/landing/neural-stream" element={<NeuralStream />} />
           <Route path="/landing/neo-brutalist-cyan" element={<NeoBrutalistCyan />} />
           <Route path="/landing/neo-brutalist-magenta" element={<NeoBrutalistMagenta />} />
