@@ -46,6 +46,25 @@ import BuildChatbotProject from "./pages/projects/BuildChatbotProject";
 import AIVideoProject from "./pages/projects/AIVideoProject";
 
 import DesignPilot from "./pages/DesignPilot";
+
+// Lumora Landing Pages
+import LandingShowcase from "./pages/landing/LandingShowcase";
+import NeoBrutalist from "./pages/landing/NeoBrutalist";
+import VaporStudio from "./pages/landing/VaporStudio";
+import LinearMotion from "./pages/landing/LinearMotion";
+import CosmicData from "./pages/landing/CosmicData";
+import BrutalistRedline from "./pages/landing/BrutalistRedline";
+import BrutalistTerminal from "./pages/landing/BrutalistTerminal";
+import BrutalistHazard from "./pages/landing/BrutalistHazard";
+import Y2KChrome from "./pages/landing/Y2KChrome";
+import AuroraCanvas from "./pages/landing/AuroraCanvas";
+import AuroraPro from "./pages/landing/AuroraPro";
+import AuroraMotion from "./pages/landing/AuroraMotion";
+import NeuralStream from "./pages/landing/NeuralStream";
+import NeoBrutalistCyan from "./pages/landing/NeoBrutalistCyan";
+import NeoBrutalistMagenta from "./pages/landing/NeoBrutalistMagenta";
+import NeoBrutalistOrange from "./pages/landing/NeoBrutalistOrange";
+import NeoBrutalistPro from "./pages/landing/NeoBrutalistPro";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
@@ -128,6 +147,25 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/account" element={<AccountSettings />} />
+          {/* Lumora Landing Pages */}
+          <Route path="/landing" element={<LandingShowcase />} />
+          <Route path="/landing-showcase" element={<LandingShowcase />} />
+          <Route path="/landing/neo-brutalist" element={<NeoBrutalist />} />
+          <Route path="/landing/vapor-studio" element={<VaporStudio />} />
+          <Route path="/landing/linear-motion" element={<LinearMotion />} />
+          <Route path="/landing/cosmic-data" element={<CosmicData />} />
+          <Route path="/landing/brutalist-redline" element={<BrutalistRedline />} />
+          <Route path="/landing/brutalist-terminal" element={<BrutalistTerminal />} />
+          <Route path="/landing/brutalist-hazard" element={<BrutalistHazard />} />
+          <Route path="/landing/y2k-chrome" element={<Y2KChrome />} />
+          <Route path="/landing/aurora-canvas" element={<AuroraCanvas />} />
+          <Route path="/landing/aurora-pro" element={<AuroraPro />} />
+          <Route path="/landing/aurora-motion" element={<AuroraMotion />} />
+          <Route path="/landing/neural-stream" element={<NeuralStream />} />
+          <Route path="/landing/neo-brutalist-cyan" element={<NeoBrutalistCyan />} />
+          <Route path="/landing/neo-brutalist-magenta" element={<NeoBrutalistMagenta />} />
+          <Route path="/landing/neo-brutalist-orange" element={<NeoBrutalistOrange />} />
+          <Route path="/landing/neo-brutalist-pro" element={<NeoBrutalistPro />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
