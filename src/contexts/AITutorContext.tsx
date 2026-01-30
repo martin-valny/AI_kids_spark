@@ -1,10 +1,14 @@
 import { createContext, useContext, useState } from 'react';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true // Only for MVP, move to backend later
-});
+// Only initialize OpenAI if API key is available (prevents crash in production without env vars)
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+const openai = apiKey
+  ? new OpenAI({
+      apiKey,
+      dangerouslyAllowBrowser: true // Only for MVP, move to backend later
+    })
+  : null;
 
 interface Message {
   role: 'user' | 'assistant';
@@ -34,6 +38,15 @@ export function AITutorProvider({ children }: { children: React.ReactNode }) {
     setMessages(prev => [...prev, { role: 'user', content: message }]);
 
     try {
+      // If OpenAI isn't configured, show a friendly message
+      if (!openai) {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: 'AI Tutor is not available in demo mode. The full experience requires API configuration.'
+        }]);
+        return;
+      }
+
       const systemPrompt = `You are a friendly AI tutor helping teens (ages 13-25)
 learn about AI and creative applications. You are encouraging, clear, and
 educational. Keep responses concise (2-3 paragraphs max).
