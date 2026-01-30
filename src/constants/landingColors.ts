@@ -193,3 +193,39 @@ export const lumoraGradients = {
   // Subtle gold glow
   goldGlow: 'radial-gradient(circle at 50% 50%, rgba(212, 197, 160, 0.15) 0%, transparent 70%)',
 };
+
+/**
+ * Lumora Aqua - Precision tech aesthetic
+ *
+ * Dark grid background with animated aqua light beams
+ * Glass morphism cards, breathing animations, parallax effects
+ */
+export const lumoraAqua = {
+  // Backgrounds
+  bg: '#050807',
+  bgGradient: `
+    radial-gradient(circle at 20% 10%, rgba(60,255,200,0.12), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(120,160,255,0.08), transparent 45%),
+    #040807
+  `,
+
+  // Aqua accent palette
+  aqua: '#78ffdc',
+  aquaGlow: 'rgba(120,255,220,0.45)',
+  aquaMuted: 'rgba(120,255,220,0.35)',
+  aquaSubtle: 'rgba(120,255,220,0.18)',
+
+  // Text
+  text: '#e6fff6',
+  textSecondary: 'rgba(220,255,245,0.82)',
+  textMuted: 'rgba(220,255,245,0.7)',
+
+  // Cards & UI
+  cardBg: 'rgba(255,255,255,0.035)',
+  cardBorder: 'rgba(255,255,255,0.16)',
+  cardGlow: 'rgba(120,255,220,0.18)',
+  cardShadow: 'inset 0 1px 0 rgba(255,255,255,0.25), 0 24px 48px rgba(0,0,0,0.55)',
+
+  // Grid
+  gridLine: 'rgba(255,255,255,0.035)',
+};
