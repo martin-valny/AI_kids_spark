@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon, MonitorSmartphone, Flame, Circle, Crown } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon, MonitorSmartphone, Flame, Circle, Crown, Waves } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -291,6 +291,22 @@ export default function LandingShowcase() {
         'Metallic gradient text',
         'Elegant gold-framed cards',
         'Smooth entrance animations',
+      ],
+    },
+    {
+      id: 'lumora-aqua',
+      name: 'Lumora Aqua',
+      path: '/landing/lumora-aqua',
+      tagline: 'Precision tech aesthetic',
+      description: 'Dark grid background with animated aqua light beams. Glass morphism cards, breathing animations, parallax effects. Futuristic builder vibe.',
+      color: '#78ffdc',
+      icon: <Waves className="w-8 h-8" />,
+      targetAudience: 'Tech-savvy Gen Z who want a futuristic builder aesthetic',
+      keyFeatures: [
+        'Animated grid background',
+        'Light beam parallax',
+        'Glass morphism cards',
+        'Breathing color animations',
       ],
     },
   ];
