@@ -516,6 +516,9 @@ export default function LumoraVideo() {
               textAlign: 'center',
               padding: '8rem 2rem 4rem',
               zIndex: 1,
+              margin: '100px 3rem 0',
+              borderRadius: '16px',
+              overflow: 'hidden',
             }}
           >
             {/* Video Background */}
@@ -560,19 +563,11 @@ export default function LumoraVideo() {
                   display: 'flex',
                   gap: '1rem',
                   justifyContent: 'center',
-                  marginBottom: '4rem',
                   flexWrap: 'wrap',
                 }}
               >
                 <button className="btn btn-primary">Start Creating Free</button>
                 <button className="btn btn-secondary">Watch Demo</button>
-              </div>
-              <div className="video-container">
-                <img
-                  src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1200&h=600&fit=crop&auto=format"
-                  alt="Lumora Platform Demo"
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
               </div>
             </div>
           </section>
