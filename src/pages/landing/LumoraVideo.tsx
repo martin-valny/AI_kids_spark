@@ -421,7 +421,7 @@ export default function LumoraVideo() {
             height: auto;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            opacity: 0.4;
+            opacity: 0.7;
           }
 
           .hero-video-overlay {
@@ -432,10 +432,10 @@ export default function LumoraVideo() {
             height: 100%;
             background: linear-gradient(
               180deg,
-              rgba(0, 0, 0, 0.6) 0%,
-              rgba(0, 0, 0, 0.3) 40%,
-              rgba(0, 0, 0, 0.5) 70%,
-              rgba(0, 0, 0, 0.9) 100%
+              rgba(0, 0, 0, 0.4) 0%,
+              rgba(0, 0, 0, 0.2) 40%,
+              rgba(0, 0, 0, 0.3) 70%,
+              rgba(0, 0, 0, 0.7) 100%
             );
           }
 
@@ -524,7 +524,7 @@ export default function LumoraVideo() {
             {/* Video Background */}
             <div className="hero-video-bg">
               <video autoPlay muted loop playsInline>
-                <source src="https://cdn.pixabay.com/video/2020/05/25/40130-424930941_large.mp4" type="video/mp4" />
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-working-on-laptop-at-night-4825-large.mp4" type="video/mp4" />
               </video>
               <div className="hero-video-overlay" />
             </div>

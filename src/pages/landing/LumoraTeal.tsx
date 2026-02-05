@@ -314,7 +314,7 @@ export default function LumoraTeal() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75));
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.55));
           z-index: 1;
         }
 
@@ -1309,7 +1309,7 @@ export default function LumoraTeal() {
           muted
           playsInline
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-typing-on-a-laptop-in-the-dark-50390-large.mp4" type="video/mp4" />
         </video>
 
         {/* Dark Overlay */}
