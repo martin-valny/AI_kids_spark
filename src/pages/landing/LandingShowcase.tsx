@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon, MonitorSmartphone, Flame, Circle, Crown, Waves } from 'lucide-react';
+import { ArrowRight, Zap, Sparkles, Layers, Atom, Newspaper, Terminal, Construction, Star, Palette, Orbit, Hexagon, MonitorSmartphone, Flame, Circle, Crown, Waves, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
@@ -309,6 +309,22 @@ export default function LandingShowcase() {
         'Breathing color animations',
       ],
     },
+    {
+      id: 'lumora-video',
+      name: 'Lumora Video',
+      path: '/landing/lumora-video',
+      tagline: 'Cinematic hero experience',
+      description: 'Immersive landing with looping background video in hero section. Aqua color scheme with glassmorphism, animated metrics, and parallax light beams.',
+      color: '#78ffdc',
+      icon: <Play className="w-8 h-8" />,
+      targetAudience: 'Gen Z creators who respond to cinematic, video-first experiences',
+      keyFeatures: [
+        'Looping hero background video',
+        'Animated metric counters',
+        'Glassmorphism domain cards',
+        'Scroll progress indicator',
+      ],
+    },
   ];
 
   return (
@@ -339,7 +355,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 16 unique designs with Gen Z creators (ages 13-25)
+            Testing 19 unique designs with Gen Z creators (ages 13-25)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -499,7 +515,7 @@ export default function LandingShowcase() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold mb-2" style={{ color: '#BFFF00' }}>
-                    16
+                    19
                   </div>
                   <p className="font-medium mb-1" style={{ color: showcase.text }}>
                     Design Approaches
@@ -521,8 +537,8 @@ export default function LandingShowcase() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p className="text-sm" style={{ color: showcase.textMuted }}>
-            16 distinct aesthetics: lime/cyan/magenta/orange brutalist + neo-brutalist pro, tabloid punk, hacker terminal, industrial hazard,
-            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro, aurora motion, and neural stream. Testing which resonates with Gen Z creators.
+            19 distinct aesthetics: lime/cyan/magenta/orange brutalist + neo-brutalist pro, tabloid punk, hacker terminal, industrial hazard,
+            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro, aurora motion, neural stream, lumora creative, lumora aqua, and lumora video. Testing which resonates with Gen Z creators.
           </p>
         </motion.div>
       </main>
