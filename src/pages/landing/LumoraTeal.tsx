@@ -294,9 +294,33 @@ export default function LumoraTeal() {
           padding: 8rem 3rem 4rem;
           text-align: center;
           z-index: 1;
+          overflow: hidden;
+        }
+
+        .hero-bg-video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+          object-position: center;
+        }
+
+        .hero-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75));
+          z-index: 1;
         }
 
         .hero-content {
+          position: relative;
+          z-index: 2;
           max-width: 900px;
           animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -538,7 +562,9 @@ export default function LumoraTeal() {
         }
 
         .feature-card {
-          background: rgba(255, 255, 255, 0.01);
+          background-color: rgba(255, 255, 255, 0.01);
+          background-size: cover;
+          background-position: center;
           backdrop-filter: blur(10px);
           border: 1px solid var(--color-border);
           border-radius: 16px;
@@ -560,7 +586,19 @@ export default function LumoraTeal() {
           background: radial-gradient(circle at center, rgba(20, 184, 166, 0.08) 0%, transparent 70%);
           opacity: 0;
           transition: opacity 0.4s ease;
-          z-index: -1;
+          z-index: 1;
+        }
+
+        .feature-card::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.72);
+          backdrop-filter: blur(2px);
+          z-index: 0;
         }
 
         .feature-card:hover {
@@ -579,6 +617,8 @@ export default function LumoraTeal() {
         }
 
         .feature-icon {
+          position: relative;
+          z-index: 2;
           width: 48px;
           height: 48px;
           border-radius: 10px;
@@ -600,6 +640,8 @@ export default function LumoraTeal() {
         }
 
         .feature-card h3 {
+          position: relative;
+          z-index: 2;
           font-size: 1.25rem;
           font-weight: 500;
           margin-bottom: 0.75rem;
@@ -607,6 +649,8 @@ export default function LumoraTeal() {
         }
 
         .feature-card p {
+          position: relative;
+          z-index: 2;
           color: var(--color-text-secondary);
           line-height: 1.7;
         }
@@ -1257,6 +1301,20 @@ export default function LumoraTeal() {
 
       {/* Hero Section */}
       <section className="hero">
+        {/* Background Video */}
+        <video
+          className="hero-bg-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-99786-large.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark Overlay */}
+        <div className="hero-overlay" />
+
         <div className="hero-content" ref={heroContentRef}>
           <div className="hero-metric">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -1282,22 +1340,6 @@ export default function LumoraTeal() {
             <div className="logo-placeholder">Brand Logo 3</div>
             <div className="logo-placeholder">Brand Logo 4</div>
           </div>
-
-          <div className="video-showcase">
-            <div className="video-container">
-              <div className="video-placeholder">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-woman-typing-on-a-laptop-in-an-office-4835-large.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1310,7 +1352,7 @@ export default function LumoraTeal() {
         </div>
 
         <div className="features-grid">
-          <div className="feature-card animate-on-scroll">
+          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop)' }}>
             <div className="feature-icon">
               <svg viewBox="0 0 24 24">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -1321,7 +1363,7 @@ export default function LumoraTeal() {
             <p>Turn product ideas into scroll-stopping social videos. No filming, no editing software—just describe what you want and watch it come to life.</p>
           </div>
 
-          <div className="feature-card animate-on-scroll">
+          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop)' }}>
             <div className="feature-icon">
               <svg viewBox="0 0 24 24">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
@@ -1331,7 +1373,7 @@ export default function LumoraTeal() {
             <p>Generate product mockups, social graphics, and marketing assets instantly. Maintain consistent style across all your content without hiring a designer.</p>
           </div>
 
-          <div className="feature-card animate-on-scroll">
+          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop)' }}>
             <div className="feature-icon">
               <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10"/>
@@ -1342,7 +1384,7 @@ export default function LumoraTeal() {
             <p>Write sales pages, email sequences, and social captions that convert. Our AI learns your voice and creates content that sounds authentically you.</p>
           </div>
 
-          <div className="feature-card animate-on-scroll">
+          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop)' }}>
             <div className="feature-icon">
               <svg viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -1353,7 +1395,7 @@ export default function LumoraTeal() {
             <p>Build workflows that run your marketing on autopilot. From lead capture to email nurture, spend less time on tasks and more time creating.</p>
           </div>
 
-          <div className="feature-card animate-on-scroll">
+          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=400&fit=crop)' }}>
             <div className="feature-icon">
               <svg viewBox="0 0 24 24">
                 <path d="M9 18V5l12-2v13M9 9l12-2"/>
@@ -1365,7 +1407,7 @@ export default function LumoraTeal() {
             <p>Generate royalty-free background music, voiceovers, and sound effects. Perfect audio for every video without licensing headaches.</p>
           </div>
 
-          <div className="feature-card animate-on-scroll">
+          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop)' }}>
             <div className="feature-icon">
               <svg viewBox="0 0 24 24">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
