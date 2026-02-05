@@ -325,6 +325,22 @@ export default function LandingShowcase() {
         'Scroll progress indicator',
       ],
     },
+    {
+      id: 'lumora-runway',
+      name: 'Lumora Runway',
+      path: '/landing/lumora-runway',
+      tagline: 'Minimal premium aesthetic',
+      description: 'Runway-inspired pure black and white design with SF Pro Display typography, 3D tilt effects on cards, rounded hero section, and minimal clean aesthetic.',
+      color: '#ffffff',
+      icon: <Play className="w-8 h-8" />,
+      targetAudience: 'Gen Z creators who appreciate minimal, high-end premium aesthetics',
+      keyFeatures: [
+        'Pure black/white color scheme',
+        '3D tilt effect on feature cards',
+        'Rounded hero with image background',
+        'Toast notifications & FAB',
+      ],
+    },
   ];
 
   return (
@@ -355,7 +371,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 19 unique designs with Gen Z creators (ages 13-25)
+            Testing 20 unique designs with Gen Z creators (ages 13-25)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -515,7 +531,7 @@ export default function LandingShowcase() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold mb-2" style={{ color: '#BFFF00' }}>
-                    19
+                    20
                   </div>
                   <p className="font-medium mb-1" style={{ color: showcase.text }}>
                     Design Approaches
@@ -537,8 +553,8 @@ export default function LandingShowcase() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <p className="text-sm" style={{ color: showcase.textMuted }}>
-            19 distinct aesthetics: lime/cyan/magenta/orange brutalist + neo-brutalist pro, tabloid punk, hacker terminal, industrial hazard,
-            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro, aurora motion, neural stream, lumora creative, lumora aqua, and lumora video. Testing which resonates with Gen Z creators.
+            20 distinct aesthetics: lime/cyan/magenta/orange brutalist + neo-brutalist pro, tabloid punk, hacker terminal, industrial hazard,
+            vapor studio, refined SaaS, cosmic data, Y2K chrome nostalgia, aurora canvas, aurora pro, aurora motion, neural stream, lumora creative, lumora aqua, lumora video, and lumora runway. Testing which resonates with Gen Z creators.
           </p>
         </motion.div>
       </main>

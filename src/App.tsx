@@ -68,6 +68,7 @@ import NeoBrutalistPro from "./pages/landing/NeoBrutalistPro";
 import LumoraCreative from "./pages/landing/LumoraCreative";
 import LumoraAqua from "./pages/landing/LumoraAqua";
 import LumoraVideo from "./pages/landing/LumoraVideo";
+import LumoraRunway from "./pages/landing/LumoraRunway";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Pricing from "./pages/Pricing";
@@ -172,6 +173,7 @@ const App = () => (
           <Route path="/landing/lumora-creative" element={<LumoraCreative />} />
           <Route path="/landing/lumora-aqua" element={<LumoraAqua />} />
           <Route path="/landing/lumora-video" element={<LumoraVideo />} />
+          <Route path="/landing/lumora-runway" element={<LumoraRunway />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
