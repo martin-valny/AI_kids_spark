@@ -524,7 +524,7 @@ export default function LumoraVideo() {
             {/* Video Background */}
             <div className="hero-video-bg">
               <video autoPlay muted loop playsInline>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-working-on-laptop-at-night-4825-large.mp4" type="video/mp4" />
+                <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
               </video>
               <div className="hero-video-overlay" />
             </div>

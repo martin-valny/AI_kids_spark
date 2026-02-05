@@ -1309,7 +1309,7 @@ export default function LumoraTeal() {
           muted
           playsInline
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-typing-on-a-laptop-in-the-dark-50390-large.mp4" type="video/mp4" />
+          <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
         </video>
 
         {/* Dark Overlay */}
