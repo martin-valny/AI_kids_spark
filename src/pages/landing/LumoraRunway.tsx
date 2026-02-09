@@ -3,17 +3,185 @@ import { useEffect, useState, useRef } from 'react';
 /**
  * Lumora Runway - Clean, Minimal Landing Page
  *
- * EXACT replica of the provided HTML design with:
+ * Premium high-tech minimal aesthetic inspired by Runway:
  * - SF Pro Display / system-ui font
- * - Pure black/white color scheme
- * - Rounded hero with image background
+ * - Pure black/white color scheme with #2DD4BF accent
+ * - Rounded hero with video background
  * - Transparent nav with blur on scroll
- * - 3D tilt effect on cards
+ * - 3D tilt effect on feature cards
  * - FAB scroll-to-top button
  * - Theme toggle with sun/moon
+ * - Toast notifications
+ * - Scroll progress bar
  *
- * Premium high-tech minimal aesthetic inspired by Runway
+ * SECTIONS (aligned with all Lumora landing pages):
+ * 1. Navigation
+ * 2. Hero with background video
+ * 3. Features (4 cards with images)
+ * 4. How It Works (3 steps)
+ * 5. Showcase Gallery (6 cards)
+ * 6. Testimonials (3 cards)
+ * 7. Pricing (3 tiers)
+ * 8. FAQ (7 items)
+ * 9. Final CTA
+ * 10. Footer (4-column)
  */
+
+// ============================================================
+// UNIFIED CONTENT (same across all 4 landing pages)
+// ============================================================
+
+const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+
+const FEATURES = [
+  {
+    title: 'AI Video in Minutes',
+    description: 'Turn product ideas into scroll-stopping social videos. No filming, no editing software—just describe what you want and watch it come to life.',
+    image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop',
+  },
+  {
+    title: 'Brand Visuals On-Demand',
+    description: 'Generate product mockups, social graphics, and marketing assets instantly. Maintain consistent style across all your content without hiring a designer.',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
+  },
+  {
+    title: 'AI Writing Assistant',
+    description: 'Write sales pages, email sequences, and social captions that convert. Our AI learns your voice and creates content that sounds authentically you.',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop',
+  },
+  {
+    title: 'Marketing Automation',
+    description: 'Build workflows that run your marketing on autopilot. From lead capture to email nurture, spend less time on tasks and more time creating.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+  },
+];
+
+const HOW_IT_WORKS = [
+  {
+    step: 1,
+    title: 'Describe What You Want',
+    description: 'Type a simple description of your content. Our AI guides you through the details to get exactly what you need.',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
+  },
+  {
+    step: 2,
+    title: 'AI Generates Your Content',
+    description: 'Watch as Lumora creates professional-quality videos, copy, designs, and workflows in seconds—not hours.',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+  },
+  {
+    step: 3,
+    title: 'Edit, Export & Launch',
+    description: 'Fine-tune with our simple editor, then export everything ready to post. No tech skills needed—just publish and grow.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+  },
+];
+
+const GALLERY = [
+  { title: 'Cyberpunk Dreams', subtitle: 'Neon-lit cityscape', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=450&fit=crop' },
+  { title: 'Ocean Serenity', subtitle: 'Underwater exploration', image: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&h=450&fit=crop' },
+  { title: 'Product Showcase', subtitle: 'Commercial photography', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=450&fit=crop' },
+  { title: 'Character Design', subtitle: 'Fantasy portrait', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=450&fit=crop' },
+  { title: 'Abstract Art', subtitle: 'Generative patterns', image: 'https://images.unsplash.com/photo-1634017839464-5c339bbe3c35?w=600&h=450&fit=crop' },
+  { title: 'Nature\'s Beauty', subtitle: 'Landscape photography', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=450&fit=crop' },
+];
+
+const TESTIMONIALS = [
+  {
+    initials: 'SK',
+    name: 'Sarah Kim',
+    role: 'Online Course Creator \u2022 $42K/mo',
+    quote: 'I went from spending 12 hours editing one video to creating 5 videos in an afternoon. Lumora handles all the heavy lifting\u2014I just guide the creative direction. Saved me $3,000/month in editing costs.',
+  },
+  {
+    initials: 'MC',
+    name: 'Marcus Chen',
+    role: 'Digital Product Creator \u2022 2,400 students',
+    quote: 'The AI copywriting alone is worth 10x the price. I launched my info product in 3 days instead of 3 weeks. Sales page, emails, social posts\u2014all done while I focused on the product itself.',
+  },
+  {
+    initials: 'EP',
+    name: 'Emily Parker',
+    role: 'Solopreneur \u2022 From $8K to $35K/mo in 90 days',
+    quote: 'Finally, AI tools that actually work together. I can go from product idea to full marketing campaign without switching between 10 different apps. My launch revenue jumped 340% with half the stress.',
+  },
+];
+
+const PRICING = [
+  {
+    badge: 'Test the waters',
+    name: 'Starter',
+    description: 'Perfect for exploring AI tools',
+    price: '$0',
+    period: '/month',
+    features: ['50 generations per month', '720p video quality', 'Basic style presets', 'Community support'],
+    cta: 'Get Started',
+    featured: false,
+  },
+  {
+    badge: 'Best for full-time creators',
+    name: 'Pro',
+    description: 'For serious solo creators scaling up',
+    price: '$49',
+    period: '/month',
+    savings: 'Save $108/year',
+    features: ['Unlimited generations', '4K video quality', 'Advanced style controls', 'Priority rendering', 'Team collaboration', 'Priority support'],
+    cta: 'Start Pro Trial',
+    featured: true,
+  },
+  {
+    badge: 'For agencies & businesses',
+    name: 'Enterprise',
+    description: 'Custom solutions for scale',
+    price: 'Custom',
+    period: '',
+    features: ['Unlimited everything', 'Custom model training', 'API access', 'Dedicated support', 'SLA guarantee', 'Custom integrations'],
+    cta: 'Contact Sales',
+    featured: false,
+  },
+];
+
+const FAQS = [
+  {
+    q: 'Do I own the commercial rights to what I create?',
+    a: 'Yes, 100%. Everything you create with Lumora is yours to use commercially\u2014sell products, run ads, post on social media, use in client work. No attribution required, no royalties owed.',
+  },
+  {
+    q: "I'm not tech-savvy. Is this really beginner-friendly?",
+    a: "Absolutely. If you can type and click a button, you can use Lumora. We've designed every tool with beginners in mind\u2014no coding, no complex software, no learning curve. Most creators generate their first content in under 5 minutes.",
+  },
+  {
+    q: 'How fast is the generation? Do I have to wait hours?',
+    a: 'Most content generates in 10-45 seconds. Videos take slightly longer (1-2 minutes for high quality), but you can queue multiple projects and let them process while you work on other things. No overnight rendering\u2014everything is near-instant.',
+  },
+  {
+    q: "What if I don't like what the AI generates?",
+    a: 'Regenerate as many times as you need (unlimited on Pro plan). You can also use our editor to tweak colors, adjust text, swap elements, or refine details without starting over. Most creators get what they want within 2-3 iterations.',
+  },
+  {
+    q: 'Can I cancel my subscription at any time?',
+    a: "Yes, cancel anytime\u2014no questions asked, no penalties. You'll keep access until the end of your billing period. Need to pause for a month? No problem. Want to downgrade? Easy. We're flexible because your business needs change.",
+  },
+  {
+    q: 'Is my data and content private and secure?',
+    a: "Your data is encrypted and never shared with third parties. We don't train our models on your private content. You can delete your data anytime. We're SOC 2 compliant and take security seriously\u2014your creations and business information stay confidential.",
+  },
+  {
+    q: 'What makes Lumora different from other AI tools?',
+    a: 'Most AI tools do one thing. Lumora is an integrated system built specifically for solo creators\u2014video, copy, design, automation, and music in one place. No switching apps, no exporting and importing, no compatibility issues. One login, one workflow, everything connected.',
+  },
+];
+
+const FOOTER_SECTIONS = [
+  { title: 'Product', links: ['Features', 'Pricing', 'Gallery', 'API', 'Changelog'] },
+  { title: 'Resources', links: ['Documentation', 'Tutorials', 'Blog', 'Community', 'Support'] },
+  { title: 'Company', links: ['About', 'Careers', 'Press', 'Contact'] },
+  { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
+];
+
+// ============================================================
+// MAIN COMPONENT
+// ============================================================
 
 export default function LumoraRunway() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,6 +189,7 @@ export default function LumoraRunway() {
   const [showFab, setShowFab] = useState(false);
   const [isLightMode, setIsLightMode] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Scroll effects
   useEffect(() => {
@@ -310,12 +479,6 @@ export default function LumoraRunway() {
           opacity: 0;
         }
 
-        .light-mode .runway-category-label {
-          background: rgba(0, 0, 0, 0.08);
-          border-color: rgba(0, 0, 0, 0.12);
-          color: rgba(0, 0, 0, 0.7);
-        }
-
         .runway-hero h1 {
           font-size: 5rem;
           font-weight: 600;
@@ -407,10 +570,6 @@ export default function LumoraRunway() {
           flex-direction: column;
           cursor: pointer;
           transition: transform 0.3s ease;
-        }
-
-        .runway-feature-card:hover {
-          transform: translateY(-8px);
         }
 
         .runway-feature-card:hover .runway-feature-image::after {
@@ -505,120 +664,533 @@ export default function LumoraRunway() {
           color: rgba(0, 0, 0, 0.65);
         }
 
-        /* Products Section */
-        .runway-products-section {
+        /* How It Works Section */
+        .runway-how-section {
           padding: 8rem 3rem;
           background: #0a0a0a;
         }
 
-        .light-mode .runway-products-section {
+        .light-mode .runway-how-section {
           background: #f9f9f9;
         }
 
-        .runway-products-grid {
+        .runway-how-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 3rem;
-          max-width: 1400px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+          max-width: 1200px;
           margin: 0 auto;
         }
 
-        .runway-product-card {
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+        .runway-how-card {
+          position: relative;
           border-radius: 12px;
           overflow: hidden;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .runway-product-card:hover {
+        .runway-how-card:hover {
           border-color: rgba(255, 255, 255, 0.15);
           transform: translateY(-8px);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .runway-product-card:hover .runway-product-image {
-          transform: scale(1.05);
-        }
-
-        .light-mode .runway-product-card {
+        .light-mode .runway-how-card {
           background: #fff;
           border-color: rgba(0, 0, 0, 0.08);
         }
 
-        .light-mode .runway-product-card:hover {
+        .light-mode .runway-how-card:hover {
           border-color: rgba(0, 0, 0, 0.15);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .runway-product-image-container {
-          overflow: hidden;
-        }
-
-        .runway-product-image {
+        .runway-how-card img {
           width: 100%;
           aspect-ratio: 16/10;
           object-fit: cover;
           display: block;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .runway-product-content {
+        .runway-how-card-body {
           padding: 2rem;
         }
 
-        .runway-product-tag {
-          display: inline-block;
-          padding: 0.25rem 0.75rem;
+        .runway-step-number {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
           background: rgba(255, 255, 255, 0.1);
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          font-size: 0.85rem;
+          font-weight: 600;
           margin-bottom: 1rem;
         }
 
-        .light-mode .runway-product-tag {
+        .light-mode .runway-step-number {
           background: rgba(0, 0, 0, 0.08);
-          color: rgba(0, 0, 0, 0.7);
+          border-color: rgba(0, 0, 0, 0.12);
         }
 
-        .runway-product-content h3 {
-          font-size: 1.5rem;
+        .runway-how-card-body h3 {
+          font-size: 1.35rem;
           font-weight: 600;
           margin-bottom: 0.75rem;
           letter-spacing: -0.02em;
         }
 
-        .runway-product-content p {
-          font-size: 1rem;
+        .runway-how-card-body p {
+          font-size: 0.95rem;
           color: rgba(255, 255, 255, 0.6);
-          line-height: 1.7;
-          margin-bottom: 1.5rem;
+          line-height: 1.6;
         }
 
-        .light-mode .runway-product-content p {
+        .light-mode .runway-how-card-body p {
           color: rgba(0, 0, 0, 0.6);
         }
 
-        .runway-product-link {
+        /* Gallery Section */
+        .runway-gallery-section {
+          padding: 8rem 3rem;
+          background: #000;
+        }
+
+        .light-mode .runway-gallery-section {
+          background: #fff;
+        }
+
+        .runway-gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .runway-gallery-card {
+          position: relative;
+          border-radius: 12px;
+          overflow: hidden;
+          cursor: pointer;
+          aspect-ratio: 4/3;
+        }
+
+        .runway-gallery-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .runway-gallery-card:hover img {
+          transform: scale(1.08);
+        }
+
+        .runway-gallery-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 1.5rem;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .runway-gallery-card:hover .runway-gallery-overlay {
+          opacity: 1;
+        }
+
+        .runway-gallery-overlay h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
           color: #fff;
-          text-decoration: none;
-          font-size: 0.95rem;
-          font-weight: 500;
-          display: inline-flex;
+          margin-bottom: 0.25rem;
+        }
+
+        .runway-gallery-overlay span {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Testimonials Section */
+        .runway-testimonials-section {
+          padding: 8rem 3rem;
+          background: #0a0a0a;
+        }
+
+        .light-mode .runway-testimonials-section {
+          background: #f9f9f9;
+        }
+
+        .runway-testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .runway-testimonial-card {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 2.5rem;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .runway-testimonial-card:hover {
+          border-color: rgba(255, 255, 255, 0.15);
+          transform: translateY(-4px);
+        }
+
+        .light-mode .runway-testimonial-card {
+          background: #fff;
+          border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .light-mode .runway-testimonial-card:hover {
+          border-color: rgba(0, 0, 0, 0.15);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .runway-testimonial-stars {
+          color: #2DD4BF;
+          font-size: 1.1rem;
+          margin-bottom: 1.25rem;
+          letter-spacing: 2px;
+        }
+
+        .runway-testimonial-quote {
+          font-size: 1rem;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.75);
+          margin-bottom: 2rem;
+          font-style: italic;
+        }
+
+        .light-mode .runway-testimonial-quote {
+          color: rgba(0, 0, 0, 0.65);
+        }
+
+        .runway-testimonial-author {
+          display: flex;
           align-items: center;
-          gap: 0.5rem;
-          transition: gap 0.2s ease;
+          gap: 1rem;
         }
 
-        .runway-product-link:hover {
+        .runway-testimonial-avatar {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          color: #2DD4BF;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode .runway-testimonial-avatar {
+          background: rgba(0, 0, 0, 0.06);
+          border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .runway-testimonial-name {
+          font-weight: 600;
+          font-size: 0.95rem;
+        }
+
+        .runway-testimonial-role {
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.5);
+          margin-top: 0.15rem;
+        }
+
+        .light-mode .runway-testimonial-role {
+          color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Pricing Section */
+        .runway-pricing-section {
+          padding: 8rem 3rem;
+          background: #000;
+        }
+
+        .light-mode .runway-pricing-section {
+          background: #fff;
+        }
+
+        .runway-pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+
+        .runway-pricing-card {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 2.5rem;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .runway-pricing-card:hover {
+          border-color: rgba(255, 255, 255, 0.15);
+          transform: translateY(-4px);
+        }
+
+        .runway-pricing-card.featured {
+          border-color: #2DD4BF;
+          background: rgba(45, 212, 191, 0.04);
+          position: relative;
+        }
+
+        .light-mode .runway-pricing-card {
+          background: #fff;
+          border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .light-mode .runway-pricing-card:hover {
+          border-color: rgba(0, 0, 0, 0.15);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .light-mode .runway-pricing-card.featured {
+          border-color: #2DD4BF;
+          background: rgba(45, 212, 191, 0.04);
+        }
+
+        .runway-pricing-badge {
+          font-size: 0.75rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: rgba(255, 255, 255, 0.5);
+          margin-bottom: 1rem;
+        }
+
+        .light-mode .runway-pricing-badge {
+          color: rgba(0, 0, 0, 0.5);
+        }
+
+        .runway-pricing-name {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          letter-spacing: -0.02em;
+        }
+
+        .runway-pricing-description {
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.5);
+          margin-bottom: 1.5rem;
+        }
+
+        .light-mode .runway-pricing-description {
+          color: rgba(0, 0, 0, 0.5);
+        }
+
+        .runway-pricing-price {
+          font-size: 3rem;
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          margin-bottom: 0.25rem;
+        }
+
+        .runway-pricing-period {
+          font-size: 1rem;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        .light-mode .runway-pricing-period {
+          color: rgba(0, 0, 0, 0.5);
+        }
+
+        .runway-pricing-savings {
+          font-size: 0.8rem;
+          color: #2DD4BF;
+          margin-bottom: 1.5rem;
+        }
+
+        .runway-pricing-features {
+          list-style: none;
+          padding: 0;
+          margin: 1.5rem 0 2rem;
+          flex: 1;
+        }
+
+        .runway-pricing-features li {
+          display: flex;
+          align-items: center;
           gap: 0.75rem;
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.7);
+          margin-bottom: 0.75rem;
         }
 
-        .light-mode .runway-product-link {
+        .light-mode .runway-pricing-features li {
+          color: rgba(0, 0, 0, 0.7);
+        }
+
+        .runway-pricing-features li::before {
+          content: '';
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: rgba(45, 212, 191, 0.15);
+          flex-shrink: 0;
+          position: relative;
+        }
+
+        .runway-pricing-features li::after {
+          content: '\u2713';
+          position: absolute;
+          margin-left: -1.35rem;
+          font-size: 0.7rem;
+          color: #2DD4BF;
+          font-weight: 700;
+        }
+
+        .runway-pricing-cta {
+          width: 100%;
+          padding: 0.875rem;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 0.95rem;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: transparent;
+          color: #fff;
+        }
+
+        .runway-pricing-cta:hover {
+          border-color: rgba(255, 255, 255, 0.3);
+          transform: translateY(-2px);
+        }
+
+        .runway-pricing-cta.featured {
+          background: #fff;
           color: #000;
+          border: none;
+        }
+
+        .runway-pricing-cta.featured:hover {
+          box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        }
+
+        .light-mode .runway-pricing-cta {
+          border-color: rgba(0, 0, 0, 0.15);
+          color: #000;
+        }
+
+        .light-mode .runway-pricing-cta:hover {
+          border-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .light-mode .runway-pricing-cta.featured {
+          background: #000;
+          color: #fff;
+        }
+
+        .light-mode .runway-pricing-cta.featured:hover {
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FAQ Section */
+        .runway-faq-section {
+          padding: 8rem 3rem;
+          background: #0a0a0a;
+        }
+
+        .light-mode .runway-faq-section {
+          background: #f9f9f9;
+        }
+
+        .runway-faq-list {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .runway-faq-item {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .light-mode .runway-faq-item {
+          border-bottom-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .runway-faq-question {
+          width: 100%;
+          background: none;
+          border: none;
+          color: inherit;
+          text-align: left;
+          padding: 1.5rem 0;
+          font-size: 1.1rem;
+          font-weight: 500;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+          font-family: inherit;
+          transition: color 0.2s ease;
+        }
+
+        .runway-faq-question:hover {
+          color: #2DD4BF;
+        }
+
+        .runway-faq-icon {
+          font-size: 1.5rem;
+          font-weight: 300;
+          transition: transform 0.3s ease;
+          flex-shrink: 0;
+          color: rgba(255, 255, 255, 0.4);
+        }
+
+        .runway-faq-icon.open {
+          transform: rotate(45deg);
+        }
+
+        .light-mode .runway-faq-icon {
+          color: rgba(0, 0, 0, 0.4);
+        }
+
+        .runway-faq-answer {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .runway-faq-answer.open {
+          max-height: 300px;
+        }
+
+        .runway-faq-answer p {
+          padding-bottom: 1.5rem;
+          font-size: 0.95rem;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.6);
+        }
+
+        .light-mode .runway-faq-answer p {
+          color: rgba(0, 0, 0, 0.6);
         }
 
         /* CTA Section */
@@ -740,7 +1312,7 @@ export default function LumoraRunway() {
           max-width: 1400px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          grid-template-columns: repeat(4, 1fr);
           gap: 3rem;
           margin-bottom: 3rem;
         }
@@ -862,8 +1434,14 @@ export default function LumoraRunway() {
             display: none;
           }
 
-          .runway-features-grid,
-          .runway-products-grid {
+          .runway-features-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .runway-how-grid,
+          .runway-gallery-grid,
+          .runway-testimonials-grid,
+          .runway-pricing-grid {
             grid-template-columns: 1fr;
           }
 
@@ -880,12 +1458,20 @@ export default function LumoraRunway() {
           }
 
           .runway-content-section,
-          .runway-products-section {
+          .runway-how-section,
+          .runway-gallery-section,
+          .runway-testimonials-section,
+          .runway-pricing-section,
+          .runway-faq-section {
             padding: 5rem 1.5rem;
           }
 
           .runway-cta-section {
             padding: 6rem 2rem;
+          }
+
+          .runway-footer-content {
+            grid-template-columns: repeat(2, 1fr);
           }
 
           .runway-fab-container {
@@ -904,7 +1490,7 @@ export default function LumoraRunway() {
         {/* Scroll Progress */}
         <div className="runway-scroll-progress" style={{ width: `${scrollProgress}%` }} />
 
-        {/* Navigation */}
+        {/* ====== 1. NAVIGATION ====== */}
         <nav className={`runway-nav ${isScrolled ? 'scrolled' : ''}`}>
           <div className="logo">
             <svg width="120" height="32" viewBox="0 0 120 32" fill="none">
@@ -916,9 +1502,9 @@ export default function LumoraRunway() {
             </svg>
           </div>
           <div className="runway-nav-links">
-            <a href="#features">Product</a>
-            <a href="#research">Research</a>
-            <a href="#company">Company</a>
+            <a href="#features">Features</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#pricing">Pricing</a>
             <button className="runway-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
               <svg className="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" strokeWidth="2">
                 <circle cx="12" cy="12" r="5"/>
@@ -939,83 +1525,158 @@ export default function LumoraRunway() {
           </div>
         </nav>
 
-        {/* Hero Section */}
+        {/* ====== 2. HERO with VIDEO ====== */}
         <section className="runway-hero">
-          <img
+          <video
             className="runway-hero-bg"
-            src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1920&h=1080&fit=crop&auto=format"
-            alt="Creative Technology"
-            loading="eager"
-          />
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src={HERO_VIDEO_URL} type="video/mp4" />
+          </video>
           <div className="runway-hero-overlay" />
           <div className="runway-hero-content">
-            <div className="runway-category-label">AI Creative Tools</div>
-            <h1>Building AI to<br/>Create the World</h1>
+            <div className="runway-category-label">Create professional content in under 30 seconds</div>
+            <h1>Master AI Tools to<br/>Create, Design & Market<br/>Your Products</h1>
             <p>The all-in-one platform for creators to master AI video, design, writing, and marketing—no technical experience needed.</p>
             <div className="runway-hero-buttons">
-              <button className="runway-btn runway-btn-primary">Get Started</button>
-              <button className="runway-btn runway-btn-secondary">Learn More →</button>
+              <button className="runway-btn runway-btn-primary">Get Started Free</button>
+              <button className="runway-btn runway-btn-secondary">Watch Demo →</button>
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* ====== 3. FEATURES (4 cards) ====== */}
         <section className="runway-content-section" id="features">
-          <h2 className="runway-section-title">Our latest Research<br/>and Products</h2>
-          <p className="runway-section-subtitle">AI is changing how stories are told, how creative work is made and how the next frontiers of content are reached.</p>
+          <h2 className="runway-section-title">Powerful AI Tools for<br/>Modern Creators</h2>
+          <p className="runway-section-subtitle">Everything you need to create, design, write, and automate—all powered by cutting-edge AI.</p>
 
           <div className="runway-features-grid">
-            <FeatureCard
-              image="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop&auto=format"
-              title="AI Video in Minutes"
-              description="Turn product ideas into scroll-stopping social videos. No filming, no editing software required."
-            />
-            <FeatureCard
-              image="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop&auto=format"
-              title="Brand Visuals On-Demand"
-              description="Generate product mockups, social graphics, and marketing assets instantly with AI."
-            />
-            <FeatureCard
-              image="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop&auto=format"
-              title="AI Writing Assistant"
-              description="Write sales pages, email sequences, and social captions that convert in your authentic voice."
-            />
-            <FeatureCard
-              image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&auto=format"
-              title="Marketing Automation"
-              description="Build workflows that run your marketing on autopilot from lead capture to nurture."
-            />
+            {FEATURES.map((f) => (
+              <FeatureCard
+                key={f.title}
+                image={f.image}
+                title={f.title}
+                description={f.description}
+              />
+            ))}
           </div>
         </section>
 
-        {/* Products Section */}
-        <section className="runway-products-section" id="research">
-          <h2 className="runway-section-title">Explore Our AI Tools</h2>
-          <p className="runway-section-subtitle">Professional-grade AI tools designed for creators, marketers, and visionaries.</p>
+        {/* ====== 4. HOW IT WORKS (3 steps) ====== */}
+        <section className="runway-how-section">
+          <h2 className="runway-section-title">How It Works</h2>
+          <p className="runway-section-subtitle">From idea to published content in three simple steps.</p>
 
-          <div className="runway-products-grid">
-            <ProductCard
-              image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=500&fit=crop&auto=format"
-              tag="Video"
-              title="Lumora Gen-3"
-              description="State-of-the-art AI video generation model built to create engaging content in real time. Interactive, controllable and general-purpose."
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=500&fit=crop&auto=format"
-              tag="Design"
-              title="Design Studio"
-              description="Generate professional product mockups, social graphics, and marketing materials with AI-powered design tools."
-            />
-            <ProductCard
-              image="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=500&fit=crop&auto=format"
-              tag="Writing"
-              title="Content Creator"
-              description="AI writing assistant that learns your voice and creates authentic content for sales pages, emails, and social media."
-            />
+          <div className="runway-how-grid">
+            {HOW_IT_WORKS.map((item) => (
+              <div key={item.step} className="runway-how-card">
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div className="runway-how-card-body">
+                  <div className="runway-step-number">{item.step}</div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* ====== 5. SHOWCASE GALLERY (6 cards) ====== */}
+        <section className="runway-gallery-section" id="gallery">
+          <h2 className="runway-section-title">Creator Showcase</h2>
+          <p className="runway-section-subtitle">See what creators are building with Lumora's AI-powered tools.</p>
+
+          <div className="runway-gallery-grid">
+            {GALLERY.map((item) => (
+              <div key={item.title} className="runway-gallery-card">
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div className="runway-gallery-overlay">
+                  <h3>{item.title}</h3>
+                  <span>{item.subtitle}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ====== 6. TESTIMONIALS (3 cards) ====== */}
+        <section className="runway-testimonials-section">
+          <h2 className="runway-section-title">Loved by Creators</h2>
+          <p className="runway-section-subtitle">Join thousands of creators already transforming their workflow with Lumora.</p>
+
+          <div className="runway-testimonials-grid">
+            {TESTIMONIALS.map((t) => (
+              <div key={t.name} className="runway-testimonial-card">
+                <div className="runway-testimonial-stars">{'\u2605'.repeat(5)}</div>
+                <p className="runway-testimonial-quote">"{t.quote}"</p>
+                <div className="runway-testimonial-author">
+                  <div className="runway-testimonial-avatar">{t.initials}</div>
+                  <div>
+                    <div className="runway-testimonial-name">{t.name}</div>
+                    <div className="runway-testimonial-role">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ====== 7. PRICING (3 tiers) ====== */}
+        <section className="runway-pricing-section" id="pricing">
+          <h2 className="runway-section-title">Simple, Transparent Pricing</h2>
+          <p className="runway-section-subtitle">Start free. Upgrade when you're ready to scale.</p>
+
+          <div className="runway-pricing-grid">
+            {PRICING.map((plan) => (
+              <div key={plan.name} className={`runway-pricing-card ${plan.featured ? 'featured' : ''}`}>
+                <div className="runway-pricing-badge">{plan.badge}</div>
+                <div className="runway-pricing-name">{plan.name}</div>
+                <div className="runway-pricing-description">{plan.description}</div>
+                <div>
+                  <span className="runway-pricing-price">{plan.price}</span>
+                  {plan.period && <span className="runway-pricing-period">{plan.period}</span>}
+                </div>
+                {plan.savings && <div className="runway-pricing-savings">{plan.savings}</div>}
+                <ul className="runway-pricing-features">
+                  {plan.features.map((feature) => (
+                    <li key={feature} style={{ position: 'relative' }}>{feature}</li>
+                  ))}
+                </ul>
+                <button className={`runway-pricing-cta ${plan.featured ? 'featured' : ''}`}>
+                  {plan.cta}
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ====== 8. FAQ (7 items) ====== */}
+        <section className="runway-faq-section">
+          <h2 className="runway-section-title">Frequently Asked Questions</h2>
+          <p className="runway-section-subtitle">Everything you need to know about Lumora.</p>
+
+          <div className="runway-faq-list">
+            {FAQS.map((faq, i) => (
+              <div key={i} className="runway-faq-item">
+                <button
+                  className="runway-faq-question"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                >
+                  <span>{faq.q}</span>
+                  <span className={`runway-faq-icon ${openFaq === i ? 'open' : ''}`}>+</span>
+                </button>
+                <div className={`runway-faq-answer ${openFaq === i ? 'open' : ''}`}>
+                  <p>{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ====== 9. CTA ====== */}
         <section className="runway-cta-section">
           <h2>Ready to bring your<br/>ideas to life?</h2>
           <p>Join thousands of creators already using Lumora to push the boundaries of creative expression.</p>
@@ -1039,49 +1700,22 @@ export default function LumoraRunway() {
           {toast}
         </div>
 
-        {/* Footer */}
-        <footer className="runway-footer" id="company">
+        {/* ====== 10. FOOTER (4-column) ====== */}
+        <footer className="runway-footer">
           <div className="runway-footer-content">
-            <div className="runway-footer-section">
-              <h4>Product</h4>
-              <ul>
-                <li><a href="#features">Lumora Gen-3</a></li>
-                <li><a href="#">Design Studio</a></li>
-                <li><a href="#">Content Creator</a></li>
-                <li><a href="#">API Access</a></li>
-                <li><a href="#">Pricing</a></li>
-              </ul>
-            </div>
-            <div className="runway-footer-section">
-              <h4>Research</h4>
-              <ul>
-                <li><a href="#">AI Video Models</a></li>
-                <li><a href="#">Publications</a></li>
-                <li><a href="#">AI Safety</a></li>
-                <li><a href="#">Technical Blog</a></li>
-              </ul>
-            </div>
-            <div className="runway-footer-section">
-              <h4>Company</h4>
-              <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Press Kit</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-            <div className="runway-footer-section">
-              <h4>Resources</h4>
-              <ul>
-                <li><a href="#">Documentation</a></li>
-                <li><a href="#">Tutorials</a></li>
-                <li><a href="#">Community</a></li>
-                <li><a href="#">Support</a></li>
-              </ul>
-            </div>
+            {FOOTER_SECTIONS.map((section) => (
+              <div key={section.title} className="runway-footer-section">
+                <h4>{section.title}</h4>
+                <ul>
+                  {section.links.map((link) => (
+                    <li key={link}><a href="#">{link}</a></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
           <div className="runway-footer-bottom">
-            <p>© 2026 Lumora AI. All rights reserved.</p>
+            <p>&copy; 2026 Lumora AI. All rights reserved.</p>
             <div style={{ display: 'flex', gap: '1.5rem' }}>
               <a href="#">Twitter</a>
               <a href="#">LinkedIn</a>
@@ -1095,7 +1729,7 @@ export default function LumoraRunway() {
   );
 }
 
-// Feature Card Component
+// Feature Card Component with 3D tilt effect
 function FeatureCard({ image, title, description }: { image: string; title: string; description: string }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -1139,28 +1773,6 @@ function FeatureCard({ image, title, description }: { image: string; title: stri
       </div>
       <div className="runway-feature-info">
         <p>{description}</p>
-      </div>
-    </div>
-  );
-}
-
-// Product Card Component
-function ProductCard({ image, tag, title, description }: { image: string; tag: string; title: string; description: string }) {
-  return (
-    <div className="runway-product-card">
-      <div className="runway-product-image-container">
-        <img className="runway-product-image" src={image} alt={title} loading="lazy" />
-      </div>
-      <div className="runway-product-content">
-        <span className="runway-product-tag">{tag}</span>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <a href="#" className="runway-product-link">
-          Learn more
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
       </div>
     </div>
   );

@@ -3,16 +3,20 @@ import { useEffect, useState } from 'react';
 /**
  * Lumora Video - Cinematic Hero Landing
  *
- * EXACT replica of the provided HTML design with:
- * - Inter font
- * - Emerald green color scheme (#0a3d30, #0d4a3a, #115945)
- * - Lowercase "lumora" gradient logo
- * - Background video in hero section
- * - Theme toggle (dark/light mode)
- * - Glassmorphism cards and buttons
- * - Gradient mesh background
+ * SECTIONS (aligned with all Lumora landing pages):
+ * 1. Navigation
+ * 2. Hero with background video
+ * 3. Features (4 cards with images)
+ * 4. How It Works (3 steps)
+ * 5. Showcase Gallery (6 cards)
+ * 6. Testimonials (3 cards)
+ * 7. Pricing (3 tiers)
+ * 8. FAQ (7 items)
+ * 9. Final CTA
+ * 10. Footer (4-column)
  *
- * Content adapted for Lumora Gen Z creator platform
+ * Emerald green color scheme (#0a3d30, #0d4a3a, #115945)
+ * Inter font, glassmorphism, gradient mesh background
  */
 
 export default function LumoraVideo() {
@@ -371,35 +375,6 @@ export default function LumoraVideo() {
             z-index: 2;
           }
 
-          .video-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 40px rgba(17, 89, 69, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            max-height: 380px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-          }
-
-          @media (max-width: 768px) {
-            .video-container {
-              max-height: 260px;
-            }
-          }
-
-          .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--gradient-primary);
-            z-index: 10000;
-            transition: width 0.1s ease;
-          }
-
           /* Hero video background */
           .hero-video-bg {
             position: absolute;
@@ -452,6 +427,107 @@ export default function LumoraVideo() {
               rgba(250, 251, 252, 0.95) 100%
             );
           }
+
+          .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 10000;
+            transition: width 0.1s ease;
+          }
+
+          /* Testimonial card */
+          .testimonial-card {
+            background: rgba(12, 15, 14, 0.4);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+          }
+
+          .light-mode .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(17, 89, 69, 0.06);
+          }
+
+          .testimonial-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+          }
+
+          /* Pricing card */
+          .pricing-card {
+            background: rgba(12, 15, 14, 0.4);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+          }
+
+          .light-mode .pricing-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(17, 89, 69, 0.06);
+          }
+
+          .pricing-card.featured {
+            background: rgba(17, 89, 69, 0.08);
+            border-color: rgba(17, 89, 69, 0.35);
+            transform: scale(1.02);
+          }
+
+          .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-accent);
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: white;
+          }
+
+          .pricing-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.25);
+          }
+
+          .pricing-card.featured:hover {
+            border-color: rgba(17, 89, 69, 0.45);
+            transform: scale(1.02) translateY(-4px);
+          }
+
+          /* FAQ item */
+          .faq-item {
+            background: rgba(12, 15, 14, 0.4);
+            backdrop-filter: blur(10px) saturate(150%);
+            -webkit-backdrop-filter: blur(10px) saturate(150%);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+          }
+
+          .light-mode .faq-item {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(17, 89, 69, 0.06);
+          }
+
+          .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+          }
         `}</style>
 
         <div className="lumora-page">
@@ -488,7 +564,7 @@ export default function LumoraVideo() {
             <div className="logo">lumora</div>
             <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
               <a href="#features" className="nav-link" style={{ display: 'none' }}>Features</a>
-              <a href="#how-it-works" className="nav-link" style={{ display: 'none' }}>How it Works</a>
+              <a href="#gallery" className="nav-link" style={{ display: 'none' }}>Gallery</a>
               <a href="#pricing" className="nav-link" style={{ display: 'none' }}>Pricing</a>
               <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
                 {isLightMode ? (
@@ -530,6 +606,9 @@ export default function LumoraVideo() {
             </div>
 
             <div style={{ maxWidth: 960, zIndex: 2 }}>
+              <div className="section-label" style={{ marginBottom: '2rem' }}>
+                Create professional content in under 30 seconds
+              </div>
               <h1
                 style={{
                   fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
@@ -543,7 +622,7 @@ export default function LumoraVideo() {
                   backgroundClip: 'text',
                 }}
               >
-                The all-in-one platform for solo creators
+                Master AI Tools to Create, Design & Market Your Products
               </h1>
               <p
                 style={{
@@ -556,7 +635,7 @@ export default function LumoraVideo() {
                   marginRight: 'auto',
                 }}
               >
-                Learn AI video generation, writing automation, design tools, and marketing workflows—no tech experience needed.
+                The all-in-one platform for solo creators. Learn AI video generation, writing automation, design tools, and marketing workflows—no tech experience needed.
               </p>
               <div
                 style={{
@@ -566,8 +645,36 @@ export default function LumoraVideo() {
                   flexWrap: 'wrap',
                 }}
               >
-                <button className="btn btn-primary">Start Creating Free</button>
+                <button className="btn btn-primary">Get Started Free</button>
                 <button className="btn btn-secondary">Watch Demo</button>
+              </div>
+
+              {/* Trust Strip */}
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '1rem',
+                marginTop: '2.5rem',
+                padding: '2rem',
+                background: 'rgba(255, 255, 255, 0.01)',
+                border: '1px solid var(--color-border)',
+                borderRadius: '12px',
+              }}>
+                <span style={{ color: 'var(--color-text-muted)', fontSize: '0.85rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', marginRight: '1rem' }}>
+                  Trusted by creators at
+                </span>
+                {['Brand Logo 1', 'Brand Logo 2', 'Brand Logo 3', 'Brand Logo 4'].map((logo, i) => (
+                  <div key={i} style={{
+                    width: 120, height: 36,
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: 6,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '0.75rem', color: 'var(--color-text-muted)', opacity: 0.6,
+                  }}>{logo}</div>
+                ))}
               </div>
             </div>
           </section>
@@ -575,7 +682,7 @@ export default function LumoraVideo() {
           {/* Features Section */}
           <section id="features" style={{ padding: '6rem 2rem', position: 'relative', zIndex: 1 }}>
             <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto 4rem' }}>
-              <div className="section-label">EVERYTHING YOU NEED</div>
+              <div className="section-label">POWERFUL FEATURES</div>
               <h2
                 style={{
                   fontSize: 'clamp(2rem, 4vw, 3rem)',
@@ -585,10 +692,10 @@ export default function LumoraVideo() {
                   lineHeight: 1.2,
                 }}
               >
-                Professional-grade AI tools designed for creators
+                Everything you need to create
               </h2>
               <p style={{ fontSize: '1.125rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
-                Turn product ideas into scroll-stopping social videos. No filming, no editing software required.
+                Professional-grade AI tools designed for creators, marketers, and visionaries
               </p>
             </div>
 
@@ -603,24 +710,24 @@ export default function LumoraVideo() {
             >
               {[
                 {
-                  title: 'AI Video Generation',
+                  title: 'AI Video in Minutes',
                   description: 'Turn product ideas into scroll-stopping social videos. No filming, no editing software—just describe what you want and watch it come to life.',
-                  image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=375&fit=crop&auto=format',
+                  image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop',
                 },
                 {
-                  title: 'Design Studio',
+                  title: 'Brand Visuals On-Demand',
                   description: 'Generate product mockups, social graphics, and marketing assets instantly. Maintain consistent style across all your content without hiring a designer.',
-                  image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=375&fit=crop&auto=format',
+                  image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
                 },
                 {
                   title: 'AI Writing Assistant',
                   description: 'Write sales pages, email sequences, and social captions that convert. Our AI learns your voice and creates content that sounds authentically you.',
-                  image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=375&fit=crop&auto=format',
+                  image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop',
                 },
                 {
                   title: 'Marketing Automation',
                   description: 'Build workflows that run your marketing on autopilot. From lead capture to email nurture, spend less time on tasks and more time creating.',
-                  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=375&fit=crop&auto=format',
+                  image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
                 },
               ].map((tool) => (
                 <div key={tool.title} className="tool-card">
@@ -655,10 +762,10 @@ export default function LumoraVideo() {
                   lineHeight: 1.2,
                 }}
               >
-                No technical skills required—just follow the system
+                From idea to launch in 3 steps
               </h2>
               <p style={{ fontSize: '1.125rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
-                Three simple steps from idea to published content
+                No technical skills required—just follow the system
               </p>
             </div>
 
@@ -672,12 +779,15 @@ export default function LumoraVideo() {
               }}
             >
               {[
-                { num: 1, title: 'Describe Your Vision', desc: 'Type a simple description of your content. Our AI guides you through the details to get exactly what you need.' },
-                { num: 2, title: 'AI Creates Instantly', desc: 'Watch as Lumora creates professional-quality videos, copy, designs, and workflows in seconds—not hours.' },
-                { num: 3, title: 'Edit & Launch', desc: 'Fine-tune with our simple editor, then export everything ready to post. No tech skills needed—just publish and grow.' },
+                { num: 1, title: 'Describe What You Want', desc: 'Type a simple description of your content. Our AI guides you through the details to get exactly what you need.', image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop' },
+                { num: 2, title: 'AI Generates Your Content', desc: 'Watch as Lumora creates professional-quality videos, copy, designs, and workflows in seconds—not hours.', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop' },
+                { num: 3, title: 'Edit, Export & Launch', desc: 'Fine-tune with our simple editor, then export everything ready to post. No tech skills needed—just publish and grow.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop' },
               ].map((step) => (
-                <div key={step.num} style={{ textAlign: 'center', padding: '2rem' }}>
+                <div key={step.num} style={{ textAlign: 'center' }}>
                   <div className="process-number">{step.num}</div>
+                  <div style={{ width: '100%', aspectRatio: '16/10', borderRadius: 12, overflow: 'hidden', marginBottom: '1.5rem', border: '1px solid var(--color-border)' }}>
+                    <img src={step.image} alt={step.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                  </div>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.75rem' }}>{step.title}</h3>
                   <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>{step.desc}</p>
                 </div>
@@ -685,10 +795,10 @@ export default function LumoraVideo() {
             </div>
           </section>
 
-          {/* Showcase Section */}
-          <section style={{ padding: '6rem 2rem', position: 'relative', zIndex: 1 }}>
+          {/* Gallery Section */}
+          <section id="gallery" style={{ padding: '6rem 2rem', position: 'relative', zIndex: 1 }}>
             <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto 4rem' }}>
-              <div className="section-label">FROM IDEA TO LAUNCH</div>
+              <div className="section-label">INSPIRATION</div>
               <h2
                 style={{
                   fontSize: 'clamp(2rem, 4vw, 3rem)',
@@ -698,8 +808,11 @@ export default function LumoraVideo() {
                   lineHeight: 1.2,
                 }}
               >
-                Explore what's possible when imagination meets AI
+                Created with Lumora
               </h2>
+              <p style={{ fontSize: '1.125rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                Explore what's possible when imagination meets AI
+              </p>
             </div>
 
             <div
@@ -712,12 +825,12 @@ export default function LumoraVideo() {
               }}
             >
               {[
-                { title: 'AI Video Generation', image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=600&fit=crop&auto=format' },
-                { title: 'Brand Design', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=600&fit=crop&auto=format' },
-                { title: 'Content Writing', image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=600&fit=crop&auto=format' },
-                { title: 'Marketing Tools', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=600&fit=crop&auto=format' },
-                { title: 'Audio Studio', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&h=600&fit=crop&auto=format' },
-                { title: 'Launch Templates', image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&h=600&fit=crop&auto=format' },
+                { title: 'Cyberpunk Dreams', subtitle: 'Neon-lit cityscape', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=450&fit=crop' },
+                { title: 'Ocean Serenity', subtitle: 'Underwater exploration', image: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&h=450&fit=crop' },
+                { title: 'Product Showcase', subtitle: 'Commercial photography', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=450&fit=crop' },
+                { title: 'Character Design', subtitle: 'Fantasy portrait', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=450&fit=crop' },
+                { title: 'Abstract Art', subtitle: 'Generative patterns', image: 'https://images.unsplash.com/photo-1634017839464-5c339bbe3c35?w=600&h=450&fit=crop' },
+                { title: "Nature's Beauty", subtitle: 'Landscape photography', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=450&fit=crop' },
               ].map((feature) => (
                 <div key={feature.title} className="feature-card">
                   <img className="feature-image" src={feature.image} alt={feature.title} />
@@ -725,7 +838,148 @@ export default function LumoraVideo() {
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>
                       {feature.title}
                     </h3>
+                    <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.25rem' }}>
+                      {feature.subtitle}
+                    </p>
                   </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Testimonials Section */}
+          <section style={{ padding: '6rem 2rem', position: 'relative', zIndex: 1 }}>
+            <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto 4rem' }}>
+              <div className="section-label">TESTIMONIALS</div>
+              <h2
+                style={{
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '1rem',
+                  lineHeight: 1.2,
+                }}
+              >
+                Loved by creators worldwide
+              </h2>
+              <p style={{ fontSize: '1.125rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                Join thousands of creators transforming their workflow
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', maxWidth: 1400, margin: '0 auto' }}>
+              {[
+                { initials: 'SK', name: 'Sarah Kim', role: 'Online Course Creator \u2022 $42K/mo', quote: 'I went from spending 12 hours editing one video to creating 5 videos in an afternoon. Lumora handles all the heavy lifting\u2014I just guide the creative direction. Saved me $3,000/month in editing costs.' },
+                { initials: 'MC', name: 'Marcus Chen', role: 'Digital Product Creator \u2022 2,400 students', quote: 'The AI copywriting alone is worth 10x the price. I launched my info product in 3 days instead of 3 weeks. Sales page, emails, social posts\u2014all done while I focused on the product itself.' },
+                { initials: 'EP', name: 'Emily Parker', role: 'Solopreneur \u2022 From $8K to $35K/mo in 90 days', quote: 'Finally, AI tools that actually work together. I can go from product idea to full marketing campaign without switching between 10 different apps. My launch revenue jumped 340% with half the stress.' },
+              ].map((t) => (
+                <div key={t.name} className="testimonial-card">
+                  <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem', color: '#fbbf24' }}>
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                    ))}
+                  </div>
+                  <div style={{ fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>
+                    "{t.quote}"
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'rgba(17, 89, 69, 0.15)', border: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 500, fontSize: '1.1rem' }}>
+                      {t.initials}
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.25rem' }}>{t.name}</h4>
+                      <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Pricing Section */}
+          <section id="pricing" style={{ padding: '6rem 2rem', position: 'relative', zIndex: 1 }}>
+            <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto 4rem' }}>
+              <div className="section-label">PRICING</div>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.2 }}>
+                Choose your plan
+              </h2>
+              <p style={{ fontSize: '1.125rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                Start free, upgrade as you grow
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: 1200, margin: '0 auto' }}>
+              {[
+                { badge: 'Test the waters', name: 'Starter', desc: 'Perfect for exploring AI tools', price: '$0', period: '/month', features: ['50 generations per month', '720p video quality', 'Basic style presets', 'Community support'], cta: 'Get Started', featured: false },
+                { badge: 'Best for full-time creators', name: 'Pro', desc: 'For serious solo creators scaling up', price: '$49', period: '/month', savings: 'Save $108/year', features: ['Unlimited generations', '4K video quality', 'Advanced style controls', 'Priority rendering', 'Team collaboration', 'Priority support'], cta: 'Start Pro Trial', featured: true },
+                { badge: 'For agencies & businesses', name: 'Enterprise', desc: 'Custom solutions for scale', price: 'Custom', period: '', features: ['Unlimited everything', 'Custom model training', 'API access', 'Dedicated support', 'SLA guarantee', 'Custom integrations'], cta: 'Contact Sales', featured: false },
+              ].map((plan) => (
+                <div key={plan.name} className={`pricing-card ${plan.featured ? 'featured' : ''}`}>
+                  <div style={{ display: 'inline-block', padding: '0.35rem 0.75rem', background: 'rgba(17, 89, 69, 0.1)', border: '1px solid rgba(17, 89, 69, 0.2)', borderRadius: 6, fontSize: '0.8rem', color: '#1a7a5e', marginBottom: '0.75rem', fontWeight: 500 }}>
+                    {plan.badge}
+                  </div>
+                  <div style={{ marginBottom: '2rem' }}>
+                    <h3 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '0.5rem' }}>{plan.name}</h3>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>{plan.desc}</p>
+                  </div>
+                  <div style={{ marginBottom: '2rem' }}>
+                    <span style={{ fontSize: '3.5rem', fontWeight: 700, letterSpacing: '-0.02em' }}>{plan.price}</span>
+                    {plan.period && <span style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem' }}>{plan.period}</span>}
+                    {plan.savings && <span style={{ display: 'inline-block', marginLeft: '0.5rem', padding: '0.25rem 0.6rem', background: 'rgba(17, 89, 69, 0.15)', borderRadius: 4, fontSize: '0.75rem', color: '#1a7a5e', fontWeight: 600 }}>{plan.savings}</span>}
+                  </div>
+                  <ul style={{ listStyle: 'none', marginBottom: '2rem', padding: 0 }}>
+                    {plan.features.map((f) => (
+                      <li key={f} style={{ padding: '0.75rem 0', display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-text-secondary)', borderBottom: '1px solid var(--color-border)' }}>
+                        <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" style={{ width: 20, height: 20, stroke: '#1a7a5e', flexShrink: 0 }}><polyline points="20 6 9 17 4 12"/></svg>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <button className={plan.featured ? 'btn btn-primary' : 'btn btn-secondary'} style={{ width: '100%', justifyContent: 'center' }}>{plan.cta}</button>
+                  {plan.featured && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem' }}>
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 0.85rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--color-border)', borderRadius: 100, fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
+                        <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" style={{ width: 14, height: 14, stroke: '#1a7a5e' }}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Cancel anytime
+                      </div>
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 0.85rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--color-border)', borderRadius: 100, fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
+                        <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" style={{ width: 14, height: 14, stroke: '#1a7a5e' }}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        No credit card
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section style={{ padding: '6rem 2rem', position: 'relative', zIndex: 1 }}>
+            <div style={{ textAlign: 'center', maxWidth: 800, margin: '0 auto 4rem' }}>
+              <div className="section-label">QUESTIONS</div>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.2 }}>
+                Everything you need to know
+              </h2>
+              <p style={{ fontSize: '1.125rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                Can't find what you're looking for? Chat with our team
+              </p>
+            </div>
+
+            <div style={{ maxWidth: 900, margin: '0 auto' }}>
+              {[
+                { q: 'Do I own the commercial rights to what I create?', a: 'Yes, 100%. Everything you create with Lumora is yours to use commercially\u2014sell products, run ads, post on social media, use in client work. No attribution required, no royalties owed.' },
+                { q: "I'm not tech-savvy. Is this really beginner-friendly?", a: "Absolutely. If you can type and click a button, you can use Lumora. We've designed every tool with beginners in mind\u2014no coding, no complex software, no learning curve. Most creators generate their first content in under 5 minutes." },
+                { q: 'How fast is the generation? Do I have to wait hours?', a: 'Most content generates in 10-45 seconds. Videos take slightly longer (1-2 minutes for high quality), but you can queue multiple projects and let them process while you work on other things. No overnight rendering\u2014everything is near-instant.' },
+                { q: "What if I don't like what the AI generates?", a: 'Regenerate as many times as you need (unlimited on Pro plan). You can also use our editor to tweak colors, adjust text, swap elements, or refine details without starting over. Most creators get what they want within 2-3 iterations.' },
+                { q: 'Can I cancel my subscription at any time?', a: "Yes, cancel anytime\u2014no questions asked, no penalties. You'll keep access until the end of your billing period. Need to pause for a month? No problem. Want to downgrade? Easy. We're flexible because your business needs change." },
+                { q: 'Is my data and content private and secure?', a: "Your data is encrypted and never shared with third parties. We don't train our models on your private content. You can delete your data anytime. We're SOC 2 compliant and take security seriously\u2014your creations and business information stay confidential." },
+                { q: 'What makes Lumora different from other AI tools?', a: 'Most AI tools do one thing. Lumora is an integrated system built specifically for solo creators\u2014video, copy, design, automation, and music in one place. No switching apps, no exporting and importing, no compatibility issues. One login, one workflow, everything connected.' },
+              ].map((faq) => (
+                <div key={faq.q} className="faq-item">
+                  <div style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--color-text-primary)' }}>{faq.q}</div>
+                  <div style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7 }}>{faq.a}</div>
                 </div>
               ))}
             </div>
@@ -742,7 +996,7 @@ export default function LumoraVideo() {
                 lineHeight: 1.2,
               }}
             >
-              Join thousands of creators transforming their workflow
+              Ready to bring your ideas to life?
             </h2>
             <p
               style={{
@@ -754,11 +1008,11 @@ export default function LumoraVideo() {
                 marginRight: 'auto',
               }}
             >
-              Start free, upgrade as you grow
+              Join thousands of creators already using Lumora to push the boundaries of creative expression
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button className="btn btn-primary">Start Creating Free</button>
-              <button className="btn btn-secondary">Talk to Sales</button>
+              <button className="btn btn-secondary">Schedule Demo</button>
             </div>
           </section>
 
@@ -781,54 +1035,25 @@ export default function LumoraVideo() {
                 marginBottom: '3rem',
               }}
             >
-              <div>
-                <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '1.5rem' }}>Product</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {['AI Video', 'Design Studio', 'Writing Assistant', 'Marketing Tools', 'Pricing'].map((item) => (
-                    <li key={item} style={{ marginBottom: '0.75rem' }}>
-                      <a href="#" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.9375rem' }}>
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '1.5rem' }}>Resources</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {['Documentation', 'Tutorials', 'Blog', 'Community'].map((item) => (
-                    <li key={item} style={{ marginBottom: '0.75rem' }}>
-                      <a href="#" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.9375rem' }}>
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '1.5rem' }}>Company</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {['About', 'Careers', 'Contact'].map((item) => (
-                    <li key={item} style={{ marginBottom: '0.75rem' }}>
-                      <a href="#" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.9375rem' }}>
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '1.5rem' }}>Legal</h4>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {['Privacy', 'Terms'].map((item) => (
-                    <li key={item} style={{ marginBottom: '0.75rem' }}>
-                      <a href="#" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.9375rem' }}>
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {[
+                { title: 'Product', links: ['Features', 'Pricing', 'Gallery', 'API', 'Changelog'] },
+                { title: 'Resources', links: ['Documentation', 'Tutorials', 'Blog', 'Community', 'Support'] },
+                { title: 'Company', links: ['About', 'Careers', 'Press', 'Contact'] },
+                { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
+              ].map((section) => (
+                <div key={section.title}>
+                  <h4 style={{ fontSize: '0.9375rem', fontWeight: 600, marginBottom: '1.5rem' }}>{section.title}</h4>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                    {section.links.map((item) => (
+                      <li key={item} style={{ marginBottom: '0.75rem' }}>
+                        <a href="#" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.9375rem' }}>
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
             <div
               style={{
@@ -845,9 +1070,9 @@ export default function LumoraVideo() {
                 gap: '1rem',
               }}
             >
-              <p>© 2026 Lumora AI. All rights reserved.</p>
+              <p>&copy; 2026 Lumora AI. All rights reserved.</p>
               <div style={{ display: 'flex', gap: '1.5rem' }}>
-                {['Twitter', 'LinkedIn', 'Instagram'].map((link) => (
+                {['Twitter', 'LinkedIn', 'Instagram', 'Discord'].map((link) => (
                   <a
                     key={link}
                     href="#"
