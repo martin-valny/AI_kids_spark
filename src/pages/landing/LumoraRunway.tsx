@@ -711,18 +711,8 @@ export default function LumoraRunway() {
           cursor: pointer;
         }
 
-        .runway-feature-card:hover .runway-feature-image::after {
-          opacity: 1;
-        }
-
         .runway-feature-card:hover .runway-feature-image img {
-          filter: blur(3px) brightness(0.85);
           transform: scale(1.03);
-        }
-
-        .runway-feature-card:hover .runway-feature-learn-more {
-          opacity: 1;
-          transform: translate(-50%, -50%) translateY(0);
         }
 
         .runway-feature-image {
@@ -732,67 +722,23 @@ export default function LumoraRunway() {
           overflow: hidden;
         }
 
-        .runway-feature-image::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0, 0, 0, 0.2);
-          opacity: 0;
-          transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          pointer-events: none;
-        }
-
         .runway-feature-image img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-feature-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 1.5rem;
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
-          min-height: 40%;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          pointer-events: none;
-        }
-
-        .runway-feature-overlay h3 {
-          font-size: 1.15rem;
-          font-weight: 600;
-          margin-bottom: 0;
-          line-height: 1.2;
-          color: #fff;
-        }
-
-        .runway-feature-learn-more {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) translateY(6px);
-          color: #fff;
-          font-size: 0.95rem;
-          font-weight: 500;
-          opacity: 0;
-          transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          pointer-events: none;
-          z-index: 10;
-          text-align: center;
-          white-space: nowrap;
-          letter-spacing: 0.02em;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .runway-feature-info {
           margin-top: 1rem;
+        }
+
+        .runway-feature-info h3 {
+          font-size: 1.15rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          line-height: 1.2;
+          letter-spacing: -0.01em;
         }
 
         .runway-feature-info p {
@@ -804,14 +750,6 @@ export default function LumoraRunway() {
         /* ============================================================
            HOW IT WORKS
            ============================================================ */
-        .runway-how-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
         .runway-how-card {
           position: relative;
           border-radius: 14px;
@@ -871,8 +809,6 @@ export default function LumoraRunway() {
           color: var(--text-secondary);
           line-height: 1.6;
         }
-
-        /* (Gallery CSS removed — replaced by use-case cards) */
 
         /* ============================================================
            TESTIMONIALS
@@ -1521,19 +1457,9 @@ export default function LumoraRunway() {
             align-items: center;
             justify-content: center;
             position: absolute;
-            top: calc(16/10 * ((100% - 4rem) / 3) * 0.5 + 2rem);
+            top: 22%;
             width: 2rem;
             z-index: 2;
-          }
-
-          .runway-how-connector:first-of-type {
-            left: calc((100% - 4rem) / 3 + 1rem);
-            transform: translateX(-50%);
-          }
-
-          .runway-how-connector:last-of-type {
-            left: calc(2 * (100% - 4rem) / 3 + 3rem);
-            transform: translateX(-50%);
           }
 
           .runway-how-connector svg {
@@ -2092,12 +2018,9 @@ function FeatureCard({ image, title, description, delay }: { image: string; titl
     >
       <div className="runway-feature-image">
         <img src={image} alt={title} loading="lazy" />
-        <div className="runway-feature-overlay">
-          <h3>{title}</h3>
-        </div>
-        <div className="runway-feature-learn-more">Learn more &rarr;</div>
       </div>
       <div className="runway-feature-info">
+        <h3>{title}</h3>
         <p>{description}</p>
       </div>
     </div>
