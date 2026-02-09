@@ -36,7 +36,7 @@ const FEATURES = [
   {
     title: 'AI Video in Minutes',
     description: 'Turn product ideas into scroll-stopping social videos. No filming, no editing software—just describe what you want and watch it come to life.',
-    image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop',
   },
   {
     title: 'Brand Visuals On-Demand',
@@ -89,7 +89,7 @@ const USE_CASES = [
   {
     title: 'Product Launch Video',
     description: 'Go from idea to launch trailer in 10 minutes',
-    image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=450&fit=crop',
+    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=450&fit=crop',
     icon: '\u25B6',
   },
   {
