@@ -34,91 +34,95 @@ const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/
 
 const FEATURES = [
   {
-    title: 'AI Video in Minutes',
-    description: 'Turn product ideas into scroll-stopping social videos. No filming, no editing software—just describe what you want and watch it come to life.',
+    title: 'AI Video Production',
+    description: 'Learn to create scroll-stopping social videos using tools like Runway, Pika, and Kling. Step-by-step lessons from script to final edit — no filming required.',
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop',
+    lessons: 18,
   },
   {
-    title: 'Brand Visuals On-Demand',
-    description: 'Generate product mockups, social graphics, and marketing assets instantly. Maintain consistent style across all your content without hiring a designer.',
+    title: 'Brand Design with AI',
+    description: 'Master AI design tools like Midjourney, DALL-E, and Canva AI. Create product mockups, social graphics, and a consistent brand identity across every channel.',
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
+    lessons: 14,
   },
   {
-    title: 'AI Writing Assistant',
-    description: 'Write sales pages, email sequences, and social captions that convert. Our AI learns your voice and creates content that sounds authentically you.',
+    title: 'AI Copywriting',
+    description: 'Write sales pages, email sequences, and social captions that convert. Learn prompt engineering techniques that make AI sound like you, not a robot.',
     image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop',
+    lessons: 12,
   },
   {
     title: 'Marketing Automation',
-    description: 'Build workflows that run your marketing on autopilot. From lead capture to email nurture, spend less time on tasks and more time creating.',
+    description: 'Build automated workflows with Make, Zapier, and AI agents. Set up lead capture, email nurture, and social scheduling that runs while you sleep.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+    lessons: 10,
   },
 ];
 
 const HOW_IT_WORKS = [
   {
     step: 1,
-    title: 'Describe What You Want',
-    description: 'Type a simple description of your content. Our AI guides you through the details to get exactly what you need.',
+    title: 'Choose Your Path',
+    description: 'Pick a module based on your goals — video, design, copywriting, or marketing. Each path is structured for beginners with zero AI experience.',
     image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
   },
   {
     step: 2,
-    title: 'AI Generates Your Content',
-    description: 'Watch as Lumora creates professional-quality videos, copy, designs, and workflows in seconds—not hours.',
+    title: 'Learn by Doing',
+    description: 'Follow hands-on lessons with real AI tools. Every module includes practice projects so you build real skills, not just watch tutorials.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
   },
   {
     step: 3,
-    title: 'Edit, Export & Launch',
-    description: 'Fine-tune with our simple editor, then export everything ready to post. No tech skills needed—just publish and grow.',
+    title: 'Launch & Earn',
+    description: 'Apply what you learned to your own business. Use our templates, prompts, and workflows to start creating professional content from day one.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
   },
 ];
 
 const SOCIAL_PROOF_METRICS = [
-  { value: '12,000+', label: 'Creators' },
-  { value: '2M+', label: 'Pieces Generated' },
+  { value: '12,000+', label: 'Students' },
+  { value: '200+', label: 'Video Lessons' },
   { value: '4.9\u2605', label: 'Average Rating' },
   { value: '150+', label: 'Countries' },
 ];
 
-const REPLACES = ['Video Editor', 'Copywriter', 'Graphic Designer', 'Email Marketing Tool', 'Social Media Suite'];
+const REPLACES = ['Expensive Courses', 'YouTube Rabbit Holes', 'Trial & Error', 'Hiring Freelancers', 'Outdated Bootcamps'];
 
 const USE_CASES = [
   {
     title: 'Product Launch Video',
-    description: 'Go from idea to launch trailer in 10 minutes',
+    description: 'Learn to go from idea to launch trailer in one afternoon',
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=450&fit=crop',
     icon: '\u25B6',
   },
   {
     title: 'Sales Page Copy',
-    description: 'AI-written pages that convert at 3x your current rate',
+    description: 'Write pages that convert \u2014 using proven AI prompt frameworks',
     image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=450&fit=crop',
     icon: '\u270E',
   },
   {
     title: 'Social Media Kit',
-    description: 'A full week of content created in one sitting',
+    description: 'Create a full week of branded content in a single session',
     image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=450&fit=crop',
     icon: '\u2606',
   },
   {
     title: 'Email Sequence',
-    description: '5-email nurture sequence, written in 2 minutes',
+    description: 'Build a 5-email nurture sequence with AI-assisted copywriting',
     image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=450&fit=crop',
     icon: '\u2709',
   },
   {
-    title: 'Brand Visuals',
-    description: 'Consistent look across every channel, instantly',
+    title: 'Brand Identity',
+    description: 'Design a consistent visual identity across every channel',
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=450&fit=crop',
     icon: '\u25C6',
   },
   {
     title: 'Marketing Funnel',
-    description: 'Automated lead capture to conversion, hands-free',
+    description: 'Set up automated lead capture to conversion, step by step',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop',
     icon: '\u21C9',
   },
@@ -129,51 +133,51 @@ const TESTIMONIALS = [
     initials: 'SK',
     name: 'Sarah Kim',
     role: 'Online Course Creator \u2022 $42K/mo',
-    quote: 'I went from spending 12 hours editing one video to creating 5 videos in an afternoon. Lumora handles all the heavy lifting\u2014I just guide the creative direction. Saved me $3,000/month in editing costs.',
+    quote: 'Before Lumora, I spent hours watching scattered YouTube tutorials. Now I have a clear system. I learned to create professional videos in week one and tripled my content output without hiring anyone.',
   },
   {
     initials: 'MC',
     name: 'Marcus Chen',
     role: 'Digital Product Creator \u2022 2,400 students',
-    quote: 'The AI copywriting alone is worth 10x the price. I launched my info product in 3 days instead of 3 weeks. Sales page, emails, social posts\u2014all done while I focused on the product itself.',
+    quote: 'The AI copywriting module alone was worth 10x the price. I learned prompt techniques that helped me launch my info product in 3 days instead of 3 weeks. Sales page, emails, social posts \u2014 all done by me.',
   },
   {
     initials: 'EP',
     name: 'Emily Parker',
     role: 'Solopreneur \u2022 From $8K to $35K/mo in 90 days',
-    quote: 'Finally, AI tools that actually work together. I can go from product idea to full marketing campaign without switching between 10 different apps. My launch revenue jumped 340% with half the stress.',
+    quote: 'Lumora taught me how to use AI tools that actually work together. I went from zero AI knowledge to running full marketing campaigns solo. My launch revenue jumped 340% once I applied what I learned.',
   },
 ];
 
 const PRICING = [
   {
-    badge: 'Test the waters',
-    name: 'Starter',
-    description: 'Perfect for exploring AI tools',
+    badge: 'Start learning',
+    name: 'Free',
+    description: 'Preview what Lumora offers',
     price: '$0',
-    period: '/month',
-    features: ['50 generations per month', '720p video quality', 'Basic style presets', 'Community support'],
-    cta: 'Get Started',
+    period: '',
+    features: ['2 free modules', 'Community access', 'Basic templates & prompts', 'Email support'],
+    cta: 'Start Free',
     featured: false,
   },
   {
-    badge: 'Best for full-time creators',
+    badge: 'Most popular',
     name: 'Pro',
-    description: 'For serious solo creators scaling up',
+    description: 'Full access to every module & lesson',
     price: '$49',
     period: '/month',
     savings: 'Save $108/year',
-    features: ['Unlimited generations', '4K video quality', 'Advanced style controls', 'Priority rendering', 'Team collaboration', 'Priority support'],
+    features: ['All 4 modules (54+ lessons)', 'New lessons added monthly', 'Downloadable prompts & templates', 'Private community access', 'Certificate of completion', 'Priority support'],
     cta: 'Start Pro Trial',
     featured: true,
   },
   {
-    badge: 'For agencies & businesses',
-    name: 'Enterprise',
-    description: 'Custom solutions for scale',
+    badge: 'For teams',
+    name: 'Team',
+    description: 'Train your whole team on AI',
     price: 'Custom',
     period: '',
-    features: ['Unlimited everything', 'Custom model training', 'API access', 'Dedicated support', 'SLA guarantee', 'Custom integrations'],
+    features: ['Everything in Pro', 'Team dashboard & progress tracking', 'Custom learning paths', 'Dedicated account manager', 'Bulk licensing', 'Invoice billing'],
     cta: 'Contact Sales',
     featured: false,
   },
@@ -181,38 +185,38 @@ const PRICING = [
 
 const FAQS = [
   {
-    q: 'Do I own the commercial rights to what I create?',
-    a: 'Yes, 100%. Everything you create with Lumora is yours to use commercially\u2014sell products, run ads, post on social media, use in client work. No attribution required, no royalties owed.',
+    q: 'Do I need any technical experience to start?',
+    a: 'Not at all. Lumora is designed for complete beginners. If you can type and click, you can follow along. Every lesson starts from scratch and builds up \u2014 no coding, no prior AI knowledge needed.',
   },
   {
-    q: "I'm not tech-savvy. Is this really beginner-friendly?",
-    a: "Absolutely. If you can type and click a button, you can use Lumora. We've designed every tool with beginners in mind\u2014no coding, no complex software, no learning curve. Most creators generate their first content in under 5 minutes.",
+    q: 'What AI tools will I learn to use?',
+    a: "You'll get hands-on training with industry-leading tools: Runway, Pika, and Kling for video; Midjourney, DALL-E, and Canva AI for design; ChatGPT and Claude for copywriting; Make and Zapier for automation. We update lessons as new tools emerge.",
   },
   {
-    q: 'How fast is the generation? Do I have to wait hours?',
-    a: 'Most content generates in 10-45 seconds. Videos take slightly longer (1-2 minutes for high quality), but you can queue multiple projects and let them process while you work on other things. No overnight rendering\u2014everything is near-instant.',
+    q: 'How is this different from free YouTube tutorials?',
+    a: 'YouTube is scattered and outdated. Lumora gives you a structured curriculum built specifically for solo creators \u2014 with practice projects, downloadable templates, prompt libraries, and a clear path from beginner to confident. No guessing what to learn next.',
   },
   {
-    q: "What if I don't like what the AI generates?",
-    a: 'Regenerate as many times as you need (unlimited on Pro plan). You can also use our editor to tweak colors, adjust text, swap elements, or refine details without starting over. Most creators get what they want within 2-3 iterations.',
+    q: 'How long does it take to complete a module?',
+    a: "Each module takes 2\u20133 weeks at 30 minutes per day. But you can go at your own pace \u2014 lessons are available on-demand, and you keep access as long as you're subscribed. Most creators see results after their first week.",
   },
   {
     q: 'Can I cancel my subscription at any time?',
-    a: "Yes, cancel anytime\u2014no questions asked, no penalties. You'll keep access until the end of your billing period. Need to pause for a month? No problem. Want to downgrade? Easy. We're flexible because your business needs change.",
+    a: "Yes, cancel anytime \u2014 no questions asked. You'll keep access until the end of your billing period. Need to pause? No problem. We're flexible because your schedule changes.",
   },
   {
-    q: 'Is my data and content private and secure?',
-    a: "Your data is encrypted and never shared with third parties. We don't train our models on your private content. You can delete your data anytime. We're SOC 2 compliant and take security seriously\u2014your creations and business information stay confidential.",
+    q: 'Will I get a certificate?',
+    a: "Pro members receive a certificate of completion for each module. You can share it on LinkedIn or your portfolio. More importantly, you'll have a portfolio of real projects to show for your skills.",
   },
   {
-    q: 'What makes Lumora different from other AI tools?',
-    a: 'Most AI tools do one thing. Lumora is an integrated system built specifically for solo creators\u2014video, copy, design, automation, and music in one place. No switching apps, no exporting and importing, no compatibility issues. One login, one workflow, everything connected.',
+    q: 'What if I get stuck on a lesson?',
+    a: 'Every lesson has a comments section where our team and community help out. Pro members also get priority support with faster response times. Plus, each lesson includes troubleshooting tips for common issues.',
   },
 ];
 
 const FOOTER_SECTIONS = [
-  { title: 'Product', links: ['Features', 'Pricing', 'Use Cases', 'API', 'Changelog'] },
-  { title: 'Resources', links: ['Documentation', 'Tutorials', 'Blog', 'Community', 'Support'] },
+  { title: 'Platform', links: ['Modules', 'Pricing', 'Student Work', 'Changelog'] },
+  { title: 'Resources', links: ['Free Lessons', 'Blog', 'Prompt Library', 'Community', 'Support'] },
   { title: 'Company', links: ['About', 'Careers', 'Press', 'Contact'] },
   { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
 ];
@@ -739,6 +743,16 @@ export default function LumoraRunway() {
           margin-bottom: 0.5rem;
           line-height: 1.2;
           letter-spacing: -0.01em;
+        }
+
+        .runway-lesson-count {
+          display: inline-block;
+          font-size: 0.75rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--text-muted);
+          margin-bottom: 0.5rem;
         }
 
         .runway-feature-info p {
@@ -1693,8 +1707,8 @@ export default function LumoraRunway() {
             </svg>
           </div>
           <div className="runway-nav-links">
-            <a href="#features">Features</a>
-            <a href="#use-cases">Use Cases</a>
+            <a href="#features">Modules</a>
+            <a href="#use-cases">Student Work</a>
             <a href="#pricing">Pricing</a>
             <button className="runway-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
               <svg className="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2">
@@ -1730,8 +1744,8 @@ export default function LumoraRunway() {
 
         {/* Mobile Nav Overlay */}
         <div className={`runway-mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
-          <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
-          <a href="#use-cases" onClick={() => setMobileMenuOpen(false)}>Use Cases</a>
+          <a href="#features" onClick={() => setMobileMenuOpen(false)}>Modules</a>
+          <a href="#use-cases" onClick={() => setMobileMenuOpen(false)}>Student Work</a>
           <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
           <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
           <button className="runway-btn runway-btn-primary" onClick={() => setMobileMenuOpen(false)}>Try Lumora</button>
@@ -1750,12 +1764,12 @@ export default function LumoraRunway() {
           </video>
           <div className="runway-hero-overlay" />
           <div className="runway-hero-content">
-            <div className="runway-category-label">AI Creative Suite for Solo Creators</div>
+            <div className="runway-category-label">AI Learning Platform for Solo Creators</div>
             <h1>Master AI Tools to Create,<br/>Design & Market Your Products</h1>
-            <p>The all-in-one platform for creators to master AI video, design, writing, and marketing—no technical experience needed.</p>
+            <p>The all-in-one learning platform where creators master AI video, design, writing, and marketing — no technical experience needed.</p>
             <div className="runway-hero-buttons">
-              <button className="runway-btn runway-btn-primary">Get Started Free</button>
-              <button className="runway-btn runway-btn-secondary">Watch Demo</button>
+              <button className="runway-btn runway-btn-primary">Start Learning Free</button>
+              <button className="runway-btn runway-btn-secondary">Watch Preview</button>
             </div>
           </div>
         </section>
@@ -1772,7 +1786,7 @@ export default function LumoraRunway() {
           </div>
           <div className="runway-proof-divider" />
           <div className="runway-proof-replaces">
-            <span className="runway-proof-replaces-label">Replaces your:</span>
+            <span className="runway-proof-replaces-label">Say goodbye to:</span>
             {REPLACES.map((r) => (
               <span key={r}>{r}</span>
             ))}
@@ -1781,8 +1795,8 @@ export default function LumoraRunway() {
 
         {/* ====== 3. FEATURES (4 cards) ====== */}
         <section className="runway-content-section" id="features">
-          <h2 className="runway-section-title runway-reveal">Powerful AI Tools for<br/>Modern Creators</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Everything you need to create, design, write, and automate—all powered by cutting-edge AI.</p>
+          <h2 className="runway-section-title runway-reveal">Learn the AI Skills<br/>That Matter</h2>
+          <p className="runway-section-subtitle runway-reveal delay-1">Four hands-on modules. 54+ video lessons. Real tools, real projects.</p>
 
           <div className="runway-features-grid">
             {FEATURES.map((f, i) => (
@@ -1792,6 +1806,7 @@ export default function LumoraRunway() {
                 title={f.title}
                 description={f.description}
                 delay={i}
+                lessons={f.lessons}
               />
             ))}
           </div>
@@ -1800,7 +1815,7 @@ export default function LumoraRunway() {
         {/* ====== 4. HOW IT WORKS (3 steps) ====== */}
         <section className="runway-content-section runway-section-alt">
           <h2 className="runway-section-title runway-reveal">How It Works</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">From idea to published content in three simple steps.</p>
+          <p className="runway-section-subtitle runway-reveal delay-1">From zero AI experience to creating professional content in weeks.</p>
 
           <div className="runway-how-grid-connected">
             {HOW_IT_WORKS.map((item) => (
@@ -1829,8 +1844,8 @@ export default function LumoraRunway() {
 
         {/* ====== 5. WHAT YOU'LL BUILD (6 use-case cards) ====== */}
         <section className="runway-content-section" id="use-cases">
-          <h2 className="runway-section-title runway-reveal">What You'll Build</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Everything a solo creator needs — from first idea to paying customers.</p>
+          <h2 className="runway-section-title runway-reveal">What You'll Learn to Create</h2>
+          <p className="runway-section-subtitle runway-reveal delay-1">Real projects from real modules — built by our students.</p>
 
           <div className="runway-usecase-grid">
             {USE_CASES.map((item) => (
@@ -1849,7 +1864,7 @@ export default function LumoraRunway() {
         {/* ====== 6. TESTIMONIALS (3 cards) ====== */}
         <section className="runway-content-section runway-section-alt">
           <h2 className="runway-section-title runway-reveal">Loved by Creators</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Join thousands of creators already transforming their workflow with Lumora.</p>
+          <p className="runway-section-subtitle runway-reveal delay-1">Join 12,000+ creators who learned AI the structured way.</p>
 
           <div className="runway-testimonials-grid">
             {TESTIMONIALS.map((t) => (
@@ -1871,7 +1886,7 @@ export default function LumoraRunway() {
         {/* ====== 7. PRICING (3 tiers) ====== */}
         <section className="runway-content-section" id="pricing">
           <h2 className="runway-section-title runway-reveal">Simple, Transparent Pricing</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Start free. Upgrade when you're ready to scale.</p>
+          <p className="runway-section-subtitle runway-reveal delay-1">Start free. Go Pro when you're ready to unlock everything.</p>
 
           <div className="runway-pricing-grid">
             {PRICING.map((plan) => (
@@ -1929,11 +1944,11 @@ export default function LumoraRunway() {
               </div>
             ))}
           </div>
-          <h2 className="runway-reveal delay-1">Everything you need.<br/>Nothing you don't.</h2>
-          <p className="runway-reveal delay-2">Stop juggling 10 different tools. Create videos, write copy, design assets, and automate marketing — all from one platform built for solo creators.</p>
-          <div className="runway-cta-risk runway-reveal delay-2">Free to start. No credit card required.</div>
+          <h2 className="runway-reveal delay-1">Your AI education<br/>starts here.</h2>
+          <p className="runway-reveal delay-2">Stop piecing together random tutorials. Learn video, design, copywriting, and marketing automation — in one structured platform built for solo creators.</p>
+          <div className="runway-cta-risk runway-reveal delay-2">Start free. No credit card required. Cancel anytime.</div>
           <div className="runway-cta-buttons runway-reveal delay-3">
-            <button className="runway-btn runway-btn-primary">Start Creating Free</button>
+            <button className="runway-btn runway-btn-primary">Start Learning Free</button>
             <a href="#pricing" className="runway-btn runway-btn-secondary">See Pricing</a>
           </div>
         </section>
@@ -1982,7 +1997,7 @@ export default function LumoraRunway() {
 }
 
 // Feature Card Component with subtle 3D tilt effect
-function FeatureCard({ image, title, description, delay }: { image: string; title: string; description: string; delay: number }) {
+function FeatureCard({ image, title, description, delay, lessons }: { image: string; title: string; description: string; delay: number; lessons: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -2021,6 +2036,7 @@ function FeatureCard({ image, title, description, delay }: { image: string; titl
       </div>
       <div className="runway-feature-info">
         <h3>{title}</h3>
+        <span className="runway-lesson-count">{lessons} lessons</span>
         <p>{description}</p>
       </div>
     </div>
