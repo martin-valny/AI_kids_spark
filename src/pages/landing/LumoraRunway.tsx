@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 
 /**
- * Lumora Runway - Refined Premium Landing Page
+ * Lumora Runway - Premium Monochrome Landing Page
  *
- * Clean minimal aesthetic with intentional teal accent:
+ * Pure black & white aesthetic with functional color only:
  * - SF Pro Display / system-ui font
  * - Light mode default, dark mode toggle
- * - Intentional teal (#0d9488) woven throughout as brand accent
+ * - Monochrome palette — no accent color. Warm amber for star ratings only.
  * - Rounded hero with video background
  * - Smooth, premium-feeling transitions (0.5-0.8s)
  * - Subtle 3D tilt on feature cards
@@ -178,12 +178,12 @@ const FOOTER_SECTIONS = [
   { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
 ];
 
-// Checkmark SVG for pricing lists
+// Checkmark SVG for pricing lists (monochrome)
 function CheckIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
-      <circle cx="9" cy="9" r="9" fill="rgba(13, 148, 136, 0.12)" />
-      <path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="#0d9488" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="9" cy="9" r="9" fill="var(--check-bg, rgba(15, 23, 42, 0.06))" />
+      <path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="var(--text-primary, #0f172a)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -262,11 +262,8 @@ export default function LumoraRunway() {
            DESIGN TOKENS
            ============================================================ */
         .lumora-runway {
-          --accent: #0d9488;
-          --accent-light: #14b8a6;
-          --accent-subtle: rgba(13, 148, 136, 0.08);
-          --accent-border: rgba(13, 148, 136, 0.25);
-          --accent-glow: rgba(13, 148, 136, 0.15);
+          /* Monochrome palette — no accent color */
+          --star-color: #d97706;
 
           /* Light mode (default) */
           --bg-primary: #ffffff;
@@ -286,6 +283,7 @@ export default function LumoraRunway() {
           --btn-primary-hover: rgba(15, 23, 42, 0.88);
           --btn-secondary-border: rgba(15, 23, 42, 0.15);
           --btn-secondary-hover: rgba(15, 23, 42, 0.04);
+          --check-bg: rgba(15, 23, 42, 0.06);
           --fab-bg: #0f172a;
           --fab-color: #ffffff;
           --toast-bg: rgba(15, 23, 42, 0.92);
@@ -320,6 +318,7 @@ export default function LumoraRunway() {
           --btn-primary-hover: rgba(255, 255, 255, 0.92);
           --btn-secondary-border: rgba(255, 255, 255, 0.15);
           --btn-secondary-hover: rgba(255, 255, 255, 0.04);
+          --check-bg: rgba(255, 255, 255, 0.08);
           --fab-bg: #ffffff;
           --fab-color: #000000;
           --toast-bg: rgba(255, 255, 255, 0.95);
@@ -390,7 +389,7 @@ export default function LumoraRunway() {
           left: 0;
           width: 0;
           height: 1.5px;
-          background: var(--accent);
+          background: var(--text-primary);
           transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -469,7 +468,7 @@ export default function LumoraRunway() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: var(--accent-subtle);
+          background: transparent;
           border: 1px solid var(--border);
           cursor: pointer;
           display: flex;
@@ -481,8 +480,8 @@ export default function LumoraRunway() {
         }
 
         .runway-theme-toggle:hover {
-          background: var(--accent-glow);
-          border-color: var(--accent-border);
+          background: var(--btn-secondary-hover);
+          border-color: var(--border-hover);
           transform: scale(1.05);
         }
 
@@ -564,7 +563,7 @@ export default function LumoraRunway() {
           display: inline-block;
           padding: 0.4rem 1rem;
           background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(13, 148, 136, 0.35);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           border-radius: 100px;
           font-size: 0.8rem;
           font-weight: 500;
@@ -812,12 +811,12 @@ export default function LumoraRunway() {
           width: 36px;
           height: 36px;
           border-radius: 50%;
-          background: var(--accent-subtle);
-          border: 1.5px solid var(--accent-border);
+          background: var(--bg-secondary);
+          border: 1.5px solid var(--border);
           font-size: 0.85rem;
           font-weight: 600;
           margin-bottom: 1rem;
-          color: var(--accent);
+          color: var(--text-primary);
         }
 
         .runway-how-card-body h3 {
@@ -919,7 +918,7 @@ export default function LumoraRunway() {
         }
 
         .runway-testimonial-stars {
-          color: var(--accent);
+          color: var(--star-color);
           font-size: 1rem;
           margin-bottom: 1.25rem;
           letter-spacing: 2px;
@@ -942,15 +941,15 @@ export default function LumoraRunway() {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          background: var(--accent-subtle);
+          background: var(--bg-secondary);
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 0.8rem;
           font-weight: 700;
           letter-spacing: 0.05em;
-          color: var(--accent);
-          border: 1.5px solid var(--accent-border);
+          color: var(--text-primary);
+          border: 1.5px solid var(--border);
         }
 
         .runway-testimonial-name {
@@ -993,13 +992,13 @@ export default function LumoraRunway() {
         }
 
         .runway-pricing-card.featured {
-          border-color: var(--accent);
-          background: var(--accent-subtle);
+          border-color: var(--text-primary);
+          background: var(--bg-primary);
           position: relative;
         }
 
         .runway-pricing-card.featured:hover {
-          border-color: var(--accent-light);
+          border-color: var(--text-primary);
         }
 
         .runway-pricing-badge {
@@ -1039,7 +1038,7 @@ export default function LumoraRunway() {
 
         .runway-pricing-savings {
           font-size: 0.8rem;
-          color: var(--accent);
+          color: var(--text-secondary);
           font-weight: 500;
           margin-bottom: 1.5rem;
         }
@@ -1081,14 +1080,14 @@ export default function LumoraRunway() {
         }
 
         .runway-pricing-cta.featured {
-          background: var(--accent);
-          color: #fff;
+          background: var(--btn-primary-bg);
+          color: var(--btn-primary-color);
           border: none;
         }
 
         .runway-pricing-cta.featured:hover {
-          background: var(--accent-light);
-          box-shadow: 0 8px 24px rgba(13, 148, 136, 0.25);
+          background: var(--btn-primary-hover);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
         /* ============================================================
@@ -1122,7 +1121,8 @@ export default function LumoraRunway() {
         }
 
         .runway-faq-question:hover {
-          color: var(--accent);
+          color: var(--text-primary);
+          font-weight: 600;
         }
 
         .runway-faq-icon {
@@ -1338,7 +1338,8 @@ export default function LumoraRunway() {
           top: 0;
           left: 0;
           height: 2px;
-          background: linear-gradient(90deg, var(--accent), var(--accent-light));
+          background: var(--text-primary);
+          opacity: 0.3;
           z-index: 9999;
           transition: width 0.15s ease;
         }
@@ -1415,10 +1416,10 @@ export default function LumoraRunway() {
         <nav className={`runway-nav ${isScrolled ? 'scrolled' : ''}`}>
           <div className="logo">
             <svg width="120" height="32" viewBox="0 0 120 32" fill="none">
-              <rect x="2" y="4" width="3" height="24" rx="1.5" fill="#0d9488"/>
-              <rect x="7" y="10" width="3" height="18" rx="1.5" fill="#0d9488" opacity="0.75"/>
-              <rect x="12" y="14" width="3" height="14" rx="1.5" fill="#0d9488" opacity="0.5"/>
-              <rect x="17" y="18" width="3" height="10" rx="1.5" fill="#0d9488" opacity="0.3"/>
+              <rect x="2" y="4" width="3" height="24" rx="1.5" fill="currentColor"/>
+              <rect x="7" y="10" width="3" height="18" rx="1.5" fill="currentColor" opacity="0.65"/>
+              <rect x="12" y="14" width="3" height="14" rx="1.5" fill="currentColor" opacity="0.4"/>
+              <rect x="17" y="18" width="3" height="10" rx="1.5" fill="currentColor" opacity="0.2"/>
               <text x="36" y="21" fontFamily="'SF Pro Display', system-ui, sans-serif" fontSize="18" fontWeight="600" fill="currentColor" letterSpacing="-0.02em">Lumora</text>
             </svg>
           </div>
