@@ -76,13 +76,52 @@ const HOW_IT_WORKS = [
   },
 ];
 
-const GALLERY = [
-  { title: 'Cyberpunk Dreams', subtitle: 'Neon-lit cityscape', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=450&fit=crop' },
-  { title: 'Ocean Serenity', subtitle: 'Underwater exploration', image: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&h=450&fit=crop' },
-  { title: 'Product Showcase', subtitle: 'Commercial photography', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=450&fit=crop' },
-  { title: 'Character Design', subtitle: 'Fantasy portrait', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=450&fit=crop' },
-  { title: 'Abstract Art', subtitle: 'Generative patterns', image: 'https://images.unsplash.com/photo-1634017839464-5c339bbe3c35?w=600&h=450&fit=crop' },
-  { title: 'Nature\'s Beauty', subtitle: 'Landscape photography', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=450&fit=crop' },
+const SOCIAL_PROOF_METRICS = [
+  { value: '12,000+', label: 'Creators' },
+  { value: '2M+', label: 'Pieces Generated' },
+  { value: '4.9\u2605', label: 'Average Rating' },
+  { value: '150+', label: 'Countries' },
+];
+
+const REPLACES = ['Video Editor', 'Copywriter', 'Graphic Designer', 'Email Marketing Tool', 'Social Media Suite'];
+
+const USE_CASES = [
+  {
+    title: 'Product Launch Video',
+    description: 'Go from idea to launch trailer in 10 minutes',
+    image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=450&fit=crop',
+    icon: '\u25B6',
+  },
+  {
+    title: 'Sales Page Copy',
+    description: 'AI-written pages that convert at 3x your current rate',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=450&fit=crop',
+    icon: '\u270E',
+  },
+  {
+    title: 'Social Media Kit',
+    description: 'A full week of content created in one sitting',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=450&fit=crop',
+    icon: '\u2606',
+  },
+  {
+    title: 'Email Sequence',
+    description: '5-email nurture sequence, written in 2 minutes',
+    image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=450&fit=crop',
+    icon: '\u2709',
+  },
+  {
+    title: 'Brand Visuals',
+    description: 'Consistent look across every channel, instantly',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=450&fit=crop',
+    icon: '\u25C6',
+  },
+  {
+    title: 'Marketing Funnel',
+    description: 'Automated lead capture to conversion, hands-free',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop',
+    icon: '\u21C9',
+  },
 ];
 
 const TESTIMONIALS = [
@@ -172,18 +211,18 @@ const FAQS = [
 ];
 
 const FOOTER_SECTIONS = [
-  { title: 'Product', links: ['Features', 'Pricing', 'Gallery', 'API', 'Changelog'] },
+  { title: 'Product', links: ['Features', 'Pricing', 'Use Cases', 'API', 'Changelog'] },
   { title: 'Resources', links: ['Documentation', 'Tutorials', 'Blog', 'Community', 'Support'] },
   { title: 'Company', links: ['About', 'Careers', 'Press', 'Contact'] },
   { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
 ];
 
-// Checkmark SVG for pricing lists (monochrome)
+// Checkmark SVG for pricing lists (monochrome, uses currentColor for theme awareness)
 function CheckIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
-      <circle cx="9" cy="9" r="9" fill="var(--check-bg, rgba(15, 23, 42, 0.06))" />
-      <path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="var(--text-primary, #0f172a)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }} className="runway-check-icon">
+      <circle cx="9" cy="9" r="9" fill="currentColor" opacity="0.1" />
+      <path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -199,6 +238,7 @@ export default function LumoraRunway() {
   const [isLightMode, setIsLightMode] = useState(true);
   const [toast, setToast] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Scroll effects
   useEffect(() => {
@@ -267,7 +307,7 @@ export default function LumoraRunway() {
 
           /* Light mode (default) */
           --bg-primary: #ffffff;
-          --bg-secondary: #f7f8f8;
+          --bg-secondary: #f3f4f5;
           --text-primary: #0f172a;
           --text-secondary: rgba(15, 23, 42, 0.6);
           --text-muted: rgba(15, 23, 42, 0.4);
@@ -283,7 +323,7 @@ export default function LumoraRunway() {
           --btn-primary-hover: rgba(15, 23, 42, 0.88);
           --btn-secondary-border: rgba(15, 23, 42, 0.15);
           --btn-secondary-hover: rgba(15, 23, 42, 0.04);
-          --check-bg: rgba(15, 23, 42, 0.06);
+
           --fab-bg: #0f172a;
           --fab-color: #ffffff;
           --toast-bg: rgba(15, 23, 42, 0.92);
@@ -302,7 +342,7 @@ export default function LumoraRunway() {
         /* Dark mode overrides */
         .lumora-runway.dark-mode {
           --bg-primary: #000000;
-          --bg-secondary: #0a0a0a;
+          --bg-secondary: #111111;
           --text-primary: #ffffff;
           --text-secondary: rgba(255, 255, 255, 0.6);
           --text-muted: rgba(255, 255, 255, 0.4);
@@ -318,7 +358,7 @@ export default function LumoraRunway() {
           --btn-primary-hover: rgba(255, 255, 255, 0.92);
           --btn-secondary-border: rgba(255, 255, 255, 0.15);
           --btn-secondary-hover: rgba(255, 255, 255, 0.04);
-          --check-bg: rgba(255, 255, 255, 0.08);
+
           --fab-bg: #ffffff;
           --fab-color: #000000;
           --toast-bg: rgba(255, 255, 255, 0.95);
@@ -832,64 +872,7 @@ export default function LumoraRunway() {
           line-height: 1.6;
         }
 
-        /* ============================================================
-           GALLERY
-           ============================================================ */
-        .runway-gallery-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
-          max-width: 1400px;
-          margin: 0 auto;
-        }
-
-        .runway-gallery-card {
-          position: relative;
-          border-radius: 14px;
-          overflow: hidden;
-          cursor: pointer;
-          aspect-ratio: 4/3;
-        }
-
-        .runway-gallery-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-gallery-card:hover img {
-          transform: scale(1.04);
-        }
-
-        .runway-gallery-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 1.5rem;
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-          opacity: 0;
-          transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: translateY(4px);
-        }
-
-        .runway-gallery-card:hover .runway-gallery-overlay {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .runway-gallery-overlay h3 {
-          font-size: 1.05rem;
-          font-weight: 600;
-          color: #fff;
-          margin-bottom: 0.2rem;
-        }
-
-        .runway-gallery-overlay span {
-          font-size: 0.85rem;
-          color: rgba(255, 255, 255, 0.7);
-        }
+        /* (Gallery CSS removed — replaced by use-case cards) */
 
         /* ============================================================
            TESTIMONIALS
@@ -992,13 +975,40 @@ export default function LumoraRunway() {
         }
 
         .runway-pricing-card.featured {
+          background: var(--text-primary);
+          color: var(--bg-primary);
           border-color: var(--text-primary);
-          background: var(--bg-primary);
           position: relative;
+        }
+
+        .runway-pricing-card.featured .runway-pricing-badge,
+        .runway-pricing-card.featured .runway-pricing-description,
+        .runway-pricing-card.featured .runway-pricing-period,
+        .runway-pricing-card.featured .runway-pricing-features li {
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-badge,
+        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-description,
+        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-period,
+        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-features li {
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        .dark-mode .runway-pricing-card.featured .runway-pricing-badge,
+        .dark-mode .runway-pricing-card.featured .runway-pricing-description,
+        .dark-mode .runway-pricing-card.featured .runway-pricing-period,
+        .dark-mode .runway-pricing-card.featured .runway-pricing-features li {
+          color: rgba(0, 0, 0, 0.6);
+        }
+
+        .runway-pricing-card.featured .runway-pricing-savings {
+          color: var(--bg-primary);
         }
 
         .runway-pricing-card.featured:hover {
           border-color: var(--text-primary);
+          transform: translateY(-6px);
         }
 
         .runway-pricing-badge {
@@ -1038,8 +1048,8 @@ export default function LumoraRunway() {
 
         .runway-pricing-savings {
           font-size: 0.8rem;
-          color: var(--text-secondary);
-          font-weight: 500;
+          color: var(--text-primary);
+          font-weight: 600;
           margin-bottom: 1.5rem;
         }
 
@@ -1080,13 +1090,14 @@ export default function LumoraRunway() {
         }
 
         .runway-pricing-cta.featured {
-          background: var(--btn-primary-bg);
-          color: var(--btn-primary-color);
+          background: var(--bg-primary);
+          color: var(--text-primary);
           border: none;
+          font-weight: 700;
         }
 
         .runway-pricing-cta.featured:hover {
-          background: var(--btn-primary-hover);
+          opacity: 0.9;
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
@@ -1122,7 +1133,12 @@ export default function LumoraRunway() {
 
         .runway-faq-question:hover {
           color: var(--text-primary);
-          font-weight: 600;
+        }
+
+        .runway-faq-question:hover span:first-child {
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          text-decoration-thickness: 1px;
         }
 
         .runway-faq-icon {
@@ -1331,6 +1347,308 @@ export default function LumoraRunway() {
         }
 
         /* ============================================================
+           SOCIAL PROOF STRIP
+           ============================================================ */
+        .runway-proof-strip {
+          padding: 4rem 3rem;
+          background: var(--bg-secondary);
+          text-align: center;
+          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .runway-proof-metrics {
+          display: flex;
+          justify-content: center;
+          gap: 4rem;
+          flex-wrap: wrap;
+          margin-bottom: 2.5rem;
+        }
+
+        .runway-proof-metric {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .runway-proof-value {
+          font-size: 1.75rem;
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          line-height: 1;
+          margin-bottom: 0.35rem;
+        }
+
+        .runway-proof-label {
+          font-size: 0.8rem;
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          font-weight: 500;
+        }
+
+        .runway-proof-divider {
+          width: 48px;
+          height: 1px;
+          background: var(--border);
+          margin: 0 auto 2rem;
+        }
+
+        .runway-proof-replaces {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          color: var(--text-muted);
+          font-size: 0.85rem;
+        }
+
+        .runway-proof-replaces-label {
+          font-weight: 600;
+          color: var(--text-secondary);
+          margin-right: 0.25rem;
+        }
+
+        .runway-proof-replaces span {
+          padding: 0.3rem 0.75rem;
+          border: 1px solid var(--border);
+          border-radius: 100px;
+          font-size: 0.8rem;
+          color: var(--text-secondary);
+          transition: border-color 0.4s ease;
+        }
+
+        .runway-proof-replaces span:hover {
+          border-color: var(--border-hover);
+        }
+
+        /* ============================================================
+           USE-CASE CARDS (replaces gallery)
+           ============================================================ */
+        .runway-usecase-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.25rem;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .runway-usecase-card {
+          position: relative;
+          border-radius: 14px;
+          overflow: hidden;
+          cursor: pointer;
+          aspect-ratio: 4/3;
+        }
+
+        .runway-usecase-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .runway-usecase-card:hover img {
+          transform: scale(1.04);
+        }
+
+        .runway-usecase-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 1.5rem;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+          transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .runway-usecase-card:hover .runway-usecase-overlay {
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.15) 100%);
+        }
+
+        .runway-usecase-icon {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          opacity: 0.7;
+          color: #fff;
+        }
+
+        .runway-usecase-overlay h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #fff;
+          margin-bottom: 0.25rem;
+        }
+
+        .runway-usecase-overlay p {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.4;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+          opacity: 0;
+        }
+
+        .runway-usecase-card:hover .runway-usecase-overlay p {
+          max-height: 60px;
+          opacity: 1;
+        }
+
+        /* ============================================================
+           HOW-IT-WORKS CONNECTORS
+           ============================================================ */
+        .runway-how-grid-connected {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+          position: relative;
+        }
+
+        .runway-how-connector {
+          display: none;
+        }
+
+        @media (min-width: 769px) {
+          .runway-how-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: calc(16/10 * ((100% - 4rem) / 3) * 0.5 + 2rem);
+            width: 2rem;
+            z-index: 2;
+          }
+
+          .runway-how-connector:first-of-type {
+            left: calc((100% - 4rem) / 3 + 1rem);
+            transform: translateX(-50%);
+          }
+
+          .runway-how-connector:last-of-type {
+            left: calc(2 * (100% - 4rem) / 3 + 3rem);
+            transform: translateX(-50%);
+          }
+
+          .runway-how-connector svg {
+            color: var(--text-muted);
+          }
+        }
+
+        /* ============================================================
+           MOBILE MENU
+           ============================================================ */
+        .runway-menu-toggle {
+          display: none;
+          width: 40px;
+          height: 40px;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          background: transparent;
+          cursor: pointer;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: border-color 0.4s ease;
+        }
+
+        .runway-menu-toggle:hover {
+          border-color: var(--border-hover);
+        }
+
+        .runway-menu-toggle svg {
+          stroke: var(--text-primary);
+        }
+
+        .runway-mobile-nav {
+          display: none;
+        }
+
+        @media (max-width: 768px) {
+          .runway-menu-toggle {
+            display: flex;
+          }
+
+          .runway-mobile-nav {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9998;
+            background: var(--bg-primary);
+            padding: 6rem 2rem 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          .runway-mobile-nav.open {
+            opacity: 1;
+            pointer-events: auto;
+          }
+
+          .runway-mobile-nav a {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: opacity 0.3s ease;
+          }
+
+          .runway-mobile-nav a:hover {
+            opacity: 0.6;
+          }
+
+          .runway-mobile-nav .runway-btn {
+            margin-top: 2rem;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+          }
+        }
+
+        /* ============================================================
+           CTA METRICS STRIP
+           ============================================================ */
+        .runway-cta-metrics {
+          display: flex;
+          justify-content: center;
+          gap: 2.5rem;
+          margin-bottom: 3rem;
+          flex-wrap: wrap;
+        }
+
+        .runway-cta-metric {
+          font-size: 0.85rem;
+          color: var(--text-muted);
+          letter-spacing: 0.02em;
+        }
+
+        .runway-cta-metric strong {
+          color: var(--text-primary);
+          font-weight: 700;
+        }
+
+        .runway-cta-risk {
+          font-size: 0.9rem;
+          color: var(--text-muted);
+          margin-top: -1.5rem;
+          margin-bottom: 2.5rem;
+        }
+
+        /* ============================================================
            SCROLL PROGRESS
            ============================================================ */
         .runway-scroll-progress {
@@ -1367,15 +1685,31 @@ export default function LumoraRunway() {
             display: none;
           }
 
+          .runway-nav-links .runway-theme-toggle {
+            order: 2;
+          }
+
+          .runway-nav-links .runway-btn {
+            display: none;
+          }
+
           .runway-features-grid {
             grid-template-columns: 1fr;
           }
 
-          .runway-how-grid,
-          .runway-gallery-grid,
+          .runway-how-grid-connected,
+          .runway-usecase-grid,
           .runway-testimonials-grid,
           .runway-pricing-grid {
             grid-template-columns: 1fr;
+          }
+
+          .runway-proof-metrics {
+            gap: 2rem;
+          }
+
+          .runway-proof-strip {
+            padding: 3rem 1.5rem;
           }
 
           .runway-content-section {
@@ -1399,10 +1733,19 @@ export default function LumoraRunway() {
             width: 46px;
             height: 46px;
           }
+
+          .runway-usecase-overlay p {
+            max-height: 60px;
+            opacity: 1;
+          }
         }
 
         @media (min-width: 769px) and (max-width: 1024px) {
           .runway-features-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .runway-usecase-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
@@ -1425,7 +1768,7 @@ export default function LumoraRunway() {
           </div>
           <div className="runway-nav-links">
             <a href="#features">Features</a>
-            <a href="#gallery">Gallery</a>
+            <a href="#use-cases">Use Cases</a>
             <a href="#pricing">Pricing</a>
             <button className="runway-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
               <svg className="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2">
@@ -1444,8 +1787,29 @@ export default function LumoraRunway() {
               </svg>
             </button>
             <button className="runway-btn runway-btn-primary">Try Lumora</button>
+            <button
+              className="runway-menu-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" strokeWidth="2">
+                {mobileMenuOpen
+                  ? <path d="M18 6L6 18M6 6l12 12"/>
+                  : <path d="M3 12h18M3 6h18M3 18h18"/>
+                }
+              </svg>
+            </button>
           </div>
         </nav>
+
+        {/* Mobile Nav Overlay */}
+        <div className={`runway-mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
+          <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
+          <a href="#use-cases" onClick={() => setMobileMenuOpen(false)}>Use Cases</a>
+          <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
+          <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+          <button className="runway-btn runway-btn-primary" onClick={() => setMobileMenuOpen(false)}>Try Lumora</button>
+        </div>
 
         {/* ====== 2. HERO with VIDEO ====== */}
         <section className="runway-hero">
@@ -1460,13 +1824,32 @@ export default function LumoraRunway() {
           </video>
           <div className="runway-hero-overlay" />
           <div className="runway-hero-content">
-            <div className="runway-category-label">Create professional content in under 30 seconds</div>
+            <div className="runway-category-label">AI Creative Suite for Solo Creators</div>
             <h1>Master AI Tools to Create,<br/>Design & Market Your Products</h1>
             <p>The all-in-one platform for creators to master AI video, design, writing, and marketing—no technical experience needed.</p>
             <div className="runway-hero-buttons">
               <button className="runway-btn runway-btn-primary">Get Started Free</button>
               <button className="runway-btn runway-btn-secondary">Watch Demo</button>
             </div>
+          </div>
+        </section>
+
+        {/* ====== SOCIAL PROOF STRIP ====== */}
+        <section className="runway-proof-strip runway-reveal">
+          <div className="runway-proof-metrics">
+            {SOCIAL_PROOF_METRICS.map((m) => (
+              <div key={m.label} className="runway-proof-metric">
+                <div className="runway-proof-value">{m.value}</div>
+                <div className="runway-proof-label">{m.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="runway-proof-divider" />
+          <div className="runway-proof-replaces">
+            <span className="runway-proof-replaces-label">Replaces your:</span>
+            {REPLACES.map((r) => (
+              <span key={r}>{r}</span>
+            ))}
           </div>
         </section>
 
@@ -1493,7 +1876,7 @@ export default function LumoraRunway() {
           <h2 className="runway-section-title runway-reveal">How It Works</h2>
           <p className="runway-section-subtitle runway-reveal delay-1">From idea to published content in three simple steps.</p>
 
-          <div className="runway-how-grid">
+          <div className="runway-how-grid-connected">
             {HOW_IT_WORKS.map((item) => (
               <div key={item.step} className="runway-how-card runway-reveal">
                 <img src={item.image} alt={item.title} loading="lazy" />
@@ -1504,21 +1887,33 @@ export default function LumoraRunway() {
                 </div>
               </div>
             ))}
+            {/* Arrow connectors between cards */}
+            <div className="runway-how-connector" style={{ left: 'calc((100% - 4rem) / 3 + 1rem)' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </div>
+            <div className="runway-how-connector" style={{ left: 'calc(2 * (100% - 4rem) / 3 + 3rem)' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </div>
           </div>
         </section>
 
-        {/* ====== 5. SHOWCASE GALLERY (6 cards) ====== */}
-        <section className="runway-content-section" id="gallery">
-          <h2 className="runway-section-title runway-reveal">Creator Showcase</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">See what creators are building with Lumora's AI-powered tools.</p>
+        {/* ====== 5. WHAT YOU'LL BUILD (6 use-case cards) ====== */}
+        <section className="runway-content-section" id="use-cases">
+          <h2 className="runway-section-title runway-reveal">What You'll Build</h2>
+          <p className="runway-section-subtitle runway-reveal delay-1">Everything a solo creator needs — from first idea to paying customers.</p>
 
-          <div className="runway-gallery-grid">
-            {GALLERY.map((item) => (
-              <div key={item.title} className="runway-gallery-card runway-reveal">
+          <div className="runway-usecase-grid">
+            {USE_CASES.map((item) => (
+              <div key={item.title} className="runway-usecase-card runway-reveal">
                 <img src={item.image} alt={item.title} loading="lazy" />
-                <div className="runway-gallery-overlay">
+                <div className="runway-usecase-overlay">
+                  <div className="runway-usecase-icon">{item.icon}</div>
                   <h3>{item.title}</h3>
-                  <span>{item.subtitle}</span>
+                  <p>{item.description}</p>
                 </div>
               </div>
             ))}
@@ -1577,7 +1972,7 @@ export default function LumoraRunway() {
         </section>
 
         {/* ====== 8. FAQ (7 items) ====== */}
-        <section className="runway-content-section runway-section-alt">
+        <section className="runway-content-section runway-section-alt" id="faq">
           <h2 className="runway-section-title runway-reveal">Frequently Asked Questions</h2>
           <p className="runway-section-subtitle runway-reveal delay-1">Everything you need to know about Lumora.</p>
 
@@ -1601,11 +1996,19 @@ export default function LumoraRunway() {
 
         {/* ====== 9. CTA ====== */}
         <section className="runway-cta-section">
-          <h2 className="runway-reveal">Ready to bring your<br/>ideas to life?</h2>
-          <p className="runway-reveal delay-1">Join thousands of creators already using Lumora to push the boundaries of creative expression.</p>
-          <div className="runway-cta-buttons runway-reveal delay-2">
+          <div className="runway-cta-metrics runway-reveal">
+            {SOCIAL_PROOF_METRICS.map((m) => (
+              <div key={m.label} className="runway-cta-metric">
+                <strong>{m.value}</strong> {m.label}
+              </div>
+            ))}
+          </div>
+          <h2 className="runway-reveal delay-1">Everything you need.<br/>Nothing you don't.</h2>
+          <p className="runway-reveal delay-2">Stop juggling 10 different tools. Create videos, write copy, design assets, and automate marketing — all from one platform built for solo creators.</p>
+          <div className="runway-cta-risk runway-reveal delay-2">Free to start. No credit card required.</div>
+          <div className="runway-cta-buttons runway-reveal delay-3">
             <button className="runway-btn runway-btn-primary">Start Creating Free</button>
-            <button className="runway-btn runway-btn-secondary">Watch Demo</button>
+            <a href="#pricing" className="runway-btn runway-btn-secondary">See Pricing</a>
           </div>
         </section>
 
