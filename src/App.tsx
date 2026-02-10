@@ -65,6 +65,7 @@ import NeoBrutalistCyan from "./pages/landing/NeoBrutalistCyan";
 import NeoBrutalistMagenta from "./pages/landing/NeoBrutalistMagenta";
 import NeoBrutalistOrange from "./pages/landing/NeoBrutalistOrange";
 import NeoBrutalistPro from "./pages/landing/NeoBrutalistPro";
+import NeoBrutalistProV2 from "./pages/landing/NeoBrutalistProV2";
 import LumoraCreative from "./pages/landing/LumoraCreative";
 import LumoraAqua from "./pages/landing/LumoraAqua";
 import LumoraVideo from "./pages/landing/LumoraVideo";
@@ -171,6 +172,7 @@ const App = () => (
           <Route path="/landing/neo-brutalist-magenta" element={<NeoBrutalistMagenta />} />
           <Route path="/landing/neo-brutalist-orange" element={<NeoBrutalistOrange />} />
           <Route path="/landing/neo-brutalist-pro" element={<NeoBrutalistPro />} />
+          <Route path="/landing/neo-brutalist-pro-v2" element={<NeoBrutalistProV2 />} />
           <Route path="/landing/lumora-creative" element={<LumoraCreative />} />
           <Route path="/landing/lumora-aqua" element={<LumoraAqua />} />
           <Route path="/landing/lumora-video" element={<LumoraVideo />} />
