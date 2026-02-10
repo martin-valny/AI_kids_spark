@@ -34,183 +34,183 @@ const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/
 
 const FEATURES = [
   {
-    title: 'AI Video Production',
-    description: 'Learn to create scroll-stopping social videos using tools like Runway, Pika, and Kling. Step-by-step lessons from script to final edit — no filming required.',
+    title: 'AI Video Editing',
+    description: 'Create short-form videos that blow up on TikTok, Reels, and YouTube Shorts. Learn Runway, Pika, and Kling — from your first cut to a full portfolio.',
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop',
-    lessons: 18,
-  },
-  {
-    title: 'Brand Design with AI',
-    description: 'Master AI design tools like Midjourney, DALL-E, and Canva AI. Create product mockups, social graphics, and a consistent brand identity across every channel.',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
-    lessons: 14,
-  },
-  {
-    title: 'AI Copywriting',
-    description: 'Write sales pages, email sequences, and social captions that convert. Learn prompt engineering techniques that make AI sound like you, not a robot.',
-    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop',
     lessons: 12,
   },
   {
-    title: 'Marketing Automation',
-    description: 'Build automated workflows with Make, Zapier, and AI agents. Set up lead capture, email nurture, and social scheduling that runs while you sleep.',
+    title: 'AI Automation & No-Code',
+    description: 'Build workflows that do the boring stuff for you. Make.com, Zapier, n8n — set up once, earn on repeat. Clients pay $60\u2013180/hr for this.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+    lessons: 8,
+  },
+  {
+    title: 'AI Content Writing',
+    description: 'Write viral captions, threads, and newsletters with ChatGPT and Claude. Learn the prompt techniques that make AI sound like you, not a robot.',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop',
     lessons: 10,
+  },
+  {
+    title: 'AI Music for Creators',
+    description: 'Make original tracks, intros, and background music with Suno and Udio. No instruments needed — just ideas. Build a royalty-free library you actually own.',
+    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=400&fit=crop',
+    lessons: 7,
   },
 ];
 
 const HOW_IT_WORKS = [
   {
     step: 1,
-    title: 'Choose Your Path',
-    description: 'Pick a module based on your goals — video, design, copywriting, or marketing. Each path is structured for beginners with zero AI experience.',
+    title: 'Pick What You Want to Learn',
+    description: 'Video, automation, writing, or music \u2014 choose the skill that fits your goals. Every path starts from zero. No experience needed.',
     image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
   },
   {
     step: 2,
-    title: 'Learn by Doing',
-    description: 'Follow hands-on lessons with real AI tools. Every module includes practice projects so you build real skills, not just watch tutorials.',
+    title: 'Build Real Projects',
+    description: 'Every lesson has you creating something real \u2014 not just watching. By the end of each module, you\u2019ll have a portfolio you can actually show off.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
   },
   {
     step: 3,
-    title: 'Launch & Earn',
-    description: 'Apply what you learned to your own business. Use our templates, prompts, and workflows to start creating professional content from day one.',
+    title: 'Start Getting Paid',
+    description: 'Use your new skills to land freelance gigs, grow your audience, or launch your own thing. Every module ends with a monetization playbook.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
   },
 ];
 
 const SOCIAL_PROOF_METRICS = [
   { value: '12,000+', label: 'Students' },
-  { value: '200+', label: 'Video Lessons' },
+  { value: '45', label: 'Hands-On Lessons' },
   { value: '4.9\u2605', label: 'Average Rating' },
-  { value: '150+', label: 'Countries' },
+  { value: '60+', label: 'AI Tools Covered' },
 ];
 
-const REPLACES = ['Expensive Courses', 'YouTube Rabbit Holes', 'Trial & Error', 'Hiring Freelancers', 'Outdated Bootcamps'];
+const REPLACES = ['Overpriced Bootcamps', 'YouTube Rabbit Holes', 'Random Free Tutorials', 'Trial & Error', 'Outdated Courses'];
 
 const USE_CASES = [
   {
-    title: 'Product Launch Video',
-    description: 'Learn to go from idea to launch trailer in one afternoon',
+    title: 'TikTok / Reels Video',
+    description: 'Shoot nothing. Film nothing. AI-edit a viral short in under an hour.',
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=450&fit=crop',
     icon: '\u25B6',
   },
   {
-    title: 'Sales Page Copy',
-    description: 'Write pages that convert \u2014 using proven AI prompt frameworks',
-    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=450&fit=crop',
+    title: 'Automated Side Hustle',
+    description: 'Build a workflow that captures leads and sends emails while you sleep.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop',
+    icon: '\u2699',
+  },
+  {
+    title: 'Viral Twitter Thread',
+    description: 'Write a week of content in one sitting with AI prompt chains.',
+    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=450&fit=crop',
     icon: '\u270E',
   },
   {
-    title: 'Social Media Kit',
-    description: 'Create a full week of branded content in a single session',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=450&fit=crop',
+    title: 'Original Music Track',
+    description: 'Create a full track with Suno \u2014 use it in your videos, sell it, or just vibe.',
+    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=450&fit=crop',
+    icon: '\u266B',
+  },
+  {
+    title: 'Freelance Portfolio',
+    description: 'Walk out of each module with proof of work clients actually want to see.',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=450&fit=crop',
     icon: '\u2606',
   },
   {
-    title: 'Email Sequence',
-    description: 'Build a 5-email nurture sequence with AI-assisted copywriting',
+    title: 'Newsletter That Grows',
+    description: 'AI-written emails that sound like you. Build an audience on autopilot.',
     image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=450&fit=crop',
     icon: '\u2709',
-  },
-  {
-    title: 'Brand Identity',
-    description: 'Design a consistent visual identity across every channel',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=450&fit=crop',
-    icon: '\u25C6',
-  },
-  {
-    title: 'Marketing Funnel',
-    description: 'Set up automated lead capture to conversion, step by step',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop',
-    icon: '\u21C9',
   },
 ];
 
 const TESTIMONIALS = [
   {
-    initials: 'SK',
-    name: 'Sarah Kim',
-    role: 'Online Course Creator \u2022 $42K/mo',
-    quote: 'Before Lumora, I spent hours watching scattered YouTube tutorials. Now I have a clear system. I learned to create professional videos in week one and tripled my content output without hiring anyone.',
+    initials: 'JR',
+    name: 'Jess Rivera',
+    role: 'Content Creator \u2022 180K on TikTok',
+    quote: 'I was spending 6 hours editing one video. After the video module I batch-create a whole week of content in an afternoon. Lumora literally gave me my weekends back.',
   },
   {
-    initials: 'MC',
-    name: 'Marcus Chen',
-    role: 'Digital Product Creator \u2022 2,400 students',
-    quote: 'The AI copywriting module alone was worth 10x the price. I learned prompt techniques that helped me launch my info product in 3 days instead of 3 weeks. Sales page, emails, social posts \u2014 all done by me.',
+    initials: 'AK',
+    name: 'Alex Kim',
+    role: 'Freelancer \u2022 $4K/mo from automation gigs',
+    quote: 'I had zero coding skills. The automation module taught me Make.com and Zapier, and within a month I was charging clients $150/hr for workflows. Best $10/mo I\u2019ve ever spent.',
   },
   {
-    initials: 'EP',
-    name: 'Emily Parker',
-    role: 'Solopreneur \u2022 From $8K to $35K/mo in 90 days',
-    quote: 'Lumora taught me how to use AI tools that actually work together. I went from zero AI knowledge to running full marketing campaigns solo. My launch revenue jumped 340% once I applied what I learned.',
+    initials: 'MO',
+    name: 'Maya Osei',
+    role: 'Music Producer \u2022 500+ tracks on Spotify',
+    quote: 'The AI music module is insane. I built a 50-track royalty-free library in two weeks and now I earn passive income from licensing. I didn\u2019t even play an instrument before this.',
   },
 ];
 
 const PRICING = [
   {
-    badge: 'Start learning',
+    badge: 'Try it out',
     name: 'Free',
-    description: 'Preview what Lumora offers',
+    description: 'See if Lumora is for you',
     price: '$0',
     period: '',
-    features: ['2 free modules', 'Community access', 'Basic templates & prompts', 'Email support'],
+    features: ['2 foundation lessons', 'Preview lessons from each module', 'Community access', 'Basic prompt templates'],
     cta: 'Start Free',
     featured: false,
   },
   {
     badge: 'Most popular',
     name: 'Pro',
-    description: 'Full access to every module & lesson',
-    price: '$49',
+    description: 'Full access to everything',
+    price: '$9.99',
     period: '/month',
-    savings: 'Save $108/year',
-    features: ['All 4 modules (54+ lessons)', 'New lessons added monthly', 'Downloadable prompts & templates', 'Private community access', 'Certificate of completion', 'Priority support'],
-    cta: 'Start Pro Trial',
+    savings: 'Save 17% yearly \u2014 $99/year',
+    features: ['All 4 modules (45 lessons)', '60+ hours of hands-on content', 'Downloadable prompts & templates', 'Private community + feedback', 'Certificate of completion', 'New lessons as tools evolve'],
+    cta: 'Go Pro',
     featured: true,
   },
   {
-    badge: 'For teams',
-    name: 'Team',
-    description: 'Train your whole team on AI',
-    price: 'Custom',
-    period: '',
-    features: ['Everything in Pro', 'Team dashboard & progress tracking', 'Custom learning paths', 'Dedicated account manager', 'Bulk licensing', 'Invoice billing'],
-    cta: 'Contact Sales',
+    badge: 'For schools & teams',
+    name: 'School',
+    description: 'Bring Lumora to your classroom',
+    price: '$999',
+    period: '/year',
+    features: ['Everything in Pro', 'Unlimited student seats', 'Teacher dashboard & analytics', 'Custom learning paths', 'Dedicated support', 'Invoice billing'],
+    cta: 'Contact Us',
     featured: false,
   },
 ];
 
 const FAQS = [
   {
-    q: 'Do I need any technical experience to start?',
-    a: 'Not at all. Lumora is designed for complete beginners. If you can type and click, you can follow along. Every lesson starts from scratch and builds up \u2014 no coding, no prior AI knowledge needed.',
+    q: 'Do I need any experience with AI?',
+    a: 'Nope. Every module starts from zero. If you can use a phone and type a sentence, you can do this. We designed Lumora for people who\u2019ve never touched an AI tool before.',
   },
   {
-    q: 'What AI tools will I learn to use?',
-    a: "You'll get hands-on training with industry-leading tools: Runway, Pika, and Kling for video; Midjourney, DALL-E, and Canva AI for design; ChatGPT and Claude for copywriting; Make and Zapier for automation. We update lessons as new tools emerge.",
+    q: 'What tools will I actually learn?',
+    a: 'Runway, Pika, and Kling for video. Make.com, Zapier, and n8n for automation. ChatGPT and Claude for writing. Suno and Udio for music. 60+ tools total \u2014 and we update lessons when new ones drop.',
   },
   {
-    q: 'How is this different from free YouTube tutorials?',
-    a: 'YouTube is scattered and outdated. Lumora gives you a structured curriculum built specifically for solo creators \u2014 with practice projects, downloadable templates, prompt libraries, and a clear path from beginner to confident. No guessing what to learn next.',
+    q: 'Why not just learn from YouTube for free?',
+    a: 'You can try. But YouTube is scattered, outdated, and teaches you random stuff with no structure. Lumora gives you a clear path: pick a skill, build real projects, and walk away with a portfolio. No guessing what to learn next.',
   },
   {
-    q: 'How long does it take to complete a module?',
-    a: "Each module takes 2\u20133 weeks at 30 minutes per day. But you can go at your own pace \u2014 lessons are available on-demand, and you keep access as long as you're subscribed. Most creators see results after their first week.",
+    q: 'How long does each module take?',
+    a: "Most people finish a module in 2\u20133 weeks doing 30 minutes a day. But it's fully self-paced \u2014 binge it in a weekend or stretch it out. Your call.",
   },
   {
-    q: 'Can I cancel my subscription at any time?',
-    a: "Yes, cancel anytime \u2014 no questions asked. You'll keep access until the end of your billing period. Need to pause? No problem. We're flexible because your schedule changes.",
+    q: 'Can I actually make money from this?',
+    a: 'That\u2019s the whole point. Every module ends with a monetization playbook \u2014 freelance pricing, where to find clients, how to package your skills. Students are landing gigs within weeks of finishing.',
   },
   {
-    q: 'Will I get a certificate?',
-    a: "Pro members receive a certificate of completion for each module. You can share it on LinkedIn or your portfolio. More importantly, you'll have a portfolio of real projects to show for your skills.",
+    q: 'Can I cancel anytime?',
+    a: "Yes. Cancel whenever, no questions asked. You keep access until the end of your billing period. It\u2019s $9.99/mo \u2014 less than a lunch.",
   },
   {
-    q: 'What if I get stuck on a lesson?',
-    a: 'Every lesson has a comments section where our team and community help out. Pro members also get priority support with faster response times. Plus, each lesson includes troubleshooting tips for common issues.',
+    q: 'What if I get stuck?',
+    a: 'Every lesson has a comments section where our team and community help out. Pro members get priority support. Plus, each lesson includes troubleshooting tips for the stuff people commonly get tripped up on.',
   },
 ];
 
@@ -1832,9 +1832,9 @@ export default function LumoraRunway() {
           </video>
           <div className="runway-hero-overlay" />
           <div className="runway-hero-content">
-            <div className="runway-category-label">AI Learning Platform for Solo Creators</div>
-            <h1>Master AI Tools to Create,<br/>Design & Market Your Products</h1>
-            <p>The all-in-one learning platform where creators master AI video, design, writing, and marketing — no technical experience needed.</p>
+            <div className="runway-category-label">The Creative AI Learning Platform</div>
+            <h1>Learn AI. Create Everything.<br/>Start Getting Paid.</h1>
+            <p>45 hands-on lessons across video, automation, writing, and music. Go from zero AI skills to a portfolio that makes money.</p>
             <div className="runway-hero-buttons">
               <button className="runway-btn runway-btn-primary">Start Learning Free</button>
               <button className="runway-btn runway-btn-secondary">Watch Preview</button>
@@ -1863,8 +1863,8 @@ export default function LumoraRunway() {
 
         {/* ====== 3. FEATURES (4 cards) ====== */}
         <section className="runway-content-section" id="features">
-          <h2 className="runway-section-title runway-reveal">Learn the AI Skills<br/>That Matter</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Four hands-on modules. 54+ video lessons. Real tools, real projects.</p>
+          <h2 className="runway-section-title runway-reveal">Four Skills.<br/>Endless Possibilities.</h2>
+          <p className="runway-section-subtitle runway-reveal delay-1">Each module teaches you a high-income creative skill with real AI tools. 45 lessons. 60+ hours. All hands-on.</p>
 
           <div className="runway-features-grid">
             {FEATURES.map((f, i) => (
@@ -1883,7 +1883,7 @@ export default function LumoraRunway() {
         {/* ====== 4. HOW IT WORKS (3 steps) ====== */}
         <section className="runway-content-section runway-section-alt">
           <h2 className="runway-section-title runway-reveal">How It Works</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">From zero AI experience to creating professional content in weeks.</p>
+          <p className="runway-section-subtitle runway-reveal delay-1">No fluff. No filler. Just build stuff and get good.</p>
 
           <div className="runway-how-grid-connected">
             {HOW_IT_WORKS.map((item) => (
@@ -1912,8 +1912,8 @@ export default function LumoraRunway() {
 
         {/* ====== 5. WHAT YOU'LL BUILD (6 use-case cards) ====== */}
         <section className="runway-content-section" id="use-cases">
-          <h2 className="runway-section-title runway-reveal">What You'll Learn to Create</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Real projects from real modules — built by our students.</p>
+          <h2 className="runway-section-title runway-reveal">What You'll Actually Make</h2>
+          <p className="runway-section-subtitle runway-reveal delay-1">Not theory. Not slides. Real stuff you can post, sell, or put in your portfolio.</p>
 
           <div className="runway-usecase-grid">
             {USE_CASES.map((item) => (
@@ -1931,8 +1931,8 @@ export default function LumoraRunway() {
 
         {/* ====== 6. TESTIMONIALS (3 cards) ====== */}
         <section className="runway-content-section runway-section-alt">
-          <h2 className="runway-section-title runway-reveal">Loved by Creators</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Join 12,000+ creators who learned AI the structured way.</p>
+          <h2 className="runway-section-title runway-reveal">Don't Take Our Word for It</h2>
+          <p className="runway-section-subtitle runway-reveal delay-1">12,000+ students are already building with AI. Here's what they say.</p>
 
           <div className="runway-testimonials-grid">
             {TESTIMONIALS.map((t) => (
@@ -1954,7 +1954,7 @@ export default function LumoraRunway() {
         {/* ====== 7. PRICING (3 tiers) ====== */}
         <section className="runway-content-section" id="pricing">
           <h2 className="runway-section-title runway-reveal">Simple, Transparent Pricing</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Start free. Go Pro when you're ready to unlock everything.</p>
+          <p className="runway-section-subtitle runway-reveal delay-1">Start free. Go Pro for less than a coffee. Cancel anytime.</p>
 
           <div className="runway-pricing-grid">
             {PRICING.map((plan) => (
@@ -2012,9 +2012,9 @@ export default function LumoraRunway() {
               </div>
             ))}
           </div>
-          <h2 className="runway-reveal delay-1">Your AI education<br/>starts here.</h2>
-          <p className="runway-reveal delay-2">Stop piecing together random tutorials. Learn video, design, copywriting, and marketing automation — in one structured platform built for solo creators.</p>
-          <div className="runway-cta-risk runway-reveal delay-2">Start free. No credit card required. Cancel anytime.</div>
+          <h2 className="runway-reveal delay-1">Stop scrolling tutorials.<br/>Start building skills.</h2>
+          <p className="runway-reveal delay-2">Video. Automation. Writing. Music. Four modules, 45 lessons, and a clear path from \u201CI have no idea what I\u2019m doing\u201D to getting paid.</p>
+          <div className="runway-cta-risk runway-reveal delay-2">Free to start. $9.99/mo to unlock everything. Cancel anytime.</div>
           <div className="runway-cta-buttons runway-reveal delay-3">
             <button className="runway-btn runway-btn-primary">Start Learning Free</button>
             <a href="#pricing" className="runway-btn runway-btn-secondary">See Pricing</a>
