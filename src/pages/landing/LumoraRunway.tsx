@@ -306,8 +306,10 @@ export default function LumoraRunway() {
            DESIGN TOKENS
            ============================================================ */
         .lumora-runway {
-          /* Monochrome palette — no accent color */
+          /* Monochrome palette with warm accent for visual rhythm */
           --star-color: #d97706;
+          --accent: #1a1a2e;
+          --accent-warm: #d97706;
 
           /* Light mode (default) */
           --bg-primary: #ffffff;
@@ -345,6 +347,8 @@ export default function LumoraRunway() {
 
         /* Dark mode overrides */
         .lumora-runway.dark-mode {
+          --accent: #e2e8f0;
+          --accent-warm: #f59e0b;
           --bg-primary: #000000;
           --bg-secondary: #111111;
           --text-primary: #ffffff;
@@ -405,10 +409,25 @@ export default function LumoraRunway() {
         }
 
         .runway-nav.scrolled {
-          background: var(--nav-bg);
+          background: var(--text-primary);
+          color: var(--bg-primary);
           backdrop-filter: blur(20px) saturate(180%);
-          box-shadow: var(--nav-shadow);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
           padding: 1rem 3rem;
+        }
+
+        .runway-nav.scrolled .logo,
+        .runway-nav.scrolled .runway-nav-links a,
+        .runway-nav.scrolled .runway-theme-toggle {
+          color: var(--bg-primary);
+        }
+
+        .runway-nav.scrolled .runway-nav-links a:hover {
+          opacity: 0.7;
+        }
+
+        .runway-nav.scrolled .runway-nav-links a::after {
+          background: var(--bg-primary);
         }
 
         .runway-nav-links {
@@ -747,11 +766,11 @@ export default function LumoraRunway() {
 
         .runway-lesson-count {
           display: inline-block;
-          font-size: 0.75rem;
-          font-weight: 500;
+          font-size: 0.72rem;
+          font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: var(--text-muted);
+          letter-spacing: 0.06em;
+          color: var(--accent-warm);
           margin-bottom: 0.5rem;
         }
 
@@ -1127,9 +1146,10 @@ export default function LumoraRunway() {
            ============================================================ */
         .runway-cta-section {
           padding: 9rem 3rem;
-          background: var(--bg-primary);
+          background: var(--text-primary);
+          color: var(--bg-primary);
           text-align: center;
-          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .runway-cta-section h2 {
@@ -1142,12 +1162,35 @@ export default function LumoraRunway() {
 
         .runway-cta-section p {
           font-size: 1.2rem;
-          color: var(--text-secondary);
+          color: rgba(255, 255, 255, 0.65);
           margin-bottom: 3rem;
           max-width: 600px;
           margin-left: auto;
           margin-right: auto;
           line-height: 1.6;
+        }
+
+        .dark-mode .runway-cta-section p {
+          color: rgba(0, 0, 0, 0.55);
+        }
+
+        .runway-cta-section .runway-btn-primary {
+          background: var(--bg-primary);
+          color: var(--text-primary);
+        }
+
+        .runway-cta-section .runway-btn-primary:hover {
+          opacity: 0.9;
+        }
+
+        .runway-cta-section .runway-btn-secondary {
+          color: var(--bg-primary);
+          border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .dark-mode .runway-cta-section .runway-btn-secondary {
+          color: var(--bg-primary);
+          border-color: rgba(0, 0, 0, 0.2);
         }
 
         .runway-cta-buttons {
@@ -1572,20 +1615,28 @@ export default function LumoraRunway() {
 
         .runway-cta-metric {
           font-size: 0.85rem;
-          color: var(--text-muted);
+          color: rgba(255, 255, 255, 0.5);
           letter-spacing: 0.02em;
         }
 
+        .dark-mode .runway-cta-metric {
+          color: rgba(0, 0, 0, 0.4);
+        }
+
         .runway-cta-metric strong {
-          color: var(--text-primary);
+          color: var(--bg-primary);
           font-weight: 700;
         }
 
         .runway-cta-risk {
           font-size: 0.9rem;
-          color: var(--text-muted);
+          color: rgba(255, 255, 255, 0.45);
           margin-top: -1.5rem;
           margin-bottom: 2.5rem;
+        }
+
+        .dark-mode .runway-cta-risk {
+          color: rgba(0, 0, 0, 0.4);
         }
 
         /* ============================================================
@@ -1596,8 +1647,8 @@ export default function LumoraRunway() {
           top: 0;
           left: 0;
           height: 2px;
-          background: var(--text-primary);
-          opacity: 0.3;
+          background: var(--accent-warm);
+          opacity: 0.8;
           z-index: 9999;
           transition: width 0.15s ease;
         }
