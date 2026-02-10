@@ -54,6 +54,22 @@ export default function LandingShowcase() {
       ],
     },
     {
+      id: 'neo-brutalist-pro-v2',
+      name: 'Neo-Brutalist Pro V2',
+      path: '/landing/neo-brutalist-pro-v2',
+      tagline: 'Max conversion brutalist',
+      description: '13 enhancements over Pro V1: glitch effects, dual marquees, animated counters, live activity feed, video testimonials, FAB, strikethrough animations.',
+      color: '#BFFF00',
+      icon: <Flame className="w-8 h-8" />,
+      targetAudience: 'Gen Z creators — optimized for conversion + viral sharing',
+      keyFeatures: [
+        'VHS glitch hero effect',
+        'Dual-direction marquees',
+        'Live activity notifications',
+        'Floating action button + stat glow',
+      ],
+    },
+    {
       id: 'vapor-studio',
       name: 'Vapor Studio',
       path: '/landing/vapor-studio',
