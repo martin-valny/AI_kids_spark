@@ -308,31 +308,30 @@ export default function LumoraRunway() {
         .lumora-runway {
           /* Monochrome palette with warm accent for visual rhythm */
           --star-color: #d97706;
-          --accent: #1a1a2e;
           --accent-warm: #d97706;
 
           /* Light mode (default) */
           --bg-primary: #ffffff;
           --bg-secondary: #f3f4f5;
-          --text-primary: #0f172a;
-          --text-secondary: rgba(15, 23, 42, 0.6);
-          --text-muted: rgba(15, 23, 42, 0.4);
-          --border: rgba(15, 23, 42, 0.08);
-          --border-hover: rgba(15, 23, 42, 0.15);
+          --text-primary: #000000;
+          --text-secondary: rgba(0, 0, 0, 0.6);
+          --text-muted: rgba(0, 0, 0, 0.4);
+          --border: rgba(0, 0, 0, 0.08);
+          --border-hover: rgba(0, 0, 0, 0.15);
           --card-bg: #ffffff;
           --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
           --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.08);
           --nav-bg: rgba(255, 255, 255, 0.85);
           --nav-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
-          --btn-primary-bg: #0f172a;
+          --btn-primary-bg: #000000;
           --btn-primary-color: #ffffff;
-          --btn-primary-hover: rgba(15, 23, 42, 0.88);
-          --btn-secondary-border: rgba(15, 23, 42, 0.15);
-          --btn-secondary-hover: rgba(15, 23, 42, 0.04);
+          --btn-primary-hover: rgba(0, 0, 0, 0.85);
+          --btn-secondary-border: rgba(0, 0, 0, 0.15);
+          --btn-secondary-hover: rgba(0, 0, 0, 0.04);
 
-          --fab-bg: #0f172a;
+          --fab-bg: #000000;
           --fab-color: #ffffff;
-          --toast-bg: rgba(15, 23, 42, 0.92);
+          --toast-bg: rgba(0, 0, 0, 0.92);
           --toast-color: #ffffff;
 
           font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
@@ -347,7 +346,6 @@ export default function LumoraRunway() {
 
         /* Dark mode overrides */
         .lumora-runway.dark-mode {
-          --accent: #e2e8f0;
           --accent-warm: #f59e0b;
           --bg-primary: #000000;
           --bg-secondary: #111111;
@@ -428,6 +426,25 @@ export default function LumoraRunway() {
 
         .runway-nav.scrolled .runway-nav-links a::after {
           background: var(--bg-primary);
+        }
+
+        .runway-nav.scrolled .runway-btn-primary {
+          background: #ffffff;
+          color: #000000;
+        }
+
+        .runway-nav.scrolled .runway-btn-primary:hover {
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+        }
+
+        .dark-mode .runway-nav.scrolled .runway-btn-primary {
+          background: #000000;
+          color: #ffffff;
+        }
+
+        .dark-mode .runway-nav.scrolled .runway-btn-primary:hover {
+          background: rgba(0, 0, 0, 0.9);
         }
 
         .runway-nav-links {
