@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { ArrowRight, Zap, Film, PenTool, Music, Bot, X, Check, Play } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import BrutalistUIPlaceholder from '@/components/placeholders/BrutalistUIPlaceholder';
@@ -45,6 +45,21 @@ function Scanline() {
       }}
       animate={{ y: ['0vh', '100vh'] }}
       transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+    />
+  );
+}
+
+// ─── Scroll Progress Bar ────────────────────────────────────────────────────
+
+function ScrollProgressBar() {
+  const { scrollYProgress } = useScroll();
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-[3px] z-[60] origin-left"
+      style={{
+        backgroundColor: neoBrutalist.lime,
+        scaleX: scrollYProgress,
+      }}
     />
   );
 }
@@ -221,12 +236,14 @@ function StudentCardV2({
   location,
   achievement,
   detail,
+  onClick,
 }: {
   type: 'video' | 'music' | 'writing';
   name: string;
   location: string;
   achievement: string;
   detail: string;
+  onClick?: () => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const Icon = cardIcons[type];
@@ -234,11 +251,12 @@ function StudentCardV2({
   return (
     <motion.div
       className="relative overflow-hidden bg-black cursor-pointer"
+      onClick={onClick}
       style={{
         border: `8px solid ${neoBrutalist.lime}`,
         transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
         boxShadow: isHovered
-          ? `0 0 30px ${neoBrutalist.limeGlow}, 0 8px 30px rgba(0,0,0,0.5)`
+          ? `0 12px 32px rgba(204, 255, 0, 0.3), 0 0 20px ${neoBrutalist.limeGlow}`
           : 'none',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       }}
@@ -477,13 +495,20 @@ function VideoTestimonialCard({
   quote: string;
   gradient: string;
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
-      className="relative flex-shrink-0"
+      className="relative flex-shrink-0 cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         aspectRatio: '9/16',
         width: '220px',
         border: `4px solid ${neoBrutalist.lime}`,
+        transform: isHovered ? 'scale(1.03)' : 'scale(1)',
+        boxShadow: isHovered ? `0 0 20px ${neoBrutalist.limeGlow}` : 'none',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       }}
     >
       <div
@@ -618,10 +643,13 @@ function ToolBadge({ name }: { name: string }) {
 
   return (
     <span
-      className="font-mono text-sm font-bold uppercase px-4 py-2 cursor-default transition-colors"
+      className="font-mono text-sm font-bold uppercase px-4 py-2 cursor-default"
       style={{
         color: isHovered ? neoBrutalist.lime : neoBrutalist.mediumGray,
         border: `2px solid ${isHovered ? neoBrutalist.lime : neoBrutalist.mediumGray}`,
+        transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+        filter: isHovered ? 'brightness(1.2)' : 'brightness(1)',
+        transition: 'all 0.2s ease',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -713,14 +741,181 @@ function FloatingActionButton() {
   );
 }
 
+// ─── Case Study Modal ───────────────────────────────────────────────────────
+
+interface StudentData {
+  type: 'video' | 'music' | 'writing';
+  name: string;
+  location: string;
+  achievement: string;
+  detail: string;
+  bio: string;
+  skills: string[];
+  timeline: string;
+}
+
+const STUDENT_BIOS: Record<string, StudentData> = {
+  'SARAH CHEN, 17': {
+    type: 'video',
+    name: 'SARAH CHEN, 17',
+    location: 'LOS ANGELES, CA',
+    achievement: 'EARNED $2,150',
+    detail: 'EDITING YOUTUBE VIDEOS',
+    bio: 'Started with zero editing experience. Completed the AI Video Editing module in 2 weeks, landed her first client through Fiverr, and now edits for 3 YouTube channels consistently.',
+    skills: ['PREMIERE PRO + AI', 'THUMBNAIL DESIGN', 'COLOR GRADING', 'MOTION GRAPHICS'],
+    timeline: '0 → $2,150 IN 45 DAYS',
+  },
+  'MARCUS JOHNSON, 19': {
+    type: 'music',
+    name: 'MARCUS JOHNSON, 19',
+    location: 'ATLANTA, GA',
+    achievement: 'PRODUCED FIRST BEAT',
+    detail: 'IN 1 WEEK',
+    bio: 'Always loved music but couldn\'t afford studio time. Used Suno + AI tools from Lumora to produce his first beat in 7 days. Now has 15 beats on BeatStars with consistent monthly sales.',
+    skills: ['SUNO AI', 'BEAT PRODUCTION', 'MIXING & MASTERING', 'DISTRIBUTION'],
+    timeline: 'FIRST BEAT IN 7 DAYS',
+  },
+  'JASMINE LEE, 16': {
+    type: 'writing',
+    name: 'JASMINE LEE, 16',
+    location: 'NEW YORK, NY',
+    achievement: '10,000 READS',
+    detail: 'ON PUBLISHED STORY',
+    bio: 'Used AI writing tools to craft her first short story series on Wattpad. Hit 10,000 reads in 3 weeks. Now writes AI-assisted content for a local blog and earns $200/month.',
+    skills: ['AI WRITING TOOLS', 'STORYTELLING', 'SEO CONTENT', 'BLOG MANAGEMENT'],
+    timeline: '10K READS IN 3 WEEKS',
+  },
+};
+
+function CaseStudyModal({
+  student,
+  onClose,
+}: {
+  student: StudentData;
+  onClose: () => void;
+}) {
+  // Close on Escape key
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [onClose]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/95" />
+
+      {/* Modal */}
+      <motion.div
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto font-mono"
+        style={{ border: `8px solid ${neoBrutalist.lime}`, backgroundColor: neoBrutalist.black }}
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 40, opacity: 0 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 p-2 hover:opacity-70 transition-opacity"
+          style={{ color: neoBrutalist.lime }}
+        >
+          <X className="w-8 h-8" />
+        </button>
+
+        {/* Thumbnail header */}
+        <div
+          className="relative h-48 flex items-center justify-center"
+          style={{ background: thumbnailGradients[student.type] }}
+        >
+          <div className="text-center">
+            <div className="text-6xl font-bold text-white/80 mb-2">
+              {student.name.split(',')[0]}
+            </div>
+            <div
+              className="inline-block px-4 py-2 text-sm font-bold uppercase"
+              style={{ backgroundColor: neoBrutalist.lime, color: neoBrutalist.black }}
+            >
+              {student.achievement}
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-8">
+          <h3 className="text-2xl font-bold uppercase mb-1" style={{ color: neoBrutalist.white }}>
+            {student.name}
+          </h3>
+          <p className="text-sm uppercase mb-6" style={{ color: neoBrutalist.mediumGray }}>
+            {student.location}
+          </p>
+
+          <p className="text-lg uppercase mb-8 leading-relaxed" style={{ color: neoBrutalist.white }}>
+            {student.bio}
+          </p>
+
+          {/* Skills */}
+          <div className="mb-8">
+            <h4 className="text-sm font-bold uppercase mb-3" style={{ color: neoBrutalist.lime }}>
+              SKILLS LEARNED
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {student.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1 text-xs font-bold uppercase"
+                  style={{ border: `2px solid ${neoBrutalist.lime}`, color: neoBrutalist.lime }}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Timeline badge */}
+          <div
+            className="inline-block px-6 py-3 text-lg font-bold uppercase"
+            style={{ backgroundColor: neoBrutalist.lime, color: neoBrutalist.black }}
+          >
+            {student.timeline}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export default function NeoBrutalistProV2() {
+  const [selectedStudent, setSelectedStudent] = useState<StudentData | null>(null);
+
   return (
     <div className="bg-black text-white font-mono overflow-x-hidden">
+      {/* Case Study Modal */}
+      <AnimatePresence>
+        {selectedStudent && (
+          <CaseStudyModal
+            student={selectedStudent}
+            onClose={() => setSelectedStudent(null)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Fixed overlays */}
+      <ScrollProgressBar />
       <Scanline />
       <LiveActivityFeed />
       <FloatingActionButton />
@@ -869,6 +1064,7 @@ export default function NeoBrutalistProV2() {
               location="LOS ANGELES, CA"
               achievement="EARNED $2,150"
               detail="EDITING YOUTUBE VIDEOS"
+              onClick={() => setSelectedStudent(STUDENT_BIOS['SARAH CHEN, 17'])}
             />
             <StudentCardV2
               type="music"
@@ -876,6 +1072,7 @@ export default function NeoBrutalistProV2() {
               location="ATLANTA, GA"
               achievement="PRODUCED FIRST BEAT"
               detail="IN 1 WEEK"
+              onClick={() => setSelectedStudent(STUDENT_BIOS['MARCUS JOHNSON, 19'])}
             />
             <StudentCardV2
               type="writing"
@@ -883,6 +1080,7 @@ export default function NeoBrutalistProV2() {
               location="NEW YORK, NY"
               achievement="10,000 READS"
               detail="ON PUBLISHED STORY"
+              onClick={() => setSelectedStudent(STUDENT_BIOS['JASMINE LEE, 16'])}
             />
           </div>
         </div>
