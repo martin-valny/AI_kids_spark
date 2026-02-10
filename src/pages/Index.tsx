@@ -159,9 +159,9 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Master AI. <br />
+                  Learn AI. <br />
                   <span className="bg-gradient-to-r from-kids-blue via-kids-purple to-kids-pink bg-clip-text text-transparent">
-                    Create Everything.
+                    Ship Real Work.
                   </span>
                 </motion.h1>
                 <motion.p
@@ -170,7 +170,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  The creative AI platform for the next generation of digital artists, musicians, storytellers, and innovators. From prompt engineer to digital creator - build art, music, videos, and interactive experiences with cutting-edge AI tools.
+                  The creative AI platform for young creators 16+. Build short-form video, automate workflows, write social content, and create music with AI tools — then ship real work and open new opportunities.
                 </motion.p>
                 <motion.div
                   className="flex flex-col sm:flex-row gap-4"
@@ -268,7 +268,7 @@ const Index = () => {
                 Everything You Need to <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Master AI</span>
               </h2>
               <p className="text-xl text-gray-600">
-                A complete creative platform designed for ages 13-25
+                A complete creative platform designed for creators 16+
               </p>
             </motion.div>
 

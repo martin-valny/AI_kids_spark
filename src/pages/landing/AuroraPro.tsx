@@ -523,7 +523,7 @@ export default function AuroraPro() {
                 fontWeight: 500,
               }}
             >
-              For Creators 13–25
+              For Creators 16+
             </span>
           </motion.div>
 

@@ -355,7 +355,7 @@ export default function VaporStudio() {
 
               <p className="text-xl mb-8 leading-relaxed max-w-lg" style={{ color: vapor.textSecondary }}>
                 Master AI-powered video editing, music production, content writing, and automation.
-                Build your portfolio. Start earning in 30 days.
+                Build your portfolio. Open new opportunities.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">

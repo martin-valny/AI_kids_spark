@@ -1386,7 +1386,7 @@ export default function NeoBrutalistProV2() {
               {
                 step: '03',
                 title: 'EARN',
-                desc: 'Land clients or monetize. Average $150/project.',
+                desc: 'Land clients or freelance. Build skills worth $150+/project.',
               },
             ].map((item, i) => (
               <motion.div

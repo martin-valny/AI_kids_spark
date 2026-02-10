@@ -10,7 +10,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-6 text-gray-900">Lumora</h3>
             <p className="text-gray-600 mb-6">
-              Master AI through creativity. For teens and young creators ages 13-25.
+              Learn AI. Ship real work. For creators 16+.
             </p>
             <div className="flex space-x-4">
               {/* Social icons */}

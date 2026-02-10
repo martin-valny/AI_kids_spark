@@ -47,7 +47,7 @@ export function AITutorProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      const systemPrompt = `You are a friendly AI tutor helping teens (ages 13-25)
+      const systemPrompt = `You are a friendly AI tutor helping young creators (ages 16+)
 learn about AI and creative applications. You are encouraging, clear, and
 educational. Keep responses concise (2-3 paragraphs max).
 

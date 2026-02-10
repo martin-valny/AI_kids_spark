@@ -161,7 +161,7 @@ export default function LumoraCreative() {
             animate="visible"
             variants={{ ...fadeUp, visible: { ...fadeUp.visible, transition: { ...fadeUp.visible.transition, delay: 0.15 } } }}
           >
-            Creative AI education designed for Gen Z creators. Learn to create, monetize, and build your future.
+            Creative AI education designed for Gen Z creators. Learn to build, ship real work, and open new opportunities.
           </motion.p>
 
           <motion.div

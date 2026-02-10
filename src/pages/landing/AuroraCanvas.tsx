@@ -512,7 +512,7 @@ export default function AuroraCanvas() {
                 fontWeight: 500,
               }}
             >
-              FOR YOUNG CREATORS AGES 13-25
+              FOR YOUNG CREATORS AGES 16+
             </span>
           </motion.div>
 
@@ -557,7 +557,7 @@ export default function AuroraCanvas() {
             transition={{ delay: 0.6 }}
           >
             Master AI tools for video, music, writing, and automation.
-            Transform your creative vision into a sustainable career in just 30 days.
+            Transform your creative vision into real skills that open new opportunities.
           </motion.p>
 
           {/* CTA Buttons */}

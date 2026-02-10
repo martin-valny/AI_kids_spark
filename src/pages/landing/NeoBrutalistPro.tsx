@@ -519,7 +519,7 @@ export default function NeoBrutalistPro() {
             {[
               { step: '01', title: 'LEARN', desc: '45 bite-sized lessons. Master AI tools fast.' },
               { step: '02', title: 'BUILD', desc: 'Create 3 portfolio projects. Real work, not theory.' },
-              { step: '03', title: 'EARN', desc: 'Land clients or monetize. Average $150/project.' },
+              { step: '03', title: 'EARN', desc: 'Land clients or freelance. Build skills worth $150+/project.' },
             ].map((item, i) => (
               <motion.div
                 key={i}

@@ -219,7 +219,7 @@ export default function BrutalistRedline() {
             className="text-xs font-mono uppercase tracking-widest mt-2 pb-2 border-t pt-2"
             style={{ borderColor: `${redline.ink}30`, color: `${redline.ink}60` }}
           >
-            Est. 2024 • The Creative AI Revolution • For Gen Z Creators Ages 13-25
+            Est. 2024 • The Creative AI Revolution • For Gen Z Creators Ages 16+
           </div>
         </div>
       </header>

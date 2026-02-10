@@ -237,7 +237,7 @@ export default function LinearMotion() {
   const benefits = [
     'Learn at your own pace',
     'Build real portfolio projects',
-    'Monetize skills in 30 days',
+    'Turn skills into paid opportunities',
     'Join 10,000+ creators',
     'Free tier forever',
     'No experience required',
