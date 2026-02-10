@@ -1,0 +1,44 @@
+{
+  "min_age": 16,
+  "tagline": "Learn AI. Ship Real Work. Open New Opportunities.",
+  "tone": {
+    "voice": "sharp, supportive, non-cringey",
+    "playfulness": "medium",
+    "formality": "conversational-professional"
+  },
+  "mlp_default": "video_short",
+  "monetization_language": "skill_first_opportunities",
+  "monetization_rules": {
+    "allowed": [
+      "paid opportunities over time",
+      "turn skills into income",
+      "build a portfolio that earns",
+      "open new opportunities",
+      "freelance-ready skills"
+    ],
+    "avoided": [
+      "get rich quick",
+      "monetize fast",
+      "earn in 30 days",
+      "make money fast",
+      "guaranteed income"
+    ]
+  },
+  "audience_segments": [
+    {
+      "id": "short-form-creator",
+      "label": "Aspiring short-form creator",
+      "description": "Wants to make TikToks, Reels, Shorts with AI tools"
+    },
+    {
+      "id": "freelance-operator",
+      "label": "Freelance-curious operator",
+      "description": "Wants to offer AI-powered services to clients"
+    },
+    {
+      "id": "student-creator",
+      "label": "Student creator",
+      "description": "Uses AI for school projects, portfolios, and side work"
+    }
+  ]
+}
