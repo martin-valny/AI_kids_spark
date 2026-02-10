@@ -162,16 +162,16 @@ The initial `/LUMORA_PROGRESS.md` file has been created with:
 ## 🎯 STRATEGIC VISION
 
 **Transform From:** Generic "AI for kids" educational site
-**Transform To:** The premier creative AI platform for Gen Z creators (ages 13-25)
+**Transform To:** The premier creative AI platform for Gen Z creators (ages 16+)
 
 ### Core Positioning:
 
-**"Master AI. Create Everything. Monetize Fast."**
+**"Learn AI. Ship Real Work. Open New Opportunities."**
 
-The only platform that teaches Gen Z to:
-1. Create viral content with AI tools (TikTok, Instagram, YouTube)
-2. Automate workflows like a pro (save 10+ hours/week)
-3. Monetize skills in 30 days or less (freelance, brand deals, passive income)
+Lumora uniquely combines:
+1. Platform-specific AI training for real creator tools (TikTok, Instagram, YouTube)
+2. Workflow automation skills that save 10+ hours/week
+3. Portfolio-grade projects that turn skills into paid opportunities over time (freelance, brand deals, content careers)
 
 ### Market-Driven Domain Priorities (Based on Research):
 
@@ -185,7 +185,47 @@ The only platform that teaches Gen Z to:
 
 **❌ AVOIDING** (Based on Market Data):
 - AI Art/Images - Oversaturated (63% failure rate, 100 competitors per 1K customers)
-- AI Code Generation - Too technical for general 13-25 audience
+- AI Code Generation - Too technical for general 16+ audience
+
+---
+
+## 🏷️ BRAND LAYER (FAST)
+
+### Audience Definition
+**Age:** 16+
+**Three Core Segments:**
+1. **Aspiring short-form creator** — Wants to make TikToks, Reels, Shorts with AI tools
+2. **Freelance-curious operator** — Wants to offer AI-powered services to clients
+3. **Student creator** — Uses AI for school projects, portfolios, and side work
+
+### Tagline
+**"Learn AI. Ship Real Work. Open New Opportunities."**
+
+### Monetization Framing Rule
+All monetization messaging follows "paid opportunities over time" — never "get rich quick."
+- **Allowed:** "turn skills into income," "freelance-ready portfolio," "open new career paths"
+- **Avoided:** "monetize fast," "earn in 30 days," "guaranteed income," "the only platform that..."
+- See `/brand/messaging_monetization.md` for full guardrails
+
+### Voice Rules
+- **Sharp:** Concise, direct, no filler
+- **Supportive:** Encouraging without being condescending
+- **Non-cringey:** No forced slang, no "fellow kids" energy
+- **Medium playfulness:** Professional enough for a portfolio, fun enough to enjoy
+- See `/brand/voice_guide.md` for full guide
+
+### Default MLP (Minimum Lovable Product)
+**"Your first AI-boosted short"** (60–90 min)
+- Route: `/mlp/first-short`
+- Spec: `/product/mlp_first_short.md`
+- Entry points: Homepage hero card, Lessons page banner
+
+### Brand Reference Files
+- `/brand/settings.json` — Machine-readable brand config
+- `/brand/brand_platform.md` — Purpose, positioning, pillars, personality
+- `/brand/voice_guide.md` — Voice principles and examples
+- `/brand/message_map.md` — Messaging by audience (creators / parents / schools)
+- `/brand/messaging_monetization.md` — Allowed vs avoided monetization phrases
 
 ---
 
@@ -410,7 +450,7 @@ Tools taught with full lessons:
 
 **Average Lesson Length:** 1.3 hours (78 minutes)
 **Total Platform Learning Time:** ~60 hours of content
-**Completion Path:** Foundation (2h) → Choose domain (8-16h) → Monetize
+**Completion Path:** Foundation (2h) → Choose domain (8-16h) → Build portfolio → Open opportunities
 
 ---
 
@@ -549,7 +589,7 @@ Tools taught with full lessons:
 - Dark professional theme (surface-dark #0f0f0f, surface-elevated #1e1e1e)
 - Neon accent colors (cyan #00d4ff, magenta #ff006e, gold #ffbe0b)
 - Subtle glowing effects, sleek animations
-- Target audience: 13-25 years old
+- Target audience: 16+ years old
 
 ### **Design System Changes:**
 
@@ -631,7 +671,7 @@ colors: {
 | **AI-Specific Content** | ✅ 100% | ❌ <10% | ❌ <5% | ❌ <10% |
 | **Platform-Specific Training** | ✅ TikTok/IG/YT | ❌ Generic | ❌ Generic | ❌ Corporate |
 | **Monetization Focus** | ✅ Every lesson | ❌ Rare | ❌ No | ❌ No |
-| **Gen Z Target** | ✅ 13-25 | ❌ 25-45 | ❌ All ages | ❌ 30-50 |
+| **Gen Z Target** | ✅ 16+ | ❌ 25-45 | ❌ All ages | ❌ 30-50 |
 | **Free Tool Emphasis** | ✅ Yes | ❌ No | ❌ No | ❌ Paid tools |
 | **Built-in AI Tutor** | ✅ Yes | ❌ No | ❌ No | ❌ No |
 | **Portfolio Projects** | ✅ Every domain | ❌ Sometimes | ❌ Rare | ❌ No |
@@ -639,7 +679,7 @@ colors: {
 | **Pricing** | ✅ $9.99/mo | ❌ $13.99/mo | ❌ $13.99/mo | ❌ $29.99/mo |
 
 **Unique Value Proposition:**
-"The only platform that teaches Gen Z to create viral content with AI tools, automate workflows, and monetize in 30 days - using free/affordable tools they already use."
+"Uniquely combines hands-on AI tool training with portfolio projects, helping young creators build real skills, ship work, and open paid opportunities over time — using free and affordable tools."
 
 ---
 
@@ -792,9 +832,10 @@ This approach ensures we choose the RIGHT design instead of guessing!
 
 **Day 4-5: Homepage Redesign (10 hours)**
 - Update `/src/pages/Index.tsx` hero section
-- New messaging: "Master AI. Create Everything. Monetize Fast."
+- New messaging: "Learn AI. Ship Real Work. Open New Opportunities."
 - Update feature cards (video, automation, writing, music)
 - Update CTA buttons (dark theme)
+- Add "Start Here" MLP entrypoint linking to `/mlp/first-short`
 - Add social proof section
 
 ---
@@ -2245,7 +2286,7 @@ Ensure everything works seamlessly
 
 After SESSION 6, Lumora will have:
 
-✅ **Professional dark aesthetic** (13-25 audience)
+✅ **Professional dark aesthetic** (16+ audience)
 ✅ **Portfolio-first content** (3 project lessons)
 ✅ **Streamlined foundations** (30-min speed-run)
 ✅ **Two-track navigation** (clear learning path)
@@ -2391,6 +2432,48 @@ This master plan supersedes all previous planning documents and provides the com
 
 ---
 
+**Session 0.1: Brand Settings + Tagline (2-3 hours)**
+
+- [ ] Create `/brand/settings.json` with:
+  - `min_age: 16`
+  - `tagline: "Learn AI. Ship Real Work. Open New Opportunities."`
+  - `tone_playfulness: "medium"`
+  - `mlp_default: "video_short"`
+  - `monetization_language: "skill_first_opportunities"`
+- [ ] Create `/brand/brand_platform.md` (1 page max: purpose, positioning, 3 pillars, 3 personality traits)
+- [ ] Verify settings.json is valid JSON
+- [ ] Commit: "feat(brand): add brand foundation files"
+
+**Deliverable:** Machine-readable brand config + 1-page brand platform doc
+
+---
+
+**Session 0.2: Voice & Monetization Guardrails (2-3 hours)**
+
+- [ ] Create `/brand/voice_guide.md` with voice principles, do/don't examples, tone spectrum
+- [ ] Create `/brand/message_map.md` with creator / parent / school messaging
+- [ ] Create `/brand/messaging_monetization.md` with allowed vs avoided phrases
+- [ ] Patch masterplan copy: replace "Monetize Fast" / "monetize in 30 days" / "the only platform" with on-brand variants
+- [ ] Commit: "refactor(copy): add brand voice and monetization guardrails"
+
+**Deliverable:** Voice guide, message map, monetization guardrails, patched masterplan copy
+
+---
+
+**Session 0.3: MLP Spec (Video Short) + UX Entry (4-8 hours)**
+
+- [ ] Create `/product/mlp_first_short.md` with full MLP specification
+- [ ] Create `/src/pages/mlp/FirstShort.tsx` with 3-step flow (pick template → generate hook+captions → export+save)
+- [ ] Add route `/mlp/first-short` in `App.tsx`
+- [ ] Add "Start Here" card on `Index.tsx` (homepage hero)
+- [ ] Add "Start Here" banner card on `Lessons.tsx`
+- [ ] Implement localStorage portfolio save (`lumora-mlp-projects` key)
+- [ ] Commit: "feat(mlp): add first-short page + entrypoints + portfolio placeholder"
+
+**Deliverable:** MLP page live at `/mlp/first-short`, reachable from homepage + lessons, portfolio save working
+
+---
+
 **Session 1.1: Landing Page Showcase (Week 1-2, 20 hours)**
 
 **⚠️ TIME UPDATED:** 16h → 20h (added design approval gate + iteration buffer)
@@ -2522,7 +2605,7 @@ This master plan supersedes all previous planning documents and provides the com
 
 **Session 1.7: Homepage Redesign (Week 2, 10 hours)**
 - [ ] Update `/src/pages/Index.tsx` hero section
-- [ ] New messaging: "Master AI. Create Everything. Monetize Fast."
+- [ ] New messaging: "Learn AI. Ship Real Work. Open New Opportunities."
 - [ ] Update feature cards (video, automation, writing, music)
 - [ ] Update CTA buttons (dark theme, hover effects)
 - [ ] Add social proof section
@@ -2614,6 +2697,9 @@ This master plan supersedes all previous planning documents and provides the com
 - [ ] Final commit to branch
 
 **Month 1 Completion Criteria:**
+- ✅ Brand Layer sessions complete (0.1-0.3)
+- ✅ Tagline "Learn AI. Ship Real Work. Open New Opportunities." updated across site
+- ✅ MLP entrypoint visible on mobile (`/mlp/first-short`)
 - ✅ Session 0 complete (design foundation built)
 - ✅ Dark design system live across platform
 - ✅ Typography system implemented
@@ -2627,7 +2713,10 @@ This master plan supersedes all previous planning documents and provides the com
 - ✅ Ready for content creation (Month 2)
 
 **Month 1 Updated Time Estimate:**
-- Session 0: 6-8h (NEW)
+- Session 0.1: 2-3h (NEW - Brand Settings)
+- Session 0.2: 2-3h (NEW - Voice Guardrails)
+- Session 0.3: 4-8h (NEW - MLP Spec + UX)
+- Session 0: 6-8h (Design Foundation)
 - Session 1.1: 20h (was 16h)
 - Session 1.2: 10h (was 8h)
 - Session 1.3: 10h
@@ -2635,11 +2724,11 @@ This master plan supersedes all previous planning documents and provides the com
 - Session 1.5: 4h
 - Session 1.6: 12h
 - Session 1.7: 10h
-- Session 1.9: 8h (NEW)
+- Session 1.9: 8h
 - Session 1.8: 20h
-- **TOTAL: 108-110 hours (was 86h)**
+- **TOTAL: 116-124 hours (was 108-110h)**
 
-**Realistic Timeline:** 6 weeks (18h/week) instead of 4 weeks
+**Realistic Timeline:** 7 weeks (18h/week) instead of 6 weeks
 
 ---
 
