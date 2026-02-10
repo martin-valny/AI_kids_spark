@@ -178,13 +178,13 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  <Link to="/lessons">
+                  <Link to="/mlp/first-short">
                     <motion.button
                       whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.3)" }}
                       whileTap={{ scale: 0.98 }}
                       className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/25 transition-all"
                     >
-                      Start Creating
+                      Start Here: Make Your First AI Short
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </motion.button>
                   </Link>
