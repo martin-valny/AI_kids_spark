@@ -557,7 +557,7 @@ export default function LumoraTeal() {
 
         @media (min-width: 768px) {
           .features-grid {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           }
         }
 
@@ -1326,20 +1326,13 @@ export default function LumoraTeal() {
             Master AI Tools to <span className="highlight">Create, Design &amp; Market</span> Your Products
           </h1>
           <p>
-            The all-in-one platform for solo creators. Learn AI video generation, writing automation, design tools, and marketing workflows—no tech experience needed.
+            The all-in-one platform for creators to master AI video, design, writing, and marketing—no technical experience needed.
           </p>
           <div className="hero-buttons">
             <button className="btn btn-primary">Get Started Free</button>
             <button className="btn btn-secondary">Watch Demo</button>
           </div>
 
-          <div className="trust-strip">
-            <span className="trust-strip-label">Trusted by creators at</span>
-            <div className="logo-placeholder">Brand Logo 1</div>
-            <div className="logo-placeholder">Brand Logo 2</div>
-            <div className="logo-placeholder">Brand Logo 3</div>
-            <div className="logo-placeholder">Brand Logo 4</div>
-          </div>
         </div>
       </section>
 
@@ -1395,29 +1388,6 @@ export default function LumoraTeal() {
             <p>Build workflows that run your marketing on autopilot. From lead capture to email nurture, spend less time on tasks and more time creating.</p>
           </div>
 
-          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=400&fit=crop)' }}>
-            <div className="feature-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M9 18V5l12-2v13M9 9l12-2"/>
-                <circle cx="6" cy="18" r="3"/>
-                <circle cx="18" cy="16" r="3"/>
-              </svg>
-            </div>
-            <h3>Music &amp; Audio Tools</h3>
-            <p>Generate royalty-free background music, voiceovers, and sound effects. Perfect audio for every video without licensing headaches.</p>
-          </div>
-
-          <div className="feature-card animate-on-scroll" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=400&fit=crop)' }}>
-            <div className="feature-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </div>
-            <h3>Done-For-You Templates</h3>
-            <p>Start with proven templates for every creator need—course launches, product drops, challenge funnels. Customize and launch in hours, not weeks.</p>
-          </div>
         </div>
       </section>
 
