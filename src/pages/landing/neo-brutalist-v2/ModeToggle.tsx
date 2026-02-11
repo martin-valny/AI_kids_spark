@@ -43,7 +43,7 @@ export default function ModeToggle() {
 
   return (
     <div
-      className="fixed z-50 flex gap-1 p-1"
+      className="fixed z-50 flex flex-col gap-1 p-1"
       style={{
         bottom: '98px',
         right: '24px',
