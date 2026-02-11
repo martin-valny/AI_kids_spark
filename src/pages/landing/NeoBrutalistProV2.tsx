@@ -1013,7 +1013,7 @@ function NeoBrutalistProV2Inner() {
 
       {/* ── Navigation ─────────────────────────────────────────────────── */}
       <nav
-        className="fixed top-0 w-full z-40 px-6 py-4"
+        className="fixed top-0 w-full z-[60] px-6 py-4"
         style={{
           backgroundColor: neoBrutalist.black,
           borderBottom: `4px solid ${neoBrutalist.lime}`,

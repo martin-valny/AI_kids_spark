@@ -125,18 +125,20 @@ function ScreenShake() {
       const delta = Math.abs(window.scrollY - lastScrollY.current);
       lastScrollY.current = window.scrollY;
 
-      if (delta > 80 && now - lastShakeTime.current > 500) {
+      if (delta > 80 && now - lastShakeTime.current > 800) {
         lastShakeTime.current = now;
         const root = document.getElementById('neo-brutalist-root');
         if (root) {
+          root.style.willChange = 'transform';
           root.style.transition = 'transform 0.05s';
-          root.style.transform = `translateX(${Math.random() > 0.5 ? 3 : -3}px)`;
+          root.style.transform = `translateX(${Math.random() > 0.5 ? 2 : -2}px)`;
           setTimeout(() => {
             root.style.transform = 'translateX(0)';
           }, 100);
           setTimeout(() => {
             root.style.transition = '';
             root.style.transform = '';
+            root.style.willChange = '';
           }, 200);
         }
       }
