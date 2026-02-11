@@ -12,7 +12,7 @@ export default function ModeIndicator() {
           <motion.div
             className="fixed z-50 font-mono font-bold text-sm uppercase tracking-wider"
             style={{
-              bottom: '24px',
+              bottom: '80px',
               left: '24px',
               backgroundColor: '#000',
               color: '#BFFF00',
