@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Lessons from "./pages/Lessons";
@@ -87,6 +87,12 @@ import CookieConsent from "./components/CookieConsent";
 const queryClient = new QueryClient();
 
 import NeuralGalaxy from "@/components/NeuralGalaxy";
+
+function ConditionalAITutor() {
+  const location = useLocation();
+  if (location.pathname === '/landing/neo-brutalist-pro-v2') return null;
+  return <AITutor />;
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -185,7 +191,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieConsent />
-          <AITutor />
+          <ConditionalAITutor />
         </BrowserRouter>
         </TooltipProvider>
         </AITutorProvider>

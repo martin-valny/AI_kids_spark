@@ -1,9 +1,17 @@
 import { motion, AnimatePresence, useScroll } from 'framer-motion';
-import { ArrowRight, Zap, Film, PenTool, Music, Bot, X, Check, Play } from 'lucide-react';
+import { ArrowRight, Film, PenTool, Music, Bot, X, Check, Play } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import BrutalistUIPlaceholder from '@/components/placeholders/BrutalistUIPlaceholder';
 import BrutalistAvatar from '@/components/placeholders/BrutalistAvatar';
 import { neoBrutalist } from '@/constants/landingColors';
+import { ModeProvider, useMode } from './neo-brutalist-v2/ModeContext';
+import ModeToggle from './neo-brutalist-v2/ModeToggle';
+import ModeIndicator from './neo-brutalist-v2/ModeIndicator';
+import ChaosEffects from './neo-brutalist-v2/ChaosEffects';
+import BrutalistChatbot from './neo-brutalist-v2/BrutalistChatbot';
+import PricingSection from './neo-brutalist-v2/PricingSection';
+import FAQSection from './neo-brutalist-v2/FAQSection';
+import SocialProofBar from './neo-brutalist-v2/SocialProofBar';
 
 /**
  * Neo-Brutalist Pro V2 - Enhanced Landing Page
@@ -11,6 +19,8 @@ import { neoBrutalist } from '@/constants/landingColors';
  * 13 enhancements over V1: glitch effects, animated counters, live activity feed,
  * dual marquees, tool logo bar, strikethrough animations, floating action button,
  * video testimonial placeholders, and more.
+ *
+ * + Chaos Mode / Focus Mode / AI Chatbot / Pricing / FAQ
  */
 
 // Glitch accent colors
@@ -36,6 +46,9 @@ const slideUp = {
 // ─── Scanline Overlay ───────────────────────────────────────────────────────
 
 function Scanline() {
+  const { isFocus } = useMode();
+  if (isFocus) return null;
+
   return (
     <motion.div
       className="fixed inset-0 pointer-events-none z-50 opacity-10"
@@ -52,7 +65,10 @@ function Scanline() {
 // ─── Scroll Progress Bar ────────────────────────────────────────────────────
 
 function ScrollProgressBar() {
+  const { isFocus } = useMode();
   const { scrollYProgress } = useScroll();
+  if (isFocus) return null;
+
   return (
     <motion.div
       className="fixed top-0 left-0 right-0 h-[3px] z-[60] origin-left"
@@ -73,38 +89,54 @@ function GlitchTextV2({
   children: string;
   className?: string;
 }) {
-  const [isGlitching, setIsGlitching] = useState(true); // glitch on load
+  const { isFocus, isChaos, chaosAccent } = useMode();
+  const [isGlitching, setIsGlitching] = useState(!isFocus); // glitch on load unless focus
   const [loadDone, setLoadDone] = useState(false);
 
   useEffect(() => {
+    if (isFocus) {
+      setIsGlitching(false);
+      setLoadDone(true);
+      return;
+    }
     // Initial load glitch for 1.5s
+    setIsGlitching(true);
     const loadTimer = setTimeout(() => {
       setIsGlitching(false);
       setLoadDone(true);
     }, 1500);
 
     return () => clearTimeout(loadTimer);
-  }, []);
+  }, [isFocus]);
 
   useEffect(() => {
-    if (!loadDone) return;
+    if (!loadDone || isFocus) return;
 
-    // Random periodic glitch every 8-10s
+    // Chaos: glitch every 1-2s; Normal: every 8-10s
+    const baseInterval = isChaos ? 1000 : 8000;
+    const randomRange = isChaos ? 1000 : 2000;
+    const glitchDuration = isChaos ? 300 : 150;
+
     const interval = setInterval(
       () => {
         setIsGlitching(true);
-        setTimeout(() => setIsGlitching(false), 150);
+        setTimeout(() => setIsGlitching(false), glitchDuration);
       },
-      8000 + Math.random() * 2000
+      baseInterval + Math.random() * randomRange
     );
 
     return () => clearInterval(interval);
-  }, [loadDone]);
+  }, [loadDone, isFocus, isChaos]);
 
   const handleHover = () => {
+    if (isFocus) return;
     setIsGlitching(true);
     setTimeout(() => setIsGlitching(false), 80);
   };
+
+  const chaosGlow = isChaos
+    ? `0 0 10px ${chaosAccent}, 0 0 20px ${chaosAccent}`
+    : '';
 
   return (
     <span
@@ -112,8 +144,10 @@ function GlitchTextV2({
       onMouseEnter={handleHover}
       style={{
         textShadow: isGlitching
-          ? `2px 0 ${GLITCH_MAGENTA}, -2px 0 ${GLITCH_CYAN}`
-          : 'none',
+          ? `2px 0 ${GLITCH_MAGENTA}, -2px 0 ${GLITCH_CYAN}${chaosGlow ? `, ${chaosGlow}` : ''}`
+          : isChaos
+            ? chaosGlow
+            : 'none',
         transform: isGlitching ? 'translate(2px, -1px)' : 'none',
       }}
     >
@@ -125,8 +159,12 @@ function GlitchTextV2({
 // ─── Enhancement #2: DualMarquee ────────────────────────────────────────────
 
 function DualMarquee() {
+  const { isFocus, isChaos } = useMode();
   const topItems = 'LEARN AI • BUILD PROJECTS • MAKE MONEY • GET PAID • ';
   const bottomItems = 'VIDEO • MUSIC • WRITING • AUTOMATION • NO BS • ';
+
+  const topDuration = isFocus ? 0 : isChaos ? 8 : 20;
+  const bottomDuration = isFocus ? 0 : isChaos ? 8 : 25;
 
   return (
     <div style={{ backgroundColor: neoBrutalist.lime }}>
@@ -135,8 +173,8 @@ function DualMarquee() {
         <motion.div
           className="flex gap-12 whitespace-nowrap font-bold uppercase text-xl"
           style={{ color: neoBrutalist.black }}
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          animate={isFocus ? { x: '0%' } : { x: ['0%', '-50%'] }}
+          transition={isFocus ? { duration: 0 } : { duration: topDuration, repeat: Infinity, ease: 'linear' }}
         >
           {[...Array(6)].map((_, i) => (
             <span key={i}>{topItems}</span>
@@ -148,8 +186,8 @@ function DualMarquee() {
         <motion.div
           className="flex gap-12 whitespace-nowrap font-bold uppercase text-xl"
           style={{ color: neoBrutalist.black }}
-          animate={{ x: ['-50%', '0%'] }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          animate={isFocus ? { x: '0%' } : { x: ['-50%', '0%'] }}
+          transition={isFocus ? { duration: 0 } : { duration: bottomDuration, repeat: Infinity, ease: 'linear' }}
         >
           {[...Array(6)].map((_, i) => (
             <span key={i}>{bottomItems}</span>
@@ -171,11 +209,18 @@ function AnimatedCounter({
   prefix?: string;
   suffix?: string;
 }) {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const { isFocus } = useMode();
+  const [count, setCount] = useState(isFocus ? value : 0);
+  const [hasAnimated, setHasAnimated] = useState(isFocus);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (isFocus) {
+      setCount(value);
+      setHasAnimated(true);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
 
@@ -201,7 +246,7 @@ function AnimatedCounter({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [value, hasAnimated]);
+  }, [value, hasAnimated, isFocus]);
 
   return (
     <div
@@ -245,8 +290,11 @@ function StudentCardV2({
   detail: string;
   onClick?: () => void;
 }) {
+  const { isFocus, isChaos } = useMode();
   const [isHovered, setIsHovered] = useState(false);
   const Icon = cardIcons[type];
+
+  const hoverActive = !isFocus && isHovered;
 
   return (
     <motion.div
@@ -254,15 +302,19 @@ function StudentCardV2({
       onClick={onClick}
       style={{
         border: `8px solid ${neoBrutalist.lime}`,
-        transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
-        boxShadow: isHovered
+        transform: hoverActive ? 'translateY(-8px)' : 'translateY(0)',
+        boxShadow: hoverActive
           ? `0 12px 32px rgba(204, 255, 0, 0.3), 0 0 20px ${neoBrutalist.limeGlow}`
           : 'none',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
       }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      animate={isChaos ? { scale: [1, 1.03, 1] } : {}}
+      transition={isChaos
+        ? { scale: { duration: 1.5, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 0.6 } }
+        : { duration: 0.6 }
+      }
       viewport={{ once: true }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -320,12 +372,22 @@ function StudentCardV2({
           className="mt-4 font-bold uppercase text-sm flex items-center gap-2"
           style={{
             color: neoBrutalist.lime,
-            opacity: isHovered ? 1 : 0,
-            transform: isHovered ? 'translateY(0)' : 'translateY(8px)',
+            opacity: isFocus ? 1 : hoverActive ? 1 : 0,
+            transform: isFocus ? 'translateY(0)' : hoverActive ? 'translateY(0)' : 'translateY(8px)',
             transition: 'opacity 0.3s ease, transform 0.3s ease',
           }}
         >
-          VIEW CASE STUDY <ArrowRight className="w-4 h-4" />
+          VIEW CASE STUDY{' '}
+          {hoverActive ? (
+            <motion.span
+              animate={{ x: [0, 6, 0] }}
+              transition={{ duration: 0.8, repeat: Infinity }}
+            >
+              <ArrowRight className="w-4 h-4" />
+            </motion.span>
+          ) : (
+            <ArrowRight className="w-4 h-4" />
+          )}
         </div>
       </div>
     </motion.div>
@@ -358,27 +420,35 @@ const ACTIVITIES = [
 ];
 
 function LiveActivityFeed() {
+  const { isFocus, isChaos } = useMode();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (isFocus) return;
+
+    const showDuration = isChaos ? 1500 : 4000;
+    const intervalTime = isChaos ? 2000 : 10000;
+
     // Initial delay before first notification
     const initialTimeout = setTimeout(() => {
       setIsVisible(true);
-      setTimeout(() => setIsVisible(false), 4000);
-    }, 5000);
+      setTimeout(() => setIsVisible(false), showDuration);
+    }, isChaos ? 1000 : 5000);
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % ACTIVITIES.length);
       setIsVisible(true);
-      setTimeout(() => setIsVisible(false), 4000);
-    }, 10000);
+      setTimeout(() => setIsVisible(false), showDuration);
+    }, intervalTime);
 
     return () => {
       clearTimeout(initialTimeout);
       clearInterval(interval);
     };
-  }, []);
+  }, [isFocus, isChaos]);
+
+  if (isFocus) return null;
 
   const activity = ACTIVITIES[currentIndex];
 
@@ -412,6 +482,8 @@ function LiveActivityFeed() {
 // ─── Enhancement #6: HeroBackgroundGrid ─────────────────────────────────────
 
 function HeroBackgroundGrid() {
+  const { isFocus } = useMode();
+
   return (
     <motion.div
       className="absolute inset-0 pointer-events-none"
@@ -422,8 +494,8 @@ function HeroBackgroundGrid() {
         `,
         backgroundSize: '50px 50px',
       }}
-      animate={{ backgroundPosition: ['0px 0px', '50px 50px'] }}
-      transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+      animate={isFocus ? {} : { backgroundPosition: ['0px 0px', '50px 50px'] }}
+      transition={isFocus ? {} : { duration: 20, repeat: Infinity, ease: 'linear' }}
     />
   );
 }
@@ -614,6 +686,9 @@ const TOOLS = [
 ];
 
 function ToolLogoMarquee() {
+  const { isFocus, isChaos } = useMode();
+  const duration = isFocus ? 0 : isChaos ? 10 : 30;
+
   return (
     <div
       className="py-6 overflow-hidden"
@@ -625,8 +700,8 @@ function ToolLogoMarquee() {
     >
       <motion.div
         className="flex gap-8 whitespace-nowrap"
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+        animate={isFocus ? { x: '0%' } : { x: ['0%', '-50%'] }}
+        transition={isFocus ? { duration: 0 } : { duration, repeat: Infinity, ease: 'linear' }}
       >
         {[...Array(2)].flatMap((_, setIdx) =>
           TOOLS.map((tool, i) => (
@@ -691,53 +766,6 @@ function StrikethroughItem({ text, delay }: { text: string; delay: number }) {
         transition={{ duration: 0.4, delay }}
       />
     </li>
-  );
-}
-
-// ─── Enhancement #13: FloatingActionButton ──────────────────────────────────
-
-function FloatingActionButton() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPercent =
-        window.scrollY /
-        (document.documentElement.scrollHeight - window.innerHeight);
-      setIsVisible(scrollPercent > 0.5);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToCTA = () => {
-    document.getElementById('final-cta')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          onClick={scrollToCTA}
-          className="fixed bottom-6 right-6 z-50 px-6 py-4 font-mono font-bold uppercase cursor-pointer"
-          style={{
-            backgroundColor: neoBrutalist.lime,
-            color: neoBrutalist.black,
-            border: `4px solid ${neoBrutalist.lime}`,
-          }}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: [1, 1.08, 1], opacity: 1 }}
-          exit={{ scale: 0, opacity: 0 }}
-          transition={{
-            scale: { repeat: Infinity, repeatDelay: 5, duration: 0.4 },
-            opacity: { duration: 0.2 },
-          }}
-        >
-          START FREE
-        </motion.button>
-      )}
-    </AnimatePresence>
   );
 }
 
@@ -895,15 +923,75 @@ function CaseStudyModal({
   );
 }
 
+// ─── Stats Section with Chaos Rainbow ───────────────────────────────────────
+
+const RAINBOW_COLORS = ['#BFFF00', '#00FF00', '#00FFFF', '#0066FF', '#FF00FF', '#FF0000'];
+
+function StatBox({
+  stat,
+  index,
+}: {
+  stat: { value: number; prefix: string; suffix: string; label: string };
+  index: number;
+}) {
+  const { isChaos } = useMode();
+
+  return (
+    <motion.div
+      className="p-6 text-center cursor-default"
+      style={{
+        backgroundColor: neoBrutalist.black,
+        border: `4px solid ${neoBrutalist.lime}`,
+      }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{
+        scale: 1.05,
+        boxShadow: `0 0 20px ${neoBrutalist.limeGlow}, 0 0 40px ${neoBrutalist.limeGlow}`,
+      }}
+      animate={
+        isChaos
+          ? {
+              borderColor: RAINBOW_COLORS,
+              boxShadow: RAINBOW_COLORS.map((c) => `0 0 20px ${c}`),
+            }
+          : {}
+      }
+      transition={
+        isChaos
+          ? {
+              borderColor: { duration: 2, repeat: Infinity, ease: 'linear' },
+              boxShadow: { duration: 2, repeat: Infinity, ease: 'linear' },
+              delay: index * 0.1,
+              type: 'spring',
+              stiffness: 300,
+            }
+          : { delay: index * 0.1, type: 'spring', stiffness: 300 }
+      }
+      viewport={{ once: true }}
+    >
+      <AnimatedCounter
+        value={stat.value}
+        prefix={stat.prefix}
+        suffix={stat.suffix}
+      />
+      <div className="text-sm uppercase tracking-wide mt-2">
+        {stat.label}
+      </div>
+    </motion.div>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export default function NeoBrutalistProV2() {
+function NeoBrutalistProV2Inner() {
   const [selectedStudent, setSelectedStudent] = useState<StudentData | null>(null);
+  const { isChaos, chaosAccent } = useMode();
 
   return (
-    <div className="bg-black text-white font-mono overflow-x-hidden">
+    <div id="neo-brutalist-root" className="bg-black text-white font-mono overflow-x-hidden">
       {/* Case Study Modal */}
       <AnimatePresence>
         {selectedStudent && (
@@ -918,11 +1006,14 @@ export default function NeoBrutalistProV2() {
       <ScrollProgressBar />
       <Scanline />
       <LiveActivityFeed />
-      <FloatingActionButton />
+      <ModeToggle />
+      <ModeIndicator />
+      <ChaosEffects />
+      <BrutalistChatbot />
 
       {/* ── Navigation ─────────────────────────────────────────────────── */}
       <nav
-        className="fixed top-0 w-full z-40 px-6 py-4"
+        className="fixed top-0 w-full z-[60] px-6 py-4"
         style={{
           backgroundColor: neoBrutalist.black,
           borderBottom: `4px solid ${neoBrutalist.lime}`,
@@ -931,12 +1022,12 @@ export default function NeoBrutalistProV2() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div
             className="text-2xl font-bold"
-            style={{ color: neoBrutalist.lime }}
+            style={{ color: isChaos ? chaosAccent : neoBrutalist.lime }}
           >
             LUMORA
           </div>
           <button
-            className="px-6 py-3 font-bold uppercase"
+            className="px-6 py-3 font-bold uppercase cursor-pointer"
             style={{
               backgroundColor: neoBrutalist.lime,
               color: neoBrutalist.black,
@@ -955,14 +1046,17 @@ export default function NeoBrutalistProV2() {
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.h1
             className="text-6xl md:text-8xl lg:text-9xl font-bold uppercase mb-8 leading-none"
-            style={{ color: neoBrutalist.white }}
+            style={{
+              color: neoBrutalist.white,
+              textShadow: isChaos ? `0 0 20px ${chaosAccent}, 0 0 40px ${chaosAccent}` : 'none',
+            }}
             initial="hidden"
             animate="visible"
             variants={glitchIn}
           >
             <GlitchTextV2>STOP SCROLLING.</GlitchTextV2>
             <br />
-            <span style={{ color: neoBrutalist.lime }}>
+            <span style={{ color: isChaos ? chaosAccent : neoBrutalist.lime }}>
               <GlitchTextV2>START CREATING.</GlitchTextV2>
             </span>
           </motion.h1>
@@ -997,6 +1091,9 @@ export default function NeoBrutalistProV2() {
         <ScrollIndicator />
       </section>
 
+      {/* ── Social Proof Bar ─────────────────────────────────────────── */}
+      <SocialProofBar />
+
       {/* ── Dual Marquee (#2) ──────────────────────────────────────────── */}
       <DualMarquee />
 
@@ -1012,31 +1109,7 @@ export default function NeoBrutalistProV2() {
             { value: 98, prefix: '', suffix: '%', label: 'SUCCESS RATE' },
             { value: 30, prefix: '', suffix: '', label: 'DAYS TO MONEY' },
           ].map((stat, i) => (
-            <motion.div
-              key={i}
-              className="p-6 text-center cursor-default"
-              style={{
-                backgroundColor: neoBrutalist.black,
-                border: `4px solid ${neoBrutalist.lime}`,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: `0 0 20px ${neoBrutalist.limeGlow}, 0 0 40px ${neoBrutalist.limeGlow}`,
-              }}
-              transition={{ delay: i * 0.1, type: 'spring', stiffness: 300 }}
-              viewport={{ once: true }}
-            >
-              <AnimatedCounter
-                value={stat.value}
-                prefix={stat.prefix}
-                suffix={stat.suffix}
-              />
-              <div className="text-sm uppercase tracking-wide mt-2">
-                {stat.label}
-              </div>
-            </motion.div>
+            <StatBox key={i} stat={stat} index={i} />
           ))}
         </div>
       </section>
@@ -1438,6 +1511,12 @@ export default function NeoBrutalistProV2() {
         </div>
       </section>
 
+      {/* ── Pricing Section ──────────────────────────────────────────── */}
+      <PricingSection />
+
+      {/* ── FAQ Section ──────────────────────────────────────────────── */}
+      <FAQSection />
+
       {/* ── Final CTA ──────────────────────────────────────────────────── */}
       <section id="final-cta" className="py-32 px-6 text-center">
         <div className="max-w-4xl mx-auto">
@@ -1476,5 +1555,14 @@ export default function NeoBrutalistProV2() {
         </p>
       </footer>
     </div>
+  );
+}
+
+// Wrap with ModeProvider
+export default function NeoBrutalistProV2() {
+  return (
+    <ModeProvider>
+      <NeoBrutalistProV2Inner />
+    </ModeProvider>
   );
 }
