@@ -288,10 +288,6 @@ export default function BrutalistChatbot() {
 
       {/* Mobile responsive styles via media query in inline style */}
       <style>{`
-        /* Hide global AITutor button and chat window on this landing page */
-        button.fixed.bottom-6.right-6.rounded-full.bg-gradient-to-r { display: none !important; }
-        div.fixed.bottom-6.right-6.w-96 { display: none !important; }
-
         @media (max-width: 480px) {
           .fixed[style*="width: 380px"] {
             width: calc(100vw - 32px) !important;
