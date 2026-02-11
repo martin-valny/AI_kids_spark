@@ -46,6 +46,7 @@ import BuildChatbotProject from "./pages/projects/BuildChatbotProject";
 import AIVideoProject from "./pages/projects/AIVideoProject";
 
 import DesignPilot from "./pages/DesignPilot";
+import FirstShort from "./pages/mlp/FirstShort";
 
 // Lumora Landing Pages
 import LandingShowcase from "./pages/landing/LandingShowcase";
@@ -178,6 +179,8 @@ const App = () => (
           <Route path="/landing/lumora-video" element={<LumoraVideo />} />
           <Route path="/landing/lumora-runway" element={<LumoraRunway />} />
           <Route path="/landing/lumora-teal" element={<LumoraTeal />} />
+          {/* MLP Routes */}
+          <Route path="/mlp/first-short" element={<FirstShort />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>

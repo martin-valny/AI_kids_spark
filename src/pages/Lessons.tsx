@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Cpu, Brain, Database, PieChart, Search, ShieldCheck, Zap, Sparkles, TrendingUp, GraduationCap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { BookOpen, Cpu, Brain, Database, PieChart, Search, ShieldCheck, Zap, Sparkles, TrendingUp, GraduationCap, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModuleCard from '@/components/ModuleCard';
@@ -200,6 +201,20 @@ const Lessons = () => {
                 </div>
               </div>
             </div>
+
+            {/* MLP Start Here Card */}
+            <Link to="/mlp/first-short" className="block mb-6">
+              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all">
+                <div className="flex items-center gap-4">
+                  <Sparkles className="w-8 h-8 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-lg font-bold">Start Here: Make Your First AI-Boosted Short</h3>
+                    <p className="text-indigo-100 text-sm">60-90 min guided project. Pick a template, generate your hook, and ship it.</p>
+                  </div>
+                  <ArrowRight className="w-6 h-6 flex-shrink-0 ml-auto hidden sm:block" />
+                </div>
+              </div>
+            </Link>
 
             {/* Learning Journey */}
             <div className="space-y-4">

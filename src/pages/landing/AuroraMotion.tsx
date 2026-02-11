@@ -45,9 +45,9 @@ export default function AuroraMotion() {
               backgroundClip: 'text',
             }}
           >
-            Master AI. Create Everything.
+            Learn AI. Ship Real Work.
             <br />
-            Monetize Your Creativity.
+            Open New Opportunities.
           </h1>
 
           {/* Subheadline */}
@@ -55,7 +55,7 @@ export default function AuroraMotion() {
             className="text-xl md:text-2xl mb-12"
             style={{ color: auroraMotion.textSecondary }}
           >
-            The creative AI platform built for Gen Z creators ages 13-25.
+            The creative AI platform built for Gen Z creators ages 16+.
           </p>
 
           {/* CTAs */}
@@ -250,7 +250,7 @@ export default function AuroraMotion() {
             <StatsCounter value={45} label="Lessons" icon={<Book />} color="cyan" />
             <StatsCounter value={150} label="Avg. Earnings/Month" prefix="$" icon={<DollarSign />} color="gold" />
             <StatsCounter value={98} label="Success Rate" suffix="%" icon={<Award />} color="purple" />
-            <StatsCounter value={30} label="Days to Monetize" icon={<Clock />} color="magenta" />
+            <StatsCounter value={4} label="Skill Domains" icon={<Clock />} color="magenta" />
           </div>
         </motion.div>
 

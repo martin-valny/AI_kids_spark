@@ -543,9 +543,9 @@ export default function Y2KChrome() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            The ultimate creative AI platform for ages 13-25 ✨
+            The ultimate creative AI platform for creators 16+ ✨
             <br />
-            Learn video, music, writing & automation. Start earning in 30 days!
+            Learn video, music, writing & automation. Build skills that open doors!
           </motion.p>
 
           {/* CTA Buttons */}

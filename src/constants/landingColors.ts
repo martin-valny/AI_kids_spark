@@ -1,7 +1,7 @@
 /**
  * Lumora Landing Page Color System
  *
- * Original color palette designed for Gen Z AI creators (ages 13-25)
+ * Original color palette designed for Gen Z AI creators (ages 16+)
  * Dark-first design with vibrant accent colors
  */
 

@@ -159,9 +159,9 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Master AI. <br />
+                  Learn AI. <br />
                   <span className="bg-gradient-to-r from-kids-blue via-kids-purple to-kids-pink bg-clip-text text-transparent">
-                    Create Everything.
+                    Ship Real Work.
                   </span>
                 </motion.h1>
                 <motion.p
@@ -170,7 +170,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  The creative AI platform for the next generation of digital artists, musicians, storytellers, and innovators. From prompt engineer to digital creator - build art, music, videos, and interactive experiences with cutting-edge AI tools.
+                  The creative AI platform for young creators 16+. Build short-form video, automate workflows, write social content, and create music with AI tools — then ship real work and open new opportunities.
                 </motion.p>
                 <motion.div
                   className="flex flex-col sm:flex-row gap-4"
@@ -178,13 +178,13 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  <Link to="/lessons">
+                  <Link to="/mlp/first-short">
                     <motion.button
                       whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(99, 102, 241, 0.3)" }}
                       whileTap={{ scale: 0.98 }}
                       className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/25 transition-all"
                     >
-                      Start Creating
+                      Start Here: Make Your First AI Short
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </motion.button>
                   </Link>
@@ -268,7 +268,7 @@ const Index = () => {
                 Everything You Need to <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">Master AI</span>
               </h2>
               <p className="text-xl text-gray-600">
-                A complete creative platform designed for ages 13-25
+                A complete creative platform designed for creators 16+
               </p>
             </motion.div>
 

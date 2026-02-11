@@ -364,7 +364,7 @@ export default function BrutalistHazard() {
               style={{ color: hazard.grayLight }}
             >
               Building the next generation of AI creators. 45+ lessons.
-              4 skill zones. 30 days to monetization. No prior experience required.
+              4 skill zones. Real portfolio projects. No prior experience required.
             </p>
 
             {/* CTAs */}

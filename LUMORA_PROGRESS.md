@@ -3,7 +3,7 @@
 **Last Updated:** 2026-01-21
 **Current Phase:** Phase 1: Foundation Transformation (Months 1-3)
 **Current Month:** Month 1 - Design System Overhaul
-**Current Session:** Ready to start Session 0 (Design Foundation)
+**Current Session:** Ready to start Session 0.1 (Brand Settings)
 **Overall Progress:** 0% (0 sessions complete)
 **Execution Mode:** Autonomous with checkpoints
 
@@ -58,20 +58,31 @@ None yet.
 
 ### Month 1: Design System Overhaul
 
-**Next Up: Session 1.1 - Landing Page Showcase**
-- **Estimated Time:** 16 hours
-- **Goal:** Build 3 landing page variations, test with users, choose winner
-- **Deliverables:**
-  - 3 landing page designs (Tech/Professional, Creative/Bold, Social/Community)
-  - User feedback from 10-20 people
-  - Decision on which design to implement
+**Next Up: Session 0.1 - Brand Settings + Tagline**
+- **Estimated Time:** 2-3 hours
+- **Goal:** Create brand foundation files (settings.json, brand_platform.md)
 - **Files to Create:**
-  - `/src/pages/LandingShowcase.tsx` (or similar structure)
+  - `/brand/settings.json`
+  - `/brand/brand_platform.md`
 
-**After That: Session 1.2 - Color Palette & Tokens** (8 hours)
+**After That: Session 0.2 - Voice & Monetization Guardrails** (2-3 hours)
+- Create `/brand/voice_guide.md`, `/brand/message_map.md`, `/brand/messaging_monetization.md`
+- Patch masterplan copy with on-brand language
+
+**Then: Session 0.3 - MLP Spec + UX Entry** (4-8 hours)
+- Create `/product/mlp_first_short.md`
+- Create `/src/pages/mlp/FirstShort.tsx` with 3-step flow
+- Add route and "Start Here" entry points on homepage + lessons page
+
+**Then: Session 0 - Design Foundation** (6-8 hours)
+- Build design inspiration board, select typography, create mockups
+
+**Then: Session 1.1 - Landing Page Showcase** (20 hours)
+- Build 3 landing page variations, test with users, choose winner
+
+**Then: Session 1.2 - Color Palette & Tokens** (10 hours)
 - Update `/tailwind.config.ts` with dark professional colors
 - Update `/src/design-system/tokens.ts` with new mappings
-- Test colors and verify accessibility
 
 **Then: Session 1.3 - Global CSS Updates** (10 hours)
 - Transform 20+ CSS classes for dark theme
@@ -140,12 +151,13 @@ Say: **"Lumora status"** or **"Show Lumora progress"**
 
 ## 🎯 QUICK STATUS
 
-**Current Position:** Ready to begin Month 1, Session 0 (Design Foundation)
+**Current Position:** Ready to begin Month 1, Session 0.1 (Brand Settings)
 
 **What's Next:**
-- Session 0: Build design inspiration board, select typography, create mockups
-- Duration: 6-8 hours
-- Will pause at: ~130K tokens (checkpoint) or session complete
+- Session 0.1: Create brand settings + tagline files (2-3h)
+- Session 0.2: Voice & monetization guardrails (2-3h)
+- Session 0.3: MLP spec + UX entry (4-8h)
+- Then Session 0: Design foundation (6-8h)
 
 **To Start:**
 Say: **"Execute Lumora"**

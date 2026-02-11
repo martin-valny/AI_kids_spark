@@ -694,8 +694,8 @@ export default function CosmicData() {
               className="text-lg md:text-xl mb-10 max-w-lg ml-auto leading-relaxed"
               style={{ color: colors.textSecondary }}
             >
-              The premier creative AI platform for ages 13-25.
-              Learn video, music, writing & automation. Start earning in 30 days.
+              The premier creative AI platform for creators 16+.
+              Learn video, music, writing & automation. Build skills that open opportunities.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-end mb-12">

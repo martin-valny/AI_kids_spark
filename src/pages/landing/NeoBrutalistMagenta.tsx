@@ -141,7 +141,7 @@ export default function NeoBrutalistMagenta() {
   const antiFeatures = [
     { bad: 'Boring tutorials', good: 'Learn by building' },
     { bad: 'Theory overload', good: 'Practical skills' },
-    { bad: 'Months to results', good: '30 days to monetize' },
+    { bad: 'Months to results', good: 'Ship real work fast' },
     { bad: 'Cookie-cutter content', good: 'Your unique style' },
   ];
 

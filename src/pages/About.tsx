@@ -9,7 +9,7 @@ import { GlassCard } from '@/components/ui/GlassCard';
 const features = [{
   icon: <Brain className="w-8 h-8 text-kids-blue" />,
   title: "Made for Curious Minds",
-  description: "Our lessons are crafted for creators ages 13-25, using clear language, relatable stories, and real-world examples to make complex ideas click."
+  description: "Our lessons are crafted for creators ages 16+, using clear language, relatable stories, and real-world examples to make complex ideas click."
 }, {
   icon: <Heart className="w-8 h-8 text-kids-red" />,
   title: "Safe, Trusted, Creator-First",

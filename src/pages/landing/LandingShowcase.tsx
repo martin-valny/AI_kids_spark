@@ -403,7 +403,7 @@ export default function LandingShowcase() {
             <span style={{ color: showcase.accent }}>Variations</span>
           </h1>
           <p className="text-xl md:text-2xl mb-4" style={{ color: showcase.textSecondary }}>
-            Testing 21 unique designs with Gen Z creators (ages 13-25)
+            Testing 21 unique designs with Gen Z creators (ages 16+)
           </p>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: showcase.textMuted }}>
             Each variation targets a different aesthetic preference. Click to explore each design
@@ -547,7 +547,7 @@ export default function LandingShowcase() {
                     Test Participants
                   </p>
                   <p className="text-sm" style={{ color: showcase.textSecondary }}>
-                    10 ages 13-18, 10 ages 19-25
+                    10 ages 16-20, 10 ages 21-25
                   </p>
                 </div>
                 <div>
