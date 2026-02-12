@@ -34,28 +34,36 @@ const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/
 
 const FEATURES = [
   {
-    title: 'AI Video Editing',
+    title: 'AI Video Editing for TikTok & Reels',
     description: 'Create short-form videos that blow up on TikTok, Reels, and YouTube Shorts. Learn Runway, Pika, and Kling — from your first cut to a full portfolio.',
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop',
     lessons: 12,
+    hours: 15,
+    category: 'orange' as const,
   },
   {
-    title: 'AI Automation & No-Code',
+    title: 'AI Automation That Pays $60-180/hr',
     description: 'Build workflows that do the boring stuff for you. Make.com, Zapier, n8n — set up once, earn on repeat. Clients pay $60\u2013180/hr for this.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
     lessons: 8,
+    hours: 12,
+    category: 'purple' as const,
   },
   {
-    title: 'AI Content Writing',
+    title: 'AI Content Writing for Social & Newsletters',
     description: 'Write viral captions, threads, and newsletters with ChatGPT and Claude. Learn the prompt techniques that make AI sound like you, not a robot.',
     image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop',
     lessons: 10,
+    hours: 18,
+    category: 'blue' as const,
   },
   {
-    title: 'AI Music for Creators',
+    title: 'AI Music Production (No Instruments Needed)',
     description: 'Make original tracks, intros, and background music with Suno and Udio. No instruments needed — just ideas. Build a royalty-free library you actually own.',
     image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=400&fit=crop',
     lessons: 7,
+    hours: 10,
+    category: 'emerald' as const,
   },
 ];
 
@@ -81,10 +89,10 @@ const HOW_IT_WORKS = [
 ];
 
 const SOCIAL_PROOF_METRICS = [
-  { value: '12,000+', label: 'Students' },
-  { value: '45', label: 'Hands-On Lessons' },
+  { value: '12,347', label: 'Students Enrolled' },
+  { value: '$847K+', label: 'Earned by Students' },
   { value: '4.9\u2605', label: 'Average Rating' },
-  { value: '60+', label: 'AI Tools Covered' },
+  { value: '87%', label: 'Get First Client in 30 Days' },
 ];
 
 const REPLACES = ['Overpriced Bootcamps', 'YouTube Rabbit Holes', 'Random Free Tutorials', 'Trial & Error', 'Outdated Courses'];
@@ -130,22 +138,31 @@ const USE_CASES = [
 
 const TESTIMONIALS = [
   {
-    initials: 'JR',
-    name: 'Jess Rivera',
-    role: 'Content Creator \u2022 180K on TikTok',
-    quote: 'I was spending 6 hours editing one video. After the video module I batch-create a whole week of content in an afternoon. Lumora literally gave me my weekends back.',
-  },
-  {
     initials: 'AK',
-    name: 'Alex Kim',
-    role: 'Freelancer \u2022 $4K/mo from automation gigs',
-    quote: 'I had zero coding skills. The automation module taught me Make.com and Zapier, and within a month I was charging clients $150/hr for workflows. Best $10/mo I\u2019ve ever spent.',
+    name: 'Alex K.',
+    age: 17,
+    location: 'Chicago, IL',
+    role: 'High School Senior',
+    quote: 'I built a Make.com automation for a local real estate agent in my second week. He pays me $150/month to maintain it. The freelance pricing guide at the end of the automation module is what gave me the confidence to charge.',
+    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
   },
   {
-    initials: 'MO',
-    name: 'Maya Osei',
-    role: 'Music Producer \u2022 500+ tracks on Spotify',
-    quote: 'The AI music module is insane. I built a 50-track royalty-free library in two weeks and now I earn passive income from licensing. I didn\u2019t even play an instrument before this.',
+    initials: 'MR',
+    name: 'Maya R.',
+    age: 19,
+    location: 'Miami, FL',
+    role: 'Community College Student',
+    quote: 'I was spending 4 hours on one TikTok edit. After the video module I batch a whole week of content in an afternoon. My account went from 200 to 14K followers in two months using the techniques from Lesson 6.',
+    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
+  },
+  {
+    initials: 'JL',
+    name: 'Jordan L.',
+    age: 16,
+    location: 'Austin, TX',
+    role: 'Content Creator',
+    quote: "I made a 30-track royalty-free music library with Suno in two weeks. Now I license tracks to other creators on Gumroad. I've made $400 so far and I don't even play an instrument.",
+    photo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=face',
   },
 ];
 
@@ -153,7 +170,7 @@ const PRICING = [
   {
     badge: 'Try it out',
     name: 'Free',
-    description: 'See if Lumora is for you',
+    description: "Try before you commit. See if Lumora's right for you.",
     price: '$0',
     period: '',
     features: ['2 foundation lessons', 'Preview lessons from each module', 'Community access', 'Basic prompt templates'],
@@ -163,7 +180,8 @@ const PRICING = [
   {
     badge: 'Most popular',
     name: 'Pro',
-    description: 'Full access to everything',
+    description: 'Everything you need to build your portfolio and get paid.',
+    studentBadge: 'Most Popular with Students',
     price: '$9.99',
     period: '/month',
     savings: 'Save 17% yearly \u2014 $99/year',
@@ -173,8 +191,8 @@ const PRICING = [
   },
   {
     badge: 'For schools & teams',
-    name: 'School',
-    description: 'Bring Lumora to your classroom',
+    name: 'School & Teams',
+    description: 'Unlimited students. One price. Built for schools and teams.',
     price: '$999',
     period: '/year',
     features: ['Everything in Pro', 'Unlimited student seats', 'Teacher dashboard & analytics', 'Custom learning paths', 'Dedicated support', 'Invoice billing'],
@@ -185,32 +203,28 @@ const PRICING = [
 
 const FAQS = [
   {
-    q: 'Do I need any experience with AI?',
-    a: 'Nope. Every module starts from zero. If you can use a phone and type a sentence, you can do this. We designed Lumora for people who\u2019ve never touched an AI tool before.',
+    q: "I'm a complete beginner. Can I really do this?",
+    a: 'Yes. Every module starts from zero. If you can type and follow instructions, you can do this. Most of our students had never touched an AI tool before signing up. Average completion rate: 78%.',
   },
   {
-    q: 'What tools will I actually learn?',
-    a: 'Runway, Pika, and Kling for video. Make.com, Zapier, and n8n for automation. ChatGPT and Claude for writing. Suno and Udio for music. 60+ tools total \u2014 and we update lessons when new ones drop.',
+    q: 'Will this help with college applications?',
+    a: "Absolutely. You'll build a real portfolio of AI projects \u2014 videos, automations, writing samples, and music. Admissions officers love seeing self-directed, technical creative work. Several students have featured their Lumora projects in applications and interviews.",
   },
   {
-    q: 'Why not just learn from YouTube for free?',
-    a: 'You can try. But YouTube is scattered, outdated, and teaches you random stuff with no structure. Lumora gives you a clear path: pick a skill, build real projects, and walk away with a portfolio. No guessing what to learn next.',
+    q: "I'm 16\u201317. Do I need parental permission?",
+    a: "You can explore free lessons anytime. Upgrading to Pro under 18 requires parent/guardian approval \u2014 it takes about 30 seconds during signup. All content is age-appropriate and designed for high school and college students.",
   },
   {
-    q: 'How long does each module take?',
-    a: "Most people finish a module in 2\u20133 weeks doing 30 minutes a day. But it's fully self-paced \u2014 binge it in a weekend or stretch it out. Your call.",
+    q: 'Can I actually earn money from what I learn?',
+    a: "That's the whole point. Every module ends with a monetization playbook \u2014 freelance pricing, where to find clients, how to package your skills. Our students have earned $847K+ total. Typical first earnings: $50\u2013200 in the first month after completing a module.",
   },
   {
-    q: 'Can I actually make money from this?',
-    a: 'That\u2019s the whole point. Every module ends with a monetization playbook \u2014 freelance pricing, where to find clients, how to package your skills. Students are landing gigs within weeks of finishing.',
+    q: 'How long does each module take to finish?',
+    a: "Most students finish a module in 2\u20133 weeks at 30 minutes a day. But it's fully self-paced \u2014 binge it in a weekend or stretch it out over a month. Each lesson is designed to be completed in one sitting.",
   },
   {
-    q: 'Can I cancel anytime?',
-    a: "Yes. Cancel whenever, no questions asked. You keep access until the end of your billing period. It\u2019s $9.99/mo \u2014 less than a lunch.",
-  },
-  {
-    q: 'What if I get stuck?',
-    a: 'Every lesson has a comments section where our team and community help out. Pro members get priority support. Plus, each lesson includes troubleshooting tips for the stuff people commonly get tripped up on.',
+    q: 'What AI tools will I actually learn to use?',
+    a: 'Runway, Pika, and Kling for video editing. Make.com, Zapier, and n8n for automation. ChatGPT and Claude for content writing. Suno and Udio for music production. 60+ tools total, and we update lessons whenever major new tools launch.',
   },
 ];
 
@@ -219,6 +233,39 @@ const FOOTER_SECTIONS = [
   { title: 'Resources', links: ['Free Lessons', 'Blog', 'Prompt Library', 'Community', 'Support'] },
   { title: 'Company', links: ['About', 'Careers', 'Press', 'Contact'] },
   { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
+];
+
+const STUDENT_PORTFOLIO = [
+  {
+    name: 'Priya S.',
+    age: 18,
+    location: 'San Jose, CA',
+    projectType: 'AI Video Edit',
+    projectTypeColor: 'orange',
+    preview: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop',
+    metric: '28K views on first Reel',
+    portfolioLink: '#',
+  },
+  {
+    name: 'Marcus T.',
+    age: 17,
+    location: 'Atlanta, GA',
+    projectType: 'Automation',
+    projectTypeColor: 'purple',
+    preview: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
+    metric: '$2,400/mo from 3 clients',
+    portfolioLink: '#',
+  },
+  {
+    name: 'Lily C.',
+    age: 19,
+    location: 'Portland, OR',
+    projectType: 'AI Music',
+    projectTypeColor: 'emerald',
+    preview: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=300&fit=crop',
+    metric: '50-track library on Gumroad',
+    portfolioLink: '#',
+  },
 ];
 
 // Checkmark SVG for pricing lists (monochrome, uses currentColor for theme awareness)
@@ -306,9 +353,16 @@ export default function LumoraRunway() {
            DESIGN TOKENS
            ============================================================ */
         .lumora-runway {
-          /* Monochrome palette with warm accent for visual rhythm */
-          --star-color: #d97706;
-          --accent-warm: #d97706;
+          /* Teal accent palette for educational warmth */
+          --teal-primary: #14b8a6;
+          --teal-dark: #0d9488;
+          --teal-light: #5eead4;
+          --module-orange: #f97316;
+          --module-purple: #a855f7;
+          --module-blue: #3b82f6;
+          --module-emerald: #10b981;
+          --star-color: #14b8a6;
+          --accent-warm: #14b8a6;
 
           /* Light mode (default) */
           --bg-primary: #ffffff;
@@ -323,9 +377,9 @@ export default function LumoraRunway() {
           --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.08);
           --nav-bg: rgba(255, 255, 255, 0.85);
           --nav-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
-          --btn-primary-bg: #000000;
+          --btn-primary-bg: #14b8a6;
           --btn-primary-color: #ffffff;
-          --btn-primary-hover: rgba(0, 0, 0, 0.85);
+          --btn-primary-hover: #0d9488;
           --btn-secondary-border: rgba(0, 0, 0, 0.15);
           --btn-secondary-hover: rgba(0, 0, 0, 0.04);
 
@@ -346,7 +400,10 @@ export default function LumoraRunway() {
 
         /* Dark mode overrides */
         .lumora-runway.dark-mode {
-          --accent-warm: #f59e0b;
+          --teal-primary: #14b8a6;
+          --teal-dark: #5eead4;
+          --teal-light: #0d9488;
+          --accent-warm: #14b8a6;
           --bg-primary: #000000;
           --bg-secondary: #111111;
           --text-primary: #ffffff;
@@ -359,9 +416,9 @@ export default function LumoraRunway() {
           --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.4);
           --nav-bg: rgba(0, 0, 0, 0.85);
           --nav-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
-          --btn-primary-bg: #ffffff;
-          --btn-primary-color: #000000;
-          --btn-primary-hover: rgba(255, 255, 255, 0.92);
+          --btn-primary-bg: #14b8a6;
+          --btn-primary-color: #ffffff;
+          --btn-primary-hover: #5eead4;
           --btn-secondary-border: rgba(255, 255, 255, 0.15);
           --btn-secondary-hover: rgba(255, 255, 255, 0.04);
 
@@ -469,12 +526,12 @@ export default function LumoraRunway() {
           left: 0;
           width: 0;
           height: 1.5px;
-          background: var(--text-primary);
+          background: var(--teal-primary);
           transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .runway-nav-links a:hover {
-          color: var(--text-primary);
+          color: var(--teal-primary);
         }
 
         .runway-nav-links a:hover::after {
@@ -504,8 +561,8 @@ export default function LumoraRunway() {
 
         .runway-btn-primary:hover {
           background: var(--btn-primary-hover);
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          transform: scale(1.02);
+          box-shadow: 0 8px 24px rgba(20, 184, 166, 0.25);
         }
 
         .runway-btn-secondary {
@@ -516,19 +573,20 @@ export default function LumoraRunway() {
 
         .runway-btn-secondary:hover {
           background: var(--btn-secondary-hover);
-          border-color: var(--border-hover);
+          border-color: var(--teal-primary);
           transform: translateY(-2px);
         }
 
-        /* In hero context - always light-on-dark */
+        /* In hero context - teal CTA on dark */
         .runway-hero .runway-btn-primary {
-          background: #fff;
-          color: #000;
+          background: var(--teal-primary);
+          color: #fff;
         }
 
         .runway-hero .runway-btn-primary:hover {
-          background: rgba(255, 255, 255, 0.92);
-          box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+          background: var(--teal-dark);
+          box-shadow: 0 8px 24px rgba(20, 184, 166, 0.3);
+          transform: scale(1.02);
         }
 
         .runway-hero .runway-btn-secondary {
@@ -538,7 +596,7 @@ export default function LumoraRunway() {
 
         .runway-hero .runway-btn-secondary:hover {
           background: rgba(255, 255, 255, 0.08);
-          border-color: rgba(255, 255, 255, 0.4);
+          border-color: var(--teal-light);
         }
 
         /* ============================================================
@@ -642,12 +700,12 @@ export default function LumoraRunway() {
         .runway-category-label {
           display: inline-block;
           padding: 0.4rem 1rem;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: rgba(20, 184, 166, 0.1);
+          border: 1px solid var(--teal-primary);
           border-radius: 100px;
           font-size: 0.8rem;
           font-weight: 500;
-          color: rgba(255, 255, 255, 0.85);
+          color: var(--teal-light);
           text-transform: uppercase;
           letter-spacing: 0.06em;
           margin-bottom: 2rem;
@@ -787,7 +845,7 @@ export default function LumoraRunway() {
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.06em;
-          color: var(--accent-warm);
+          color: var(--teal-primary);
           margin-bottom: 0.5rem;
         }
 
@@ -811,7 +869,7 @@ export default function LumoraRunway() {
         }
 
         .runway-how-card:hover {
-          border-color: var(--border-hover);
+          border-color: var(--teal-primary);
           transform: translateY(-4px);
           box-shadow: var(--card-shadow-hover);
         }
@@ -839,12 +897,12 @@ export default function LumoraRunway() {
           width: 36px;
           height: 36px;
           border-radius: 50%;
-          background: var(--bg-secondary);
-          border: 1.5px solid var(--border);
+          background: var(--teal-primary);
+          border: none;
           font-size: 0.85rem;
           font-weight: 600;
           margin-bottom: 1rem;
-          color: var(--text-primary);
+          color: #ffffff;
         }
 
         .runway-how-card-body h3 {
@@ -881,16 +939,19 @@ export default function LumoraRunway() {
         }
 
         .runway-testimonial-card:hover {
-          border-color: var(--border-hover);
+          border-color: var(--teal-primary);
           transform: translateY(-3px);
-          box-shadow: var(--card-shadow-hover);
+          box-shadow: 0 16px 48px rgba(20, 184, 166, 0.08);
         }
 
-        .runway-testimonial-stars {
-          color: var(--star-color);
-          font-size: 1rem;
-          margin-bottom: 1.25rem;
-          letter-spacing: 2px;
+        .runway-testimonial-card::before {
+          content: '\\201C';
+          font-size: 3rem;
+          color: var(--teal-primary);
+          line-height: 1;
+          display: block;
+          margin-bottom: 0.5rem;
+          font-family: Georgia, serif;
         }
 
         .runway-testimonial-quote {
@@ -1288,7 +1349,7 @@ export default function LumoraRunway() {
            ============================================================ */
         .runway-footer {
           padding: 4rem 3rem 2rem;
-          border-top: 1px solid var(--border);
+          border-top: 1px solid var(--teal-primary);
           background: var(--bg-primary);
           transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -1329,7 +1390,7 @@ export default function LumoraRunway() {
         }
 
         .runway-footer-section a:hover {
-          color: var(--text-primary);
+          color: var(--teal-primary);
         }
 
         .runway-footer-bottom {
@@ -1353,7 +1414,7 @@ export default function LumoraRunway() {
         }
 
         .runway-footer-bottom a:hover {
-          color: var(--text-secondary);
+          color: var(--teal-primary);
         }
 
         /* ============================================================
@@ -1386,6 +1447,9 @@ export default function LumoraRunway() {
           letter-spacing: -0.03em;
           line-height: 1;
           margin-bottom: 0.35rem;
+          border-bottom: 2px solid var(--teal-primary);
+          padding-bottom: 4px;
+          display: inline-block;
         }
 
         .runway-proof-label {
@@ -1507,6 +1571,101 @@ export default function LumoraRunway() {
         .runway-usecase-card:hover .runway-usecase-overlay p {
           max-height: 60px;
           opacity: 1;
+        }
+
+        /* ============================================================
+           STUDENT PORTFOLIO
+           ============================================================ */
+        .runway-portfolio-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .runway-portfolio-card {
+          background: var(--card-bg);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          overflow: hidden;
+          box-shadow: var(--card-shadow);
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .runway-portfolio-card:hover {
+          transform: scale(1.03);
+          border-color: var(--teal-primary);
+          box-shadow: 0 16px 48px rgba(20, 184, 166, 0.08);
+        }
+
+        .runway-portfolio-preview {
+          aspect-ratio: 4/3;
+          overflow: hidden;
+        }
+
+        .runway-portfolio-preview img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .runway-portfolio-card:hover .runway-portfolio-preview img {
+          transform: scale(1.05);
+        }
+
+        .runway-portfolio-body {
+          padding: 1.5rem;
+        }
+
+        .runway-portfolio-badge {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          border-radius: 100px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: #ffffff;
+          margin-bottom: 0.75rem;
+        }
+
+        .runway-portfolio-badge.orange { background: var(--module-orange); }
+        .runway-portfolio-badge.purple { background: var(--module-purple); }
+        .runway-portfolio-badge.blue { background: var(--module-blue); }
+        .runway-portfolio-badge.emerald { background: var(--module-emerald); }
+
+        .runway-portfolio-name {
+          font-weight: 600;
+          font-size: 1rem;
+          margin-bottom: 0.15rem;
+        }
+
+        .runway-portfolio-meta {
+          font-size: 0.8rem;
+          color: var(--text-muted);
+          margin-bottom: 0.75rem;
+        }
+
+        .runway-portfolio-metric {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--teal-primary);
+          margin-bottom: 1rem;
+        }
+
+        .runway-portfolio-link {
+          font-size: 0.85rem;
+          color: var(--teal-primary);
+          text-decoration: none;
+          font-weight: 500;
+          transition: opacity 0.3s ease;
+        }
+
+        .runway-portfolio-link:hover {
+          opacity: 0.7;
+          text-decoration: underline;
         }
 
         /* ============================================================
@@ -1664,7 +1823,7 @@ export default function LumoraRunway() {
           top: 0;
           left: 0;
           height: 2px;
-          background: var(--accent-warm);
+          background: var(--teal-primary);
           opacity: 0.8;
           z-index: 9999;
           transition: width 0.15s ease;
@@ -1713,7 +1872,13 @@ export default function LumoraRunway() {
           }
 
           .runway-proof-metrics {
-            gap: 2rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+          }
+
+          .runway-portfolio-grid {
+            grid-template-columns: 1fr;
           }
 
           .runway-proof-strip {
@@ -1794,7 +1959,7 @@ export default function LumoraRunway() {
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
               </svg>
             </button>
-            <button className="runway-btn runway-btn-primary">Try Lumora</button>
+            <button className="runway-btn runway-btn-primary">Start Free</button>
             <button
               className="runway-menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -1816,7 +1981,7 @@ export default function LumoraRunway() {
           <a href="#use-cases" onClick={() => setMobileMenuOpen(false)}>Student Work</a>
           <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
           <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-          <button className="runway-btn runway-btn-primary" onClick={() => setMobileMenuOpen(false)}>Try Lumora</button>
+          <button className="runway-btn runway-btn-primary" onClick={() => setMobileMenuOpen(false)}>Start Free</button>
         </div>
 
         {/* ====== 2. HERO with VIDEO ====== */}
@@ -1836,8 +2001,8 @@ export default function LumoraRunway() {
             <h1>Learn AI. Create Everything.<br/>Start Getting Paid.</h1>
             <p>45 hands-on lessons across video, automation, writing, and music. Go from zero AI skills to a portfolio that makes money.</p>
             <div className="runway-hero-buttons">
-              <button className="runway-btn runway-btn-primary">Start Learning Free</button>
-              <button className="runway-btn runway-btn-secondary">Watch Preview</button>
+              <button className="runway-btn runway-btn-primary">Start First Lesson</button>
+              <button className="runway-btn runway-btn-secondary">See How It Works</button>
             </div>
           </div>
         </section>
@@ -1861,6 +2026,35 @@ export default function LumoraRunway() {
           </div>
         </section>
 
+        {/* ====== STUDENT PORTFOLIO SHOWCASE ====== */}
+        <section className="runway-content-section">
+          <h2 className="runway-section-title runway-reveal">Built by Students Like You</h2>
+          <p className="runway-section-subtitle runway-reveal delay-1">Real projects. Real results. See what Lumora students are creating.</p>
+
+          <div className="runway-portfolio-grid">
+            {STUDENT_PORTFOLIO.map((student) => (
+              <div key={student.name} className="runway-portfolio-card runway-reveal">
+                <div className="runway-portfolio-preview">
+                  <img src={student.preview} alt={`${student.name}'s project`} loading="lazy" />
+                </div>
+                <div className="runway-portfolio-body">
+                  <span className={`runway-portfolio-badge ${student.projectTypeColor}`}>
+                    {student.projectType}
+                  </span>
+                  <div className="runway-portfolio-name">{student.name}</div>
+                  <div className="runway-portfolio-meta">
+                    Age {student.age} &bull; {student.location}
+                  </div>
+                  <div className="runway-portfolio-metric">{student.metric}</div>
+                  <a href={student.portfolioLink} className="runway-portfolio-link">
+                    View Portfolio &rarr;
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* ====== 3. FEATURES (4 cards) ====== */}
         <section className="runway-content-section" id="features">
           <h2 className="runway-section-title runway-reveal">Four Skills.<br/>Endless Possibilities.</h2>
@@ -1875,6 +2069,7 @@ export default function LumoraRunway() {
                 description={f.description}
                 delay={i}
                 lessons={f.lessons}
+                hours={f.hours}
               />
             ))}
           </div>
@@ -1932,18 +2127,31 @@ export default function LumoraRunway() {
         {/* ====== 6. TESTIMONIALS (3 cards) ====== */}
         <section className="runway-content-section runway-section-alt">
           <h2 className="runway-section-title runway-reveal">Don't Take Our Word for It</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">12,000+ students are already building with AI. Here's what they say.</p>
+          <p className="runway-section-subtitle runway-reveal delay-1">12,347 students are already building with AI. Here's what they say.</p>
 
           <div className="runway-testimonials-grid">
             {TESTIMONIALS.map((t) => (
               <div key={t.name} className="runway-testimonial-card runway-reveal">
-                <div className="runway-testimonial-stars">{'\u2605'.repeat(5)}</div>
                 <p className="runway-testimonial-quote">"{t.quote}"</p>
                 <div className="runway-testimonial-author">
-                  <div className="runway-testimonial-avatar">{t.initials}</div>
+                  <img
+                    src={t.photo}
+                    alt={t.name}
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      border: '1.5px solid var(--border)',
+                      flexShrink: 0,
+                    }}
+                  />
                   <div>
-                    <div className="runway-testimonial-name">{t.name}</div>
+                    <div className="runway-testimonial-name">{t.name}, {t.age}</div>
                     <div className="runway-testimonial-role">{t.role}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.1rem' }}>
+                      {t.location}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1960,6 +2168,22 @@ export default function LumoraRunway() {
             {PRICING.map((plan) => (
               <div key={plan.name} className={`runway-pricing-card runway-reveal ${plan.featured ? 'featured' : ''}`}>
                 <div className="runway-pricing-badge">{plan.badge}</div>
+                {'studentBadge' in plan && plan.studentBadge && (
+                  <div style={{
+                    background: 'var(--teal-primary)',
+                    color: '#fff',
+                    fontSize: '0.7rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    padding: '0.3rem 0.75rem',
+                    borderRadius: '100px',
+                    display: 'inline-block',
+                    marginBottom: '0.75rem',
+                  }}>
+                    {plan.studentBadge}
+                  </div>
+                )}
                 <div className="runway-pricing-name">{plan.name}</div>
                 <div className="runway-pricing-description">{plan.description}</div>
                 <div>
@@ -2016,7 +2240,7 @@ export default function LumoraRunway() {
           <p className="runway-reveal delay-2">Video. Automation. Writing. Music. Four modules, 45 lessons, and a clear path from \u201CI have no idea what I\u2019m doing\u201D to getting paid.</p>
           <div className="runway-cta-risk runway-reveal delay-2">Free to start. $9.99/mo to unlock everything. Cancel anytime.</div>
           <div className="runway-cta-buttons runway-reveal delay-3">
-            <button className="runway-btn runway-btn-primary">Start Learning Free</button>
+            <button className="runway-btn runway-btn-primary">Start First Lesson</button>
             <a href="#pricing" className="runway-btn runway-btn-secondary">See Pricing</a>
           </div>
         </section>
@@ -2065,7 +2289,7 @@ export default function LumoraRunway() {
 }
 
 // Feature Card Component with subtle 3D tilt effect
-function FeatureCard({ image, title, description, delay, lessons }: { image: string; title: string; description: string; delay: number; lessons: number }) {
+function FeatureCard({ image, title, description, delay, lessons, hours }: { image: string; title: string; description: string; delay: number; lessons: number; hours: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -2104,7 +2328,7 @@ function FeatureCard({ image, title, description, delay, lessons }: { image: str
       </div>
       <div className="runway-feature-info">
         <h3>{title}</h3>
-        <span className="runway-lesson-count">{lessons} lessons</span>
+        <span className="runway-lesson-count">{lessons} LESSONS &bull; {hours} HOURS</span>
         <p>{description}</p>
       </div>
     </div>
