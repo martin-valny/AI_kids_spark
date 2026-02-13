@@ -71,6 +71,7 @@ import LumoraCreative from "./pages/landing/LumoraCreative";
 import LumoraAqua from "./pages/landing/LumoraAqua";
 import LumoraVideo from "./pages/landing/LumoraVideo";
 import LumoraRunway from "./pages/landing/LumoraRunway";
+import LumoraRunwayClassic from "./pages/landing/LumoraRunwayClassic";
 import LumoraTeal from "./pages/landing/LumoraTeal";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
@@ -184,6 +185,7 @@ const App = () => (
           <Route path="/landing/lumora-aqua" element={<LumoraAqua />} />
           <Route path="/landing/lumora-video" element={<LumoraVideo />} />
           <Route path="/landing/lumora-runway" element={<LumoraRunway />} />
+          <Route path="/landing/lumora-runway-classic" element={<LumoraRunwayClassic />} />
           <Route path="/landing/lumora-teal" element={<LumoraTeal />} />
           {/* MLP Routes */}
           <Route path="/mlp/first-short" element={<FirstShort />} />
