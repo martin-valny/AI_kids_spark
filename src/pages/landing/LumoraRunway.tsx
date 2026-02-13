@@ -29,69 +29,69 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const FEATURES = [
   {
-    title: 'AI Video Editing for TikTok & Reels',
-    description: 'Create short-form videos that blow up on TikTok, Reels, and YouTube Shorts. Learn Runway, Pika, and Kling \u2014 from your first cut to a full portfolio.',
+    title: 'Build a 30-Day Short-Form Series',
+    description: 'Build short-form videos that blow up on TikTok, Reels, and YouTube Shorts. Learn Runway, Pika, and Kling \u2014 tools the pros actually use.',
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop',
-    lessons: 12,
-    hours: 15,
+    meta: 'FIRST SHORT IN 2 HOURS \u00B7 FULL PORTFOLIO IN 15',
     category: 'orange' as const,
     emoji: '\uD83D\uDCF9',
+    tier: 1,
   },
   {
-    title: 'AI Automation That Pays $60-180/hr',
-    description: 'Build workflows that do the boring stuff for you. Make.com, Zapier, n8n \u2014 set up once, earn on repeat. Clients pay $60\u2013180/hr for this.',
+    title: 'Build 10 Automations Clients Will Pay For',
+    description: 'Build workflows that do the boring stuff for you. Make.com, Zapier, n8n \u2014 set up once, earn on repeat. Real businesses need this \u2014 and you can build it.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-    lessons: 8,
-    hours: 12,
+    meta: 'FIRST WORKFLOW IN 3 HOURS \u00B7 10 AUTOMATIONS IN 12',
     category: 'purple' as const,
     emoji: '\uD83E\uDD16',
+    tier: 1,
   },
   {
-    title: 'AI Content Writing for Social & Newsletters',
+    title: 'Ship a 30-Day Content Calendar',
     description: 'Write viral captions, threads, and newsletters with ChatGPT and Claude. Learn the prompt techniques that make AI sound like you, not a robot.',
     image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop',
-    lessons: 10,
-    hours: 18,
+    meta: 'FIRST THREAD IN 1 HOUR \u00B7 FULL CALENDAR IN 18',
     category: 'blue' as const,
     emoji: '\u270D\uFE0F',
+    tier: 2,
   },
   {
-    title: 'AI Music Production (No Instruments Needed)',
+    title: 'Publish a 50-Track Creator Library',
     description: 'Make original tracks, intros, and background music with Suno and Udio. No instruments needed \u2014 just ideas. Build a royalty-free library you actually own.',
     image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=400&fit=crop',
-    lessons: 7,
-    hours: 10,
+    meta: 'FIRST TRACK IN 2 HOURS \u00B7 FULL LIBRARY IN 10',
     category: 'emerald' as const,
     emoji: '\uD83C\uDFB5',
+    tier: 2,
   },
 ];
 
 const HOW_IT_WORKS = [
   {
     step: 1,
-    title: 'Pick What You Want to Learn',
+    title: 'Pick a Skill Path',
     description: 'Video, automation, writing, or music \u2014 choose the skill that fits your goals. Every path starts from zero. No experience needed.',
     image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
   },
   {
     step: 2,
-    title: 'Build Real Projects',
-    description: 'Every lesson has you creating something real \u2014 not just watching. By the end of each module, you\u2019ll have a portfolio you can actually show off.',
+    title: 'Build Something You Can Show',
+    description: 'Every lesson has you building something real \u2014 not just watching. By the end of each path, you\u2019ll have a portfolio you can actually show off.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
   },
   {
     step: 3,
-    title: 'Start Getting Paid',
-    description: 'Use your new skills to land freelance gigs, grow your audience, or launch your own thing. Every module ends with a monetization playbook.',
+    title: 'Open New Opportunities',
+    description: 'Use your new skills to freelance, grow an audience, or launch something of your own. Every path ends with a portfolio and next-steps playbook.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
   },
 ];
 
 const SOCIAL_PROOF_METRICS = [
   { value: '12,347', label: 'Students Enrolled' },
-  { value: '$847K+', label: 'Earned by Students' },
+  { value: '60+', label: 'AI Tools Covered' },
   { value: '4.9\u2605', label: 'Average Rating' },
-  { value: '87%', label: 'First Client in 30 Days' },
+  { value: '78%', label: 'Completion Rate' },
 ];
 
 const USE_CASES = [
@@ -109,7 +109,7 @@ const TESTIMONIALS = [
     age: 17,
     location: 'Chicago, IL',
     role: 'High School Senior',
-    quote: 'I built a Make.com automation for a local real estate agent in my second week. He pays me $150/month to maintain it. The freelance pricing guide at the end of the automation module is what gave me the confidence to charge.',
+    quote: 'I built a Make.com automation for a local real estate agent in my second week. He hired me to maintain it. The freelance pricing guide at the end of the automation module is what gave me the confidence to pitch.',
     photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
   },
   {
@@ -125,7 +125,7 @@ const TESTIMONIALS = [
     age: 16,
     location: 'Austin, TX',
     role: 'Content Creator',
-    quote: "I made a 30-track royalty-free music library with Suno in two weeks. Now I license tracks to other creators on Gumroad. I've made $400 so far and I don't even play an instrument.",
+    quote: "I made a 30-track royalty-free music library with Suno in two weeks. Now other creators license them for their videos on Gumroad. I don't even play an instrument.",
     photo: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=face',
   },
 ];
@@ -145,12 +145,12 @@ const PRICING = [
   {
     badge: 'Most popular',
     name: 'Pro',
-    description: 'Everything you need to build your portfolio and get paid.',
+    description: 'Everything you need to build your portfolio and open doors.',
     studentBadge: 'Most Popular with Students',
     price: '$9.99',
     period: '/month',
     savings: 'Save 17% yearly \u2014 $99/year',
-    features: ['All 4 modules (45 lessons)', '60+ hours of hands-on content', 'Downloadable prompts & templates', 'Private community + feedback', 'Certificate of completion', 'New lessons as tools evolve'],
+    features: ['All 4 skill paths \u2014 video, automation, writing, music', 'Portfolio-ready projects in every path', 'Downloadable prompts & templates', 'Private community + feedback', 'Certificate of completion', 'Updated as new tools launch'],
     cta: 'Start Free Trial',
     featured: true,
     accent: 'amber' as const,
@@ -172,8 +172,8 @@ const FAQS = [
   { q: "I'm a complete beginner. Can I really do this?", a: 'Yes. Every module starts from zero. If you can type and follow instructions, you can do this. Most of our students had never touched an AI tool before signing up. Average completion rate: 78%.' },
   { q: 'Will this help with college applications?', a: "Absolutely. You'll build a real portfolio of AI projects \u2014 videos, automations, writing samples, and music. Admissions officers love seeing self-directed, technical creative work. Several students have featured their Lumora projects in applications and interviews." },
   { q: "I'm 16\u201317. Do I need parental permission?", a: "You can explore free lessons anytime. Upgrading to Pro under 18 requires parent/guardian approval \u2014 it takes about 30 seconds during signup. All content is age-appropriate and designed for high school and college students." },
-  { q: 'Can I actually earn money from what I learn?', a: "That's the whole point. Every module ends with a monetization playbook \u2014 freelance pricing, where to find clients, how to package your skills. Our students have earned $847K+ total. Typical first earnings: $50\u2013200 in the first month after completing a module." },
-  { q: 'How long does each module take to finish?', a: "Most students finish a module in 2\u20133 weeks at 30 minutes a day. But it's fully self-paced \u2014 binge it in a weekend or stretch it out over a month. Each lesson is designed to be completed in one sitting." },
+  { q: 'Can I actually earn money from what I learn?', a: "That's the whole point. Every path ends with a portfolio and a next-steps playbook \u2014 freelance pricing, where to find clients, how to package your skills. Students have gone on to freelance, sell digital products, and build audiences. Results vary, but the skills are real and in demand." },
+  { q: 'How long does each module take to finish?', a: "You can build your first project in 1\u20133 hours. Most students finish a full path in 2\u20133 weeks at 30 minutes a day. But it's fully self-paced \u2014 binge it in a weekend or stretch it out. Each lesson is designed to be completed in one sitting." },
   { q: 'What AI tools will I actually learn to use?', a: 'Runway, Pika, and Kling for video editing. Make.com, Zapier, and n8n for automation. ChatGPT and Claude for content writing. Suno and Udio for music production. 60+ tools total, and we update lessons whenever major new tools launch.' },
 ];
 
@@ -198,7 +198,7 @@ const STUDENT_PORTFOLIO = [
     projectType: 'Automation',
     preview: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
     photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
-    quote: 'Three clients, $2,400 a month. All from automations I built in the second module.',
+    quote: 'Three clients using automations I built in the second module. I never thought I\'d have a freelance skill at 17.',
     portfolioLink: '#',
   },
   {
@@ -209,6 +209,13 @@ const STUDENT_PORTFOLIO = [
     quote: '50 tracks on Gumroad, all made with Suno. I don\'t play a single instrument.',
     portfolioLink: '#',
   },
+];
+
+const FIRST_WEEK_OUTPUTS = [
+  { emoji: '\uD83D\uDCF9', label: 'A post-ready AI short' },
+  { emoji: '\uD83E\uDD16', label: 'A working client workflow' },
+  { emoji: '\u270D\uFE0F', label: 'A week of social content' },
+  { emoji: '\uD83C\uDFB5', label: 'Your first original track' },
 ];
 
 // ============================================================
@@ -288,9 +295,9 @@ export default function LumoraRunway() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 )}
               </button>
-              <button className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-2xl transition-colors hover:-translate-y-0.5 hover:shadow-lg">
-                Start Free
-              </button>
+              <a href="/mlp/first-short" className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-2xl transition-colors hover:-translate-y-0.5 hover:shadow-lg">
+                Start Building
+              </a>
             </div>
             <button className="md:hidden w-10 h-10 flex items-center justify-center border border-stone-200 dark:border-stone-700 rounded-xl" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -315,7 +322,7 @@ export default function LumoraRunway() {
                     {item.label}
                   </a>
                 ))}
-                <button className="mt-6 w-full py-4 bg-amber-500 text-white font-semibold rounded-2xl text-lg" onClick={() => setMobileMenuOpen(false)}>Start Free</button>
+                <a href="/mlp/first-short" className="mt-6 block w-full py-4 bg-amber-500 text-white font-semibold rounded-2xl text-lg text-center" onClick={() => setMobileMenuOpen(false)}>Start Building</a>
               </div>
             </motion.div>
           )}
@@ -333,18 +340,17 @@ export default function LumoraRunway() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-[48px] sm:text-[72px] lg:text-[96px] font-bold leading-[1.05] mb-8" style={{ letterSpacing: '-0.02em' }}>
-                <span className="block text-stone-900 dark:text-stone-100">Learn AI.</span>
-                <span className="block text-stone-900 dark:text-stone-100">Ship Real Work.</span>
-                <span className="block text-amber-500">Open New Opportunities.</span>
+                <span className="block text-stone-900 dark:text-stone-100">Ship Your First AI Short Tonight.</span>
+                <span className="block text-amber-500">No experience needed.</span>
               </h1>
 
               <p className="font-serif text-lg sm:text-xl lg:text-2xl text-stone-500 dark:text-stone-400 max-w-[650px] mx-auto leading-[1.6] mb-12">
-                45 hands-on lessons across video, automation, writing, and music. Go from zero AI skills to a portfolio that opens doors.
+                In 60&ndash;90 minutes, you go from idea to a post-ready video. Then keep building across video, automation, writing, and music.
               </p>
 
-              <button className="px-10 h-14 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-2xl text-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto">
-                Start Your First Lesson &rarr;
-              </button>
+              <a href="/mlp/first-short" className="inline-flex items-center justify-center px-10 h-14 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-2xl text-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto">
+                Start Your First Short &rarr;
+              </a>
 
               <div className="mt-10 flex items-center justify-center gap-3">
                 <div className="flex -space-x-3">
@@ -379,6 +385,23 @@ export default function LumoraRunway() {
           </div>
         </section>
 
+        {/* ====== 3b. WEEK ONE PROOF ====== */}
+        <section className="py-12 md:py-20 px-4 md:px-8 bg-stone-50 dark:bg-stone-900 transition-colors">
+          <div className="max-w-screen-xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 text-stone-900 dark:text-stone-100" style={{ letterSpacing: '-0.02em' }}>
+              What you can show after week one
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {FIRST_WEEK_OUTPUTS.map((item) => (
+                <div key={item.label} className="flex flex-col items-center gap-3 p-6 bg-white dark:bg-stone-800 rounded-2xl shadow-sm">
+                  <span className="text-4xl">{item.emoji}</span>
+                  <span className="font-serif text-stone-600 dark:text-stone-300 text-center leading-snug">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ====== 4. STUDENT PORTFOLIO ====== */}
         <section className="py-16 md:py-32 px-4 md:px-8 bg-stone-50 dark:bg-stone-900 transition-colors" id="student-work">
           <div className="max-w-screen-xl mx-auto">
@@ -386,7 +409,7 @@ export default function LumoraRunway() {
               Built by students like you
             </h2>
             <p className="text-center font-serif text-xl text-stone-500 dark:text-stone-400 mb-16 max-w-lg mx-auto leading-[1.6]">
-              Real projects from teenagers who went from zero skills to getting paid.
+              Real projects from teenagers who went from zero skills to shipping real work.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -421,14 +444,17 @@ export default function LumoraRunway() {
               Four Skills. Endless Possibilities.
             </h2>
             <p className="text-center font-serif text-xl text-stone-500 dark:text-stone-400 mb-16 max-w-xl mx-auto leading-[1.6]">
-              Each module teaches you a high-income creative skill with real AI tools. 45 lessons. 60+ hours. All hands-on.
+              Each path takes you from zero to a portfolio you can show — in hours, not months.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {FEATURES.map((f) => (
-                <div key={f.title} className="bg-white dark:bg-stone-800/80 rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div key={f.title} className="relative bg-white dark:bg-stone-800/80 rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  {f.tier === 1 && (
+                    <span className="absolute top-6 right-6 px-3 py-1 bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-bold uppercase tracking-wide rounded-full">Most in-demand</span>
+                  )}
                   <div className="text-[64px] leading-none mb-6">{f.emoji}</div>
                   <h3 className="text-2xl sm:text-3xl lg:text-[36px] font-bold text-stone-900 dark:text-stone-100 mb-3 leading-tight">{f.title}</h3>
-                  <div className="font-mono text-sm text-amber-500 mb-4">{f.lessons} LESSONS &middot; {f.hours} HOURS</div>
+                  <div className="font-mono text-sm text-amber-500 mb-4">{f.meta}</div>
                   <p className="font-serif text-lg sm:text-xl text-stone-500 dark:text-stone-400 leading-[1.6]">{f.description}</p>
                 </div>
               ))}
@@ -603,12 +629,12 @@ export default function LumoraRunway() {
               Stop scrolling tutorials.<br />Start building skills.
             </h2>
             <p className="font-serif text-lg sm:text-xl text-stone-400 mb-3 max-w-xl mx-auto leading-[1.6]">
-              Video. Automation. Writing. Music. Four modules, 45 lessons, and a clear path from &ldquo;I have no idea what I&rsquo;m doing&rdquo; to getting paid.
+              Video. Automation. Writing. Music. Four skill paths, real projects, and a clear path from &ldquo;I have no idea what I&rsquo;m doing&rdquo; to a portfolio that opens doors.
             </p>
             <p className="text-sm text-stone-500 mb-10">Free to start. $9.99/mo to unlock everything. Cancel anytime.</p>
-            <button className="px-10 h-14 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-2xl text-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto">
-              Start Your First Lesson &rarr;
-            </button>
+            <a href="/mlp/first-short" className="inline-flex items-center justify-center px-10 h-14 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-2xl text-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto">
+              Start Your First Short &rarr;
+            </a>
           </div>
         </section>
 
