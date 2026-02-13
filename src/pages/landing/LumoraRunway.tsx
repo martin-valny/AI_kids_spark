@@ -1,41 +1,35 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
+import { motion, useInView, useMotionValue, useSpring, useScroll, AnimatePresence } from 'framer-motion';
 
 /**
- * Lumora Runway - Premium Monochrome Landing Page
+ * Lumora Runway — Premium Landing Page
  *
- * Pure black & white aesthetic with functional color only:
- * - SF Pro Display / system-ui font
- * - Light mode default, dark mode toggle
- * - Monochrome palette — no accent color. Warm amber for star ratings only.
- * - Rounded hero with video background
- * - Smooth, premium-feeling transitions (0.5-0.8s)
- * - Subtle 3D tilt on feature cards
- * - Intersection Observer scroll-reveal animations
- * - FAQ accordion, FAB, scroll progress, toast
+ * Teal accent system, Framer Motion animations, Tailwind CSS.
+ * Dark mode via Tailwind `dark:` class + cookie persistence.
  *
- * SECTIONS (aligned with all Lumora landing pages):
+ * SECTIONS:
  * 1. Navigation
- * 2. Hero with background video
- * 3. Features (4 cards with images)
- * 4. How It Works (3 steps)
- * 5. Showcase Gallery (6 cards)
- * 6. Testimonials (3 cards)
- * 7. Pricing (3 tiers)
- * 8. FAQ (7 items)
- * 9. Final CTA
- * 10. Footer (4-column)
+ * 2. Hero with animated gradient + floating orbs
+ * 3. Social Proof (count-up stats + "Say Goodbye To" strikethrough)
+ * 4. Student Portfolio Showcase
+ * 5. Features (4 module cards with 3D tilt)
+ * 6. How It Works (3 steps)
+ * 7. Use Cases Gallery (6 cards)
+ * 8. Testimonials (3 cards)
+ * 9. Pricing (3 tiers)
+ * 10. FAQ (6 items)
+ * 11. Final CTA
+ * 12. Footer (newsletter + 4-column links)
  */
 
 // ============================================================
-// UNIFIED CONTENT (same across all 4 landing pages)
+// UNIFIED CONTENT
 // ============================================================
-
-const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
 
 const FEATURES = [
   {
     title: 'AI Video Editing for TikTok & Reels',
-    description: 'Create short-form videos that blow up on TikTok, Reels, and YouTube Shorts. Learn Runway, Pika, and Kling — from your first cut to a full portfolio.',
+    description: 'Create short-form videos that blow up on TikTok, Reels, and YouTube Shorts. Learn Runway, Pika, and Kling \u2014 from your first cut to a full portfolio.',
     image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop',
     lessons: 12,
     hours: 15,
@@ -43,7 +37,7 @@ const FEATURES = [
   },
   {
     title: 'AI Automation That Pays $60-180/hr',
-    description: 'Build workflows that do the boring stuff for you. Make.com, Zapier, n8n — set up once, earn on repeat. Clients pay $60\u2013180/hr for this.',
+    description: 'Build workflows that do the boring stuff for you. Make.com, Zapier, n8n \u2014 set up once, earn on repeat. Clients pay $60\u2013180/hr for this.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
     lessons: 8,
     hours: 12,
@@ -59,7 +53,7 @@ const FEATURES = [
   },
   {
     title: 'AI Music Production (No Instruments Needed)',
-    description: 'Make original tracks, intros, and background music with Suno and Udio. No instruments needed — just ideas. Build a royalty-free library you actually own.',
+    description: 'Make original tracks, intros, and background music with Suno and Udio. No instruments needed \u2014 just ideas. Build a royalty-free library you actually own.',
     image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=400&fit=crop',
     lessons: 7,
     hours: 10,
@@ -89,56 +83,25 @@ const HOW_IT_WORKS = [
 ];
 
 const SOCIAL_PROOF_METRICS = [
-  { value: '12,347', label: 'Students Enrolled' },
-  { value: '$847K+', label: 'Earned by Students' },
-  { value: '4.9\u2605', label: 'Average Rating' },
-  { value: '87%', label: 'Get First Client in 30 Days' },
+  { value: '12,347', label: 'Students Enrolled', numericValue: 12347, prefix: '', suffix: '' },
+  { value: '$847K+', label: 'Earned by Students', numericValue: 847, prefix: '$', suffix: 'K+' },
+  { value: '4.9\u2605', label: 'Average Rating', numericValue: 4.9, prefix: '', suffix: '\u2605', decimals: 1 },
+  { value: '87%', label: 'Get First Client in 30 Days', numericValue: 87, prefix: '', suffix: '%' },
 ];
 
 const REPLACES = ['Overpriced Bootcamps', 'YouTube Rabbit Holes', 'Random Free Tutorials', 'Trial & Error', 'Outdated Courses'];
 
 const USE_CASES = [
-  {
-    title: 'TikTok / Reels Video',
-    description: 'Shoot nothing. Film nothing. AI-edit a viral short in under an hour.',
-    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=450&fit=crop',
-    icon: '\u25B6',
-  },
-  {
-    title: 'Automated Side Hustle',
-    description: 'Build a workflow that captures leads and sends emails while you sleep.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop',
-    icon: '\u2699',
-  },
-  {
-    title: 'Viral Twitter Thread',
-    description: 'Write a week of content in one sitting with AI prompt chains.',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=450&fit=crop',
-    icon: '\u270E',
-  },
-  {
-    title: 'Original Music Track',
-    description: 'Create a full track with Suno \u2014 use it in your videos, sell it, or just vibe.',
-    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=450&fit=crop',
-    icon: '\u266B',
-  },
-  {
-    title: 'Freelance Portfolio',
-    description: 'Walk out of each module with proof of work clients actually want to see.',
-    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=450&fit=crop',
-    icon: '\u2606',
-  },
-  {
-    title: 'Newsletter That Grows',
-    description: 'AI-written emails that sound like you. Build an audience on autopilot.',
-    image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=450&fit=crop',
-    icon: '\u2709',
-  },
+  { title: 'TikTok / Reels Video', description: 'Shoot nothing. Film nothing. AI-edit a viral short in under an hour.', image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=450&fit=crop', icon: '\u25B6' },
+  { title: 'Automated Side Hustle', description: 'Build a workflow that captures leads and sends emails while you sleep.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop', icon: '\u2699' },
+  { title: 'Viral Twitter Thread', description: 'Write a week of content in one sitting with AI prompt chains.', image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=450&fit=crop', icon: '\u270E' },
+  { title: 'Original Music Track', description: 'Create a full track with Suno \u2014 use it in your videos, sell it, or just vibe.', image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=450&fit=crop', icon: '\u266B' },
+  { title: 'Freelance Portfolio', description: 'Walk out of each module with proof of work clients actually want to see.', image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=450&fit=crop', icon: '\u2606' },
+  { title: 'Newsletter That Grows', description: 'AI-written emails that sound like you. Build an audience on autopilot.', image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&h=450&fit=crop', icon: '\u2709' },
 ];
 
 const TESTIMONIALS = [
   {
-    initials: 'AK',
     name: 'Alex K.',
     age: 17,
     location: 'Chicago, IL',
@@ -147,7 +110,6 @@ const TESTIMONIALS = [
     photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
   },
   {
-    initials: 'MR',
     name: 'Maya R.',
     age: 19,
     location: 'Miami, FL',
@@ -156,7 +118,6 @@ const TESTIMONIALS = [
     photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
   },
   {
-    initials: 'JL',
     name: 'Jordan L.',
     age: 16,
     location: 'Austin, TX',
@@ -176,6 +137,7 @@ const PRICING = [
     features: ['2 foundation lessons', 'Preview lessons from each module', 'Community access', 'Basic prompt templates'],
     cta: 'Start Free',
     featured: false,
+    accent: 'gray' as const,
   },
   {
     badge: 'Most popular',
@@ -188,6 +150,7 @@ const PRICING = [
     features: ['All 4 modules (45 lessons)', '60+ hours of hands-on content', 'Downloadable prompts & templates', 'Private community + feedback', 'Certificate of completion', 'New lessons as tools evolve'],
     cta: 'Go Pro',
     featured: true,
+    accent: 'teal' as const,
   },
   {
     badge: 'For schools & teams',
@@ -198,34 +161,17 @@ const PRICING = [
     features: ['Everything in Pro', 'Unlimited student seats', 'Teacher dashboard & analytics', 'Custom learning paths', 'Dedicated support', 'Invoice billing'],
     cta: 'Contact Us',
     featured: false,
+    accent: 'purple' as const,
   },
 ];
 
 const FAQS = [
-  {
-    q: "I'm a complete beginner. Can I really do this?",
-    a: 'Yes. Every module starts from zero. If you can type and follow instructions, you can do this. Most of our students had never touched an AI tool before signing up. Average completion rate: 78%.',
-  },
-  {
-    q: 'Will this help with college applications?',
-    a: "Absolutely. You'll build a real portfolio of AI projects \u2014 videos, automations, writing samples, and music. Admissions officers love seeing self-directed, technical creative work. Several students have featured their Lumora projects in applications and interviews.",
-  },
-  {
-    q: "I'm 16\u201317. Do I need parental permission?",
-    a: "You can explore free lessons anytime. Upgrading to Pro under 18 requires parent/guardian approval \u2014 it takes about 30 seconds during signup. All content is age-appropriate and designed for high school and college students.",
-  },
-  {
-    q: 'Can I actually earn money from what I learn?',
-    a: "That's the whole point. Every module ends with a monetization playbook \u2014 freelance pricing, where to find clients, how to package your skills. Our students have earned $847K+ total. Typical first earnings: $50\u2013200 in the first month after completing a module.",
-  },
-  {
-    q: 'How long does each module take to finish?',
-    a: "Most students finish a module in 2\u20133 weeks at 30 minutes a day. But it's fully self-paced \u2014 binge it in a weekend or stretch it out over a month. Each lesson is designed to be completed in one sitting.",
-  },
-  {
-    q: 'What AI tools will I actually learn to use?',
-    a: 'Runway, Pika, and Kling for video editing. Make.com, Zapier, and n8n for automation. ChatGPT and Claude for content writing. Suno and Udio for music production. 60+ tools total, and we update lessons whenever major new tools launch.',
-  },
+  { q: "I'm a complete beginner. Can I really do this?", a: 'Yes. Every module starts from zero. If you can type and follow instructions, you can do this. Most of our students had never touched an AI tool before signing up. Average completion rate: 78%.' },
+  { q: 'Will this help with college applications?', a: "Absolutely. You'll build a real portfolio of AI projects \u2014 videos, automations, writing samples, and music. Admissions officers love seeing self-directed, technical creative work. Several students have featured their Lumora projects in applications and interviews." },
+  { q: "I'm 16\u201317. Do I need parental permission?", a: "You can explore free lessons anytime. Upgrading to Pro under 18 requires parent/guardian approval \u2014 it takes about 30 seconds during signup. All content is age-appropriate and designed for high school and college students." },
+  { q: 'Can I actually earn money from what I learn?', a: "That's the whole point. Every module ends with a monetization playbook \u2014 freelance pricing, where to find clients, how to package your skills. Our students have earned $847K+ total. Typical first earnings: $50\u2013200 in the first month after completing a module." },
+  { q: 'How long does each module take to finish?', a: "Most students finish a module in 2\u20133 weeks at 30 minutes a day. But it's fully self-paced \u2014 binge it in a weekend or stretch it out over a month. Each lesson is designed to be completed in one sitting." },
+  { q: 'What AI tools will I actually learn to use?', a: 'Runway, Pika, and Kling for video editing. Make.com, Zapier, and n8n for automation. ChatGPT and Claude for content writing. Suno and Udio for music production. 60+ tools total, and we update lessons whenever major new tools launch.' },
 ];
 
 const FOOTER_SECTIONS = [
@@ -236,45 +182,139 @@ const FOOTER_SECTIONS = [
 ];
 
 const STUDENT_PORTFOLIO = [
-  {
-    name: 'Priya S.',
-    age: 18,
-    location: 'San Jose, CA',
-    projectType: 'AI Video Edit',
-    projectTypeColor: 'orange',
-    preview: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop',
-    metric: '28K views on first Reel',
-    portfolioLink: '#',
-  },
-  {
-    name: 'Marcus T.',
-    age: 17,
-    location: 'Atlanta, GA',
-    projectType: 'Automation',
-    projectTypeColor: 'purple',
-    preview: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
-    metric: '$2,400/mo from 3 clients',
-    portfolioLink: '#',
-  },
-  {
-    name: 'Lily C.',
-    age: 19,
-    location: 'Portland, OR',
-    projectType: 'AI Music',
-    projectTypeColor: 'emerald',
-    preview: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=300&fit=crop',
-    metric: '50-track library on Gumroad',
-    portfolioLink: '#',
-  },
+  { name: 'Priya S.', age: 18, location: 'San Jose, CA', projectType: 'AI Video Edit', projectTypeColor: 'orange', preview: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=300&fit=crop', metric: '28K views on first Reel', portfolioLink: '#' },
+  { name: 'Marcus T.', age: 17, location: 'Atlanta, GA', projectType: 'Automation', projectTypeColor: 'purple', preview: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop', metric: '$2,400/mo from 3 clients', portfolioLink: '#' },
+  { name: 'Lily C.', age: 19, location: 'Portland, OR', projectType: 'AI Music', projectTypeColor: 'emerald', preview: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=300&fit=crop', metric: '50-track library on Gumroad', portfolioLink: '#' },
 ];
 
-// Checkmark SVG for pricing lists (monochrome, uses currentColor for theme awareness)
-function CheckIcon() {
+// ============================================================
+// SUB-COMPONENTS
+// ============================================================
+
+function CheckIcon({ className = '' }: { className?: string }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }} className="runway-check-icon">
-      <circle cx="9" cy="9" r="9" fill="currentColor" opacity="0.1" />
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className={`flex-shrink-0 ${className}`}>
+      <circle cx="9" cy="9" r="9" fill="currentColor" opacity="0.15" />
       <path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+function SectionReveal({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function AnimatedCounter({ value, prefix = '', suffix = '', decimals = 0 }: { value: number; prefix?: string; suffix?: string; decimals?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref as React.RefObject<Element>, { once: true });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { damping: 60, stiffness: 100 });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (isInView) motionValue.set(value);
+  }, [isInView, motionValue, value]);
+
+  useEffect(() => {
+    const unsub = springValue.on('change', (v) => setDisplay(v));
+    return unsub;
+  }, [springValue]);
+
+  return (
+    <span ref={ref}>
+      {prefix}{display.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{suffix}
+    </span>
+  );
+}
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-600 to-teal-400 z-[9999] origin-left"
+      style={{ scaleX }}
+    />
+  );
+}
+
+function ScrollToTopFAB({ visible }: { visible: boolean }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-8 right-8 w-14 h-14 bg-teal-500 hover:bg-teal-600 text-white rounded-full shadow-[0_4px_16px_rgba(20,184,166,0.4)] flex items-center justify-center z-40 transition-colors"
+          aria-label="Scroll to top"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function FeatureCard({ image, title, description, delay, lessons, hours }: { image: string; title: string; description: string; delay: number; lessons: number; hours: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateX = (y - rect.height / 2) / 35;
+    const rotateY = (rect.width / 2 - x) / 35;
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+  };
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+  };
+  const handleMouseEnter = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transition = 'transform 0.25s ease-out';
+  };
+  return (
+    <SectionReveal delay={delay * 0.1}>
+      <div
+        ref={cardRef}
+        className="group cursor-pointer"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleMouseEnter}
+      >
+        <div className="relative aspect-[16/11] rounded-2xl overflow-hidden">
+          <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 shadow-lg">
+            <span className="text-xs font-semibold text-teal-300 uppercase tracking-wider">{lessons} Lessons</span>
+            <span className="text-teal-500/50">&bull;</span>
+            <span className="text-xs font-semibold text-teal-300 uppercase tracking-wider">{hours} Hours</span>
+          </div>
+        </div>
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-teal-500 transition-colors duration-300">{title}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{description}</p>
+        </div>
+      </div>
+    </SectionReveal>
   );
 }
 
@@ -284,52 +324,27 @@ function CheckIcon() {
 
 export default function LumoraRunway() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [showFab, setShowFab] = useState(false);
   const [isLightMode, setIsLightMode] = useState(true);
   const [toast, setToast] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Scroll effects
   useEffect(() => {
     const handleScroll = () => {
-      const winScroll = document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      setScrollProgress((winScroll / height) * 100);
       setIsScrolled(window.scrollY > 50);
-      setShowFab(winScroll > 500);
+      setShowFab(window.scrollY > 500);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Load saved theme (default light)
   useEffect(() => {
     const cookies = document.cookie.split(';');
     const themeCookie = cookies.find(c => c.trim().startsWith('theme='));
     if (themeCookie && themeCookie.split('=')[1].trim() === 'dark') {
       setIsLightMode(false);
     }
-  }, []);
-
-  // Intersection Observer for scroll-reveal animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).classList.add('revealed');
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
-    );
-
-    const elements = document.querySelectorAll('.runway-reveal');
-    elements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -342,1995 +357,593 @@ export default function LumoraRunway() {
     });
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-80px' });
 
   return (
     <>
       <style>{`
-        /* ============================================================
-           DESIGN TOKENS
-           ============================================================ */
-        .lumora-runway {
-          /* Teal accent palette for educational warmth */
-          --teal-primary: #14b8a6;
-          --teal-dark: #0d9488;
-          --teal-light: #5eead4;
-          --module-orange: #f97316;
-          --module-purple: #a855f7;
-          --module-blue: #3b82f6;
-          --module-emerald: #10b981;
-          --star-color: #14b8a6;
-          --accent-warm: #14b8a6;
-
-          /* Light mode (default) */
-          --bg-primary: #ffffff;
-          --bg-secondary: #f3f4f5;
-          --text-primary: #000000;
-          --text-secondary: rgba(0, 0, 0, 0.6);
-          --text-muted: rgba(0, 0, 0, 0.4);
-          --border: rgba(0, 0, 0, 0.08);
-          --border-hover: rgba(0, 0, 0, 0.15);
-          --card-bg: #ffffff;
-          --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-          --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.08);
-          --nav-bg: rgba(255, 255, 255, 0.85);
-          --nav-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
-          --btn-primary-bg: #14b8a6;
-          --btn-primary-color: #ffffff;
-          --btn-primary-hover: #0d9488;
-          --btn-secondary-border: rgba(0, 0, 0, 0.15);
-          --btn-secondary-hover: rgba(0, 0, 0, 0.04);
-
-          --fab-bg: #000000;
-          --fab-color: #ffffff;
-          --toast-bg: rgba(0, 0, 0, 0.92);
-          --toast-color: #ffffff;
-
-          font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-          background: var(--bg-primary);
-          color: var(--text-primary);
-          overflow-x: hidden;
-          line-height: 1.5;
-          -webkit-font-smoothing: antialiased;
-          min-height: 100vh;
-          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Dark mode overrides */
-        .lumora-runway.dark-mode {
-          --teal-primary: #14b8a6;
-          --teal-dark: #5eead4;
-          --teal-light: #0d9488;
-          --accent-warm: #14b8a6;
-          --bg-primary: #000000;
-          --bg-secondary: #111111;
-          --text-primary: #ffffff;
-          --text-secondary: rgba(255, 255, 255, 0.6);
-          --text-muted: rgba(255, 255, 255, 0.4);
-          --border: rgba(255, 255, 255, 0.08);
-          --border-hover: rgba(255, 255, 255, 0.15);
-          --card-bg: rgba(255, 255, 255, 0.02);
-          --card-shadow: none;
-          --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.4);
-          --nav-bg: rgba(0, 0, 0, 0.85);
-          --nav-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
-          --btn-primary-bg: #14b8a6;
-          --btn-primary-color: #ffffff;
-          --btn-primary-hover: #5eead4;
-          --btn-secondary-border: rgba(255, 255, 255, 0.15);
-          --btn-secondary-hover: rgba(255, 255, 255, 0.04);
-
-          --fab-bg: #ffffff;
-          --fab-color: #000000;
-          --toast-bg: rgba(255, 255, 255, 0.95);
-          --toast-color: #000000;
-        }
-
-        /* ============================================================
-           SCROLL-REVEAL ANIMATIONS
-           ============================================================ */
-        .runway-reveal {
-          opacity: 0;
-          transform: translateY(24px);
-          transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-reveal.revealed {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .runway-reveal.delay-1 { transition-delay: 0.1s; }
-        .runway-reveal.delay-2 { transition-delay: 0.2s; }
-        .runway-reveal.delay-3 { transition-delay: 0.3s; }
-
-        /* ============================================================
-           NAVIGATION
-           ============================================================ */
-        .runway-nav {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 1000;
-          padding: 1.5rem 3rem;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background: transparent;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-nav.scrolled {
-          background: var(--text-primary);
-          color: var(--bg-primary);
-          backdrop-filter: blur(20px) saturate(180%);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-          padding: 1rem 3rem;
-        }
-
-        .runway-nav.scrolled .logo,
-        .runway-nav.scrolled .runway-nav-links a,
-        .runway-nav.scrolled .runway-theme-toggle {
-          color: var(--bg-primary);
-        }
-
-        .runway-nav.scrolled .runway-nav-links a:hover {
-          opacity: 0.7;
-        }
-
-        .runway-nav.scrolled .runway-nav-links a::after {
-          background: var(--bg-primary);
-        }
-
-        .runway-nav.scrolled .runway-btn-primary {
-          background: #ffffff;
-          color: #000000;
-        }
-
-        .runway-nav.scrolled .runway-btn-primary:hover {
-          background: rgba(255, 255, 255, 0.9);
-          box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
-        }
-
-        .dark-mode .runway-nav.scrolled .runway-btn-primary {
-          background: #000000;
-          color: #ffffff;
-        }
-
-        .dark-mode .runway-nav.scrolled .runway-btn-primary:hover {
-          background: rgba(0, 0, 0, 0.9);
-        }
-
-        .runway-nav-links {
-          display: flex;
-          gap: 2.5rem;
-          align-items: center;
-        }
-
-        .runway-nav-links a {
-          color: var(--text-secondary);
-          text-decoration: none;
-          font-size: 0.95rem;
-          font-weight: 400;
-          transition: color 0.4s ease;
-          position: relative;
-        }
-
-        .runway-nav-links a::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 1.5px;
-          background: var(--teal-primary);
-          transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-nav-links a:hover {
-          color: var(--teal-primary);
-        }
-
-        .runway-nav-links a:hover::after {
-          width: 100%;
-        }
-
-        /* ============================================================
-           BUTTONS
-           ============================================================ */
-        .runway-btn {
-          padding: 0.625rem 1.25rem;
-          border-radius: 8px;
-          font-weight: 500;
-          font-size: 0.95rem;
-          cursor: pointer;
-          transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-          border: none;
-          text-decoration: none;
-          display: inline-block;
-          font-family: inherit;
-        }
-
-        .runway-btn-primary {
-          background: var(--btn-primary-bg);
-          color: var(--btn-primary-color);
-        }
-
-        .runway-btn-primary:hover {
-          background: var(--btn-primary-hover);
-          transform: scale(1.02);
-          box-shadow: 0 8px 24px rgba(20, 184, 166, 0.25);
-        }
-
-        .runway-btn-secondary {
-          background: transparent;
-          color: var(--text-primary);
-          border: 1px solid var(--btn-secondary-border);
-        }
-
-        .runway-btn-secondary:hover {
-          background: var(--btn-secondary-hover);
-          border-color: var(--teal-primary);
-          transform: translateY(-2px);
-        }
-
-        /* In hero context - teal CTA on dark */
-        .runway-hero .runway-btn-primary {
-          background: var(--teal-primary);
-          color: #fff;
-        }
-
-        .runway-hero .runway-btn-primary:hover {
-          background: var(--teal-dark);
-          box-shadow: 0 8px 24px rgba(20, 184, 166, 0.3);
-          transform: scale(1.02);
-        }
-
-        .runway-hero .runway-btn-secondary {
-          color: #fff;
-          border-color: rgba(255, 255, 255, 0.25);
-        }
-
-        .runway-hero .runway-btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.08);
-          border-color: var(--teal-light);
-        }
-
-        /* ============================================================
-           THEME TOGGLE
-           ============================================================ */
-        .runway-theme-toggle {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: transparent;
-          border: 1px solid var(--border);
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .runway-theme-toggle:hover {
-          background: var(--btn-secondary-hover);
-          border-color: var(--border-hover);
-          transform: scale(1.05);
-        }
-
-        .runway-theme-toggle svg {
-          position: absolute;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          stroke: var(--text-primary);
-        }
-
-        .runway-theme-toggle .sun-icon {
-          opacity: 1;
-          transform: rotate(0deg) scale(1);
-        }
-
-        .runway-theme-toggle .moon-icon {
-          opacity: 0;
-          transform: rotate(90deg) scale(0.5);
-        }
-
-        .dark-mode .runway-theme-toggle .sun-icon {
-          opacity: 0;
-          transform: rotate(-90deg) scale(0.5);
-        }
-
-        .dark-mode .runway-theme-toggle .moon-icon {
-          opacity: 1;
-          transform: rotate(0deg) scale(1);
-        }
-
-        /* ============================================================
-           HERO SECTION
-           ============================================================ */
-        .runway-hero {
-          position: relative;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          margin: 0 2rem;
-          border-radius: 20px;
-          margin-top: 90px;
-          background: #000;
-        }
-
-        .runway-hero-bg {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          z-index: 0;
-        }
-
-        .runway-hero-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(180deg,
-            rgba(0, 0, 0, 0.25) 0%,
-            rgba(0, 0, 0, 0.35) 50%,
-            rgba(0, 0, 0, 0.6) 100%
-          );
-          z-index: 1;
-        }
-
-        .runway-hero-content {
-          position: relative;
-          z-index: 2;
-          text-align: center;
-          max-width: 960px;
-          padding: 0 2rem;
-        }
-
-        .runway-category-label {
-          display: inline-block;
-          padding: 0.4rem 1rem;
-          background: rgba(20, 184, 166, 0.1);
-          border: 1px solid var(--teal-primary);
-          border-radius: 100px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          color: var(--teal-light);
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          margin-bottom: 2rem;
-          backdrop-filter: blur(12px);
-          animation: heroFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          opacity: 0;
-        }
-
-        .runway-hero h1 {
-          font-size: clamp(2.5rem, 5.5vw, 4.5rem);
-          font-weight: 600;
-          line-height: 1.1;
-          letter-spacing: -0.04em;
-          margin-bottom: 1.5rem;
-          color: #fff;
-          animation: heroFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
-          opacity: 0;
-        }
-
-        .runway-hero p {
-          font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-          color: rgba(255, 255, 255, 0.8);
-          margin-bottom: 2.5rem;
-          line-height: 1.6;
-          max-width: 680px;
-          margin-left: auto;
-          margin-right: auto;
-          animation: heroFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-          opacity: 0;
-        }
-
-        .runway-hero-buttons {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-          flex-wrap: wrap;
-          animation: heroFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.45s forwards;
-          opacity: 0;
-        }
-
-        @keyframes heroFadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        /* ============================================================
-           CONTENT SECTIONS
-           ============================================================ */
-        .runway-content-section {
-          position: relative;
-          padding: 7rem 3rem;
-          background: var(--bg-primary);
-          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-section-alt {
-          background: var(--bg-secondary);
-        }
-
-        .runway-section-title {
-          font-size: clamp(2rem, 3.5vw, 3rem);
-          font-weight: 600;
-          letter-spacing: -0.03em;
-          margin-bottom: 1rem;
-          text-align: center;
-          line-height: 1.15;
-        }
-
-        .runway-section-subtitle {
-          font-size: 1.15rem;
-          color: var(--text-secondary);
-          text-align: center;
-          margin-bottom: 4rem;
-          max-width: 560px;
-          margin-left: auto;
-          margin-right: auto;
-          line-height: 1.6;
-        }
-
-        /* ============================================================
-           FEATURES GRID
-           ============================================================ */
-        .runway-features-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-          max-width: 1400px;
-          margin: 0 auto;
-        }
-
-        .runway-feature-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          cursor: pointer;
-        }
-
-        .runway-feature-card:hover .runway-feature-image img {
-          transform: scale(1.03);
-        }
-
-        .runway-feature-image {
-          position: relative;
-          aspect-ratio: 16/11;
-          border-radius: 14px;
-          overflow: hidden;
-        }
-
-        .runway-feature-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-feature-info {
-          margin-top: 1rem;
-        }
-
-        .runway-feature-info h3 {
-          font-size: 1.15rem;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-          line-height: 1.2;
-          letter-spacing: -0.01em;
-        }
-
-        .runway-lesson-count {
-          display: inline-block;
-          font-size: 0.72rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          color: var(--teal-primary);
-          margin-bottom: 0.5rem;
-        }
-
-        .runway-feature-info p {
-          font-size: 0.9rem;
-          color: var(--text-secondary);
-          line-height: 1.55;
-        }
-
-        /* ============================================================
-           HOW IT WORKS
-           ============================================================ */
-        .runway-how-card {
-          position: relative;
-          border-radius: 14px;
-          overflow: hidden;
-          background: var(--card-bg);
-          border: 1px solid var(--border);
-          box-shadow: var(--card-shadow);
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-how-card:hover {
-          border-color: var(--teal-primary);
-          transform: translateY(-4px);
-          box-shadow: var(--card-shadow-hover);
-        }
-
-        .runway-how-card img {
-          width: 100%;
-          aspect-ratio: 16/10;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-how-card:hover img {
-          transform: scale(1.02);
-        }
-
-        .runway-how-card-body {
-          padding: 2rem;
-        }
-
-        .runway-step-number {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background: var(--teal-primary);
-          border: none;
-          font-size: 0.85rem;
-          font-weight: 600;
-          margin-bottom: 1rem;
-          color: #ffffff;
-        }
-
-        .runway-how-card-body h3 {
-          font-size: 1.3rem;
-          font-weight: 600;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.02em;
-        }
-
-        .runway-how-card-body p {
-          font-size: 0.95rem;
-          color: var(--text-secondary);
-          line-height: 1.6;
-        }
-
-        /* ============================================================
-           TESTIMONIALS
-           ============================================================ */
-        .runway-testimonials-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        .runway-testimonial-card {
-          background: var(--card-bg);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          padding: 2.5rem;
-          box-shadow: var(--card-shadow);
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-testimonial-card:hover {
-          border-color: var(--teal-primary);
-          transform: translateY(-3px);
-          box-shadow: 0 16px 48px rgba(20, 184, 166, 0.08);
-        }
-
-        .runway-testimonial-card::before {
-          content: '\\201C';
-          font-size: 3rem;
-          color: var(--teal-primary);
-          line-height: 1;
-          display: block;
-          margin-bottom: 0.5rem;
-          font-family: Georgia, serif;
-        }
-
-        .runway-testimonial-quote {
-          font-size: 0.95rem;
-          line-height: 1.7;
-          color: var(--text-secondary);
-          margin-bottom: 2rem;
-        }
-
-        .runway-testimonial-author {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .runway-testimonial-avatar {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: var(--bg-secondary);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.8rem;
-          font-weight: 700;
-          letter-spacing: 0.05em;
-          color: var(--text-primary);
-          border: 1.5px solid var(--border);
-        }
-
-        .runway-testimonial-name {
-          font-weight: 600;
-          font-size: 0.95rem;
-        }
-
-        .runway-testimonial-role {
-          font-size: 0.8rem;
-          color: var(--text-muted);
-          margin-top: 0.15rem;
-        }
-
-        /* ============================================================
-           PRICING
-           ============================================================ */
-        .runway-pricing-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          max-width: 1100px;
-          margin: 0 auto;
-        }
-
-        .runway-pricing-card {
-          background: var(--card-bg);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          padding: 2.5rem;
-          box-shadow: var(--card-shadow);
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          display: flex;
-          flex-direction: column;
-        }
-
-        .runway-pricing-card:hover {
-          border-color: var(--border-hover);
-          transform: translateY(-3px);
-          box-shadow: var(--card-shadow-hover);
-        }
-
-        .runway-pricing-card.featured {
-          background: var(--text-primary);
-          color: var(--bg-primary);
-          border-color: var(--text-primary);
-          position: relative;
-        }
-
-        .runway-pricing-card.featured .runway-pricing-badge,
-        .runway-pricing-card.featured .runway-pricing-description,
-        .runway-pricing-card.featured .runway-pricing-period,
-        .runway-pricing-card.featured .runway-pricing-features li {
-          color: rgba(255, 255, 255, 0.7);
-        }
-
-        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-badge,
-        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-description,
-        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-period,
-        .lumora-runway:not(.dark-mode) .runway-pricing-card.featured .runway-pricing-features li {
-          color: rgba(255, 255, 255, 0.7);
-        }
-
-        .dark-mode .runway-pricing-card.featured .runway-pricing-badge,
-        .dark-mode .runway-pricing-card.featured .runway-pricing-description,
-        .dark-mode .runway-pricing-card.featured .runway-pricing-period,
-        .dark-mode .runway-pricing-card.featured .runway-pricing-features li {
-          color: rgba(0, 0, 0, 0.6);
-        }
-
-        .runway-pricing-card.featured .runway-pricing-savings {
-          color: var(--bg-primary);
-        }
-
-        .runway-pricing-card.featured:hover {
-          border-color: var(--text-primary);
-          transform: translateY(-6px);
-        }
-
-        .runway-pricing-badge {
-          font-size: 0.75rem;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          color: var(--text-muted);
-          margin-bottom: 1rem;
-        }
-
-        .runway-pricing-name {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-          letter-spacing: -0.02em;
-        }
-
-        .runway-pricing-description {
-          font-size: 0.9rem;
-          color: var(--text-secondary);
-          margin-bottom: 1.5rem;
-        }
-
-        .runway-pricing-price {
-          font-size: 3rem;
-          font-weight: 700;
-          letter-spacing: -0.03em;
-          margin-bottom: 0.25rem;
-        }
-
-        .runway-pricing-period {
-          font-size: 1rem;
-          font-weight: 400;
-          color: var(--text-muted);
-        }
-
-        .runway-pricing-savings {
-          font-size: 0.8rem;
-          color: var(--text-primary);
-          font-weight: 600;
-          margin-bottom: 1.5rem;
-        }
-
-        .runway-pricing-features {
-          list-style: none;
-          padding: 0;
-          margin: 1.5rem 0 2rem;
-          flex: 1;
-        }
-
-        .runway-pricing-features li {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 0.9rem;
-          color: var(--text-secondary);
-          margin-bottom: 0.75rem;
-        }
-
-        .runway-pricing-cta {
-          width: 100%;
-          padding: 0.875rem;
-          border-radius: 10px;
-          font-weight: 600;
-          font-size: 0.95rem;
-          cursor: pointer;
-          transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-          border: 1px solid var(--border);
-          background: transparent;
-          color: var(--text-primary);
-          font-family: inherit;
-        }
-
-        .runway-pricing-cta:hover {
-          border-color: var(--border-hover);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .runway-pricing-cta.featured {
-          background: var(--bg-primary);
-          color: var(--text-primary);
-          border: none;
-          font-weight: 700;
-        }
-
-        .runway-pricing-cta.featured:hover {
-          opacity: 0.9;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.05); }
         }
-
-        /* ============================================================
-           FAQ
-           ============================================================ */
-        .runway-faq-list {
-          max-width: 800px;
-          margin: 0 auto;
-        }
-
-        .runway-faq-item {
-          border-bottom: 1px solid var(--border);
-        }
-
-        .runway-faq-question {
-          width: 100%;
-          background: none;
-          border: none;
-          color: var(--text-primary);
-          text-align: left;
-          padding: 1.5rem 0;
-          font-size: 1.05rem;
-          font-weight: 500;
-          cursor: pointer;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 1.5rem;
-          font-family: inherit;
-          transition: color 0.4s ease;
-        }
-
-        .runway-faq-question:hover {
-          color: var(--text-primary);
-        }
-
-        .runway-faq-question:hover span:first-child {
-          text-decoration: underline;
-          text-underline-offset: 3px;
-          text-decoration-thickness: 1px;
-        }
-
-        .runway-faq-icon {
-          font-size: 1.25rem;
-          font-weight: 300;
-          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          flex-shrink: 0;
-          color: var(--text-muted);
-          width: 24px;
-          text-align: center;
-        }
-
-        .runway-faq-icon.open {
-          transform: rotate(45deg);
-        }
-
-        .runway-faq-answer {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-faq-answer.open {
-          max-height: 400px;
-        }
-
-        .runway-faq-answer p {
-          padding-bottom: 1.5rem;
-          font-size: 0.95rem;
-          line-height: 1.7;
-          color: var(--text-secondary);
-        }
-
-        /* ============================================================
-           CTA SECTION
-           ============================================================ */
-        .runway-cta-section {
-          padding: 9rem 3rem;
-          background: var(--text-primary);
-          color: var(--bg-primary);
-          text-align: center;
-          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-cta-section h2 {
-          font-size: clamp(2rem, 4vw, 3.5rem);
-          font-weight: 600;
-          letter-spacing: -0.03em;
-          margin-bottom: 1.5rem;
-          line-height: 1.15;
-        }
-
-        .runway-cta-section p {
-          font-size: 1.2rem;
-          color: rgba(255, 255, 255, 0.65);
-          margin-bottom: 3rem;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-          line-height: 1.6;
-        }
-
-        .dark-mode .runway-cta-section p {
-          color: rgba(0, 0, 0, 0.55);
-        }
-
-        .runway-cta-section .runway-btn-primary {
-          background: var(--bg-primary);
-          color: var(--text-primary);
-        }
-
-        .runway-cta-section .runway-btn-primary:hover {
-          opacity: 0.9;
-        }
-
-        .runway-cta-section .runway-btn-secondary {
-          color: var(--bg-primary);
-          border-color: rgba(255, 255, 255, 0.25);
-        }
-
-        .dark-mode .runway-cta-section .runway-btn-secondary {
-          color: var(--bg-primary);
-          border-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .runway-cta-buttons {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-
-        /* ============================================================
-           FAB
-           ============================================================ */
-        .runway-fab-container {
-          position: fixed;
-          bottom: 2rem;
-          right: 2rem;
-          z-index: 999;
-          opacity: 0;
-          transform: translateY(16px);
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          pointer-events: none;
-        }
-
-        .runway-fab-container.visible {
-          opacity: 1;
-          transform: translateY(0);
-          pointer-events: auto;
-        }
-
-        .runway-fab-button {
-          width: 52px;
-          height: 52px;
-          border-radius: 50%;
-          background: var(--fab-bg);
-          color: var(--fab-color);
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-fab-button:hover {
-          transform: scale(1.08);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-        }
-
-        /* ============================================================
-           TOAST
-           ============================================================ */
-        .runway-toast {
-          position: fixed;
-          bottom: 2rem;
-          left: 50%;
-          transform: translateX(-50%) translateY(80px);
-          background: var(--toast-bg);
-          color: var(--toast-color);
-          padding: 0.875rem 1.5rem;
-          border-radius: 10px;
-          font-size: 0.9rem;
-          font-weight: 500;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-          z-index: 10000;
-          opacity: 0;
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          backdrop-filter: blur(12px);
-        }
-
-        .runway-toast.show {
-          opacity: 1;
-          transform: translateX(-50%) translateY(0);
-        }
-
-        /* ============================================================
-           FOOTER
-           ============================================================ */
-        .runway-footer {
-          padding: 4rem 3rem 2rem;
-          border-top: 1px solid var(--teal-primary);
-          background: var(--bg-primary);
-          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-footer-content {
-          max-width: 1400px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 3rem;
-          margin-bottom: 3rem;
-        }
-
-        .runway-footer-section h4 {
-          font-size: 0.9rem;
-          font-weight: 600;
-          margin-bottom: 1.5rem;
-          color: var(--text-primary);
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-        }
-
-        .runway-footer-section ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .runway-footer-section li {
-          margin-bottom: 0.75rem;
-        }
-
-        .runway-footer-section a {
-          color: var(--text-secondary);
-          text-decoration: none;
-          font-size: 0.9rem;
-          transition: color 0.4s ease;
-        }
-
-        .runway-footer-section a:hover {
-          color: var(--teal-primary);
-        }
-
-        .runway-footer-bottom {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding-top: 2rem;
-          border-top: 1px solid var(--border);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 1rem;
-          color: var(--text-muted);
-          font-size: 0.85rem;
-        }
-
-        .runway-footer-bottom a {
-          color: var(--text-muted);
-          text-decoration: none;
-          transition: color 0.4s ease;
-        }
-
-        .runway-footer-bottom a:hover {
-          color: var(--teal-primary);
-        }
-
-        /* ============================================================
-           SOCIAL PROOF STRIP
-           ============================================================ */
-        .runway-proof-strip {
-          padding: 4rem 3rem;
-          background: var(--bg-secondary);
-          text-align: center;
-          transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-proof-metrics {
-          display: flex;
-          justify-content: center;
-          gap: 4rem;
-          flex-wrap: wrap;
-          margin-bottom: 2.5rem;
-        }
-
-        .runway-proof-metric {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .runway-proof-value {
-          font-size: 1.75rem;
-          font-weight: 700;
-          letter-spacing: -0.03em;
-          line-height: 1;
-          margin-bottom: 0.35rem;
-          border-bottom: 2px solid var(--teal-primary);
-          padding-bottom: 4px;
-          display: inline-block;
-        }
-
-        .runway-proof-label {
-          font-size: 0.8rem;
-          color: var(--text-muted);
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          font-weight: 500;
-        }
-
-        .runway-proof-divider {
-          width: 48px;
-          height: 1px;
-          background: var(--border);
-          margin: 0 auto 2rem;
-        }
-
-        .runway-proof-replaces {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 0.5rem;
-          flex-wrap: wrap;
-          color: var(--text-muted);
-          font-size: 0.85rem;
-        }
-
-        .runway-proof-replaces-label {
-          font-weight: 600;
-          color: var(--text-secondary);
-          margin-right: 0.25rem;
-        }
-
-        .runway-proof-replaces span {
-          padding: 0.3rem 0.75rem;
-          border: 1px solid var(--border);
-          border-radius: 100px;
-          font-size: 0.8rem;
-          color: var(--text-secondary);
-          transition: border-color 0.4s ease;
-        }
-
-        .runway-proof-replaces span:hover {
-          border-color: var(--border-hover);
-        }
-
-        /* ============================================================
-           USE-CASE CARDS (replaces gallery)
-           ============================================================ */
-        .runway-usecase-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.25rem;
-          max-width: 1400px;
-          margin: 0 auto;
-        }
-
-        .runway-usecase-card {
-          position: relative;
-          border-radius: 14px;
-          overflow: hidden;
-          cursor: pointer;
-          aspect-ratio: 4/3;
-        }
-
-        .runway-usecase-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        @keyframes pulse-slow-delayed {
+          0%, 100% { opacity: 0.3; transform: scale(1.05); }
+          50% { opacity: 0.5; transform: scale(0.95); }
         }
-
-        .runway-usecase-card:hover img {
-          transform: scale(1.04);
-        }
-
-        .runway-usecase-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          top: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          padding: 1.5rem;
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-          transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-usecase-card:hover .runway-usecase-overlay {
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.15) 100%);
-        }
-
-        .runway-usecase-icon {
-          font-size: 1.5rem;
-          margin-bottom: 0.5rem;
-          opacity: 0.7;
-          color: #fff;
-        }
-
-        .runway-usecase-overlay h3 {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #fff;
-          margin-bottom: 0.25rem;
-        }
-
-        .runway-usecase-overlay p {
-          font-size: 0.85rem;
-          color: rgba(255, 255, 255, 0.7);
-          line-height: 1.4;
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
-          opacity: 0;
-        }
-
-        .runway-usecase-card:hover .runway-usecase-overlay p {
-          max-height: 60px;
-          opacity: 1;
-        }
-
-        /* ============================================================
-           STUDENT PORTFOLIO
-           ============================================================ */
-        .runway-portfolio-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        .runway-portfolio-card {
-          background: var(--card-bg);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          overflow: hidden;
-          box-shadow: var(--card-shadow);
-          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-portfolio-card:hover {
-          transform: scale(1.03);
-          border-color: var(--teal-primary);
-          box-shadow: 0 16px 48px rgba(20, 184, 166, 0.08);
-        }
-
-        .runway-portfolio-preview {
-          aspect-ratio: 4/3;
-          overflow: hidden;
-        }
-
-        .runway-portfolio-preview img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .runway-portfolio-card:hover .runway-portfolio-preview img {
-          transform: scale(1.05);
-        }
-
-        .runway-portfolio-body {
-          padding: 1.5rem;
-        }
-
-        .runway-portfolio-badge {
-          display: inline-block;
-          padding: 0.25rem 0.75rem;
-          border-radius: 100px;
-          font-size: 0.7rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: #ffffff;
-          margin-bottom: 0.75rem;
-        }
-
-        .runway-portfolio-badge.orange { background: var(--module-orange); }
-        .runway-portfolio-badge.purple { background: var(--module-purple); }
-        .runway-portfolio-badge.blue { background: var(--module-blue); }
-        .runway-portfolio-badge.emerald { background: var(--module-emerald); }
-
-        .runway-portfolio-name {
-          font-weight: 600;
-          font-size: 1rem;
-          margin-bottom: 0.15rem;
-        }
-
-        .runway-portfolio-meta {
-          font-size: 0.8rem;
-          color: var(--text-muted);
-          margin-bottom: 0.75rem;
-        }
-
-        .runway-portfolio-metric {
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: var(--teal-primary);
-          margin-bottom: 1rem;
-        }
-
-        .runway-portfolio-link {
-          font-size: 0.85rem;
-          color: var(--teal-primary);
-          text-decoration: none;
-          font-weight: 500;
-          transition: opacity 0.3s ease;
-        }
-
-        .runway-portfolio-link:hover {
-          opacity: 0.7;
-          text-decoration: underline;
-        }
-
-        /* ============================================================
-           HOW-IT-WORKS CONNECTORS
-           ============================================================ */
-        .runway-how-grid-connected {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-          max-width: 1200px;
-          margin: 0 auto;
-          position: relative;
-        }
-
-        .runway-how-connector {
-          display: none;
-        }
-
-        @media (min-width: 769px) {
-          .runway-how-connector {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 22%;
-            width: 2rem;
-            z-index: 2;
-          }
-
-          .runway-how-connector svg {
-            color: var(--text-muted);
-          }
-        }
-
-        /* ============================================================
-           MOBILE MENU
-           ============================================================ */
-        .runway-menu-toggle {
-          display: none;
-          width: 40px;
-          height: 40px;
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          background: transparent;
-          cursor: pointer;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          transition: border-color 0.4s ease;
-        }
-
-        .runway-menu-toggle:hover {
-          border-color: var(--border-hover);
-        }
-
-        .runway-menu-toggle svg {
-          stroke: var(--text-primary);
-        }
-
-        .runway-mobile-nav {
-          display: none;
-        }
-
-        @media (max-width: 768px) {
-          .runway-menu-toggle {
-            display: flex;
-          }
-
-          .runway-mobile-nav {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 9998;
-            background: var(--bg-primary);
-            padding: 6rem 2rem 2rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-
-          .runway-mobile-nav.open {
-            opacity: 1;
-            pointer-events: auto;
-          }
-
-          .runway-mobile-nav a {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            transition: opacity 0.3s ease;
-          }
-
-          .runway-mobile-nav a:hover {
-            opacity: 0.6;
-          }
-
-          .runway-mobile-nav .runway-btn {
-            margin-top: 2rem;
-            width: 100%;
-            text-align: center;
-            padding: 1rem;
-            font-size: 1.1rem;
-          }
-        }
-
-        /* ============================================================
-           CTA METRICS STRIP
-           ============================================================ */
-        .runway-cta-metrics {
-          display: flex;
-          justify-content: center;
-          gap: 2.5rem;
-          margin-bottom: 3rem;
-          flex-wrap: wrap;
-        }
-
-        .runway-cta-metric {
-          font-size: 0.85rem;
-          color: rgba(255, 255, 255, 0.5);
-          letter-spacing: 0.02em;
-        }
-
-        .dark-mode .runway-cta-metric {
-          color: rgba(0, 0, 0, 0.4);
-        }
-
-        .runway-cta-metric strong {
-          color: var(--bg-primary);
-          font-weight: 700;
-        }
-
-        .runway-cta-risk {
-          font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.45);
-          margin-top: -1.5rem;
-          margin-bottom: 2.5rem;
-        }
-
-        .dark-mode .runway-cta-risk {
-          color: rgba(0, 0, 0, 0.4);
-        }
-
-        /* ============================================================
-           SCROLL PROGRESS
-           ============================================================ */
-        .runway-scroll-progress {
-          position: fixed;
-          top: 0;
-          left: 0;
-          height: 2px;
-          background: var(--teal-primary);
-          opacity: 0.8;
-          z-index: 9999;
-          transition: width 0.15s ease;
-        }
-
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
-        @media (max-width: 768px) {
-          .runway-hero {
-            margin: 0;
-            margin-top: 70px;
-            min-height: 100vh;
-            border-radius: 0;
-          }
-
-          .runway-nav {
-            padding: 1rem 1.5rem;
-          }
-
-          .runway-nav.scrolled {
-            padding: 0.75rem 1.5rem;
-          }
-
-          .runway-nav-links a {
-            display: none;
-          }
-
-          .runway-nav-links .runway-theme-toggle {
-            order: 2;
-          }
-
-          .runway-nav-links .runway-btn {
-            display: none;
-          }
-
-          .runway-features-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .runway-how-grid-connected,
-          .runway-usecase-grid,
-          .runway-testimonials-grid,
-          .runway-pricing-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .runway-proof-metrics {
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-          }
-
-          .runway-portfolio-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .runway-proof-strip {
-            padding: 3rem 1.5rem;
-          }
-
-          .runway-content-section {
-            padding: 4.5rem 1.5rem;
-          }
-
-          .runway-cta-section {
-            padding: 5rem 1.5rem;
-          }
-
-          .runway-footer-content {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .runway-fab-container {
-            bottom: 1rem;
-            right: 1rem;
-          }
-
-          .runway-fab-button {
-            width: 46px;
-            height: 46px;
-          }
-
-          .runway-usecase-overlay p {
-            max-height: 60px;
-            opacity: 1;
-          }
-        }
-
-        @media (min-width: 769px) and (max-width: 1024px) {
-          .runway-features-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        .animate-pulse-slow { animation: pulse-slow 6s ease-in-out infinite; }
+        .animate-pulse-slow-delayed { animation: pulse-slow-delayed 6s ease-in-out infinite 2s; }
 
-          .runway-usecase-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
         }
+        .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 3s ease infinite; }
       `}</style>
 
-      <div className={`lumora-runway ${isLightMode ? '' : 'dark-mode'}`}>
-        {/* Scroll Progress */}
-        <div className="runway-scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <div className={isLightMode ? '' : 'dark'}>
+        <div className="bg-white dark:bg-black text-gray-900 dark:text-white min-h-screen transition-colors duration-500 overflow-x-hidden">
+          <ScrollProgress />
 
-        {/* ====== 1. NAVIGATION ====== */}
-        <nav className={`runway-nav ${isScrolled ? 'scrolled' : ''}`}>
-          <div className="logo">
-            <svg width="120" height="32" viewBox="0 0 120 32" fill="none">
-              <rect x="2" y="4" width="3" height="24" rx="1.5" fill="currentColor"/>
-              <rect x="7" y="10" width="3" height="18" rx="1.5" fill="currentColor" opacity="0.65"/>
-              <rect x="12" y="14" width="3" height="14" rx="1.5" fill="currentColor" opacity="0.4"/>
-              <rect x="17" y="18" width="3" height="10" rx="1.5" fill="currentColor" opacity="0.2"/>
-              <text x="36" y="21" fontFamily="'SF Pro Display', system-ui, sans-serif" fontSize="18" fontWeight="600" fill="currentColor" letterSpacing="-0.02em">Lumora</text>
-            </svg>
-          </div>
-          <div className="runway-nav-links">
-            <a href="#features">Modules</a>
-            <a href="#use-cases">Student Work</a>
-            <a href="#pricing">Pricing</a>
-            <button className="runway-theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-              <svg className="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-              </svg>
-              <svg className="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" strokeWidth="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
-            <button className="runway-btn runway-btn-primary">Start Free</button>
-            <button
-              className="runway-menu-toggle"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" strokeWidth="2">
-                {mobileMenuOpen
-                  ? <path d="M18 6L6 18M6 6l12 12"/>
-                  : <path d="M3 12h18M3 6h18M3 18h18"/>
-                }
-              </svg>
-            </button>
-          </div>
-        </nav>
-
-        {/* Mobile Nav Overlay */}
-        <div className={`runway-mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
-          <a href="#features" onClick={() => setMobileMenuOpen(false)}>Modules</a>
-          <a href="#use-cases" onClick={() => setMobileMenuOpen(false)}>Student Work</a>
-          <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
-          <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-          <button className="runway-btn runway-btn-primary" onClick={() => setMobileMenuOpen(false)}>Start Free</button>
-        </div>
-
-        {/* ====== 2. HERO with VIDEO ====== */}
-        <section className="runway-hero">
-          <video
-            className="runway-hero-bg"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={HERO_VIDEO_URL} type="video/mp4" />
-          </video>
-          <div className="runway-hero-overlay" />
-          <div className="runway-hero-content">
-            <div className="runway-category-label">The Creative AI Learning Platform</div>
-            <h1>Learn AI. Create Everything.<br/>Start Getting Paid.</h1>
-            <p>45 hands-on lessons across video, automation, writing, and music. Go from zero AI skills to a portfolio that makes money.</p>
-            <div className="runway-hero-buttons">
-              <button className="runway-btn runway-btn-primary">Start First Lesson</button>
-              <button className="runway-btn runway-btn-secondary">See How It Works</button>
-            </div>
-          </div>
-        </section>
-
-        {/* ====== SOCIAL PROOF STRIP ====== */}
-        <section className="runway-proof-strip runway-reveal">
-          <div className="runway-proof-metrics">
-            {SOCIAL_PROOF_METRICS.map((m) => (
-              <div key={m.label} className="runway-proof-metric">
-                <div className="runway-proof-value">{m.value}</div>
-                <div className="runway-proof-label">{m.label}</div>
+          {/* ====== 1. NAVIGATION ====== */}
+          <nav className={`fixed top-0 w-full z-50 px-4 md:px-8 transition-all duration-500 ${isScrolled ? 'py-3 bg-white/90 dark:bg-black/90 backdrop-blur-xl shadow-sm border-b border-gray-200/50 dark:border-gray-800/50' : 'py-5 bg-transparent'}`}>
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+              <a href="#" className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <svg width="120" height="32" viewBox="0 0 120 32" fill="none">
+                  <rect x="2" y="4" width="3" height="24" rx="1.5" fill="currentColor"/>
+                  <rect x="7" y="10" width="3" height="18" rx="1.5" fill="currentColor" opacity="0.65"/>
+                  <rect x="12" y="14" width="3" height="14" rx="1.5" fill="currentColor" opacity="0.4"/>
+                  <rect x="17" y="18" width="3" height="10" rx="1.5" fill="currentColor" opacity="0.2"/>
+                  <text x="36" y="21" fontFamily="system-ui, sans-serif" fontSize="18" fontWeight="600" fill="currentColor" letterSpacing="-0.02em">Lumora</text>
+                </svg>
+              </a>
+              <div className="hidden md:flex items-center gap-8">
+                <a href="#features" className="text-sm text-gray-500 dark:text-gray-400 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">Modules</a>
+                <a href="#use-cases" className="text-sm text-gray-500 dark:text-gray-400 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">Student Work</a>
+                <a href="#pricing" className="text-sm text-gray-500 dark:text-gray-400 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">Pricing</a>
+                <button onClick={toggleTheme} className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:border-teal-500 transition-colors" aria-label="Toggle theme">
+                  {isLightMode ? (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                  ) : (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                  )}
+                </button>
+                <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="px-5 py-2.5 bg-teal-500 hover:bg-teal-600 text-white text-sm font-semibold rounded-lg transition-colors">
+                  Start Free
+                </motion.button>
               </div>
-            ))}
-          </div>
-          <div className="runway-proof-divider" />
-          <div className="runway-proof-replaces">
-            <span className="runway-proof-replaces-label">Say goodbye to:</span>
-            {REPLACES.map((r) => (
-              <span key={r}>{r}</span>
-            ))}
-          </div>
-        </section>
+              <button className="md:hidden w-10 h-10 flex items-center justify-center border border-gray-200 dark:border-gray-700 rounded-lg" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  {mobileMenuOpen ? <path d="M18 6L6 18M6 6l12 12"/> : <path d="M3 12h18M3 6h18M3 18h18"/>}
+                </svg>
+              </button>
+            </div>
+          </nav>
 
-        {/* ====== STUDENT PORTFOLIO SHOWCASE ====== */}
-        <section className="runway-content-section">
-          <h2 className="runway-section-title runway-reveal">Built by Students Like You</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Real projects. Real results. See what Lumora students are creating.</p>
-
-          <div className="runway-portfolio-grid">
-            {STUDENT_PORTFOLIO.map((student) => (
-              <div key={student.name} className="runway-portfolio-card runway-reveal">
-                <div className="runway-portfolio-preview">
-                  <img src={student.preview} alt={`${student.name}'s project`} loading="lazy" />
+          {/* Mobile Nav */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-40 bg-white dark:bg-black pt-24 px-6"
+              >
+                <div className="flex flex-col gap-2">
+                  {[{ label: 'Modules', href: '#features' }, { label: 'Student Work', href: '#use-cases' }, { label: 'Pricing', href: '#pricing' }, { label: 'FAQ', href: '#faq' }].map((item) => (
+                    <a key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="text-2xl font-semibold py-4 border-b border-gray-100 dark:border-gray-800 text-gray-900 dark:text-white hover:text-teal-500 transition-colors">
+                      {item.label}
+                    </a>
+                  ))}
+                  <button className="mt-6 w-full py-4 bg-teal-500 text-white font-semibold rounded-xl text-lg" onClick={() => setMobileMenuOpen(false)}>Start Free</button>
                 </div>
-                <div className="runway-portfolio-body">
-                  <span className={`runway-portfolio-badge ${student.projectTypeColor}`}>
-                    {student.projectType}
-                  </span>
-                  <div className="runway-portfolio-name">{student.name}</div>
-                  <div className="runway-portfolio-meta">
-                    Age {student.age} &bull; {student.location}
-                  </div>
-                  <div className="runway-portfolio-metric">{student.metric}</div>
-                  <a href={student.portfolioLink} className="runway-portfolio-link">
-                    View Portfolio &rarr;
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* ====== 2. HERO ====== */}
+          <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-black">
+              <div className="absolute inset-0 bg-gradient-to-br from-black via-teal-950/20 to-black" />
+              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow" />
+              <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-teal-600/8 rounded-full blur-3xl animate-pulse-slow-delayed" />
+              <div className="absolute top-2/3 left-2/3 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl animate-pulse-slow" />
+            </div>
+
+            <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center px-5 py-2.5 rounded-full border border-teal-500/40 bg-teal-500/5 backdrop-blur-sm shadow-[0_0_20px_rgba(20,184,166,0.15)] mb-8"
+              >
+                <span className="text-sm font-semibold tracking-wider text-teal-300 uppercase">The Creative AI Learning Platform</span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-6"
+                style={{ letterSpacing: '-0.02em' }}
+              >
+                <span className="block">Learn AI. Create Everything.</span>
+                <span className="block">Start Getting Paid.</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-lg sm:text-xl text-gray-300 max-w-[700px] mx-auto leading-relaxed opacity-90 mb-10"
+              >
+                45 hands-on lessons across video, automation, writing, and music. Go from zero AI skills to a portfolio that makes money.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-[0_8px_24px_rgba(20,184,166,0.4)] overflow-hidden"
+                >
+                  <span className="relative z-10">Start First Lesson</span>
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  className="px-8 py-4 bg-transparent border-2 border-gray-600 hover:border-teal-500 text-gray-300 hover:text-teal-400 font-semibold rounded-xl transition-all duration-200"
+                >
+                  See How It Works
+                </motion.button>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ====== 3. SOCIAL PROOF STRIP ====== */}
+          <section ref={statsRef} className="py-16 md:py-20 px-4 md:px-8 bg-gray-50 dark:bg-gray-950 transition-colors">
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10">
+                {SOCIAL_PROOF_METRICS.map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex flex-col items-center gap-3"
+                  >
+                    <div className="relative">
+                      <div className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <AnimatedCounter value={stat.numericValue} prefix={stat.prefix} suffix={stat.suffix} decimals={stat.decimals || 0} />
+                      </div>
+                      <motion.div
+                        initial={{ scaleX: 0 }}
+                        animate={statsInView ? { scaleX: 1 } : {}}
+                        transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
+                        className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-teal-500 to-transparent origin-center"
+                      />
+                    </div>
+                    <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider text-center font-medium">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Say Goodbye To */}
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <span className="text-gray-500 dark:text-gray-400 font-medium text-sm">Say goodbye to:</span>
+                {REPLACES.map((item, index) => (
+                  <SectionReveal key={item} delay={index * 0.1}>
+                    <div className="relative">
+                      <span className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400">{item}</span>
+                      <motion.div
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 + index * 0.12 }}
+                        className="absolute top-1/2 left-2 right-2 h-0.5 bg-red-500/70 origin-left"
+                      />
+                    </div>
+                  </SectionReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 4. STUDENT PORTFOLIO SHOWCASE ====== */}
+          <section className="py-20 md:py-28 px-4 md:px-8 bg-white dark:bg-black transition-colors">
+            <div className="max-w-6xl mx-auto">
+              <SectionReveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">Built by Students Like You</h2>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <p className="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-lg mx-auto">Real projects. Real results. See what Lumora students are creating.</p>
+              </SectionReveal>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {STUDENT_PORTFOLIO.map((student, index) => (
+                  <SectionReveal key={student.name} delay={index * 0.1}>
+                    <motion.div
+                      whileHover={{ y: -8 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      className="group rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-teal-500/50 overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_40px_rgba(20,184,166,0.1)]"
+                    >
+                      <div className="relative h-56 overflow-hidden border-b border-gray-100 dark:border-gray-800 group-hover:border-teal-500/30 transition-colors">
+                        <img src={student.preview} alt={`${student.name}'s project`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <div className="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-md border border-white/20 shadow-lg">
+                          <span className="text-xs font-semibold text-white uppercase tracking-wide">{student.projectType}</span>
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                      </div>
+                      <div className="p-6">
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <h3 className="font-semibold text-gray-900 dark:text-white text-lg">{student.name}</h3>
+                          <span className="text-sm text-gray-400 font-mono">Age {student.age}</span>
+                        </div>
+                        <p className="text-xs text-gray-400 mb-3">{student.location}</p>
+                        <p className="text-teal-600 dark:text-teal-400 font-semibold mb-4">{student.metric}</p>
+                        <a href={student.portfolioLink} className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-teal-500 transition-colors group/link">
+                          View Portfolio <span className="transform group-hover/link:translate-x-1 transition-transform">&rarr;</span>
+                        </a>
+                      </div>
+                    </motion.div>
+                  </SectionReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 5. FEATURES (4 module cards) ====== */}
+          <section className="py-20 md:py-28 px-4 md:px-8 bg-gray-50 dark:bg-gray-950 transition-colors" id="features">
+            <div className="max-w-7xl mx-auto">
+              <SectionReveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">Four Skills. Endless Possibilities.</h2>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <p className="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-xl mx-auto">Each module teaches you a high-income creative skill with real AI tools. 45 lessons. 60+ hours. All hands-on.</p>
+              </SectionReveal>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {FEATURES.map((f, i) => (
+                  <FeatureCard key={f.title} image={f.image} title={f.title} description={f.description} delay={i} lessons={f.lessons} hours={f.hours} />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 6. HOW IT WORKS ====== */}
+          <section className="py-20 md:py-28 px-4 md:px-8 bg-white dark:bg-black transition-colors">
+            <div className="max-w-6xl mx-auto">
+              <SectionReveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">How It Works</h2>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <p className="text-center text-gray-500 dark:text-gray-400 mb-12">No fluff. No filler. Just build stuff and get good.</p>
+              </SectionReveal>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {HOW_IT_WORKS.map((item, index) => (
+                  <SectionReveal key={item.step} delay={index * 0.15}>
+                    <div className="group rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-teal-500/40 transition-all duration-500 hover:shadow-xl">
+                      <div className="relative overflow-hidden">
+                        <img src={item.image} alt={item.title} loading="lazy" className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105" />
+                      </div>
+                      <div className="p-6">
+                        <div className="w-10 h-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-sm mb-4">{item.step}</div>
+                        <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{item.title}</h3>
+                        <p className="text-gray-500 dark:text-gray-400 leading-relaxed text-sm">{item.description}</p>
+                      </div>
+                    </div>
+                  </SectionReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 7. USE CASES GALLERY ====== */}
+          <section className="py-20 md:py-28 px-4 md:px-8 bg-gray-50 dark:bg-gray-950 transition-colors" id="use-cases">
+            <div className="max-w-7xl mx-auto">
+              <SectionReveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">What You'll Actually Make</h2>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <p className="text-center text-gray-500 dark:text-gray-400 mb-12">Not theory. Not slides. Real stuff you can post, sell, or put in your portfolio.</p>
+              </SectionReveal>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {USE_CASES.map((item, index) => (
+                  <SectionReveal key={item.title} delay={index * 0.08}>
+                    <div className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/3]">
+                      <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 transition-all duration-500 flex flex-col justify-end p-5">
+                        <div className="text-2xl mb-1 opacity-70 text-white">{item.icon}</div>
+                        <h3 className="text-white font-semibold text-lg mb-1">{item.title}</h3>
+                        <p className="text-gray-300 text-sm leading-snug max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-500">{item.description}</p>
+                      </div>
+                    </div>
+                  </SectionReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 8. TESTIMONIALS ====== */}
+          <section className="py-20 md:py-28 px-4 md:px-8 bg-white dark:bg-black transition-colors">
+            <div className="max-w-6xl mx-auto">
+              <SectionReveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">Don't Take Our Word for It</h2>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <p className="text-center text-gray-500 dark:text-gray-400 mb-12">12,347 students are already building with AI. Here's what they say.</p>
+              </SectionReveal>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {TESTIMONIALS.map((t, index) => (
+                  <SectionReveal key={t.name} delay={index * 0.1}>
+                    <div className="relative p-8 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-teal-500/30 hover:shadow-[0_8px_32px_rgba(20,184,166,0.08)] transition-all duration-300">
+                      <span className="absolute top-4 left-6 text-8xl text-teal-500/10 font-serif leading-none select-none">&ldquo;</span>
+                      <div className="relative z-10">
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-sm">{t.quote}</p>
+                        <div className="flex items-center gap-4">
+                          <img src={t.photo} alt={t.name} className="w-12 h-12 rounded-full object-cover border-2 border-teal-500/40" />
+                          <div>
+                            <div className="flex items-baseline gap-2">
+                              <span className="font-bold text-gray-900 dark:text-white">{t.name}</span>
+                              <span className="text-sm text-gray-400 font-mono">{t.age}</span>
+                            </div>
+                            <div className="text-sm text-gray-500 dark:text-gray-400">{t.role}</div>
+                            <div className="text-xs text-gray-400">{t.location}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </SectionReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 9. PRICING ====== */}
+          <section className="py-20 md:py-28 px-4 md:px-8 bg-gray-50 dark:bg-gray-950 transition-colors" id="pricing">
+            <div className="max-w-6xl mx-auto">
+              <SectionReveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">Simple, Transparent Pricing</h2>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <p className="text-center text-gray-500 dark:text-gray-400 mb-16">Start free. Go Pro for less than a coffee. Cancel anytime.</p>
+              </SectionReveal>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                {PRICING.map((plan, index) => {
+                  const isPro = plan.featured;
+                  const isSchool = plan.accent === 'purple';
+                  const checkColor = isPro ? 'text-teal-400' : isSchool ? 'text-purple-500' : 'text-teal-500';
+                  const borderClass = isPro
+                    ? 'border-2 border-teal-500/50 lg:scale-105 lg:-my-4 z-10'
+                    : isSchool
+                    ? 'border border-purple-500/30 hover:border-purple-500/50'
+                    : 'border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700';
+
+                  return (
+                    <SectionReveal key={plan.name} delay={index * 0.1}>
+                      <motion.div
+                        whileHover={{ y: isPro ? -6 : -3 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                        className={`relative rounded-2xl bg-white dark:bg-gray-900 p-8 transition-all duration-300 ${borderClass}`}
+                      >
+                        {/* Pro animated border glow */}
+                        {isPro && (
+                          <>
+                            <div className="absolute -inset-[1px] bg-gradient-to-r from-teal-600 via-teal-400 to-teal-600 rounded-2xl opacity-30 blur-sm animate-gradient-x -z-10" />
+                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-gradient-to-r from-teal-600 to-teal-500 rounded-full shadow-[0_4px_12px_rgba(20,184,166,0.4)]">
+                              <span className="text-xs font-bold text-white uppercase tracking-wider whitespace-nowrap">Most Popular With Students</span>
+                            </div>
+                          </>
+                        )}
+
+                        <div className={isPro ? 'pt-4' : ''}>
+                          <div className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isSchool ? 'text-purple-400' : isPro ? 'text-teal-500' : 'text-gray-400'}`}>
+                            {plan.badge}
+                          </div>
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
+                          <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">{plan.description}</p>
+
+                          <div className="flex items-baseline gap-1 mb-1">
+                            <span className="text-5xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
+                            {plan.period && <span className="text-gray-400 text-lg">{plan.period}</span>}
+                          </div>
+                          {'savings' in plan && plan.savings && (
+                            <p className="text-sm text-teal-600 dark:text-teal-400 font-medium mb-6">{plan.savings}</p>
+                          )}
+                          {!('savings' in plan) && <div className="mb-6" />}
+
+                          <ul className="space-y-3 mb-8">
+                            {plan.features.map((feature) => (
+                              <li key={feature} className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300">
+                                <span className={checkColor}><CheckIcon /></span>
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          <motion.button
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
+                            className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                              isPro
+                                ? 'bg-teal-500 hover:bg-teal-600 text-white hover:shadow-[0_8px_24px_rgba(20,184,166,0.4)]'
+                                : isSchool
+                                ? 'bg-purple-600 hover:bg-purple-700 text-white'
+                                : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white'
+                            }`}
+                          >
+                            {plan.cta}
+                          </motion.button>
+                        </div>
+                      </motion.div>
+                    </SectionReveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 10. FAQ ====== */}
+          <section className="py-20 md:py-28 px-4 md:px-8 bg-white dark:bg-black transition-colors" id="faq">
+            <div className="max-w-3xl mx-auto">
+              <SectionReveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">Frequently Asked Questions</h2>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <p className="text-center text-gray-500 dark:text-gray-400 mb-12">Everything you need to know about Lumora.</p>
+              </SectionReveal>
+
+              <div className="space-y-0">
+                {FAQS.map((faq, i) => (
+                  <SectionReveal key={i} delay={i * 0.05}>
+                    <div className="border-b border-gray-200 dark:border-gray-800">
+                      <button
+                        className="w-full text-left py-5 flex justify-between items-center gap-4 group"
+                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      >
+                        <span className="text-base font-medium text-gray-900 dark:text-white group-hover:text-teal-500 transition-colors">{faq.q}</span>
+                        <span className={`text-gray-400 text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}>+</span>
+                      </button>
+                      <AnimatePresence>
+                        {openFaq === i && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <p className="pb-5 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">{faq.a}</p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </SectionReveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ====== 11. FINAL CTA ====== */}
+          <section className="py-24 md:py-32 px-4 md:px-8 bg-gray-900 dark:bg-gray-950 text-white text-center transition-colors">
+            <div className="max-w-3xl mx-auto">
+              <SectionReveal>
+                <div className="flex flex-wrap justify-center gap-6 mb-8">
+                  {SOCIAL_PROOF_METRICS.map((m) => (
+                    <div key={m.label} className="text-sm text-gray-400">
+                      <strong className="text-white">{m.value}</strong> {m.label}
+                    </div>
+                  ))}
+                </div>
+              </SectionReveal>
+              <SectionReveal delay={0.1}>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight">
+                  Stop scrolling tutorials.<br />Start building skills.
+                </h2>
+              </SectionReveal>
+              <SectionReveal delay={0.2}>
+                <p className="text-gray-400 text-lg mb-2 max-w-xl mx-auto">
+                  Video. Automation. Writing. Music. Four modules, 45 lessons, and a clear path from &ldquo;I have no idea what I&rsquo;m doing&rdquo; to getting paid.
+                </p>
+                <p className="text-gray-500 text-sm mb-8">Free to start. $9.99/mo to unlock everything. Cancel anytime.</p>
+              </SectionReveal>
+              <SectionReveal delay={0.3}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group relative px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-[0_8px_24px_rgba(20,184,166,0.4)] overflow-hidden"
+                  >
+                    <span className="relative z-10">Start First Lesson</span>
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  </motion.button>
+                  <a href="#pricing" className="px-8 py-4 border-2 border-gray-600 hover:border-teal-500 text-gray-300 hover:text-teal-400 font-semibold rounded-xl transition-all duration-200 inline-block">
+                    See Pricing
                   </a>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ====== 3. FEATURES (4 cards) ====== */}
-        <section className="runway-content-section" id="features">
-          <h2 className="runway-section-title runway-reveal">Four Skills.<br/>Endless Possibilities.</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Each module teaches you a high-income creative skill with real AI tools. 45 lessons. 60+ hours. All hands-on.</p>
-
-          <div className="runway-features-grid">
-            {FEATURES.map((f, i) => (
-              <FeatureCard
-                key={f.title}
-                image={f.image}
-                title={f.title}
-                description={f.description}
-                delay={i}
-                lessons={f.lessons}
-                hours={f.hours}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* ====== 4. HOW IT WORKS (3 steps) ====== */}
-        <section className="runway-content-section runway-section-alt">
-          <h2 className="runway-section-title runway-reveal">How It Works</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">No fluff. No filler. Just build stuff and get good.</p>
-
-          <div className="runway-how-grid-connected">
-            {HOW_IT_WORKS.map((item) => (
-              <div key={item.step} className="runway-how-card runway-reveal">
-                <img src={item.image} alt={item.title} loading="lazy" />
-                <div className="runway-how-card-body">
-                  <div className="runway-step-number">{item.step}</div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
-              </div>
-            ))}
-            {/* Arrow connectors between cards */}
-            <div className="runway-how-connector" style={{ left: 'calc((100% - 4rem) / 3 + 1rem)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M5 12h14M13 6l6 6-6 6"/>
-              </svg>
+              </SectionReveal>
             </div>
-            <div className="runway-how-connector" style={{ left: 'calc(2 * (100% - 4rem) / 3 + 3rem)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M5 12h14M13 6l6 6-6 6"/>
-              </svg>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ====== 5. WHAT YOU'LL BUILD (6 use-case cards) ====== */}
-        <section className="runway-content-section" id="use-cases">
-          <h2 className="runway-section-title runway-reveal">What You'll Actually Make</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Not theory. Not slides. Real stuff you can post, sell, or put in your portfolio.</p>
+          {/* ====== 12. FOOTER ====== */}
+          <footer className="relative bg-white dark:bg-black transition-colors">
+            <div className="h-px bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
 
-          <div className="runway-usecase-grid">
-            {USE_CASES.map((item) => (
-              <div key={item.title} className="runway-usecase-card runway-reveal">
-                <img src={item.image} alt={item.title} loading="lazy" />
-                <div className="runway-usecase-overlay">
-                  <div className="runway-usecase-icon">{item.icon}</div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ====== 6. TESTIMONIALS (3 cards) ====== */}
-        <section className="runway-content-section runway-section-alt">
-          <h2 className="runway-section-title runway-reveal">Don't Take Our Word for It</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">12,347 students are already building with AI. Here's what they say.</p>
-
-          <div className="runway-testimonials-grid">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="runway-testimonial-card runway-reveal">
-                <p className="runway-testimonial-quote">"{t.quote}"</p>
-                <div className="runway-testimonial-author">
-                  <img
-                    src={t.photo}
-                    alt={t.name}
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                      border: '1.5px solid var(--border)',
-                      flexShrink: 0,
-                    }}
-                  />
-                  <div>
-                    <div className="runway-testimonial-name">{t.name}, {t.age}</div>
-                    <div className="runway-testimonial-role">{t.role}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.1rem' }}>
-                      {t.location}
-                    </div>
+            <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-8">
+              {/* Newsletter */}
+              <SectionReveal>
+                <div className="mb-16 p-8 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Get lesson updates + AI creator tips</h3>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">Weekly insights on AI tools, student success stories, and new lesson releases.</p>
+                  <div className="flex flex-col sm:flex-row gap-3 max-w-md">
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="flex-1 px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all text-sm"
+                    />
+                    <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl transition-colors text-sm whitespace-nowrap">
+                      Subscribe
+                    </motion.button>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              </SectionReveal>
 
-        {/* ====== 7. PRICING (3 tiers) ====== */}
-        <section className="runway-content-section" id="pricing">
-          <h2 className="runway-section-title runway-reveal">Simple, Transparent Pricing</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Start free. Go Pro for less than a coffee. Cancel anytime.</p>
-
-          <div className="runway-pricing-grid">
-            {PRICING.map((plan) => (
-              <div key={plan.name} className={`runway-pricing-card runway-reveal ${plan.featured ? 'featured' : ''}`}>
-                <div className="runway-pricing-badge">{plan.badge}</div>
-                {'studentBadge' in plan && plan.studentBadge && (
-                  <div style={{
-                    background: 'var(--teal-primary)',
-                    color: '#fff',
-                    fontSize: '0.7rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    padding: '0.3rem 0.75rem',
-                    borderRadius: '100px',
-                    display: 'inline-block',
-                    marginBottom: '0.75rem',
-                  }}>
-                    {plan.studentBadge}
+              {/* Footer links */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                {FOOTER_SECTIONS.map((section) => (
+                  <div key={section.title}>
+                    <h4 className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">{section.title}</h4>
+                    <ul className="space-y-3">
+                      {section.links.map((link) => (
+                        <li key={link}>
+                          <a href="#" className="text-sm text-gray-500 dark:text-gray-400 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">{link}</a>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                )}
-                <div className="runway-pricing-name">{plan.name}</div>
-                <div className="runway-pricing-description">{plan.description}</div>
-                <div>
-                  <span className="runway-pricing-price">{plan.price}</span>
-                  {plan.period && <span className="runway-pricing-period">{plan.period}</span>}
-                </div>
-                {plan.savings && <div className="runway-pricing-savings">{plan.savings}</div>}
-                <ul className="runway-pricing-features">
-                  {plan.features.map((feature) => (
-                    <li key={feature}><CheckIcon />{feature}</li>
-                  ))}
-                </ul>
-                <button className={`runway-pricing-cta ${plan.featured ? 'featured' : ''}`}>
-                  {plan.cta}
-                </button>
+                ))}
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* ====== 8. FAQ (7 items) ====== */}
-        <section className="runway-content-section runway-section-alt" id="faq">
-          <h2 className="runway-section-title runway-reveal">Frequently Asked Questions</h2>
-          <p className="runway-section-subtitle runway-reveal delay-1">Everything you need to know about Lumora.</p>
-
-          <div className="runway-faq-list">
-            {FAQS.map((faq, i) => (
-              <div key={i} className="runway-faq-item runway-reveal">
-                <button
-                  className="runway-faq-question"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                >
-                  <span>{faq.q}</span>
-                  <span className={`runway-faq-icon ${openFaq === i ? 'open' : ''}`}>+</span>
-                </button>
-                <div className={`runway-faq-answer ${openFaq === i ? 'open' : ''}`}>
-                  <p>{faq.a}</p>
+              {/* Bottom bar */}
+              <div className="pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p className="text-gray-400 text-sm">&copy; 2026 Lumora AI. All rights reserved.</p>
+                <div className="flex gap-3">
+                  {['Twitter', 'LinkedIn', 'Instagram', 'Discord'].map((social) => (
+                    <a
+                      key={social}
+                      href="#"
+                      className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-400 hover:border-teal-500 hover:text-teal-500 hover:bg-teal-500/5 transition-all text-sm"
+                      aria-label={social}
+                    >
+                      {social[0]}
+                    </a>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ====== 9. CTA ====== */}
-        <section className="runway-cta-section">
-          <div className="runway-cta-metrics runway-reveal">
-            {SOCIAL_PROOF_METRICS.map((m) => (
-              <div key={m.label} className="runway-cta-metric">
-                <strong>{m.value}</strong> {m.label}
-              </div>
-            ))}
-          </div>
-          <h2 className="runway-reveal delay-1">Stop scrolling tutorials.<br/>Start building skills.</h2>
-          <p className="runway-reveal delay-2">Video. Automation. Writing. Music. Four modules, 45 lessons, and a clear path from \u201CI have no idea what I\u2019m doing\u201D to getting paid.</p>
-          <div className="runway-cta-risk runway-reveal delay-2">Free to start. $9.99/mo to unlock everything. Cancel anytime.</div>
-          <div className="runway-cta-buttons runway-reveal delay-3">
-            <button className="runway-btn runway-btn-primary">Start First Lesson</button>
-            <a href="#pricing" className="runway-btn runway-btn-secondary">See Pricing</a>
-          </div>
-        </section>
-
-        {/* FAB */}
-        <div className={`runway-fab-container ${showFab ? 'visible' : ''}`}>
-          <button className="runway-fab-button" onClick={scrollToTop} aria-label="Scroll to top">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
-            </svg>
-          </button>
-        </div>
-
-        {/* Toast */}
-        <div className={`runway-toast ${toast ? 'show' : ''}`}>
-          {toast}
-        </div>
-
-        {/* ====== 10. FOOTER (4-column) ====== */}
-        <footer className="runway-footer">
-          <div className="runway-footer-content">
-            {FOOTER_SECTIONS.map((section) => (
-              <div key={section.title} className="runway-footer-section">
-                <h4>{section.title}</h4>
-                <ul>
-                  {section.links.map((link) => (
-                    <li key={link}><a href="#">{link}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="runway-footer-bottom">
-            <p>&copy; 2026 Lumora AI. All rights reserved.</p>
-            <div style={{ display: 'flex', gap: '1.5rem' }}>
-              <a href="#">Twitter</a>
-              <a href="#">LinkedIn</a>
-              <a href="#">Instagram</a>
-              <a href="#">Discord</a>
             </div>
-          </div>
-        </footer>
+          </footer>
+
+          {/* FAB + Toast */}
+          <ScrollToTopFAB visible={showFab} />
+          <AnimatePresence>
+            {toast && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-medium rounded-xl shadow-lg z-[10000] backdrop-blur-xl"
+              >
+                {toast}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </>
-  );
-}
-
-// Feature Card Component with subtle 3D tilt effect
-function FeatureCard({ image, title, description, delay, lessons, hours }: { image: string; title: string; description: string; delay: number; lessons: number; hours: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 35;
-    const rotateY = (centerX - x) / 35;
-    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-  };
-
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-  };
-
-  const handleMouseEnter = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.transition = 'transform 0.25s ease-out';
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      className={`runway-feature-card runway-reveal delay-${Math.min(delay, 3)}`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={handleMouseEnter}
-    >
-      <div className="runway-feature-image">
-        <img src={image} alt={title} loading="lazy" />
-      </div>
-      <div className="runway-feature-info">
-        <h3>{title}</h3>
-        <span className="runway-lesson-count">{lessons} LESSONS &bull; {hours} HOURS</span>
-        <p>{description}</p>
-      </div>
-    </div>
   );
 }
