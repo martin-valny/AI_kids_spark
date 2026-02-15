@@ -7,7 +7,7 @@ import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mai
  *
  * Runway ML-inspired dark aesthetic. Magenta/Purple energy system.
  * Inter font. No emoji. No light mode. Video hero.
- * Breathing animations, glass morphism, magnetic hover, cursor glow.
+ * Ambient breathing gradient, glass morphism, gentle hover lift.
  *
  * SECTIONS:
  * 1. Navigation (glass bar)
@@ -34,26 +34,26 @@ const C = {
   text: '#FFFFFF',
   textSec: '#A1A1A1',
   textTer: '#666666',
-  primary: '#FF006E',
-  primaryH: '#FF3388',
-  purple: '#8B00FF',
-  pink: '#FF10F0',
-  accent: '#FF006E',
-  accentH: '#FF3388',
+  primary: '#D4145A',
+  primaryH: '#E04878',
+  purple: '#7B30D0',
+  pink: '#C040B8',
+  accent: '#D4145A',
+  accentH: '#E04878',
   border: 'rgba(255,255,255,0.08)',
-  borderH: 'rgba(255,0,110,0.4)',
-  borderCard: 'rgba(255,0,110,0.2)',
-  borderCardH: 'rgba(255,0,110,0.5)',
+  borderH: 'rgba(212,20,90,0.3)',
+  borderCard: 'rgba(255,255,255,0.06)',
+  borderCardH: 'rgba(212,20,90,0.3)',
   navBg: 'rgba(10,10,10,0.8)',
   navBorder: 'rgba(255,255,255,0.06)',
-  gradientCta: 'linear-gradient(135deg, #FF006E, #8B00FF 50%, #FF10F0)',
-  gradientText: 'linear-gradient(90deg, #FF006E, #FF10F0, #8B00FF, #FF006E)',
+  gradientCta: 'linear-gradient(135deg, #D4145A, #7B30D0 50%, #C040B8)',
+  gradientText: 'linear-gradient(90deg, #D4145A, #C040B8, #7B30D0, #D4145A)',
 };
 
 // Shared CTA button style — static gradient, subtle hover glow
 const ctaButtonStyle: React.CSSProperties = {
   background: C.gradientCta,
-  boxShadow: '0 4px 20px rgba(255,0,110,0.2)',
+  boxShadow: '0 4px 15px rgba(212,20,90,0.15)',
   transition: 'box-shadow 0.3s ease, transform 0.2s ease',
 };
 
@@ -69,7 +69,7 @@ const gradientHeadlineStyle: React.CSSProperties = {
 
 // Card shadow system — dark idle, touch of magenta on hover
 const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4)';
-const cardShadowHover = '0 8px 40px rgba(0,0,0,0.4), 0 4px 30px rgba(255,0,110,0.1)';
+const cardShadowHover = '0 8px 40px rgba(0,0,0,0.4), 0 4px 30px rgba(212,20,90,0.08)';
 
 // Click flash handler for CTA buttons
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -92,7 +92,7 @@ const KEYFRAMES = `
   }
   @keyframes pulseActivity {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+    50% { opacity: 0.9; }
   }
   @keyframes neonBorderRotate {
     0% { background-position: 0% 50%; }
@@ -394,7 +394,7 @@ export default function LumoraRunway() {
           style={{
             top: '10%',
             left: '20%',
-            background: 'radial-gradient(circle, rgba(255,0,110,0.4) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(212,20,90,0.35) 0%, transparent 70%)',
             animation: 'ambientBreathe 12s ease-in-out infinite',
             filter: 'blur(100px)',
           }}
@@ -404,7 +404,7 @@ export default function LumoraRunway() {
           style={{
             bottom: '20%',
             right: '15%',
-            background: 'radial-gradient(circle, rgba(139,0,255,0.3) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(123,48,208,0.25) 0%, transparent 70%)',
             animation: 'ambientBreathe 15s ease-in-out infinite 3s',
             filter: 'blur(100px)',
           }}
@@ -543,7 +543,7 @@ export default function LumoraRunway() {
         <div
           className="absolute inset-0 pointer-events-none hidden md:block"
           style={{
-            background: 'linear-gradient(135deg, rgba(255,0,110,0.05) 0%, transparent 50%, rgba(139,0,255,0.03) 100%)',
+            background: 'linear-gradient(135deg, rgba(212,20,90,0.04) 0%, transparent 50%, rgba(123,48,208,0.02) 100%)',
             animation: 'videoColorShift 8s ease-in-out infinite',
           }}
         />
@@ -598,8 +598,8 @@ export default function LumoraRunway() {
                 className="inline-flex items-center justify-center px-8 py-4 text-white font-medium rounded-lg text-base transition-all duration-200 w-full sm:w-auto"
                 style={{ border: '1px solid rgba(255,255,255,0.2)' }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,0,110,0.4)';
-                  (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255,0,110,0.05)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(212,20,90,0.3)';
+                  (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(212,20,90,0.04)';
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
@@ -705,7 +705,7 @@ export default function LumoraRunway() {
         id="features"
         style={{
           borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent, rgba(139,0,255,0.02) 50%, transparent)',
+          background: 'linear-gradient(180deg, transparent, rgba(123,48,208,0.015) 50%, transparent)',
         }}
       >
         <div className="max-w-[1280px] mx-auto">
@@ -749,31 +749,23 @@ export default function LumoraRunway() {
                   {isFeatured && (
                     <span
                       className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md"
-                      style={{ backgroundColor: 'rgba(255,16,240,0.1)', color: C.pink }}
+                      style={{ backgroundColor: 'rgba(192,64,184,0.08)', color: C.pink }}
                     >
                       Most in-demand
                     </span>
                   )}
 
                   {IconComponent && (
-                    <IconComponent
-                      className="w-8 h-8 mb-6"
-                      style={{ color: C.primary }}
-                      strokeWidth={1.5}
-                    />
+                    <div className="mb-6 text-[#A1A1A1] transition-colors duration-300 group-hover:text-[#D4145A]">
+                      <IconComponent className="w-8 h-8" strokeWidth={1.5} />
+                    </div>
                   )}
 
                   <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3 leading-tight">{f.title}</h3>
-                  <div className="text-sm font-medium uppercase tracking-[0.02em] mb-4" style={{ color: C.primary }}>
+                  <div className="text-sm font-medium uppercase tracking-[0.02em] mb-4" style={{ color: C.textTer }}>
                     {f.meta}
                   </div>
                   <p className="text-base leading-[1.6]" style={{ color: C.textSec }}>{f.description}</p>
-
-                  {/* Bottom gradient line */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: C.gradientCta }}
-                  />
                 </motion.div>
               );
             })}
@@ -881,7 +873,9 @@ export default function LumoraRunway() {
                   </div>
                   <div className="p-6">
                     {IconComponent && (
-                      <IconComponent className="w-6 h-6 mb-3" style={{ color: C.primary }} strokeWidth={1.5} />
+                      <div className="mb-3 text-[#A1A1A1] transition-colors duration-300 group-hover:text-[#D4145A]">
+                        <IconComponent className="w-6 h-6" strokeWidth={1.5} />
+                      </div>
                     )}
                     <h3 className="font-semibold text-lg text-white mb-1">{item.title}</h3>
                     <p className="text-sm leading-[1.6]" style={{ color: C.textSec }}>{item.description}</p>
@@ -898,7 +892,7 @@ export default function LumoraRunway() {
         className="py-20 lg:py-[120px] px-5 md:px-10"
         style={{
           borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent, rgba(255,0,110,0.02) 50%, transparent)',
+          background: 'linear-gradient(180deg, transparent, rgba(212,20,90,0.015) 50%, transparent)',
         }}
       >
         <div className="max-w-[1280px] mx-auto">
@@ -978,7 +972,7 @@ export default function LumoraRunway() {
             <div
               className="absolute inset-0 rounded-xl opacity-10 group-hover/pricing:opacity-30 transition-opacity duration-500 pointer-events-none"
               style={{
-                background: 'linear-gradient(90deg, #FF006E, #8B00FF, #FF10F0, #FF006E)',
+                background: 'linear-gradient(90deg, #D4145A, #7B30D0, #C040B8, #D4145A)',
                 backgroundSize: '300% 300%',
                 animation: 'neonBorderRotate 5s linear infinite',
               }}
@@ -1010,7 +1004,7 @@ export default function LumoraRunway() {
                   <li key={feature} className="flex items-start gap-3">
                     <Check
                       className="w-4 h-4 mt-1 flex-shrink-0"
-                      style={{ color: '#14b8a6', filter: 'drop-shadow(0 0 4px rgba(20,184,166,0.5))' }}
+                      style={{ color: '#14b8a6' }}
                       strokeWidth={2}
                     />
                     <span style={{ color: C.textSec }}>{feature}</span>
@@ -1068,7 +1062,7 @@ export default function LumoraRunway() {
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 >
                   <span
-                    className="text-base sm:text-lg font-medium text-white transition-colors duration-200 group-hover:text-[#FF006E]"
+                    className="text-base sm:text-lg font-medium text-white transition-colors duration-200 group-hover:text-[#D4145A]"
                   >
                     {faq.q}
                   </span>
