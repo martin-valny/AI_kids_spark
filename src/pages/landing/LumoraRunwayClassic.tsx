@@ -30,8 +30,6 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 // UNIFIED CONTENT (same across all 4 landing pages)
 // ============================================================
 
-const HERO_VIDEO_URL = 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
-
 const FEATURES = [
   {
     title: 'AI Video Editing',
@@ -228,6 +226,227 @@ function CheckIcon() {
       <circle cx="9" cy="9" r="9" fill="currentColor" opacity="0.1" />
       <path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+// ============================================================
+// FUTURISTIC HERO CANVAS — animated geometric shapes background
+// ============================================================
+
+function FuturisticHeroCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    let w = 0;
+    let h = 0;
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.parentElement?.getBoundingClientRect();
+      w = rect?.width || window.innerWidth;
+      h = rect?.height || window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Shape types
+    type Shape = {
+      type: 'ring' | 'triangle' | 'hexagon' | 'line' | 'dot';
+      x: number; y: number;
+      size: number;
+      rotation: number;
+      rotSpeed: number;
+      opacity: number;
+      opDir: number;
+      drift: { x: number; y: number };
+      hue: number;
+    };
+
+    const shapes: Shape[] = [];
+    const SHAPE_COUNT = 18;
+
+    for (let i = 0; i < SHAPE_COUNT; i++) {
+      const types: Shape['type'][] = ['ring', 'triangle', 'hexagon', 'line', 'dot'];
+      shapes.push({
+        type: types[Math.floor(Math.random() * types.length)],
+        x: Math.random() * 1.2 - 0.1,
+        y: Math.random() * 1.2 - 0.1,
+        size: 20 + Math.random() * 80,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.008,
+        opacity: 0.05 + Math.random() * 0.15,
+        opDir: Math.random() > 0.5 ? 1 : -1,
+        drift: { x: (Math.random() - 0.5) * 0.15, y: (Math.random() - 0.5) * 0.1 },
+        hue: 200 + Math.random() * 60, // cool blue-cyan range
+      });
+    }
+
+    // Connecting lines between nearby shapes
+    const drawConnections = (time: number) => {
+      for (let i = 0; i < shapes.length; i++) {
+        for (let j = i + 1; j < shapes.length; j++) {
+          const a = shapes[i];
+          const b = shapes[j];
+          const dx = (a.x - b.x) * w;
+          const dy = (a.y - b.y) * h;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 250) {
+            const alpha = (1 - dist / 250) * 0.06;
+            ctx.beginPath();
+            ctx.moveTo(a.x * w, a.y * h);
+            ctx.lineTo(b.x * w, b.y * h);
+            ctx.strokeStyle = `rgba(140, 200, 255, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    const drawShape = (s: Shape) => {
+      const cx = s.x * w;
+      const cy = s.y * h;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(s.rotation);
+      ctx.strokeStyle = `hsla(${s.hue}, 70%, 70%, ${s.opacity})`;
+      ctx.lineWidth = 1;
+      ctx.fillStyle = `hsla(${s.hue}, 70%, 70%, ${s.opacity * 0.15})`;
+
+      switch (s.type) {
+        case 'ring': {
+          ctx.beginPath();
+          ctx.arc(0, 0, s.size, 0, Math.PI * 2);
+          ctx.stroke();
+          // inner ring
+          ctx.beginPath();
+          ctx.arc(0, 0, s.size * 0.6, 0, Math.PI * 2);
+          ctx.strokeStyle = `hsla(${s.hue}, 70%, 70%, ${s.opacity * 0.5})`;
+          ctx.stroke();
+          break;
+        }
+        case 'triangle': {
+          ctx.beginPath();
+          for (let i = 0; i < 3; i++) {
+            const angle = (i / 3) * Math.PI * 2 - Math.PI / 2;
+            const px = Math.cos(angle) * s.size;
+            const py = Math.sin(angle) * s.size;
+            if (i === 0) { ctx.moveTo(px, py); } else { ctx.lineTo(px, py); }
+          }
+          ctx.closePath();
+          ctx.stroke();
+          ctx.fill();
+          break;
+        }
+        case 'hexagon': {
+          ctx.beginPath();
+          for (let i = 0; i < 6; i++) {
+            const angle = (i / 6) * Math.PI * 2;
+            const px = Math.cos(angle) * s.size;
+            const py = Math.sin(angle) * s.size;
+            if (i === 0) { ctx.moveTo(px, py); } else { ctx.lineTo(px, py); }
+          }
+          ctx.closePath();
+          ctx.stroke();
+          ctx.fill();
+          break;
+        }
+        case 'line': {
+          ctx.beginPath();
+          ctx.moveTo(-s.size, 0);
+          ctx.lineTo(s.size, 0);
+          ctx.stroke();
+          // perpendicular tick marks
+          for (let t = -1; t <= 1; t += 0.5) {
+            ctx.beginPath();
+            ctx.moveTo(s.size * t, -s.size * 0.15);
+            ctx.lineTo(s.size * t, s.size * 0.15);
+            ctx.strokeStyle = `hsla(${s.hue}, 70%, 70%, ${s.opacity * 0.6})`;
+            ctx.stroke();
+          }
+          break;
+        }
+        case 'dot': {
+          ctx.beginPath();
+          ctx.arc(0, 0, s.size * 0.15, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${s.hue}, 70%, 80%, ${s.opacity * 1.5})`;
+          ctx.fill();
+          // glow
+          const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, s.size * 0.6);
+          grad.addColorStop(0, `hsla(${s.hue}, 70%, 70%, ${s.opacity * 0.4})`);
+          grad.addColorStop(1, 'transparent');
+          ctx.beginPath();
+          ctx.arc(0, 0, s.size * 0.6, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+          break;
+        }
+      }
+      ctx.restore();
+    };
+
+    let time = 0;
+    const animate = () => {
+      time += 1;
+      ctx.clearRect(0, 0, w, h);
+
+      // Subtle radial gradient base
+      const bgGrad = ctx.createRadialGradient(w * 0.5, h * 0.4, 0, w * 0.5, h * 0.5, w * 0.8);
+      bgGrad.addColorStop(0, 'rgba(15, 25, 50, 0.4)');
+      bgGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      drawConnections(time);
+
+      for (const s of shapes) {
+        s.rotation += s.rotSpeed;
+        s.x += s.drift.x / w;
+        s.y += s.drift.y / h;
+
+        // Pulse opacity
+        s.opacity += s.opDir * 0.0005;
+        if (s.opacity > 0.2) s.opDir = -1;
+        if (s.opacity < 0.04) s.opDir = 1;
+
+        // Wrap around edges
+        if (s.x < -0.15) s.x = 1.15;
+        if (s.x > 1.15) s.x = -0.15;
+        if (s.y < -0.15) s.y = 1.15;
+        if (s.y > 1.15) s.y = -0.15;
+
+        drawShape(s);
+      }
+
+      animId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="runway-hero-bg"
+      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+    />
   );
 }
 
@@ -1821,15 +2040,7 @@ export default function LumoraRunwayClassic() {
 
         {/* ====== 2. HERO with VIDEO ====== */}
         <section className="runway-hero">
-          <video
-            className="runway-hero-bg"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={HERO_VIDEO_URL} type="video/mp4" />
-          </video>
+          <FuturisticHeroCanvas />
           <div className="runway-hero-overlay" />
           <div className="runway-hero-content">
             <div className="runway-category-label">The Creative AI Learning Platform</div>
