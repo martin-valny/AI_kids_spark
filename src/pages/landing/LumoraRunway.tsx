@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mail, ArrowRight, Menu, X, Check } from 'lucide-react';
 
@@ -48,31 +48,28 @@ const C = {
   navBorder: 'rgba(255,255,255,0.06)',
   gradientCta: 'linear-gradient(135deg, #FF006E, #8B00FF 50%, #FF10F0)',
   gradientText: 'linear-gradient(90deg, #FF006E, #FF10F0, #8B00FF, #FF006E)',
-  glowSm: '0 4px 20px rgba(255,0,110,0.3)',
-  glowMd: '0 4px 40px rgba(255,0,110,0.4)',
 };
 
-// Shared CTA button style — breathing glow + gradient shift
+// Shared CTA button style — static gradient, subtle hover glow
 const ctaButtonStyle: React.CSSProperties = {
   background: C.gradientCta,
-  backgroundSize: '200% 200%',
-  animation: 'breatheGlow 3s ease-in-out infinite, gradientShift 4s linear infinite',
-  willChange: 'box-shadow, filter, background-position',
+  boxShadow: '0 4px 20px rgba(255,0,110,0.2)',
+  transition: 'box-shadow 0.3s ease, transform 0.2s ease',
 };
 
-// Gradient text style for section headlines
+// Gradient text style for section headlines — very slow, barely perceptible drift
 const gradientHeadlineStyle: React.CSSProperties = {
   background: C.gradientText,
-  backgroundSize: '200% 200%',
-  animation: 'gradientTextShift 7s linear infinite',
+  backgroundSize: '300% 300%',
+  animation: 'gradientTextShift 20s ease-in-out infinite',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
 };
 
-// Card 3-layer shadow system
-const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,0,110,0.08), 0 2px 30px rgba(255,0,110,0.08)';
-const cardShadowHover = '0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,0,110,0.15), 0 4px 60px rgba(255,0,110,0.2)';
+// Card shadow system — dark idle, touch of magenta on hover
+const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4)';
+const cardShadowHover = '0 8px 40px rgba(0,0,0,0.4), 0 4px 30px rgba(255,0,110,0.1)';
 
 // Click flash handler for CTA buttons
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -84,17 +81,14 @@ const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
 
 // CSS Keyframes
 const KEYFRAMES = `
-  @keyframes breatheGlow {
-    0%, 100% { box-shadow: 0 4px 20px rgba(255,0,110,0.3); filter: brightness(1); }
-    50% { box-shadow: 0 4px 40px rgba(255,0,110,0.5); filter: brightness(1.15); }
-  }
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
+  @keyframes ambientBreathe {
+    0%, 100% { opacity: 0.015; }
+    50% { opacity: 0.035; }
   }
   @keyframes gradientTextShift {
     0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
   @keyframes pulseActivity {
     0%, 100% { opacity: 1; }
@@ -114,9 +108,6 @@ const KEYFRAMES = `
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
-  }
-  @media (max-width: 768px) {
-    .lumora-glow-blur { filter: none !important; }
   }
 `;
 
@@ -293,15 +284,15 @@ const fadeUp = {
 };
 
 const magneticHover = {
-  y: -8,
-  scale: 1.02,
-  transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] },
+  y: -4,
+  scale: 1.01,
+  transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
 };
 
 const lightHover = {
-  y: -6,
-  scale: 1.01,
-  transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] },
+  y: -3,
+  scale: 1.005,
+  transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
 };
 
 // ============================================================
@@ -362,56 +353,6 @@ function CountUp({ end, suffix = '', prefix = '', decimals = 0, delay = 0 }: {
   );
 }
 
-/** CursorGlow — Mouse-following radial gradient spotlight (desktop only) */
-function CursorGlow() {
-  const [pos, setPos] = useState({ x: -500, y: -500 });
-  const [visible, setVisible] = useState(false);
-  const currentPos = useRef({ x: -500, y: -500 });
-  const targetPos = useRef({ x: -500, y: -500 });
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let rafId: number;
-    const onMove = (e: MouseEvent) => {
-      targetPos.current = { x: e.clientX, y: e.clientY };
-      if (!visible) setVisible(true);
-    };
-    const onLeave = () => setVisible(false);
-    const tick = () => {
-      const curr = currentPos.current;
-      const tgt = targetPos.current;
-      curr.x += (tgt.x - curr.x) * 0.12;
-      curr.y += (tgt.y - curr.y) * 0.12;
-      setPos({ x: curr.x, y: curr.y });
-      rafId = requestAnimationFrame(tick);
-    };
-    window.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseleave', onLeave);
-    rafId = requestAnimationFrame(tick);
-    return () => {
-      window.removeEventListener('mousemove', onMove);
-      document.removeEventListener('mouseleave', onLeave);
-      cancelAnimationFrame(rafId);
-    };
-  }, [visible]);
-
-  if (!visible) return null;
-  return (
-    <div
-      className="fixed pointer-events-none z-[9999] hidden md:block"
-      style={{
-        left: pos.x - 200, top: pos.y - 200,
-        width: 400, height: 400,
-        background: 'radial-gradient(circle, rgba(255,0,110,0.04) 0%, transparent 70%)',
-        willChange: 'left, top',
-      }}
-    />
-  );
-}
-
 // ============================================================
 // MAIN COMPONENT
 // ============================================================
@@ -431,14 +372,14 @@ export default function LumoraRunway() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const onCardEnter = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const onCardEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     e.currentTarget.style.borderColor = C.borderCardH;
     e.currentTarget.style.boxShadow = cardShadowHover;
-  }, []);
-  const onCardLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  };
+  const onCardLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     e.currentTarget.style.borderColor = C.borderCard;
     e.currentTarget.style.boxShadow = cardShadowIdle;
-  }, []);
+  };
 
   return (
     <div className="min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ backgroundColor: C.bg, color: C.text }}>
@@ -446,8 +387,29 @@ export default function LumoraRunway() {
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
 
-      {/* Cursor Glow — desktop only */}
-      <CursorGlow />
+      {/* Ambient breathing background — subtle northern lights effect */}
+      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+        <div
+          className="absolute w-[800px] h-[800px] rounded-full"
+          style={{
+            top: '10%',
+            left: '20%',
+            background: 'radial-gradient(circle, rgba(255,0,110,0.4) 0%, transparent 70%)',
+            animation: 'ambientBreathe 12s ease-in-out infinite',
+            filter: 'blur(100px)',
+          }}
+        />
+        <div
+          className="absolute w-[600px] h-[600px] rounded-full"
+          style={{
+            bottom: '20%',
+            right: '15%',
+            background: 'radial-gradient(circle, rgba(139,0,255,0.3) 0%, transparent 70%)',
+            animation: 'ambientBreathe 15s ease-in-out infinite 3s',
+            filter: 'blur(100px)',
+          }}
+        />
+      </div>
 
       {/* ====== 1. NAVIGATION ====== */}
       <nav
@@ -724,7 +686,7 @@ export default function LumoraRunway() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                   <span
                     className="text-xs font-medium uppercase tracking-[0.02em] mb-1 inline-block"
-                    style={{ color: C.pink, animation: 'pulseActivity 2s ease-in-out infinite' }}
+                    style={{ color: C.pink }}
                   >
                     {student.projectType}
                   </span>
@@ -780,28 +742,10 @@ export default function LumoraRunway() {
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
                     transition: 'border-color 0.3s, box-shadow 0.3s',
-                    willChange: 'transform',
                   }}
                   onMouseEnter={onCardEnter}
                   onMouseLeave={onCardLeave}
                 >
-                  {/* Rotating neon border for featured cards */}
-                  {isFeatured && (
-                    <div
-                      className="absolute inset-0 rounded-xl opacity-20 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none"
-                      style={{
-                        background: 'linear-gradient(90deg, #FF006E, #8B00FF, #FF10F0, #FF006E)',
-                        backgroundSize: '300% 300%',
-                        animation: 'neonBorderRotate 5s linear infinite',
-                        mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                        maskComposite: 'exclude',
-                        WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                        WebkitMaskComposite: 'xor' as React.CSSProperties['WebkitMaskComposite'],
-                        padding: '1px',
-                      }}
-                    />
-                  )}
-
                   {isFeatured && (
                     <span
                       className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md"
@@ -811,29 +755,17 @@ export default function LumoraRunway() {
                     </span>
                   )}
 
-                  {/* Icon with glow effect */}
                   {IconComponent && (
-                    <div className="relative w-8 h-8 mb-6">
-                      <div
-                        className="lumora-glow-blur absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ filter: 'blur(12px)' }}
-                      >
-                        <IconComponent className="w-8 h-8" style={{ color: C.primary }} strokeWidth={1.5} />
-                      </div>
-                      <IconComponent
-                        className="relative w-8 h-8 transition-transform duration-300 group-hover:scale-110"
-                        style={{ color: C.primary }}
-                        strokeWidth={1.5}
-                      />
-                    </div>
+                    <IconComponent
+                      className="w-8 h-8 mb-6"
+                      style={{ color: C.primary }}
+                      strokeWidth={1.5}
+                    />
                   )}
 
                   <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3 leading-tight">{f.title}</h3>
                   <div className="text-sm font-medium uppercase tracking-[0.02em] mb-4" style={{ color: C.primary }}>
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: C.primary, animation: 'pulseActivity 2s ease-in-out infinite' }} />
-                      {f.meta}
-                    </span>
+                    {f.meta}
                   </div>
                   <p className="text-base leading-[1.6]" style={{ color: C.textSec }}>{f.description}</p>
 
@@ -949,15 +881,7 @@ export default function LumoraRunway() {
                   </div>
                   <div className="p-6">
                     {IconComponent && (
-                      <div className="relative w-6 h-6 mb-3">
-                        <div
-                          className="lumora-glow-blur absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                          style={{ filter: 'blur(10px)' }}
-                        >
-                          <IconComponent className="w-6 h-6" style={{ color: C.primary }} strokeWidth={1.5} />
-                        </div>
-                        <IconComponent className="relative w-6 h-6" style={{ color: C.primary }} strokeWidth={1.5} />
-                      </div>
+                      <IconComponent className="w-6 h-6 mb-3" style={{ color: C.primary }} strokeWidth={1.5} />
                     )}
                     <h3 className="font-semibold text-lg text-white mb-1">{item.title}</h3>
                     <p className="text-sm leading-[1.6]" style={{ color: C.textSec }}>{item.description}</p>
@@ -1050,9 +974,9 @@ export default function LumoraRunway() {
 
           {/* Pro Card with neon rotating border */}
           <div className="max-w-md mx-auto mb-12 rounded-xl relative group/pricing">
-            {/* Animated gradient border layer */}
+            {/* Subtle gradient border layer */}
             <div
-              className="absolute inset-0 rounded-xl opacity-20 group-hover/pricing:opacity-70 transition-opacity duration-500 pointer-events-none"
+              className="absolute inset-0 rounded-xl opacity-10 group-hover/pricing:opacity-30 transition-opacity duration-500 pointer-events-none"
               style={{
                 background: 'linear-gradient(90deg, #FF006E, #8B00FF, #FF10F0, #FF006E)',
                 backgroundSize: '300% 300%',
@@ -1070,7 +994,7 @@ export default function LumoraRunway() {
             >
               <div
                 className="inline-block px-4 py-1.5 text-white text-xs font-semibold uppercase tracking-[0.05em] rounded-md mb-6"
-                style={ctaButtonStyle}
+                style={{ background: C.gradientCta }}
               >
                 Most students choose this
               </div>
@@ -1238,11 +1162,7 @@ export default function LumoraRunway() {
               />
               <button
                 className="px-6 py-3 text-white font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02]"
-                style={{
-                  background: C.gradientCta,
-                  backgroundSize: '200% 200%',
-                  animation: 'gradientShift 4s linear infinite',
-                }}
+                style={{ background: C.gradientCta }}
               >
                 Subscribe
               </button>
