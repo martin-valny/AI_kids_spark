@@ -427,7 +427,7 @@ export default function LumoraRunway() {
   // No JS-based style manipulation needed
 
   return (
-    <div className="min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ backgroundColor: C.bg, color: C.text }}>
+    <div className="relative z-[1] min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ backgroundColor: C.bg, color: C.text }}>
 
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
