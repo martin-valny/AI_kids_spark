@@ -821,7 +821,7 @@ export default function LumoraRunway() {
                     backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
-                  }
+                  }}
                 >
                   {isFeatured && (
                     <span
@@ -935,7 +935,7 @@ export default function LumoraRunway() {
                     backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
-                  }
+                  }}
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
