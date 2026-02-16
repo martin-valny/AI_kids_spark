@@ -28,9 +28,9 @@ import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mai
 // ============================================================
 
 const C = {
-  bg: '#0A0A0F',
-  bgCard: '#141416',
-  bgHover: '#1F1F22',
+  bg: '#000000',
+  bgCard: 'rgba(255,255,255,0.03)',
+  bgHover: 'rgba(255,255,255,0.06)',
   text: '#FFFFFF',
   textSec: '#C7C7CC',
   textTer: '#8E8E93',
@@ -39,10 +39,10 @@ const C = {
   chrome: '#C7C7CC',
   steel: '#8E8E93',
   border: 'rgba(255,255,255,0.08)',
-  borderH: 'rgba(255,255,255,0.20)',
-  borderCard: 'rgba(255,255,255,0.06)',
-  borderCardH: 'rgba(255,255,255,0.20)',
-  navBg: 'rgba(10,10,15,0.8)',
+  borderH: 'rgba(255,255,255,0.25)',
+  borderCard: 'rgba(255,255,255,0.08)',
+  borderCardH: 'rgba(255,255,255,0.30)',
+  navBg: 'rgba(0,0,0,0.85)',
   navBorder: 'rgba(255,255,255,0.06)',
   gradientCta: 'linear-gradient(135deg, #E8E8EA, #F5F5F7)',
 };
@@ -51,37 +51,38 @@ const C = {
 const ctaButtonStyle: React.CSSProperties = {
   background: 'linear-gradient(105deg, #B8B8BC 0%, #F5F5F7 25%, #FFFFFF 50%, #F5F5F7 75%, #B8B8BC 100%)',
   backgroundSize: '200% 100%',
-  color: '#0A0A0F',
+  color: '#000000',
   boxShadow: '0 2px 12px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.4)',
   transition: 'box-shadow 0.4s ease, transform 0.3s ease, background-position 0.6s ease',
 };
 
 // Card shadow system — dark idle, white underglow on hover
-const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4), 0 0 30px rgba(139,0,255,0.08)';
-const cardShadowHover = '0 12px 40px rgba(139,0,255,0.25), 0 6px 20px rgba(255,0,110,0.15), 0 0 1px rgba(255,255,255,0.1)';
+const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.6)';
+const cardShadowHover = '0 12px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.06)';
 
 // Click handler for CTA buttons — gentle press
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
   const el = e.currentTarget;
-  el.style.transform = 'scale(0.97)';
-  setTimeout(() => { el.style.transform = ''; }, 200);
+  el.style.transition = 'transform 0.1s ease-in';
+  el.style.transform = 'scale(0.96)';
+  setTimeout(() => {
+    el.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    el.style.transform = '';
+  }, 100);
 };
 
 // CSS Keyframes + Liquid Metal Styles
 const KEYFRAMES = `
-  /* ---- GEOMETRIC GRID BACKGROUND ---- */
+  /* ---- DARK CINEMA BACKGROUND ---- */
   @keyframes gridPulse {
-    0%, 100% { opacity: 0.6; }
+    0%, 100% { opacity: 0.7; }
     50%      { opacity: 1; }
   }
-  @keyframes gridSweep {
-    0%   { background-position: 0% 0%; }
-    50%  { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-  }
-  @keyframes ambientBreathe {
-    0%, 100% { opacity: 0.06; }
-    50%      { opacity: 0.12; }
+  @keyframes cornerDrift {
+    0%   { transform: translate(0, 0); }
+    33%  { transform: translate(3%, 4%); }
+    66%  { transform: translate(-2%, 2%); }
+    100% { transform: translate(0, 0); }
   }
 
   /* ---- LIQUID METAL SHIMMER ---- */
@@ -117,8 +118,8 @@ const KEYFRAMES = `
     transition: box-shadow 0.4s ease, transform 0.3s ease;
   }
   .cta-silver:hover {
-    box-shadow: 0 4px 30px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.5);
-    transform: translateY(-1px);
+    box-shadow: 0 4px 30px rgba(255,255,255,0.20), 0 0 60px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.5);
+    transform: translateY(-2px) scale(1.02);
   }
 
   /* ---- LIQUID METAL TEXT ---- */
@@ -137,10 +138,10 @@ const KEYFRAMES = `
   }
 
   /* ---- CHROME ICONS ---- */
-  .icon-chrome { transition: filter 0.4s ease, color 0.4s ease; }
+  .icon-chrome { transition: filter 0.15s ease-out, color 0.15s ease-out; }
   .icon-chrome:hover {
     color: #FFFFFF;
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3)) drop-shadow(0 0 20px rgba(200,180,255,0.15));
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 20px rgba(255,255,255,0.15));
   }
 
   /* ---- GLASS CARD HOVER (CSS-only) ---- */
@@ -152,9 +153,10 @@ const KEYFRAMES = `
     transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
   }
   .glass-card:hover {
-    border-color: rgba(255,255,255,0.18) !important;
-    box-shadow: 0 12px 40px rgba(139,0,255,0.2), 0 6px 20px rgba(255,0,110,0.12), 0 0 1px rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.30) !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.06), 0 0 1px rgba(255,255,255,0.15) !important;
     transform: translateY(-8px) scale(1.01);
+    background-color: rgba(255,255,255,0.04) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
@@ -429,55 +431,57 @@ export default function LumoraRunway() {
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
 
-      {/* Atmospheric breathing background — 5-layer system */}
+      {/* Dark Cinema background — 7-layer system */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        {/* Layer 1: Base dark radial — prevents pure black */}
+        {/* Layer 1: True black base */}
+        <div className="absolute inset-0" style={{ background: '#000000' }} />
+        {/* Layer 2: Peripheral accent — top-left corner, mostly off-screen */}
         <div
-          className="absolute inset-0"
+          className="absolute"
           style={{
-            background: 'radial-gradient(ellipse 120% 80% at 50% 30%, rgba(30,10,40,0.5) 0%, transparent 70%)',
+            width: '800px',
+            height: '800px',
+            top: '-200px',
+            left: '-200px',
+            background: 'radial-gradient(circle, rgba(26,10,46,0.5) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            animation: 'cornerDrift 25s ease-in-out infinite',
+            willChange: 'transform',
           }}
         />
-        {/* Layer 2: Geometric grid — structured, technical */}
+        {/* Layer 3: Peripheral accent — bottom-right corner, mostly off-screen */}
+        <div
+          className="absolute"
+          style={{
+            width: '900px',
+            height: '900px',
+            bottom: '-200px',
+            right: '-200px',
+            background: 'radial-gradient(circle, rgba(45,10,46,0.4) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            animation: 'cornerDrift 30s ease-in-out infinite 10s',
+            willChange: 'transform',
+          }}
+        />
+        {/* Layer 4: Central spotlight — white luminosity, no color */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(139,0,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(139,0,255,0.07) 1px, transparent 1px)`,
-            backgroundSize: '120px 120px',
+            background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,255,255,0.03) 0%, transparent 70%)',
+          }}
+        />
+        {/* Layer 5: Grid texture — white lines, ultra-subtle */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`,
+            backgroundSize: '100px 100px',
             animation: 'gridPulse 15s ease-in-out infinite',
             maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
             WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
           }}
         />
-        {/* Layer 2b: Gradient sweep across grid */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, rgba(139,0,255,0.06) 0%, rgba(255,0,110,0.04) 50%, transparent 100%)',
-            backgroundSize: '200% 200%',
-            animation: 'gridSweep 20s ease-in-out infinite',
-          }}
-        />
-        {/* Layer 2c: Subtle dot accents at grid intersections */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'radial-gradient(circle 1.5px, rgba(139,0,255,0.12) 0%, transparent 100%)',
-            backgroundSize: '120px 120px',
-            animation: 'gridPulse 15s ease-in-out infinite 7.5s',
-            maskImage: 'radial-gradient(ellipse 60% 50% at 50% 40%, black 0%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 40%, black 0%, transparent 100%)',
-          }}
-        />
-        {/* Layer 3: Full-screen breathing wash */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, rgba(255,0,110,0.06) 0%, rgba(139,0,255,0.04) 50%, rgba(80,0,180,0.05) 100%)',
-            animation: 'ambientBreathe 15s ease-in-out infinite',
-          }}
-        />
-        {/* Layer 5: Vignette — cinematic edge darkening */}
+        {/* Layer 6: Vignette — cinematic edge darkening */}
         <div
           className="absolute inset-0"
           style={{
@@ -485,7 +489,7 @@ export default function LumoraRunway() {
             pointerEvents: 'none',
           }}
         />
-        {/* Layer 6: Film grain noise texture */}
+        {/* Layer 7: Film grain noise texture */}
         <div
           className="absolute inset-0"
           style={{
@@ -497,7 +501,7 @@ export default function LumoraRunway() {
             pointerEvents: 'none',
           }}
         />
-        {/* Layer 4: Scroll-responsive warmth */}
+        {/* Layer 8: Scroll-responsive warmth */}
         <motion.div
           className="absolute inset-0"
           style={{ backgroundColor: warmBg }}
