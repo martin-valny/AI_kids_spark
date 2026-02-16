@@ -28,10 +28,9 @@ import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mai
 // ============================================================
 
 const C = {
-  bg: '#050507',
+  bg: '#0A0A0F',
   bgCard: 'rgba(255,255,255,0.07)',
   bgHover: 'rgba(255,255,255,0.12)',
-  bgSection: 'rgba(255,255,255,0.03)',
   text: '#FFFFFF',
   textSec: '#C7C7CC',
   textTer: '#8E8E93',
@@ -43,7 +42,7 @@ const C = {
   borderH: 'rgba(255,255,255,0.25)',
   borderCard: 'rgba(255,255,255,0.12)',
   borderCardH: 'rgba(255,255,255,0.35)',
-  navBg: 'rgba(5,5,7,0.90)',
+  navBg: 'rgba(10,10,15,0.90)',
   navBorder: 'rgba(255,255,255,0.08)',
   gradientCta: 'linear-gradient(135deg, #E8E8EA, #F5F5F7)',
 };
@@ -415,7 +414,6 @@ export default function LumoraRunway() {
 
   const { scrollY } = useScroll();
   const videoY = useTransform(scrollY, [0, 600], [0, 120]);
-  const warmBg = useTransform(scrollY, [0, 3000], ['rgba(45,10,46,0.00)', 'rgba(45,10,46,0.12)']);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -432,80 +430,62 @@ export default function LumoraRunway() {
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
 
-      {/* Dark Cinema background — 7-layer system */}
+      {/* Premium dark background — 4-layer system per spec */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        {/* Layer 1: Deep dark base */}
-        <div className="absolute inset-0" style={{ background: C.bg }} />
-        {/* Layer 2: Peripheral accent — top-left */}
+        {/* Layer 1: True black base (90% of what you see) */}
+        <div className="absolute inset-0" style={{ background: '#0A0A0F' }} />
+        {/* Layer 2: Subtle peripheral color — top-left corner only, 5% opacity */}
         <div
           className="absolute"
           style={{
-            width: '1000px',
-            height: '1000px',
-            top: '-100px',
-            left: '-100px',
-            background: 'radial-gradient(circle, rgba(30,12,55,0.7) 0%, transparent 65%)',
+            width: '600px',
+            height: '600px',
+            top: '-250px',
+            left: '-250px',
+            background: 'radial-gradient(circle, rgba(30,12,55,0.05) 0%, transparent 70%)',
             filter: 'blur(80px)',
             animation: 'cornerDrift 25s ease-in-out infinite',
             willChange: 'transform',
           }}
         />
-        {/* Layer 3: Peripheral accent — bottom-right */}
+        {/* Layer 2b: Subtle peripheral color — bottom-right corner only, 4% opacity */}
         <div
           className="absolute"
           style={{
-            width: '1100px',
-            height: '1100px',
-            bottom: '-100px',
-            right: '-100px',
-            background: 'radial-gradient(circle, rgba(50,14,55,0.6) 0%, transparent 65%)',
+            width: '700px',
+            height: '700px',
+            bottom: '-250px',
+            right: '-250px',
+            background: 'radial-gradient(circle, rgba(45,10,46,0.04) 0%, transparent 70%)',
             filter: 'blur(80px)',
             animation: 'cornerDrift 30s ease-in-out infinite 10s',
             willChange: 'transform',
           }}
         />
-        {/* Layer 4: Central spotlight — soft white glow */}
+        {/* Layer 3: Content spotlight — no color, luminosity only */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 70% 55% at 50% 35%, rgba(255,255,255,0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,255,255,0.03) 0%, transparent 70%)',
           }}
         />
-        {/* Layer 5: Grid texture */}
+        {/* Layer 3b: Vignette — cinematic edge darkening */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)`,
+            background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.4) 100%)',
+          }}
+        />
+        {/* Layer 4: Grid texture — digital precision, 2% opacity */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
             backgroundSize: '100px 100px',
             animation: 'gridPulse 15s ease-in-out infinite',
-            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 100%)',
+            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
           }}
-        />
-        {/* Layer 6: Vignette — cinematic edge darkening */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 85% 75% at 50% 45%, transparent 55%, rgba(0,0,0,0.5) 100%)',
-            pointerEvents: 'none',
-          }}
-        />
-        {/* Layer 7: Film grain noise texture */}
-        <div
-          className="absolute inset-0"
-          style={{
-            opacity: 0.04,
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundRepeat: 'repeat',
-            backgroundSize: '256px 256px',
-            mixBlendMode: 'overlay' as const,
-            pointerEvents: 'none',
-          }}
-        />
-        {/* Layer 8: Scroll-responsive warmth */}
-        <motion.div
-          className="absolute inset-0"
-          style={{ backgroundColor: warmBg }}
         />
       </div>
 
@@ -800,10 +780,7 @@ export default function LumoraRunway() {
       <section
         className="py-20 lg:py-[120px] px-5 md:px-10 relative"
         id="features"
-        style={{
-          borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent 0%, rgba(139,0,255,0.06) 30%, rgba(180,40,120,0.05) 70%, transparent 100%)',
-        }}
+        style={{ borderTop: `1px solid ${C.border}` }}
       >
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
@@ -867,7 +844,7 @@ export default function LumoraRunway() {
       </section>
 
       {/* ====== 5. HOW IT WORKS ====== */}
-      <section className="py-20 lg:py-[120px] px-5 md:px-10" style={{ borderTop: `1px solid ${C.border}`, background: `linear-gradient(180deg, ${C.bgSection} 0%, transparent 50%, ${C.bgSection} 100%)` }}>
+      <section className="py-20 lg:py-[120px] px-5 md:px-10" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -975,10 +952,7 @@ export default function LumoraRunway() {
       {/* ====== 7. TESTIMONIALS ====== */}
       <section
         className="py-20 lg:py-[120px] px-5 md:px-10"
-        style={{
-          borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent 0%, rgba(255,0,110,0.06) 30%, rgba(120,0,200,0.05) 70%, transparent 100%)',
-        }}
+        style={{ borderTop: `1px solid ${C.border}` }}
       >
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
