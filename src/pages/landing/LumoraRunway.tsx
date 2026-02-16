@@ -47,60 +47,119 @@ const C = {
   gradientCta: 'linear-gradient(135deg, #E8E8EA, #F5F5F7)',
 };
 
-// Shared CTA button style — liquid silver gradient
+// Shared CTA button style — liquid metal shimmer
 const ctaButtonStyle: React.CSSProperties = {
-  background: C.gradientCta,
+  background: 'linear-gradient(105deg, #B8B8BC 0%, #F5F5F7 25%, #FFFFFF 50%, #F5F5F7 75%, #B8B8BC 100%)',
+  backgroundSize: '200% 100%',
   color: '#0A0A0F',
-  boxShadow: '0 4px 15px rgba(255,255,255,0.06)',
-  transition: 'box-shadow 0.3s ease, transform 0.2s ease',
+  boxShadow: '0 2px 12px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.4)',
+  transition: 'box-shadow 0.4s ease, transform 0.3s ease, background-position 0.6s ease',
 };
 
 // Card shadow system — dark idle, white underglow on hover
 const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4)';
 const cardShadowHover = '0 8px 40px rgba(0,0,0,0.5), 0 4px 30px rgba(255,255,255,0.06)';
 
-// Click flash handler for CTA buttons
+// Click handler for CTA buttons — gentle press
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
   const el = e.currentTarget;
-  el.style.filter = 'brightness(1.5)';
-  el.style.transform = 'scale(0.98)';
-  setTimeout(() => { el.style.filter = ''; el.style.transform = ''; }, 150);
+  el.style.transform = 'scale(0.97)';
+  setTimeout(() => { el.style.transform = ''; }, 200);
 };
 
-// CSS Keyframes + Metallic Interaction Styles
+// CSS Keyframes + Liquid Metal Styles
 const KEYFRAMES = `
+  /* ---- ATMOSPHERIC BACKGROUND ---- */
   @keyframes atmosphericDrift1 {
-    0%   { transform: translate(0, 0);     opacity: 0.08; }
-    50%  { transform: translate(5%, 5%);   opacity: 0.12; }
-    100% { transform: translate(0, 0);     opacity: 0.08; }
+    0%   { transform: translate(0, 0) scale(1);       opacity: 0.35; }
+    33%  { transform: translate(4%, 6%) scale(1.03);   opacity: 0.45; }
+    66%  { transform: translate(-2%, 3%) scale(0.98);  opacity: 0.38; }
+    100% { transform: translate(0, 0) scale(1);        opacity: 0.35; }
   }
   @keyframes atmosphericDrift2 {
-    0%   { transform: translate(0, 0);     opacity: 0.06; }
-    50%  { transform: translate(-4%, -3%); opacity: 0.10; }
-    100% { transform: translate(0, 0);     opacity: 0.06; }
+    0%   { transform: translate(0, 0) scale(1);        opacity: 0.30; }
+    33%  { transform: translate(-5%, -4%) scale(1.02);  opacity: 0.40; }
+    66%  { transform: translate(3%, -2%) scale(0.97);   opacity: 0.33; }
+    100% { transform: translate(0, 0) scale(1);         opacity: 0.30; }
+  }
+  @keyframes atmosphericDrift3 {
+    0%   { transform: translate(0, 0) scale(1);       opacity: 0.20; }
+    50%  { transform: translate(3%, -5%) scale(1.04);  opacity: 0.30; }
+    100% { transform: translate(0, 0) scale(1);        opacity: 0.20; }
   }
   @keyframes ambientBreathe {
-    0%, 100% { opacity: 0.03; }
-    50% { opacity: 0.07; }
+    0%, 100% { opacity: 0.06; }
+    50%      { opacity: 0.14; }
   }
+
+  /* ---- LIQUID METAL SHIMMER ---- */
+  @keyframes liquidShimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+  @keyframes textShimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* ---- BREATHING TEXT ---- */
+  @keyframes textBreathe {
+    0%, 100% { opacity: 0.92; text-shadow: 0 0 40px rgba(255,255,255,0.0); }
+    50%      { opacity: 1;    text-shadow: 0 0 60px rgba(255,255,255,0.08); }
+  }
+
+  /* ---- UTILITY ---- */
   @keyframes pulseActivity {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.9; }
+    50% { opacity: 0.7; }
   }
   @keyframes videoColorShift {
-    0%, 100% { opacity: 0.03; }
-    50% { opacity: 0.06; }
+    0%, 100% { opacity: 0.04; }
+    50% { opacity: 0.08; }
   }
-  .cta-silver { transition: filter 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease; }
+
+  /* ---- LIQUID METAL CTA ---- */
+  .cta-silver {
+    animation: liquidShimmer 4s ease-in-out infinite;
+    background-size: 200% 100%;
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+  }
   .cta-silver:hover {
-    filter: brightness(1.12);
-    box-shadow: 0 4px 25px rgba(255,255,255,0.12);
+    box-shadow: 0 4px 30px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.5);
+    transform: translateY(-1px);
   }
-  .icon-chrome { transition: filter 0.3s ease, color 0.3s ease; }
+
+  /* ---- LIQUID METAL TEXT ---- */
+  .text-liquid-metal {
+    background: linear-gradient(105deg, #8E8E93 0%, #E8E8EA 20%, #FFFFFF 40%, #F5F5F7 60%, #C7C7CC 80%, #8E8E93 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textShimmer 6s ease-in-out infinite;
+  }
+
+  /* ---- BREATHING HERO ---- */
+  .hero-breathe {
+    animation: textBreathe 5s ease-in-out infinite;
+  }
+
+  /* ---- CHROME ICONS ---- */
+  .icon-chrome { transition: filter 0.4s ease, color 0.4s ease; }
   .icon-chrome:hover {
     color: #FFFFFF;
-    filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.3)) drop-shadow(0 0 20px rgba(200,180,255,0.15));
   }
+
+  /* ---- GLASS CARD HOVER (CSS-only) ---- */
+  .glass-card {
+    transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  .glass-card:hover {
+    border-color: rgba(255,255,255,0.18) !important;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.04) !important;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -282,17 +341,7 @@ const fadeUp = {
   }),
 };
 
-const magneticHover = {
-  y: -4,
-  scale: 1.01,
-  transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
-};
-
-const lightHover = {
-  y: -3,
-  scale: 1.005,
-  transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
-};
+// Hover variants removed — using CSS .glass-card for smoother GPU-accelerated transitions
 
 // ============================================================
 // SUB-COMPONENTS
@@ -364,7 +413,7 @@ export default function LumoraRunway() {
 
   const { scrollY } = useScroll();
   const videoY = useTransform(scrollY, [0, 600], [0, 120]);
-  const warmBg = useTransform(scrollY, [0, 3000], ['rgba(45,10,46,0.00)', 'rgba(45,10,46,0.04)']);
+  const warmBg = useTransform(scrollY, [0, 3000], ['rgba(45,10,46,0.00)', 'rgba(45,10,46,0.12)']);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -372,16 +421,8 @@ export default function LumoraRunway() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const onCardEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.borderColor = C.borderCardH;
-    e.currentTarget.style.boxShadow = cardShadowHover;
-    e.currentTarget.style.filter = 'brightness(1.08)';
-  };
-  const onCardLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.borderColor = C.borderCard;
-    e.currentTarget.style.boxShadow = cardShadowIdle;
-    e.currentTarget.style.filter = 'brightness(1)';
-  };
+  // Card hover is now handled entirely via CSS .glass-card class
+  // No JS-based style manipulation needed
 
   return (
     <div className="min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ backgroundColor: C.bg, color: C.text }}>
@@ -389,41 +430,66 @@ export default function LumoraRunway() {
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
 
-      {/* Ambient breathing background — 4-layer atmospheric system */}
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        {/* Layer 2: Drifting dark magenta-purple blob */}
-        <div
-          className="absolute w-[2500px] h-[2500px] rounded-full"
-          style={{
-            top: '-10%',
-            left: '10%',
-            background: 'radial-gradient(circle, #2D0A2E 0%, transparent 70%)',
-            animation: 'atmosphericDrift1 18s ease-in-out infinite',
-            filter: 'blur(120px)',
-            willChange: 'transform, opacity',
-          }}
-        />
-        {/* Layer 2b: Drifting dark purple blob */}
-        <div
-          className="absolute w-[2500px] h-[2500px] rounded-full"
-          style={{
-            bottom: '-15%',
-            right: '5%',
-            background: 'radial-gradient(circle, #1A0A2E 0%, transparent 70%)',
-            animation: 'atmosphericDrift2 20s ease-in-out infinite 5s',
-            filter: 'blur(120px)',
-            willChange: 'transform, opacity',
-          }}
-        />
-        {/* Layer 3: Breathing overlay — magenta/purple opacity pulse */}
+      {/* Atmospheric breathing background — 5-layer system */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        {/* Layer 1: Base dark radial — prevents pure black */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(135deg, rgba(255,0,110,0.05) 0%, rgba(139,0,255,0.03) 100%)',
-            animation: 'ambientBreathe 10s ease-in-out infinite',
+            background: 'radial-gradient(ellipse 120% 80% at 50% 30%, rgba(30,10,40,0.5) 0%, transparent 70%)',
           }}
         />
-        {/* Layer 4: Scroll-responsive warmth overlay */}
+        {/* Layer 2: Large magenta blob — top-left, drifting */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: '900px',
+            height: '900px',
+            top: '-15%',
+            left: '-5%',
+            background: 'radial-gradient(circle, rgba(180,40,120,0.35) 0%, rgba(120,20,80,0.15) 40%, transparent 70%)',
+            animation: 'atmosphericDrift1 22s ease-in-out infinite',
+            filter: 'blur(80px)',
+            willChange: 'transform, opacity',
+          }}
+        />
+        {/* Layer 2b: Deep purple blob — bottom-right, drifting */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: '1000px',
+            height: '1000px',
+            bottom: '-20%',
+            right: '-10%',
+            background: 'radial-gradient(circle, rgba(100,30,180,0.30) 0%, rgba(60,15,120,0.12) 40%, transparent 70%)',
+            animation: 'atmosphericDrift2 26s ease-in-out infinite 4s',
+            filter: 'blur(80px)',
+            willChange: 'transform, opacity',
+          }}
+        />
+        {/* Layer 2c: Accent pink blob — center-right, slow drift */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: '600px',
+            height: '600px',
+            top: '30%',
+            right: '15%',
+            background: 'radial-gradient(circle, rgba(255,50,130,0.18) 0%, transparent 65%)',
+            animation: 'atmosphericDrift3 30s ease-in-out infinite 8s',
+            filter: 'blur(100px)',
+            willChange: 'transform, opacity',
+          }}
+        />
+        {/* Layer 3: Full-screen breathing wash */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,0,110,0.08) 0%, rgba(139,0,255,0.05) 50%, rgba(80,0,180,0.06) 100%)',
+            animation: 'ambientBreathe 8s ease-in-out infinite',
+          }}
+        />
+        {/* Layer 4: Scroll-responsive warmth */}
         <motion.div
           className="absolute inset-0"
           style={{ backgroundColor: warmBg }}
@@ -588,12 +654,12 @@ export default function LumoraRunway() {
             </span>
 
             <h1
-              className="text-[36px] sm:text-[48px] lg:text-[72px] font-bold leading-[1.1] mb-6"
+              className="hero-breathe text-[36px] sm:text-[48px] lg:text-[72px] font-bold leading-[1.1] mb-6"
               style={{ letterSpacing: '-0.02em' }}
             >
-              Learn AI. Ship Real Work.{' '}
+              <span className="text-liquid-metal">Learn AI. Ship Real Work.</span>{' '}
               <br className="hidden sm:block" />
-              Open New Opportunities.
+              <span className="text-liquid-metal">Open New Opportunities.</span>
             </h1>
 
             <p className="text-lg lg:text-xl font-normal max-w-[640px] mx-auto leading-[1.5] mb-10" style={{ color: C.textSec }}>
@@ -684,15 +750,11 @@ export default function LumoraRunway() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                whileHover={lightHover}
-                className="group relative rounded-xl overflow-hidden cursor-pointer"
+                className="glass-card group relative rounded-xl overflow-hidden cursor-pointer"
                 style={{
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
-                  transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
                 }}
-                onMouseEnter={onCardEnter}
-                onMouseLeave={onCardLeave}
               >
                 <div className="aspect-video overflow-hidden">
                   <img
@@ -724,7 +786,7 @@ export default function LumoraRunway() {
         id="features"
         style={{
           borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent, rgba(139,0,255,0.008) 50%, transparent)',
+          background: 'linear-gradient(180deg, transparent 0%, rgba(139,0,255,0.04) 30%, rgba(180,40,120,0.03) 70%, transparent 100%)',
         }}
       >
         <div className="max-w-[1280px] mx-auto">
@@ -736,7 +798,7 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            Four Skill Paths
+            <span className="text-liquid-metal">Four Skill Paths</span>
           </motion.h2>
           <p className="text-center text-lg mb-16 max-w-xl mx-auto leading-[1.5]" style={{ color: C.textSec }}>
             Each path takes you from zero to a portfolio you can show — in hours, not months.
@@ -754,16 +816,12 @@ export default function LumoraRunway() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  whileHover={magneticHover}
-                  className="relative rounded-xl p-8 group overflow-hidden"
+                  className="glass-card relative rounded-xl p-8 group overflow-hidden"
                   style={{
                     backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
-                    transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
-                  }}
-                  onMouseEnter={onCardEnter}
-                  onMouseLeave={onCardLeave}
+                  }
                 >
                   {isFeatured && (
                     <span
@@ -818,16 +876,12 @@ export default function LumoraRunway() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                whileHover={lightHover}
-                className="rounded-xl overflow-hidden group"
+                className="glass-card rounded-xl overflow-hidden group"
                 style={{
                   backgroundColor: C.bgCard,
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
-                  transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
                 }}
-                onMouseEnter={onCardEnter}
-                onMouseLeave={onCardLeave}
               >
                 <div className="overflow-hidden">
                   <img src={item.image} alt={item.title} loading="lazy" className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -859,7 +913,7 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            What You'll Build
+            <span className="text-liquid-metal">What You'll Build</span>
           </motion.h2>
           <p className="text-center text-lg mb-16" style={{ color: C.textSec }}>
             Real projects you can post, sell, or add to your portfolio.
@@ -876,16 +930,12 @@ export default function LumoraRunway() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  whileHover={lightHover}
-                  className="rounded-xl overflow-hidden group"
+                  className="glass-card rounded-xl overflow-hidden group"
                   style={{
                     backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
-                    transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
-                  }}
-                  onMouseEnter={onCardEnter}
-                  onMouseLeave={onCardLeave}
+                  }
                 >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -911,7 +961,7 @@ export default function LumoraRunway() {
         className="py-20 lg:py-[120px] px-5 md:px-10"
         style={{
           borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent, rgba(255,0,110,0.008) 50%, transparent)',
+          background: 'linear-gradient(180deg, transparent 0%, rgba(255,0,110,0.04) 30%, rgba(120,0,200,0.03) 70%, transparent 100%)',
         }}
       >
         <div className="max-w-[1280px] mx-auto">
@@ -979,7 +1029,7 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            Simple, Transparent Pricing
+            <span className="text-liquid-metal">Simple, Transparent Pricing</span>
           </motion.h2>
           <p className="text-lg mb-16" style={{ color: C.textSec }}>
             Start free. Go Pro for less than a coffee. Cancel anytime.
@@ -1124,9 +1174,9 @@ export default function LumoraRunway() {
               className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold leading-tight mb-6"
               style={{ letterSpacing: '-0.01em' }}
             >
-              Stop scrolling tutorials.{' '}
+              <span className="text-liquid-metal">Stop scrolling tutorials.</span>{' '}
               <br className="hidden sm:block" />
-              Start building skills.
+              <span className="text-liquid-metal">Start building skills.</span>
             </h2>
             <p className="text-lg max-w-xl mx-auto leading-[1.6] mb-3" style={{ color: C.textSec }}>
               Video. Automation. Writing. Music. Four skill paths, real projects, and a clear path from zero to a portfolio that opens doors.
