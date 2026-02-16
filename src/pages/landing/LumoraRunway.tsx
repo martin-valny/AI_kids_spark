@@ -28,9 +28,10 @@ import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mai
 // ============================================================
 
 const C = {
-  bg: '#000000',
-  bgCard: 'rgba(255,255,255,0.03)',
-  bgHover: 'rgba(255,255,255,0.06)',
+  bg: '#050507',
+  bgCard: 'rgba(255,255,255,0.07)',
+  bgHover: 'rgba(255,255,255,0.12)',
+  bgSection: 'rgba(255,255,255,0.03)',
   text: '#FFFFFF',
   textSec: '#C7C7CC',
   textTer: '#8E8E93',
@@ -38,12 +39,12 @@ const C = {
   silverLight: '#F5F5F7',
   chrome: '#C7C7CC',
   steel: '#8E8E93',
-  border: 'rgba(255,255,255,0.08)',
+  border: 'rgba(255,255,255,0.10)',
   borderH: 'rgba(255,255,255,0.25)',
-  borderCard: 'rgba(255,255,255,0.08)',
-  borderCardH: 'rgba(255,255,255,0.30)',
-  navBg: 'rgba(0,0,0,0.85)',
-  navBorder: 'rgba(255,255,255,0.06)',
+  borderCard: 'rgba(255,255,255,0.12)',
+  borderCardH: 'rgba(255,255,255,0.35)',
+  navBg: 'rgba(5,5,7,0.90)',
+  navBorder: 'rgba(255,255,255,0.08)',
   gradientCta: 'linear-gradient(135deg, #E8E8EA, #F5F5F7)',
 };
 
@@ -57,8 +58,8 @@ const ctaButtonStyle: React.CSSProperties = {
 };
 
 // Card shadow system — dark idle, white underglow on hover
-const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.6)';
-const cardShadowHover = '0 12px 40px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.06)';
+const cardShadowIdle = '0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)';
+const cardShadowHover = '0 12px 40px rgba(0,0,0,0.7), 0 0 30px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.15)';
 
 // Click handler for CTA buttons — gentle press
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -146,19 +147,19 @@ const KEYFRAMES = `
 
   /* ---- GLASS CARD HOVER (CSS-only) ---- */
   .glass-card {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-left: 1px solid rgba(255,255,255,0.04);
-    transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255,255,255,0.10);
+    border-left: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, background-color 0.4s ease;
   }
   .glass-card:hover {
-    border-color: rgba(255,255,255,0.30) !important;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.06), 0 0 1px rgba(255,255,255,0.15) !important;
+    border-color: rgba(255,255,255,0.35) !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.08), 0 0 1px rgba(255,255,255,0.2) !important;
     transform: translateY(-8px) scale(1.01);
-    background-color: rgba(255,255,255,0.04) !important;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255,255,255,0.12) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -433,59 +434,59 @@ export default function LumoraRunway() {
 
       {/* Dark Cinema background — 7-layer system */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        {/* Layer 1: True black base */}
-        <div className="absolute inset-0" style={{ background: '#000000' }} />
-        {/* Layer 2: Peripheral accent — top-left corner, mostly off-screen */}
+        {/* Layer 1: Deep dark base */}
+        <div className="absolute inset-0" style={{ background: C.bg }} />
+        {/* Layer 2: Peripheral accent — top-left */}
         <div
           className="absolute"
           style={{
-            width: '800px',
-            height: '800px',
-            top: '-200px',
-            left: '-200px',
-            background: 'radial-gradient(circle, rgba(26,10,46,0.5) 0%, transparent 70%)',
-            filter: 'blur(60px)',
+            width: '1000px',
+            height: '1000px',
+            top: '-100px',
+            left: '-100px',
+            background: 'radial-gradient(circle, rgba(30,12,55,0.7) 0%, transparent 65%)',
+            filter: 'blur(80px)',
             animation: 'cornerDrift 25s ease-in-out infinite',
             willChange: 'transform',
           }}
         />
-        {/* Layer 3: Peripheral accent — bottom-right corner, mostly off-screen */}
+        {/* Layer 3: Peripheral accent — bottom-right */}
         <div
           className="absolute"
           style={{
-            width: '900px',
-            height: '900px',
-            bottom: '-200px',
-            right: '-200px',
-            background: 'radial-gradient(circle, rgba(45,10,46,0.4) 0%, transparent 70%)',
-            filter: 'blur(60px)',
+            width: '1100px',
+            height: '1100px',
+            bottom: '-100px',
+            right: '-100px',
+            background: 'radial-gradient(circle, rgba(50,14,55,0.6) 0%, transparent 65%)',
+            filter: 'blur(80px)',
             animation: 'cornerDrift 30s ease-in-out infinite 10s',
             willChange: 'transform',
           }}
         />
-        {/* Layer 4: Central spotlight — white luminosity, no color */}
+        {/* Layer 4: Central spotlight — soft white glow */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,255,255,0.03) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 70% 55% at 50% 35%, rgba(255,255,255,0.06) 0%, transparent 70%)',
           }}
         />
-        {/* Layer 5: Grid texture — white lines, ultra-subtle */}
+        {/* Layer 5: Grid texture */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)`,
             backgroundSize: '100px 100px',
             animation: 'gridPulse 15s ease-in-out infinite',
-            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
+            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 100%)',
           }}
         />
         {/* Layer 6: Vignette — cinematic edge darkening */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.4) 100%)',
+            background: 'radial-gradient(ellipse 85% 75% at 50% 45%, transparent 55%, rgba(0,0,0,0.5) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -493,7 +494,7 @@ export default function LumoraRunway() {
         <div
           className="absolute inset-0"
           style={{
-            opacity: 0.03,
+            opacity: 0.04,
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'repeat',
             backgroundSize: '256px 256px',
@@ -696,7 +697,7 @@ export default function LumoraRunway() {
                 style={{ border: '1px solid rgba(255,255,255,0.2)' }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)';
-                  (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.03)';
+                  (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.08)';
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
@@ -798,7 +799,7 @@ export default function LumoraRunway() {
         id="features"
         style={{
           borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent 0%, rgba(139,0,255,0.04) 30%, rgba(180,40,120,0.03) 70%, transparent 100%)',
+          background: 'linear-gradient(180deg, transparent 0%, rgba(139,0,255,0.06) 30%, rgba(180,40,120,0.05) 70%, transparent 100%)',
         }}
       >
         <div className="max-w-[1280px] mx-auto">
@@ -838,7 +839,7 @@ export default function LumoraRunway() {
                   {isFeatured && (
                     <span
                       className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.12)', color: C.chrome }}
+                      style={{ backgroundColor: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: C.chrome }}
                     >
                       Most in-demand
                     </span>
@@ -863,7 +864,7 @@ export default function LumoraRunway() {
       </section>
 
       {/* ====== 5. HOW IT WORKS ====== */}
-      <section className="py-20 lg:py-[120px] px-5 md:px-10" style={{ borderTop: `1px solid ${C.border}` }}>
+      <section className="py-20 lg:py-[120px] px-5 md:px-10" style={{ borderTop: `1px solid ${C.border}`, background: `linear-gradient(180deg, ${C.bgSection} 0%, transparent 50%, ${C.bgSection} 100%)` }}>
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -973,7 +974,7 @@ export default function LumoraRunway() {
         className="py-20 lg:py-[120px] px-5 md:px-10"
         style={{
           borderTop: `1px solid ${C.border}`,
-          background: 'linear-gradient(180deg, transparent 0%, rgba(255,0,110,0.04) 30%, rgba(120,0,200,0.03) 70%, transparent 100%)',
+          background: 'linear-gradient(180deg, transparent 0%, rgba(255,0,110,0.06) 30%, rgba(120,0,200,0.05) 70%, transparent 100%)',
         }}
       >
         <div className="max-w-[1280px] mx-auto">
