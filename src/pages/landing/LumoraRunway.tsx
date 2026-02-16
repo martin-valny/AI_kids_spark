@@ -57,7 +57,7 @@ const ctaButtonStyle: React.CSSProperties = {
 
 // Card shadow system — dark idle, white underglow on hover
 const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4)';
-const cardShadowHover = '0 8px 40px rgba(0,0,0,0.5), 0 4px 30px rgba(255,255,255,0.03)';
+const cardShadowHover = '0 8px 40px rgba(0,0,0,0.5), 0 4px 30px rgba(255,255,255,0.06)';
 
 // Click flash handler for CTA buttons
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -67,8 +67,18 @@ const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
   setTimeout(() => { el.style.filter = ''; el.style.transform = ''; }, 150);
 };
 
-// CSS Keyframes
+// CSS Keyframes + Metallic Interaction Styles
 const KEYFRAMES = `
+  @keyframes atmosphericDrift1 {
+    0%   { transform: translate(0, 0);     opacity: 0.08; }
+    50%  { transform: translate(5%, 5%);   opacity: 0.12; }
+    100% { transform: translate(0, 0);     opacity: 0.08; }
+  }
+  @keyframes atmosphericDrift2 {
+    0%   { transform: translate(0, 0);     opacity: 0.06; }
+    50%  { transform: translate(-4%, -3%); opacity: 0.10; }
+    100% { transform: translate(0, 0);     opacity: 0.06; }
+  }
   @keyframes ambientBreathe {
     0%, 100% { opacity: 0.03; }
     50% { opacity: 0.07; }
@@ -80,6 +90,16 @@ const KEYFRAMES = `
   @keyframes videoColorShift {
     0%, 100% { opacity: 0.03; }
     50% { opacity: 0.06; }
+  }
+  .cta-silver { transition: filter 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease; }
+  .cta-silver:hover {
+    filter: brightness(1.12);
+    box-shadow: 0 4px 25px rgba(255,255,255,0.12);
+  }
+  .icon-chrome { transition: filter 0.3s ease, color 0.3s ease; }
+  .icon-chrome:hover {
+    color: #FFFFFF;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -344,6 +364,7 @@ export default function LumoraRunway() {
 
   const { scrollY } = useScroll();
   const videoY = useTransform(scrollY, [0, 600], [0, 120]);
+  const warmBg = useTransform(scrollY, [0, 3000], ['rgba(45,10,46,0.00)', 'rgba(45,10,46,0.04)']);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -354,10 +375,12 @@ export default function LumoraRunway() {
   const onCardEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     e.currentTarget.style.borderColor = C.borderCardH;
     e.currentTarget.style.boxShadow = cardShadowHover;
+    e.currentTarget.style.filter = 'brightness(1.08)';
   };
   const onCardLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     e.currentTarget.style.borderColor = C.borderCard;
     e.currentTarget.style.boxShadow = cardShadowIdle;
+    e.currentTarget.style.filter = 'brightness(1)';
   };
 
   return (
@@ -366,37 +389,44 @@ export default function LumoraRunway() {
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
 
-      {/* Ambient breathing background — atmospheric magenta/purple */}
+      {/* Ambient breathing background — 4-layer atmospheric system */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        {/* Large dark magenta-purple blob */}
+        {/* Layer 2: Drifting dark magenta-purple blob */}
         <div
           className="absolute w-[2500px] h-[2500px] rounded-full"
           style={{
             top: '-10%',
             left: '10%',
-            background: 'radial-gradient(circle, rgba(45,10,46,0.5) 0%, transparent 70%)',
-            animation: 'ambientBreathe 18s ease-in-out infinite',
+            background: 'radial-gradient(circle, #2D0A2E 0%, transparent 70%)',
+            animation: 'atmosphericDrift1 18s ease-in-out infinite',
             filter: 'blur(120px)',
+            willChange: 'transform, opacity',
           }}
         />
-        {/* Large dark purple blob */}
+        {/* Layer 2b: Drifting dark purple blob */}
         <div
           className="absolute w-[2500px] h-[2500px] rounded-full"
           style={{
             bottom: '-15%',
             right: '5%',
-            background: 'radial-gradient(circle, rgba(26,10,46,0.4) 0%, transparent 70%)',
-            animation: 'ambientBreathe 20s ease-in-out infinite 5s',
+            background: 'radial-gradient(circle, #1A0A2E 0%, transparent 70%)',
+            animation: 'atmosphericDrift2 20s ease-in-out infinite 5s',
             filter: 'blur(120px)',
+            willChange: 'transform, opacity',
           }}
         />
-        {/* Full-width breathing overlay */}
+        {/* Layer 3: Breathing overlay — magenta/purple opacity pulse */}
         <div
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(135deg, rgba(255,0,110,0.05) 0%, rgba(139,0,255,0.03) 100%)',
             animation: 'ambientBreathe 10s ease-in-out infinite',
           }}
+        />
+        {/* Layer 4: Scroll-responsive warmth overlay */}
+        <motion.div
+          className="absolute inset-0"
+          style={{ backgroundColor: warmBg }}
         />
       </div>
 
@@ -442,7 +472,7 @@ export default function LumoraRunway() {
             ))}
             <a
               href="/mlp/first-short"
-              className="px-6 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 hover:scale-[1.02]"
+              className="cta-silver px-6 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 hover:scale-[1.02]"
               style={ctaButtonStyle}
               onClick={handleCtaClick}
             >
@@ -490,7 +520,7 @@ export default function LumoraRunway() {
               ))}
               <a
                 href="/mlp/first-short"
-                className="mt-6 block w-full py-4 font-semibold rounded-lg text-lg text-center"
+                className="cta-silver mt-6 block w-full py-4 font-semibold rounded-lg text-lg text-center"
                 style={ctaButtonStyle}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -573,7 +603,7 @@ export default function LumoraRunway() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="/mlp/first-short"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.03] w-full sm:w-auto"
+                className="cta-silver group inline-flex items-center justify-center gap-2 px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.03] w-full sm:w-auto"
                 style={ctaButtonStyle}
                 onClick={handleCtaClick}
               >
@@ -659,7 +689,7 @@ export default function LumoraRunway() {
                 style={{
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
-                  transition: 'border-color 0.3s, box-shadow 0.3s',
+                  transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
                 }}
                 onMouseEnter={onCardEnter}
                 onMouseLeave={onCardLeave}
@@ -730,7 +760,7 @@ export default function LumoraRunway() {
                     backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
-                    transition: 'border-color 0.3s, box-shadow 0.3s',
+                    transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
                   }}
                   onMouseEnter={onCardEnter}
                   onMouseLeave={onCardLeave}
@@ -745,7 +775,7 @@ export default function LumoraRunway() {
                   )}
 
                   {IconComponent && (
-                    <div className="mb-6 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
+                    <div className="icon-chrome mb-6 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
                       <IconComponent className="w-8 h-8" strokeWidth={1.5} />
                     </div>
                   )}
@@ -794,7 +824,7 @@ export default function LumoraRunway() {
                   backgroundColor: C.bgCard,
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
-                  transition: 'border-color 0.3s, box-shadow 0.3s',
+                  transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
                 }}
                 onMouseEnter={onCardEnter}
                 onMouseLeave={onCardLeave}
@@ -852,7 +882,7 @@ export default function LumoraRunway() {
                     backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
-                    transition: 'border-color 0.3s, box-shadow 0.3s',
+                    transition: 'border-color 0.3s, box-shadow 0.3s, filter 0.3s',
                   }}
                   onMouseEnter={onCardEnter}
                   onMouseLeave={onCardLeave}
@@ -862,7 +892,7 @@ export default function LumoraRunway() {
                   </div>
                   <div className="p-6">
                     {IconComponent && (
-                      <div className="mb-3 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
+                      <div className="icon-chrome mb-3 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
                         <IconComponent className="w-6 h-6" strokeWidth={1.5} />
                       </div>
                     )}
@@ -1001,7 +1031,7 @@ export default function LumoraRunway() {
                 ))}
               </ul>
               <button
-                className="w-full h-14 font-semibold rounded-lg text-lg transition-all duration-200 hover:scale-[1.02]"
+                className="cta-silver w-full h-14 font-semibold rounded-lg text-lg transition-all duration-200 hover:scale-[1.02]"
                 style={ctaButtonStyle}
                 onClick={handleCtaClick}
               >
@@ -1106,7 +1136,7 @@ export default function LumoraRunway() {
             </p>
             <a
               href="/mlp/first-short"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.03] w-full sm:w-auto"
+              className="cta-silver group inline-flex items-center justify-center gap-2 px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.03] w-full sm:w-auto"
               style={ctaButtonStyle}
               onClick={handleCtaClick}
             >
