@@ -57,8 +57,8 @@ const ctaButtonStyle: React.CSSProperties = {
 };
 
 // Card shadow system — dark idle, white underglow on hover
-const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4)';
-const cardShadowHover = '0 8px 40px rgba(0,0,0,0.5), 0 4px 30px rgba(255,255,255,0.06)';
+const cardShadowIdle = '0 4px 20px rgba(0,0,0,0.4), 0 0 30px rgba(139,0,255,0.08)';
+const cardShadowHover = '0 12px 40px rgba(139,0,255,0.25), 0 6px 20px rgba(255,0,110,0.15), 0 0 1px rgba(255,255,255,0.1)';
 
 // Click handler for CTA buttons — gentle press
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -69,27 +69,19 @@ const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
 
 // CSS Keyframes + Liquid Metal Styles
 const KEYFRAMES = `
-  /* ---- ATMOSPHERIC BACKGROUND ---- */
-  @keyframes atmosphericDrift1 {
-    0%   { transform: translate(0, 0) scale(1);       opacity: 0.35; }
-    33%  { transform: translate(4%, 6%) scale(1.03);   opacity: 0.45; }
-    66%  { transform: translate(-2%, 3%) scale(0.98);  opacity: 0.38; }
-    100% { transform: translate(0, 0) scale(1);        opacity: 0.35; }
+  /* ---- GEOMETRIC GRID BACKGROUND ---- */
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.6; }
+    50%      { opacity: 1; }
   }
-  @keyframes atmosphericDrift2 {
-    0%   { transform: translate(0, 0) scale(1);        opacity: 0.30; }
-    33%  { transform: translate(-5%, -4%) scale(1.02);  opacity: 0.40; }
-    66%  { transform: translate(3%, -2%) scale(0.97);   opacity: 0.33; }
-    100% { transform: translate(0, 0) scale(1);         opacity: 0.30; }
-  }
-  @keyframes atmosphericDrift3 {
-    0%   { transform: translate(0, 0) scale(1);       opacity: 0.20; }
-    50%  { transform: translate(3%, -5%) scale(1.04);  opacity: 0.30; }
-    100% { transform: translate(0, 0) scale(1);        opacity: 0.20; }
+  @keyframes gridSweep {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
   }
   @keyframes ambientBreathe {
     0%, 100% { opacity: 0.06; }
-    50%      { opacity: 0.14; }
+    50%      { opacity: 0.12; }
   }
 
   /* ---- LIQUID METAL SHIMMER ---- */
@@ -120,7 +112,7 @@ const KEYFRAMES = `
 
   /* ---- LIQUID METAL CTA ---- */
   .cta-silver {
-    animation: liquidShimmer 4s ease-in-out infinite;
+    animation: liquidShimmer 10s ease-in-out infinite;
     background-size: 200% 100%;
     transition: box-shadow 0.4s ease, transform 0.3s ease;
   }
@@ -136,12 +128,12 @@ const KEYFRAMES = `
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: textShimmer 6s ease-in-out infinite;
+    animation: textShimmer 14s ease-in-out infinite;
   }
 
   /* ---- BREATHING HERO ---- */
   .hero-breathe {
-    animation: textBreathe 5s ease-in-out infinite;
+    animation: textBreathe 12s ease-in-out infinite;
   }
 
   /* ---- CHROME ICONS ---- */
@@ -153,11 +145,18 @@ const KEYFRAMES = `
 
   /* ---- GLASS CARD HOVER (CSS-only) ---- */
   .glass-card {
-    transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-left: 1px solid rgba(255,255,255,0.04);
+    transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
   }
   .glass-card:hover {
     border-color: rgba(255,255,255,0.18) !important;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.04) !important;
+    box-shadow: 0 12px 40px rgba(139,0,255,0.2), 0 6px 20px rgba(255,0,110,0.12), 0 0 1px rgba(255,255,255,0.1) !important;
+    transform: translateY(-8px) scale(1.01);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -439,54 +438,63 @@ export default function LumoraRunway() {
             background: 'radial-gradient(ellipse 120% 80% at 50% 30%, rgba(30,10,40,0.5) 0%, transparent 70%)',
           }}
         />
-        {/* Layer 2: Large magenta blob — top-left, drifting */}
+        {/* Layer 2: Geometric grid — structured, technical */}
         <div
-          className="absolute rounded-full"
+          className="absolute inset-0"
           style={{
-            width: '900px',
-            height: '900px',
-            top: '-15%',
-            left: '-5%',
-            background: 'radial-gradient(circle, rgba(180,40,120,0.35) 0%, rgba(120,20,80,0.15) 40%, transparent 70%)',
-            animation: 'atmosphericDrift1 22s ease-in-out infinite',
-            filter: 'blur(80px)',
-            willChange: 'transform, opacity',
+            backgroundImage: `linear-gradient(rgba(139,0,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(139,0,255,0.07) 1px, transparent 1px)`,
+            backgroundSize: '120px 120px',
+            animation: 'gridPulse 15s ease-in-out infinite',
+            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
           }}
         />
-        {/* Layer 2b: Deep purple blob — bottom-right, drifting */}
+        {/* Layer 2b: Gradient sweep across grid */}
         <div
-          className="absolute rounded-full"
+          className="absolute inset-0"
           style={{
-            width: '1000px',
-            height: '1000px',
-            bottom: '-20%',
-            right: '-10%',
-            background: 'radial-gradient(circle, rgba(100,30,180,0.30) 0%, rgba(60,15,120,0.12) 40%, transparent 70%)',
-            animation: 'atmosphericDrift2 26s ease-in-out infinite 4s',
-            filter: 'blur(80px)',
-            willChange: 'transform, opacity',
+            background: 'linear-gradient(135deg, rgba(139,0,255,0.06) 0%, rgba(255,0,110,0.04) 50%, transparent 100%)',
+            backgroundSize: '200% 200%',
+            animation: 'gridSweep 20s ease-in-out infinite',
           }}
         />
-        {/* Layer 2c: Accent pink blob — center-right, slow drift */}
+        {/* Layer 2c: Subtle dot accents at grid intersections */}
         <div
-          className="absolute rounded-full"
+          className="absolute inset-0"
           style={{
-            width: '600px',
-            height: '600px',
-            top: '30%',
-            right: '15%',
-            background: 'radial-gradient(circle, rgba(255,50,130,0.18) 0%, transparent 65%)',
-            animation: 'atmosphericDrift3 30s ease-in-out infinite 8s',
-            filter: 'blur(100px)',
-            willChange: 'transform, opacity',
+            backgroundImage: 'radial-gradient(circle 1.5px, rgba(139,0,255,0.12) 0%, transparent 100%)',
+            backgroundSize: '120px 120px',
+            animation: 'gridPulse 15s ease-in-out infinite 7.5s',
+            maskImage: 'radial-gradient(ellipse 60% 50% at 50% 40%, black 0%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 40%, black 0%, transparent 100%)',
           }}
         />
         {/* Layer 3: Full-screen breathing wash */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(135deg, rgba(255,0,110,0.08) 0%, rgba(139,0,255,0.05) 50%, rgba(80,0,180,0.06) 100%)',
-            animation: 'ambientBreathe 8s ease-in-out infinite',
+            background: 'linear-gradient(135deg, rgba(255,0,110,0.06) 0%, rgba(139,0,255,0.04) 50%, rgba(80,0,180,0.05) 100%)',
+            animation: 'ambientBreathe 15s ease-in-out infinite',
+          }}
+        />
+        {/* Layer 5: Vignette — cinematic edge darkening */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.4) 100%)',
+            pointerEvents: 'none',
+          }}
+        />
+        {/* Layer 6: Film grain noise texture */}
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: 0.03,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: '256px 256px',
+            mixBlendMode: 'overlay' as const,
+            pointerEvents: 'none',
           }}
         />
         {/* Layer 4: Scroll-responsive warmth */}
@@ -654,15 +662,15 @@ export default function LumoraRunway() {
             </span>
 
             <h1
-              className="hero-breathe text-[36px] sm:text-[48px] lg:text-[72px] font-bold leading-[1.1] mb-6"
-              style={{ letterSpacing: '-0.02em' }}
+              className="hero-breathe text-[36px] sm:text-[48px] lg:text-[72px] font-semibold leading-[1.12] mb-6"
+              style={{ letterSpacing: '-0.01em' }}
             >
               <span className="text-liquid-metal">Learn AI. Ship Real Work.</span>{' '}
               <br className="hidden sm:block" />
               <span className="text-liquid-metal">Open New Opportunities.</span>
             </h1>
 
-            <p className="text-lg lg:text-xl font-normal max-w-[640px] mx-auto leading-[1.5] mb-10" style={{ color: C.textSec }}>
+            <p className="text-lg lg:text-xl font-normal max-w-[640px] mx-auto leading-[1.65] mb-10" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}>
               60–90 minutes to your first AI-powered portfolio piece. Professional video editing, workflow automation, content writing, and music production.
             </p>
 
@@ -863,7 +871,7 @@ export default function LumoraRunway() {
           >
             How It Works
           </motion.h2>
-          <p className="text-center text-lg mb-16" style={{ color: C.textSec }}>
+          <p className="text-center text-lg mb-16" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}>
             No fluff. No filler. Build real projects and develop real skills.
           </p>
 
