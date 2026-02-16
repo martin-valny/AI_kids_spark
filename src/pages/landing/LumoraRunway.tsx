@@ -427,7 +427,7 @@ export default function LumoraRunway() {
   // No JS-based style manipulation needed
 
   return (
-    <div className="relative z-[1] min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ backgroundColor: C.bg, color: C.text }}>
+    <div className="min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ backgroundColor: C.bg, color: C.text }}>
 
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
@@ -508,6 +508,9 @@ export default function LumoraRunway() {
           style={{ backgroundColor: warmBg }}
         />
       </div>
+
+      {/* Content wrapper — z-[1] ensures all content renders above the fixed background */}
+      <div className="relative z-[1]">
 
       {/* ====== 1. NAVIGATION ====== */}
       <nav
@@ -1299,6 +1302,8 @@ export default function LumoraRunway() {
           </div>
         </div>
       </footer>
+
+      </div>{/* end content wrapper */}
     </div>
   );
 }
