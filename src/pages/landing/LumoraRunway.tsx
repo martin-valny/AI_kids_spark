@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import NeonParticleCanvas from '@/components/effects/NeonParticleCanvas';
 import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mail, ArrowRight, Menu, X, Check } from 'lucide-react';
 
 /**
@@ -106,11 +107,6 @@ const KEYFRAMES = `
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
   }
-  @keyframes videoColorShift {
-    0%, 100% { opacity: 0.04; }
-    50% { opacity: 0.08; }
-  }
-
   /* ---- LIQUID METAL CTA ---- */
   .cta-silver {
     animation: liquidShimmer 10s ease-in-out infinite;
@@ -412,9 +408,6 @@ export default function LumoraRunway() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  const { scrollY } = useScroll();
-  const videoY = useTransform(scrollY, [0, 600], [0, 120]);
-
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -594,47 +587,47 @@ export default function LumoraRunway() {
       </AnimatePresence>
 
       {/* ====== 2. HERO ====== */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
-        <motion.video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover hidden md:block"
-          style={{ y: videoY }}
-          poster="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&h=1080&fit=crop&q=80"
+      <section ref={heroRef} className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '100vh' }}>
+        {/* Bordered animation container — fits one screen with visible borders */}
+        <div
+          className="absolute hidden md:block"
+          style={{
+            top: '88px',
+            left: '24px',
+            right: '24px',
+            bottom: '32px',
+            border: `1px solid ${C.border}`,
+            borderRadius: '16px',
+            overflow: 'hidden',
+            background: 'rgba(10,10,15,0.5)',
+          }}
         >
-          <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
-        </motion.video>
-        {/* Mobile static fallback */}
-        <img
-          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&h=1080&fit=crop&q=80"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover md:hidden"
-        />
-        {/* Gradient overlay */}
+          <NeonParticleCanvas particleCount={60} />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,10,15,0.5) 100%)' }}
+          />
+        </div>
+        {/* Mobile: tighter margins */}
         <div
-          className="absolute inset-0"
+          className="absolute md:hidden"
           style={{
-            background: 'linear-gradient(180deg, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.4) 40%, rgba(10,10,10,0.85) 100%)',
+            top: '72px',
+            left: '12px',
+            right: '12px',
+            bottom: '20px',
+            border: `1px solid ${C.border}`,
+            borderRadius: '12px',
+            overflow: 'hidden',
+            background: 'rgba(10,10,15,0.5)',
           }}
-        />
-        {/* Magenta color shift overlay — desktop only */}
-        <div
-          className="absolute inset-0 pointer-events-none hidden md:block"
-          style={{
-            background: 'linear-gradient(135deg, rgba(255,0,110,0.02) 0%, transparent 50%, rgba(139,0,255,0.015) 100%)',
-            animation: 'videoColorShift 8s ease-in-out infinite',
-          }}
-        />
-        {/* Vignette */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse at center, transparent 50%, rgba(10,10,10,0.6) 100%)',
-          }}
-        />
+        >
+          <NeonParticleCanvas particleCount={30} />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,10,15,0.5) 100%)' }}
+          />
+        </div>
 
         <div className="relative z-10 text-center px-5 max-w-[920px] mx-auto pt-24">
           <motion.div
