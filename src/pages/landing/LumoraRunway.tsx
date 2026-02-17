@@ -141,18 +141,17 @@ const KEYFRAMES = `
     filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 20px rgba(255,255,255,0.15));
   }
 
-  /* ---- GLASS CARD HOVER (CSS-only) ---- */
+  /* ---- GLASS CARD HOVER (CSS for glow/shadow, FM whileHover for transform) ---- */
   .glass-card {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-top: 1px solid rgba(255,255,255,0.10);
     border-left: 1px solid rgba(255,255,255,0.06);
-    transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, background-color 0.4s ease;
+    transition: border-color 0.4s ease, box-shadow 0.5s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, background-color 0.4s ease;
   }
   .glass-card:hover {
     border-color: rgba(255,255,255,0.35) !important;
     box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.08), 0 0 1px rgba(255,255,255,0.2) !important;
-    transform: translateY(-8px) scale(1.01) !important;
     background-color: rgba(255,255,255,0.12) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -348,7 +347,11 @@ const scaleReveal = {
   }),
 };
 
-// Hover variants removed — using CSS .glass-card for smoother GPU-accelerated transitions
+const cardHover = {
+  y: -8,
+  scale: 1.01,
+  transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
+};
 
 // ============================================================
 // SUB-COMPONENTS
@@ -737,10 +740,10 @@ export default function LumoraRunway() {
             Featured Work
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: C.textSec }}
           >
             Real projects from students who went from zero to shipping real work.
@@ -753,6 +756,7 @@ export default function LumoraRunway() {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
+                whileHover={cardHover}
                 viewport={{ once: false, amount: 0.3 }}
                 variants={scaleReveal}
                 className="glass-card group relative rounded-xl overflow-hidden cursor-pointer"
@@ -803,10 +807,10 @@ export default function LumoraRunway() {
             <span className="text-liquid-metal">Four Skill Paths</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16 max-w-xl mx-auto leading-[1.5]" style={{ color: C.textSec }}
           >
             Each path takes you from zero to a portfolio you can show — in hours, not months.
@@ -822,6 +826,7 @@ export default function LumoraRunway() {
                   custom={i}
                   initial="hidden"
                   whileInView="visible"
+                  whileHover={cardHover}
                   viewport={{ once: true }}
                   variants={fadeUp}
                   className="glass-card relative rounded-xl p-8 group overflow-hidden"
@@ -872,10 +877,10 @@ export default function LumoraRunway() {
             How It Works
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}
           >
             No fluff. No filler. Build real projects and develop real skills.
@@ -888,6 +893,7 @@ export default function LumoraRunway() {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
+                whileHover={cardHover}
                 viewport={{ once: true }}
                 variants={fadeUp}
                 className="glass-card rounded-xl overflow-hidden group"
@@ -930,10 +936,10 @@ export default function LumoraRunway() {
             <span className="text-liquid-metal">What You'll Build</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: C.textSec }}
           >
             Real projects you can post, sell, or add to your portfolio.
@@ -948,6 +954,7 @@ export default function LumoraRunway() {
                   custom={i}
                   initial="hidden"
                   whileInView="visible"
+                  whileHover={cardHover}
                   viewport={{ once: true }}
                   variants={fadeUp}
                   className="glass-card rounded-xl overflow-hidden group"
@@ -993,10 +1000,10 @@ export default function LumoraRunway() {
             What Our Students Say
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: C.textSec }}
           >
             12,347 students are already building with AI.
@@ -1009,6 +1016,7 @@ export default function LumoraRunway() {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
+                whileHover={cardHover}
                 viewport={{ once: true }}
                 variants={fadeUp}
                 className="rounded-xl p-6"
@@ -1055,10 +1063,10 @@ export default function LumoraRunway() {
             <span className="text-liquid-metal">Simple, Transparent Pricing</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg mb-16" style={{ color: C.textSec }}
           >
             Start free. Go Pro for less than a coffee. Cancel anytime.
@@ -1080,7 +1088,7 @@ export default function LumoraRunway() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={cardHover}
               className="relative rounded-[11px] p-8 md:p-12 text-left m-[1px]"
               style={{ backgroundColor: C.bgCard }}
             >
@@ -1149,10 +1157,10 @@ export default function LumoraRunway() {
             Frequently Asked Questions
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: C.textSec }}
           >
             Everything you need to know about Lumora.
