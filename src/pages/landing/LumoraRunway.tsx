@@ -152,7 +152,7 @@ const KEYFRAMES = `
   .glass-card:hover {
     border-color: rgba(255,255,255,0.35) !important;
     box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.08), 0 0 1px rgba(255,255,255,0.2) !important;
-    transform: translateY(-8px) scale(1.01);
+    transform: translateY(-8px) scale(1.01) !important;
     background-color: rgba(255,255,255,0.12) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -345,7 +345,6 @@ const scaleReveal = {
     opacity: 1,
     scale: 1,
     transition: { duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
-    transitionEnd: { scale: undefined },
   }),
 };
 
