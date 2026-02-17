@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import NeonParticleCanvas from '@/components/effects/NeonParticleCanvas';
+import AnimatedBackground from '@/components/layout/AnimatedBackground';
 import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mail, ArrowRight, Menu, X, Check } from 'lucide-react';
 
 /**
@@ -425,8 +426,8 @@ export default function LumoraRunway() {
 
       {/* Premium dark background — 4-layer system per spec */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        {/* Layer 1: True black base (90% of what you see) */}
-        <div className="absolute inset-0" style={{ background: '#0A0A0F' }} />
+        {/* Layer 1: Scroll-responsive base — black → dark purple → black */}
+        <AnimatedBackground />
         {/* Layer 2: Subtle peripheral color — top-left corner only, 5% opacity */}
         <div
           className="absolute"
