@@ -157,6 +157,26 @@ const KEYFRAMES = `
     -webkit-backdrop-filter: blur(12px);
   }
 
+  /* ---- NAV LINK UNDERLINE ---- */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -373,7 +393,7 @@ function CountUp({ end, suffix = '', prefix = '', decimals = 0, delay = 0 }: {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
           const startTime = performance.now() + delay * 1000;
-          const duration = 1500;
+          const duration = 2000;
           const animate = (now: number) => {
             const elapsed = now - startTime;
             if (elapsed < 0) { requestAnimationFrame(animate); return; }
@@ -391,7 +411,7 @@ function CountUp({ end, suffix = '', prefix = '', decimals = 0, delay = 0 }: {
           requestAnimationFrame(animate);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -530,7 +550,7 @@ export default function LumoraRunway() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium uppercase tracking-[0.02em] transition-colors duration-200"
+                className="nav-link text-sm font-medium uppercase tracking-[0.02em] transition-colors duration-200"
                 style={{ color: C.textTer }}
                 onMouseEnter={(e) => { (e.target as HTMLElement).style.color = C.text; }}
                 onMouseLeave={(e) => { (e.target as HTMLElement).style.color = C.textTer; }}
@@ -682,15 +702,17 @@ export default function LumoraRunway() {
               </a>
               <a
                 href="#features"
-                className="inline-flex items-center justify-center px-8 py-4 text-white font-medium rounded-lg text-base transition-all duration-200 w-full sm:w-auto"
-                style={{ border: '1px solid rgba(255,255,255,0.2)' }}
+                className="inline-flex items-center justify-center px-8 py-4 text-white font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
+                style={{ border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)';
-                  (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.08)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.4)';
+                  (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.10)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
                   (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
                 }}
               >
                 Explore Modules
@@ -846,7 +868,7 @@ export default function LumoraRunway() {
                   )}
 
                   {IconComponent && (
-                    <div className="icon-chrome mb-6 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
+                    <div className="icon-chrome mb-6 text-[#C7C7CC] transition-all duration-300 group-hover:text-white group-hover:scale-110">
                       <IconComponent className="w-8 h-8" strokeWidth={1.5} />
                     </div>
                   )}
@@ -969,11 +991,11 @@ export default function LumoraRunway() {
                   </div>
                   <div className="p-6">
                     {IconComponent && (
-                      <div className="icon-chrome mb-3 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
+                      <div className="icon-chrome mb-3 text-[#C7C7CC] transition-all duration-300 group-hover:text-white group-hover:scale-110">
                         <IconComponent className="w-6 h-6" strokeWidth={1.5} />
                       </div>
                     )}
-                    <h3 className="font-semibold text-lg text-white mb-1">{item.title}</h3>
+                    <h3 className="font-semibold text-lg text-white mb-1 transition-colors duration-300 group-hover:text-[#F5F5F7]">{item.title}</h3>
                     <p className="text-sm leading-[1.6]" style={{ color: C.textSec }}>{item.description}</p>
                   </div>
                 </motion.div>
@@ -1019,7 +1041,7 @@ export default function LumoraRunway() {
                 whileHover={cardHover}
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
-                className="rounded-xl p-6"
+                className="rounded-xl p-6 cursor-pointer"
                 style={{
                   backgroundColor: 'rgba(20,20,20,0.5)',
                   border: `1px solid ${C.borderCard}`,
@@ -1170,17 +1192,17 @@ export default function LumoraRunway() {
             {FAQS.map((faq, i) => (
               <div key={i} style={{ borderBottom: `1px solid ${C.border}` }}>
                 <button
-                  className="w-full text-left py-6 flex justify-between items-center gap-4 group"
+                  className="w-full text-left py-6 flex justify-between items-center gap-4 group cursor-pointer"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 >
                   <span
-                    className="text-base sm:text-lg font-medium text-white transition-colors duration-200 group-hover:text-[#E8E8EA]"
+                    className="text-base sm:text-lg font-medium text-white transition-colors duration-200 group-hover:text-[#F5F5F7]"
                   >
                     {faq.q}
                   </span>
                   <span
-                    className={`text-xl flex-shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-45' : ''}`}
-                    style={{ color: C.textTer }}
+                    className={`text-xl flex-shrink-0 transition-all duration-300 ${openFaq === i ? 'rotate-45' : ''}`}
+                    style={{ color: openFaq === i ? C.text : C.textTer }}
                   >
                     +
                   </span>
@@ -1267,8 +1289,9 @@ export default function LumoraRunway() {
                 onBlur={(e) => { e.currentTarget.style.borderColor = C.border; }}
               />
               <button
-                className="px-6 py-3 font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02]"
-                style={{ background: C.gradientCta, color: '#0A0A0F' }}
+                className="cta-silver px-6 py-3 font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                style={ctaButtonStyle}
+                onClick={handleCtaClick}
               >
                 Subscribe
               </button>
