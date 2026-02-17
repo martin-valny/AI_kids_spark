@@ -730,20 +730,20 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="student-work">
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             Featured Work
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: C.textSec }}
           >
             Real projects from students who went from zero to shipping real work.
@@ -797,20 +797,20 @@ export default function LumoraRunway() {
       >
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             <span className="text-liquid-metal">Four Skill Paths</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16 max-w-xl mx-auto leading-[1.5]" style={{ color: C.textSec }}
           >
             Each path takes you from zero to a portfolio you can show — in hours, not months.
@@ -827,7 +827,7 @@ export default function LumoraRunway() {
                   initial="hidden"
                   whileInView="visible"
                   whileHover={cardHover}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={fadeUp}
                   className="glass-card relative rounded-xl p-8 group overflow-hidden"
                   style={{
@@ -867,20 +867,20 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             How It Works
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}
           >
             No fluff. No filler. Build real projects and develop real skills.
@@ -894,7 +894,7 @@ export default function LumoraRunway() {
                 initial="hidden"
                 whileInView="visible"
                 whileHover={cardHover}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
                 className="glass-card rounded-xl overflow-hidden group"
                 style={{
@@ -926,20 +926,20 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="use-cases" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             <span className="text-liquid-metal">What You'll Build</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: C.textSec }}
           >
             Real projects you can post, sell, or add to your portfolio.
@@ -955,7 +955,7 @@ export default function LumoraRunway() {
                   initial="hidden"
                   whileInView="visible"
                   whileHover={cardHover}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.2 }}
                   variants={fadeUp}
                   className="glass-card rounded-xl overflow-hidden group"
                   style={{
@@ -990,20 +990,20 @@ export default function LumoraRunway() {
       >
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             What Our Students Say
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: C.textSec }}
           >
             12,347 students are already building with AI.
@@ -1017,7 +1017,7 @@ export default function LumoraRunway() {
                 initial="hidden"
                 whileInView="visible"
                 whileHover={cardHover}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
                 className="rounded-xl p-6"
                 style={{
@@ -1053,20 +1053,20 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="pricing" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto text-center">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             <span className="text-liquid-metal">Simple, Transparent Pricing</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg mb-16" style={{ color: C.textSec }}
           >
             Start free. Go Pro for less than a coffee. Cancel anytime.
@@ -1147,20 +1147,20 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="faq" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-3xl mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             Frequently Asked Questions
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-center text-lg mb-16" style={{ color: C.textSec }}
           >
             Everything you need to know about Lumora.
