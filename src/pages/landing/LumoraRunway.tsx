@@ -727,18 +727,24 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="student-work">
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             Featured Work
           </motion.h2>
-          <p className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: C.textSec }}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: C.textSec }}
+          >
             Real projects from students who went from zero to shipping real work.
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {STUDENT_PORTFOLIO.map((student, i) => (
@@ -787,18 +793,24 @@ export default function LumoraRunway() {
       >
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             <span className="text-liquid-metal">Four Skill Paths</span>
           </motion.h2>
-          <p className="text-center text-lg mb-16 max-w-xl mx-auto leading-[1.5]" style={{ color: C.textSec }}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center text-lg mb-16 max-w-xl mx-auto leading-[1.5]" style={{ color: C.textSec }}
+          >
             Each path takes you from zero to a portfolio you can show — in hours, not months.
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {FEATURES.map((f, i) => {
@@ -850,18 +862,24 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             How It Works
           </motion.h2>
-          <p className="text-center text-lg mb-16" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center text-lg mb-16" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}
+          >
             No fluff. No filler. Build real projects and develop real skills.
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {HOW_IT_WORKS.map((item, i) => (
@@ -902,18 +920,24 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="use-cases" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             <span className="text-liquid-metal">What You'll Build</span>
           </motion.h2>
-          <p className="text-center text-lg mb-16" style={{ color: C.textSec }}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center text-lg mb-16" style={{ color: C.textSec }}
+          >
             Real projects you can post, sell, or add to your portfolio.
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {USE_CASES.map((item, i) => {
@@ -959,18 +983,24 @@ export default function LumoraRunway() {
       >
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             What Our Students Say
           </motion.h2>
-          <p className="text-center text-lg mb-16" style={{ color: C.textSec }}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center text-lg mb-16" style={{ color: C.textSec }}
+          >
             12,347 students are already building with AI.
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {TESTIMONIALS.map((t, i) => (
@@ -1015,18 +1045,24 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="pricing" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto text-center">
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             <span className="text-liquid-metal">Simple, Transparent Pricing</span>
           </motion.h2>
-          <p className="text-lg mb-16" style={{ color: C.textSec }}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-lg mb-16" style={{ color: C.textSec }}
+          >
             Start free. Go Pro for less than a coffee. Cancel anytime.
-          </p>
+          </motion.p>
 
           {/* Pro Card with silver border */}
           <div className="max-w-md mx-auto mb-12 rounded-xl relative group/pricing">
@@ -1103,18 +1139,24 @@ export default function LumoraRunway() {
       <section className="py-20 lg:py-[120px] px-5 md:px-10" id="faq" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-3xl mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
             Frequently Asked Questions
           </motion.h2>
-          <p className="text-center text-lg mb-16" style={{ color: C.textSec }}>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center text-lg mb-16" style={{ color: C.textSec }}
+          >
             Everything you need to know about Lumora.
-          </p>
+          </motion.p>
 
           <div className="space-y-0">
             {FAQS.map((faq, i) => (
