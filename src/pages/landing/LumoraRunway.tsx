@@ -339,6 +339,16 @@ const fadeUp = {
   }),
 };
 
+const scaleReveal = {
+  hidden: { opacity: 0.5, scale: 0.88 },
+  visible: (i: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    transitionEnd: { scale: undefined },
+  }),
+};
+
 // Hover variants removed — using CSS .glass-card for smoother GPU-accelerated transitions
 
 // ============================================================
@@ -738,8 +748,8 @@ export default function LumoraRunway() {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
+                viewport={{ once: false, amount: 0.3 }}
+                variants={scaleReveal}
                 className="glass-card group relative rounded-xl overflow-hidden cursor-pointer"
                 style={{
                   border: `1px solid ${C.borderCard}`,
