@@ -419,7 +419,7 @@ export default function LumoraRunway() {
   // No JS-based style manipulation needed
 
   return (
-    <div className="min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ backgroundColor: C.bg, color: C.text }}>
+    <div className="min-h-screen font-sans overflow-x-hidden scroll-smooth" style={{ color: C.text }}>
 
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
@@ -467,7 +467,7 @@ export default function LumoraRunway() {
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.4) 100%)',
+            background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.25) 100%)',
           }}
         />
         {/* Layer 4: Grid texture — digital precision, 2% opacity */}

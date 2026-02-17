@@ -12,7 +12,7 @@ export default function AnimatedBackground() {
   const backgroundColor = useTransform(
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
-    ['#000000', '#0F0A1A', '#1A0A2E', '#0F0A1A', '#000000'],
+    ['#050508', '#150D28', '#2D0A3E', '#150D28', '#050508'],
   );
 
   return (
