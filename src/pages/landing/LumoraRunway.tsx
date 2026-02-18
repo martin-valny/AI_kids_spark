@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import NeonParticleCanvas from '@/components/effects/NeonParticleCanvas';
 import AnimatedBackground from '@/components/layout/AnimatedBackground';
 import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mail, ArrowRight, Menu, X, Check } from 'lucide-react';
 
@@ -30,9 +29,9 @@ import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mai
 // ============================================================
 
 const C = {
-  bg: '#0A0A0F',
-  bgCard: 'rgba(255,255,255,0.07)',
-  bgHover: 'rgba(255,255,255,0.12)',
+  bg: '#000000',
+  bgCard: 'rgba(255,255,255,0.97)',
+  bgHover: 'rgba(255,255,255,1)',
   text: '#FFFFFF',
   textSec: '#C7C7CC',
   textTer: '#8E8E93',
@@ -42,11 +41,22 @@ const C = {
   steel: '#8E8E93',
   border: 'rgba(255,255,255,0.10)',
   borderH: 'rgba(255,255,255,0.25)',
-  borderCard: 'rgba(255,255,255,0.12)',
-  borderCardH: 'rgba(255,255,255,0.35)',
-  navBg: 'rgba(10,10,15,0.90)',
+  borderCard: 'rgba(0,0,0,0.08)',
+  borderCardH: 'rgba(0,0,0,0.14)',
+  navBg: 'rgba(0,0,0,0.90)',
   navBorder: 'rgba(255,255,255,0.08)',
   gradientCta: 'linear-gradient(135deg, #E8E8EA, #F5F5F7)',
+  // Magenta accent system
+  magenta: '#ff0080',
+  magentaGrad: 'linear-gradient(135deg, #ff0080, #ff4da6)',
+  magentaGlow: '0 4px 12px rgba(255,0,128,0.3)',
+  magentaGlowH: '0 6px 20px rgba(255,0,128,0.4)',
+  // Card text hierarchy (dark on white)
+  cardText: '#0a0a0a',
+  cardTextH3: '#1a1a1a',
+  cardTextBody: '#4a4a4a',
+  cardTextMeta: '#6a6a6a',
+  cardTextTer: '#9a9a9a',
 };
 
 // Shared CTA button style — liquid metal shimmer
@@ -58,9 +68,9 @@ const ctaButtonStyle: React.CSSProperties = {
   transition: 'box-shadow 0.4s ease, transform 0.3s ease, background-position 0.6s ease',
 };
 
-// Card shadow system — dark idle, white underglow on hover
-const cardShadowIdle = '0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)';
-const cardShadowHover = '0 12px 40px rgba(0,0,0,0.7), 0 0 30px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.15)';
+// Card shadow system — elevation for white cards on dark background
+const cardShadowIdle = '0 4px 24px rgba(0,0,0,0.15)';
+const cardShadowHover = '0 8px 40px rgba(0,0,0,0.22)';
 
 // Click handler for CTA buttons — gentle press
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -141,20 +151,65 @@ const KEYFRAMES = `
     filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 20px rgba(255,255,255,0.15));
   }
 
-  /* ---- GLASS CARD HOVER (CSS for glow/shadow, FM whileHover for transform) ---- */
-  .glass-card {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(255,255,255,0.10);
-    border-left: 1px solid rgba(255,255,255,0.06);
-    transition: border-color 0.4s ease, box-shadow 0.5s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, background-color 0.4s ease;
+  /* ---- BLOB ANIMATIONS ---- */
+  @keyframes blob1Move {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(150px, -100px) scale(1.1); }
+    50%  { transform: translate(200px, 80px) scale(1); }
+    75%  { transform: translate(-50px, 120px) scale(1.05); }
+    100% { transform: translate(0, 0) scale(1); }
   }
-  .glass-card:hover {
-    border-color: rgba(255,255,255,0.35) !important;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.08), 0 0 1px rgba(255,255,255,0.2) !important;
-    background-color: rgba(255,255,255,0.12) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+  @keyframes blob1Opacity {
+    0%, 100% { opacity: 0.25; }
+    50%      { opacity: 0.32; }
+  }
+  @keyframes blob2Move {
+    0%   { transform: translate(0, 0) scale(1); }
+    30%  { transform: translate(-120px, 80px) scale(0.9); }
+    60%  { transform: translate(80px, -150px) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes blob2Opacity {
+    0%, 100% { opacity: 0.20; }
+    50%      { opacity: 0.28; }
+  }
+  @keyframes blob3Move {
+    0%   { transform: translate(0, 0) scale(1); }
+    40%  { transform: translate(-80px, 120px) scale(1.2); }
+    70%  { transform: translate(100px, -80px) scale(0.85); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes blob3Opacity {
+    0%, 100% { opacity: 0.15; }
+    50%      { opacity: 0.20; }
+  }
+  @keyframes blob4Move {
+    0%   { transform: translate(0, 0) scale(1); }
+    35%  { transform: translate(100px, 150px) scale(0.9); }
+    65%  { transform: translate(-150px, -80px) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes blob4Opacity {
+    0%, 100% { opacity: 0.18; }
+    50%      { opacity: 0.24; }
+  }
+
+  /* ---- BLOB BASE STYLE ---- */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* ---- WHITE CARD ELEVATION ---- */
+  .white-card {
+    background: rgba(255, 255, 255, 0.97);
+    transition: box-shadow 0.4s ease;
+  }
+  .white-card:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.22) !important;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -436,63 +491,67 @@ export default function LumoraRunway() {
       {/* Injected CSS Keyframes */}
       <style>{KEYFRAMES}</style>
 
-      {/* Premium dark background — 4-layer system per spec */}
+      {/* Animated gradient blob background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        {/* Layer 1: Scroll-responsive base — black → dark purple → black */}
+        {/* Base: pure black */}
         <AnimatedBackground />
-        {/* Layer 2: Subtle peripheral color — top-left corner only, 5% opacity */}
-        <div
-          className="absolute"
-          style={{
-            width: '600px',
-            height: '600px',
-            top: '-250px',
-            left: '-250px',
-            background: 'radial-gradient(circle, rgba(30,12,55,0.05) 0%, transparent 70%)',
-            filter: 'blur(80px)',
-            animation: 'cornerDrift 25s ease-in-out infinite',
-            willChange: 'transform',
-          }}
-        />
-        {/* Layer 2b: Subtle peripheral color — bottom-right corner only, 4% opacity */}
-        <div
-          className="absolute"
-          style={{
-            width: '700px',
-            height: '700px',
-            bottom: '-250px',
-            right: '-250px',
-            background: 'radial-gradient(circle, rgba(45,10,46,0.04) 0%, transparent 70%)',
-            filter: 'blur(80px)',
-            animation: 'cornerDrift 30s ease-in-out infinite 10s',
-            willChange: 'transform',
-          }}
-        />
-        {/* Layer 3: Content spotlight — no color, luminosity only */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,255,255,0.03) 0%, transparent 70%)',
-          }}
-        />
-        {/* Layer 3b: Vignette — cinematic edge darkening */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.25) 100%)',
-          }}
-        />
-        {/* Layer 4: Grid texture — digital precision, 2% opacity */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)`,
-            backgroundSize: '100px 100px',
-            animation: 'gridPulse 15s ease-in-out infinite',
-            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
-          }}
-        />
+
+        {/* Blob 4 — Deep purple, top-left */}
+        <div className="blob" style={{
+          width: '700px', height: '700px',
+          top: '-200px', left: '-200px',
+          background: 'radial-gradient(circle, #6b21a8 0%, transparent 70%)',
+          filter: 'blur(140px)',
+          animation: 'blob4Move 90s ease-in-out infinite, blob4Opacity 32s ease-in-out infinite',
+          animationDelay: '0s, 5s',
+        }} />
+
+        {/* Blob 2 — Purple, bottom-left */}
+        <div className="blob" style={{
+          width: '600px', height: '600px',
+          bottom: '-150px', left: '-100px',
+          background: 'radial-gradient(circle, #8b5cf6 0%, transparent 70%)',
+          filter: 'blur(120px)',
+          animation: 'blob2Move 60s ease-in-out infinite, blob2Opacity 28s ease-in-out infinite',
+          animationDelay: '10s, 8s',
+        }} />
+
+        {/* Blob 3 — Cyan, center-right */}
+        <div className="blob" style={{
+          width: '500px', height: '500px',
+          top: '40%', right: '-100px',
+          background: 'radial-gradient(circle, #00d9ff 0%, transparent 70%)',
+          filter: 'blur(100px)',
+          animation: 'blob3Move 85s ease-in-out infinite, blob3Opacity 25s ease-in-out infinite',
+          animationDelay: '20s, 12s',
+        }} />
+
+        {/* Blob 1 — Magenta, top-right (primary) */}
+        <div className="blob" style={{
+          width: '800px', height: '800px',
+          top: '-200px', right: '-200px',
+          background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
+          filter: 'blur(150px)',
+          animation: 'blob1Move 75s ease-in-out infinite, blob1Opacity 30s ease-in-out infinite',
+          animationDelay: '0s, 3s',
+        }} />
+
+        {/* Grid texture — very subtle */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)',
+          backgroundSize: '100px 100px',
+          animation: 'gridPulse 15s ease-in-out infinite',
+          maskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 100%)',
+        }} />
+
+        {/* Grain overlay — organic texture */}
+        <div className="absolute inset-0" style={{
+          opacity: 0.04,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '256px 256px',
+        }} />
       </div>
 
       {/* Content wrapper — z-[1] ensures all content renders above the fixed background */}
@@ -601,7 +660,11 @@ export default function LumoraRunway() {
 
       {/* ====== 2. HERO ====== */}
       <section ref={heroRef} className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '100vh' }}>
-        {/* Bordered animation container — fits one screen with visible borders */}
+        {/* Hero atmosphere boost — extra magenta glow intensity */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 70% 60% at 70% 20%, rgba(255,0,128,0.08) 0%, transparent 60%)',
+        }} />
+        {/* Hero border frame — desktop */}
         <div
           className="absolute hidden md:block"
           style={{
@@ -611,17 +674,15 @@ export default function LumoraRunway() {
             bottom: '32px',
             border: `1px solid ${C.border}`,
             borderRadius: '16px',
-            overflow: 'hidden',
-            background: 'rgba(10,10,15,0.5)',
+            background: 'rgba(0,0,0,0.3)',
           }}
         >
-          <NeonParticleCanvas particleCount={60} />
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,10,15,0.5) 100%)' }}
+            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)' }}
           />
         </div>
-        {/* Mobile: tighter margins */}
+        {/* Hero border frame — mobile */}
         <div
           className="absolute md:hidden"
           style={{
@@ -631,14 +692,12 @@ export default function LumoraRunway() {
             bottom: '20px',
             border: `1px solid ${C.border}`,
             borderRadius: '12px',
-            overflow: 'hidden',
-            background: 'rgba(10,10,15,0.5)',
+            background: 'rgba(0,0,0,0.3)',
           }}
         >
-          <NeonParticleCanvas particleCount={30} />
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,10,15,0.5) 100%)' }}
+            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)' }}
           />
         </div>
 
@@ -759,7 +818,7 @@ export default function LumoraRunway() {
                 whileHover={cardHover}
                 viewport={{ once: false, amount: 0.3 }}
                 variants={scaleReveal}
-                className="glass-card group relative rounded-xl overflow-hidden cursor-pointer"
+                className="white-card group relative rounded-2xl overflow-hidden cursor-pointer"
                 style={{
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
@@ -773,15 +832,13 @@ export default function LumoraRunway() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <span
-                    className="text-xs font-medium uppercase tracking-[0.02em] mb-1 inline-block"
-                    style={{ color: C.steel }}
-                  >
+                {/* Always-visible info below image */}
+                <div className="p-5">
+                  <span className="text-xs font-medium uppercase tracking-[0.02em] mb-1 block" style={{ color: C.magenta }}>
                     {student.projectType}
                   </span>
-                  <h3 className="text-lg font-semibold text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">{student.name}</h3>
-                  <p className="text-sm" style={{ color: C.textSec }}>Age {student.age} &middot; {student.location}</p>
+                  <h3 className="text-base font-semibold" style={{ color: C.cardTextH3 }}>{student.name}</h3>
+                  <p className="text-sm" style={{ color: C.cardTextMeta }}>Age {student.age} &middot; {student.location}</p>
                 </div>
               </motion.div>
             ))}
@@ -829,33 +886,32 @@ export default function LumoraRunway() {
                   whileHover={cardHover}
                   viewport={{ once: true, amount: 0.2 }}
                   variants={fadeUp}
-                  className="glass-card relative rounded-xl p-8 group overflow-hidden"
+                  className="white-card relative rounded-2xl p-8 group overflow-hidden"
                   style={{
-                    backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
                   }}
                 >
                   {isFeatured && (
                     <span
-                      className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: C.chrome }}
+                      className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md text-white"
+                      style={{ backgroundColor: C.magenta }}
                     >
                       Most in-demand
                     </span>
                   )}
 
                   {IconComponent && (
-                    <div className="icon-chrome mb-6 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
+                    <div className="mb-6 transition-all duration-300 group-hover:scale-110" style={{ color: C.magenta }}>
                       <IconComponent className="w-8 h-8" strokeWidth={1.5} />
                     </div>
                   )}
 
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3 leading-tight">{f.title}</h3>
-                  <div className="text-sm font-medium uppercase tracking-[0.02em] mb-4" style={{ color: C.textTer }}>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-3 leading-tight" style={{ color: C.cardTextH3 }}>{f.title}</h3>
+                  <div className="text-sm font-medium uppercase tracking-[0.02em] mb-4" style={{ color: C.cardTextMeta }}>
                     {f.meta}
                   </div>
-                  <p className="text-base leading-[1.6]" style={{ color: C.textSec }}>{f.description}</p>
+                  <p className="text-base leading-[1.6]" style={{ color: C.cardTextBody }}>{f.description}</p>
                 </motion.div>
               );
             })}
@@ -896,9 +952,8 @@ export default function LumoraRunway() {
                 whileHover={cardHover}
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
-                className="glass-card rounded-xl overflow-hidden group"
+                className="white-card rounded-2xl overflow-hidden group"
                 style={{
-                  backgroundColor: C.bgCard,
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
                 }}
@@ -908,13 +963,13 @@ export default function LumoraRunway() {
                 </div>
                 <div className="p-8">
                   <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm mb-4"
-                    style={{ background: C.gradientCta, color: '#0A0A0F' }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm mb-4 text-white"
+                    style={{ background: C.magenta }}
                   >
                     {item.step}
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-white">{item.title}</h3>
-                  <p className="text-base leading-[1.6]" style={{ color: C.textSec }}>{item.description}</p>
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: C.cardTextH3 }}>{item.title}</h3>
+                  <p className="text-base leading-[1.6]" style={{ color: C.cardTextBody }}>{item.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -957,9 +1012,8 @@ export default function LumoraRunway() {
                   whileHover={cardHover}
                   viewport={{ once: true, amount: 0.2 }}
                   variants={fadeUp}
-                  className="glass-card rounded-xl overflow-hidden group"
+                  className="white-card rounded-2xl overflow-hidden group"
                   style={{
-                    backgroundColor: C.bgCard,
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
                   }}
@@ -969,12 +1023,12 @@ export default function LumoraRunway() {
                   </div>
                   <div className="p-6">
                     {IconComponent && (
-                      <div className="icon-chrome mb-3 text-[#C7C7CC] transition-colors duration-300 group-hover:text-white">
+                      <div className="mb-3 transition-all duration-300 group-hover:scale-110" style={{ color: C.magenta }}>
                         <IconComponent className="w-6 h-6" strokeWidth={1.5} />
                       </div>
                     )}
-                    <h3 className="font-semibold text-lg text-white mb-1">{item.title}</h3>
-                    <p className="text-sm leading-[1.6]" style={{ color: C.textSec }}>{item.description}</p>
+                    <h3 className="font-semibold text-lg mb-1" style={{ color: C.cardTextH3 }}>{item.title}</h3>
+                    <p className="text-sm leading-[1.6]" style={{ color: C.cardTextBody }}>{item.description}</p>
                   </div>
                 </motion.div>
               );
@@ -1019,14 +1073,13 @@ export default function LumoraRunway() {
                 whileHover={cardHover}
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
-                className="rounded-xl p-6"
+                className="white-card rounded-2xl p-6 cursor-pointer"
                 style={{
-                  backgroundColor: 'rgba(20,20,20,0.5)',
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
                 }}
               >
-                <p className="text-lg leading-[1.6] mb-8" style={{ color: C.textSec }}>
+                <p className="text-lg leading-[1.6] mb-8" style={{ color: C.cardTextBody }}>
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="flex items-center gap-4">
@@ -1037,10 +1090,10 @@ export default function LumoraRunway() {
                     style={{ border: `2px solid ${C.borderCard}` }}
                   />
                   <div>
-                    <span className="font-semibold text-white">{t.name}</span>
-                    <span className="ml-2 text-sm" style={{ color: C.textTer }}>{t.age}</span>
-                    <div className="text-sm" style={{ color: C.textSec }}>{t.role}</div>
-                    <div className="text-xs" style={{ color: C.textTer }}>{t.location}</div>
+                    <span className="font-semibold" style={{ color: C.cardTextH3 }}>{t.name}</span>
+                    <span className="ml-2 text-sm" style={{ color: C.cardTextMeta }}>{t.age}</span>
+                    <div className="text-sm" style={{ color: C.cardTextMeta }}>{t.role}</div>
+                    <div className="text-xs" style={{ color: C.cardTextTer }}>{t.location}</div>
                   </div>
                 </div>
               </motion.div>
@@ -1072,16 +1125,17 @@ export default function LumoraRunway() {
             Start free. Go Pro for less than a coffee. Cancel anytime.
           </motion.p>
 
-          {/* Pro Card with silver border */}
+          {/* Pro Card — white with magenta accents */}
           <div className="max-w-md mx-auto mb-12 rounded-xl relative group/pricing">
-            {/* Silver border hover effect */}
+            {/* Idle border ring */}
             <div
               className="absolute inset-0 rounded-xl transition-all duration-300 pointer-events-none"
-              style={{ boxShadow: '0 0 0 1px rgba(255,255,255,0.08)' }}
+              style={{ boxShadow: '0 0 0 1px rgba(255,0,128,0.15)' }}
             />
+            {/* Magenta glow ring on hover */}
             <div
               className="absolute inset-0 rounded-xl opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-300 pointer-events-none"
-              style={{ boxShadow: '0 0 0 1px rgba(255,255,255,0.2), 0 8px 40px rgba(255,255,255,0.04)' }}
+              style={{ boxShadow: '0 0 0 1px rgba(255,0,128,0.35), 0 8px 40px rgba(255,0,128,0.10)' }}
             />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1089,42 +1143,53 @@ export default function LumoraRunway() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
               whileHover={cardHover}
-              className="relative rounded-[11px] p-8 md:p-12 text-left m-[1px]"
-              style={{ backgroundColor: C.bgCard }}
+              className="white-card relative rounded-[11px] p-8 md:p-12 text-left m-[1px]"
+              style={{ boxShadow: '0 8px 48px rgba(255,0,128,0.10), 0 4px 24px rgba(0,0,0,0.15)' }}
             >
               <div
-                className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.05em] rounded-md mb-6"
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: C.text }}
+                className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.05em] rounded-md mb-6 text-white"
+                style={{ background: C.magenta }}
               >
                 Most students choose this
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-2">{PRICING_PRO.name}</h3>
-              <p className="mb-6" style={{ color: C.textSec }}>{PRICING_PRO.description}</p>
+              <h3 className="text-2xl font-semibold mb-2" style={{ color: C.cardTextH3 }}>{PRICING_PRO.name}</h3>
+              <p className="mb-6" style={{ color: C.cardTextBody }}>{PRICING_PRO.description}</p>
               <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-[48px] sm:text-[64px] font-bold text-white">{PRICING_PRO.price}</span>
-                <span className="text-lg" style={{ color: C.textTer }}>{PRICING_PRO.period}</span>
+                <span className="text-[48px] sm:text-[64px] font-bold" style={{ color: C.cardText }}>{PRICING_PRO.price}</span>
+                <span className="text-lg" style={{ color: C.cardTextMeta }}>{PRICING_PRO.period}</span>
               </div>
-              <p className="text-sm font-medium mb-8" style={{ color: C.chrome }}>{PRICING_PRO.savings}</p>
+              <p className="text-sm font-medium mb-8" style={{ color: C.magenta }}>{PRICING_PRO.savings}</p>
               <ul className="space-y-3 mb-8">
                 {PRICING_PRO.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <Check
                       className="w-4 h-4 mt-1 flex-shrink-0"
-                      style={{ color: '#14b8a6' }}
+                      style={{ color: C.magenta }}
                       strokeWidth={2}
                     />
-                    <span style={{ color: C.textSec }}>{feature}</span>
+                    <span style={{ color: C.cardTextBody }}>{feature}</span>
                   </li>
                 ))}
               </ul>
               <button
-                className="cta-silver w-full h-14 font-semibold rounded-lg text-lg transition-all duration-200 hover:scale-[1.02]"
-                style={ctaButtonStyle}
+                className="w-full h-14 font-semibold rounded-lg text-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] text-white"
+                style={{
+                  background: C.magentaGrad,
+                  boxShadow: C.magentaGlow,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = C.magentaGlowH;
+                  (e.currentTarget as HTMLElement).style.filter = 'brightness(1.1)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = C.magentaGlow;
+                  (e.currentTarget as HTMLElement).style.filter = '';
+                }}
                 onClick={handleCtaClick}
               >
                 Start Free Trial
               </button>
-              <p className="text-center text-xs mt-4" style={{ color: C.textTer }}>
+              <p className="text-center text-xs mt-4" style={{ color: C.cardTextMeta }}>
                 7 days free, then $9.99/month. Cancel anytime.
               </p>
             </motion.div>
@@ -1243,32 +1308,40 @@ export default function LumoraRunway() {
       </section>
 
       {/* ====== 11. FOOTER ====== */}
-      <footer style={{ borderTop: `1px solid ${C.border}` }}>
+      <footer style={{ borderTop: `1px solid ${C.border}`, position: 'relative' }}>
+        {/* Footer darkening overlay — subdued atmosphere */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.35))',
+          zIndex: 0,
+        }} />
+        <div className="relative z-[1]">
         <div className="max-w-[1280px] mx-auto px-5 md:px-10 pt-16 pb-8">
           {/* Newsletter */}
           <div
-            className="mb-16 p-8 md:p-10 rounded-xl"
-            style={{ backgroundColor: C.bgCard, border: `1px solid ${C.borderCard}` }}
+            className="white-card mb-16 p-8 md:p-10 rounded-2xl"
+            style={{ border: `1px solid ${C.borderCard}`, boxShadow: cardShadowIdle }}
           >
-            <h3 className="text-xl font-semibold text-white mb-2">Get lesson updates + AI creator insights</h3>
-            <p className="mb-6" style={{ color: C.textSec }}>
+            <h3 className="text-xl font-semibold mb-2" style={{ color: C.cardTextH3 }}>Get lesson updates + AI creator insights</h3>
+            <p className="mb-6" style={{ color: C.cardTextBody }}>
               Weekly insights on AI tools, student success stories, and new lesson releases.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 max-w-md">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-white placeholder:text-[#8E8E93] text-sm transition-all duration-200 outline-none"
+                className="flex-1 px-4 py-3 rounded-lg text-sm transition-all duration-200 outline-none placeholder:text-[#9a9a9a]"
                 style={{
-                  backgroundColor: C.bgHover,
-                  border: `1px solid ${C.border}`,
+                  backgroundColor: 'rgba(0,0,0,0.04)',
+                  border: '1px solid rgba(0,0,0,0.12)',
+                  color: C.cardTextH3,
                 }}
-                onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'; }}
-                onBlur={(e) => { e.currentTarget.style.borderColor = C.border; }}
+                onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.24)'; }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.12)'; }}
               />
               <button
-                className="px-6 py-3 font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02]"
-                style={{ background: C.gradientCta, color: '#0A0A0F' }}
+                className="cta-silver px-6 py-3 font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                style={ctaButtonStyle}
+                onClick={handleCtaClick}
               >
                 Subscribe
               </button>
@@ -1328,6 +1401,7 @@ export default function LumoraRunway() {
             </div>
           </div>
         </div>
+        </div>{/* end footer z-[1] wrapper */}
       </footer>
 
       </div>{/* end content wrapper */}
