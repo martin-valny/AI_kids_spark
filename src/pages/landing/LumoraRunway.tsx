@@ -29,9 +29,9 @@ import { Film, Bot, PenTool, Music, Play, Settings, Edit3, Headphones, Star, Mai
 // ============================================================
 
 const C = {
-  bg: '#000000',
-  bgCard: 'rgba(255,255,255,0.97)',
-  bgHover: 'rgba(255,255,255,1)',
+  bg: '#080808',
+  bgCard: 'rgba(255,255,255,0.06)',
+  bgHover: 'rgba(255,255,255,0.10)',
   text: '#FFFFFF',
   textSec: '#C7C7CC',
   textTer: '#8E8E93',
@@ -41,9 +41,9 @@ const C = {
   steel: '#8E8E93',
   border: 'rgba(255,255,255,0.10)',
   borderH: 'rgba(255,255,255,0.25)',
-  borderCard: 'rgba(0,0,0,0.08)',
-  borderCardH: 'rgba(0,0,0,0.14)',
-  navBg: 'rgba(0,0,0,0.90)',
+  borderCard: 'rgba(255,255,255,0.10)',
+  borderCardH: 'rgba(255,255,255,0.18)',
+  navBg: 'rgba(8,8,8,0.90)',
   navBorder: 'rgba(255,255,255,0.08)',
   gradientCta: 'linear-gradient(135deg, #E8E8EA, #F5F5F7)',
   // Magenta accent system
@@ -51,12 +51,12 @@ const C = {
   magentaGrad: 'linear-gradient(135deg, #ff0080, #ff4da6)',
   magentaGlow: '0 4px 12px rgba(255,0,128,0.3)',
   magentaGlowH: '0 6px 20px rgba(255,0,128,0.4)',
-  // Card text hierarchy (dark on white)
-  cardText: '#0a0a0a',
-  cardTextH3: '#1a1a1a',
-  cardTextBody: '#4a4a4a',
-  cardTextMeta: '#6a6a6a',
-  cardTextTer: '#9a9a9a',
+  // Card text hierarchy (white on dark glass)
+  cardText: '#ffffff',
+  cardTextH3: '#ffffff',
+  cardTextBody: 'rgba(255,255,255,0.65)',
+  cardTextMeta: 'rgba(255,255,255,0.40)',
+  cardTextTer: 'rgba(255,255,255,0.30)',
 };
 
 // Shared CTA button style — liquid metal shimmer
@@ -68,9 +68,9 @@ const ctaButtonStyle: React.CSSProperties = {
   transition: 'box-shadow 0.4s ease, transform 0.3s ease, background-position 0.6s ease',
 };
 
-// Card shadow system — elevation for white cards on dark background
-const cardShadowIdle = '0 4px 24px rgba(0,0,0,0.15)';
-const cardShadowHover = '0 8px 40px rgba(0,0,0,0.22)';
+// Card shadow system — glass cards on dark background
+const cardShadowIdle = '0 4px 24px rgba(0,0,0,0.3)';
+const cardShadowHover = '0 8px 32px rgba(0,0,0,0.4)';
 
 // Click handler for CTA buttons — gentle press
 const handleCtaClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -151,7 +151,7 @@ const KEYFRAMES = `
     filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)) drop-shadow(0 0 20px rgba(255,255,255,0.15));
   }
 
-  /* ---- BLOB ANIMATIONS ---- */
+  /* ---- BLOB ANIMATIONS (magenta only) ---- */
   @keyframes blob1Move {
     0%   { transform: translate(0, 0) scale(1); }
     25%  { transform: translate(150px, -100px) scale(1.1); }
@@ -160,38 +160,28 @@ const KEYFRAMES = `
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes blob1Opacity {
-    0%, 100% { opacity: 0.25; }
-    50%      { opacity: 0.32; }
-  }
-  @keyframes blob2Move {
-    0%   { transform: translate(0, 0) scale(1); }
-    30%  { transform: translate(-120px, 80px) scale(0.9); }
-    60%  { transform: translate(80px, -150px) scale(1.1); }
-    100% { transform: translate(0, 0) scale(1); }
-  }
-  @keyframes blob2Opacity {
-    0%, 100% { opacity: 0.20; }
-    50%      { opacity: 0.28; }
-  }
-  @keyframes blob3Move {
-    0%   { transform: translate(0, 0) scale(1); }
-    40%  { transform: translate(-80px, 120px) scale(1.2); }
-    70%  { transform: translate(100px, -80px) scale(0.85); }
-    100% { transform: translate(0, 0) scale(1); }
-  }
-  @keyframes blob3Opacity {
-    0%, 100% { opacity: 0.15; }
-    50%      { opacity: 0.20; }
-  }
-  @keyframes blob4Move {
-    0%   { transform: translate(0, 0) scale(1); }
-    35%  { transform: translate(100px, 150px) scale(0.9); }
-    65%  { transform: translate(-150px, -80px) scale(1.1); }
-    100% { transform: translate(0, 0) scale(1); }
-  }
-  @keyframes blob4Opacity {
     0%, 100% { opacity: 0.18; }
     50%      { opacity: 0.24; }
+  }
+  @keyframes blobBMove {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(80px, -80px) scale(0.9); }
+    66%  { transform: translate(-60px, 60px) scale(1.05); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes blobBOpacity {
+    0%, 100% { opacity: 0.10; }
+    50%      { opacity: 0.14; }
+  }
+  @keyframes blobCMove {
+    0%   { transform: translate(0, 0) scale(1); }
+    40%  { transform: translate(120px, 100px) scale(0.92); }
+    75%  { transform: translate(-80px, -60px) scale(1.08); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes blobCOpacity {
+    0%, 100% { opacity: 0.08; }
+    50%      { opacity: 0.12; }
   }
 
   /* ---- BLOB BASE STYLE ---- */
@@ -203,13 +193,18 @@ const KEYFRAMES = `
     pointer-events: none;
   }
 
-  /* ---- WHITE CARD ELEVATION ---- */
+  /* ---- GLASS CARD ELEVATION ---- */
   .white-card {
-    background: rgba(255, 255, 255, 0.97);
-    transition: box-shadow 0.4s ease;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   }
   .white-card:hover {
-    box-shadow: 0 8px 40px rgba(0,0,0,0.22) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -496,34 +491,24 @@ export default function LumoraRunway() {
         {/* Base: pure black */}
         <AnimatedBackground />
 
-        {/* Blob 4 — Deep purple, top-left */}
+        {/* Blob C — Magenta, top-left (softest) */}
         <div className="blob" style={{
-          width: '700px', height: '700px',
-          top: '-200px', left: '-200px',
-          background: 'radial-gradient(circle, #6b21a8 0%, transparent 70%)',
-          filter: 'blur(140px)',
-          animation: 'blob4Move 90s ease-in-out infinite, blob4Opacity 32s ease-in-out infinite',
-          animationDelay: '0s, 5s',
+          width: '500px', height: '500px',
+          top: '-100px', left: '-80px',
+          background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
+          filter: 'blur(120px)',
+          animation: 'blobCMove 80s ease-in-out infinite, blobCOpacity 35s ease-in-out infinite',
+          animationDelay: '15s, 10s',
         }} />
 
-        {/* Blob 2 — Purple, bottom-left */}
+        {/* Blob B — Magenta, bottom-left (mid) */}
         <div className="blob" style={{
           width: '600px', height: '600px',
           bottom: '-150px', left: '-100px',
-          background: 'radial-gradient(circle, #8b5cf6 0%, transparent 70%)',
-          filter: 'blur(120px)',
-          animation: 'blob2Move 60s ease-in-out infinite, blob2Opacity 28s ease-in-out infinite',
-          animationDelay: '10s, 8s',
-        }} />
-
-        {/* Blob 3 — Cyan, center-right */}
-        <div className="blob" style={{
-          width: '500px', height: '500px',
-          top: '40%', right: '-100px',
-          background: 'radial-gradient(circle, #00d9ff 0%, transparent 70%)',
-          filter: 'blur(100px)',
-          animation: 'blob3Move 85s ease-in-out infinite, blob3Opacity 25s ease-in-out infinite',
-          animationDelay: '20s, 12s',
+          background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
+          filter: 'blur(130px)',
+          animation: 'blobBMove 70s ease-in-out infinite, blobBOpacity 28s ease-in-out infinite',
+          animationDelay: '8s, 6s',
         }} />
 
         {/* Blob 1 — Magenta, top-right (primary) */}
@@ -834,7 +819,7 @@ export default function LumoraRunway() {
                 </div>
                 {/* Always-visible info below image */}
                 <div className="p-5">
-                  <span className="text-xs font-medium uppercase tracking-[0.02em] mb-1 block" style={{ color: C.magenta }}>
+                  <span className="text-xs font-medium uppercase tracking-[0.02em] mb-1 block" style={{ color: 'rgba(255,255,255,0.50)' }}>
                     {student.projectType}
                   </span>
                   <h3 className="text-base font-semibold" style={{ color: C.cardTextH3 }}>{student.name}</h3>
@@ -899,12 +884,6 @@ export default function LumoraRunway() {
                     >
                       Most in-demand
                     </span>
-                  )}
-
-                  {IconComponent && (
-                    <div className="mb-6 transition-all duration-300 group-hover:scale-110" style={{ color: C.magenta }}>
-                      <IconComponent className="w-8 h-8" strokeWidth={1.5} />
-                    </div>
                   )}
 
                   <h3 className="text-xl sm:text-2xl font-semibold mb-3 leading-tight" style={{ color: C.cardTextH3 }}>{f.title}</h3>
@@ -1022,11 +1001,6 @@ export default function LumoraRunway() {
                     <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-6">
-                    {IconComponent && (
-                      <div className="mb-3 transition-all duration-300 group-hover:scale-110" style={{ color: C.magenta }}>
-                        <IconComponent className="w-6 h-6" strokeWidth={1.5} />
-                      </div>
-                    )}
                     <h3 className="font-semibold text-lg mb-1" style={{ color: C.cardTextH3 }}>{item.title}</h3>
                     <p className="text-sm leading-[1.6]" style={{ color: C.cardTextBody }}>{item.description}</p>
                   </div>
@@ -1144,7 +1118,7 @@ export default function LumoraRunway() {
               transition={{ duration: 0.5 }}
               whileHover={cardHover}
               className="white-card relative rounded-[11px] p-8 md:p-12 text-left m-[1px]"
-              style={{ boxShadow: '0 8px 48px rgba(255,0,128,0.10), 0 4px 24px rgba(0,0,0,0.15)' }}
+              style={{ boxShadow: '0 8px 48px rgba(255,0,128,0.15), 0 4px 24px rgba(0,0,0,0.3)' }}
             >
               <div
                 className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.05em] rounded-md mb-6 text-white"
