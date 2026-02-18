@@ -191,6 +191,7 @@ const KEYFRAMES = `
     will-change: transform;
     mix-blend-mode: screen;
     pointer-events: none;
+    animation-fill-mode: both;
   }
 
   /* ---- GLASS CARD ELEVATION ---- */
@@ -497,6 +498,7 @@ export default function LumoraRunway() {
           top: '-100px', left: '-80px',
           background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
           filter: 'blur(120px)',
+          opacity: 0.08,
           animation: 'blobCMove 80s ease-in-out infinite, blobCOpacity 35s ease-in-out infinite',
           animationDelay: '15s, 10s',
         }} />
@@ -507,6 +509,7 @@ export default function LumoraRunway() {
           bottom: '-150px', left: '-100px',
           background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
           filter: 'blur(130px)',
+          opacity: 0.10,
           animation: 'blobBMove 70s ease-in-out infinite, blobBOpacity 28s ease-in-out infinite',
           animationDelay: '8s, 6s',
         }} />
@@ -517,6 +520,7 @@ export default function LumoraRunway() {
           top: '-200px', right: '-200px',
           background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
           filter: 'blur(150px)',
+          opacity: 0.18,
           animation: 'blob1Move 75s ease-in-out infinite, blob1Opacity 30s ease-in-out infinite',
           animationDelay: '0s, 3s',
         }} />
