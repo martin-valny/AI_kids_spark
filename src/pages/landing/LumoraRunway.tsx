@@ -496,30 +496,13 @@ export default function LumoraRunway() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeStep, setActiveStep] = useState(0);
   const [subscribed, setSubscribed] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Sticky scroll IntersectionObserver for How It Works steps
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    stepRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveStep(i); },
-        { threshold: 0.6, rootMargin: '-20% 0px -20% 0px' }
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-    return () => observers.forEach(o => o.disconnect());
   }, []);
 
   // Card hover is now handled entirely via CSS .glass-card class
@@ -806,13 +789,13 @@ export default function LumoraRunway() {
             </div>
 
             {/* Before → After proof strip */}
-            <div className="mt-8 flex gap-3 overflow-x-auto pb-2 no-scrollbar max-w-full mx-auto w-fit">
+            <div className="mt-8 flex flex-wrap gap-3 justify-center pb-2">
               {[
                 { label: 'Raw clip → Viral TikTok in 2 hrs', color: '#ff0080' },
                 { label: 'Zero experience → First freelance client in 3 weeks', color: '#00d4ff' },
                 { label: 'No instrument → 30-track music library in 10 hrs', color: '#ffd60a' },
               ].map((item) => (
-                <span key={item.label} className="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap text-sm flex-shrink-0"
+                <span key={item.label} className="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap text-sm"
                   style={{
                     border: '1px solid rgba(255,255,255,0.12)',
                     background: 'rgba(255,255,255,0.04)',
@@ -877,48 +860,8 @@ export default function LumoraRunway() {
             No fluff. No filler. Build real projects and develop real skills.
           </motion.p>
 
-          {/* Desktop: sticky scroll layout */}
-          <div className="hidden md:flex gap-0" style={{ minHeight: '240vh' }}>
-            {/* Left column — sticky image */}
-            <div className="w-[40%]">
-              <div className="sticky top-24 h-[60vh] rounded-2xl overflow-hidden relative" style={{ border: `1px solid ${C.borderCard}` }}>
-                {HOW_IT_WORKS.map((item, i) => (
-                  <img key={i} src={item.image} alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-                    style={{ opacity: activeStep === i ? 1 : 0 }} />
-                ))}
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent 60%, rgba(0,0,0,0.4) 100%)' }} />
-              </div>
-            </div>
-            {/* Right column — scrolling steps */}
-            <div className="w-[60%] pl-12">
-              {HOW_IT_WORKS.map((item, i) => {
-                const stepColors = ['#ff0080', '#00d4ff', '#ffd60a'];
-                const stepTextColors = ['#ffffff', '#000000', '#000000'];
-                return (
-                  <div key={item.step}
-                    ref={(el) => { stepRefs.current[i] = el; }}
-                    className="flex items-center"
-                    style={{ minHeight: '80vh' }}
-                  >
-                    <div className="transition-opacity duration-500" style={{ opacity: activeStep === i ? 1 : 0.4 }}>
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-base mb-6"
-                        style={{ background: stepColors[i], color: stepTextColors[i] }}
-                      >
-                        {item.step}
-                      </div>
-                      <h3 className="text-2xl font-semibold mb-4" style={{ color: C.cardTextH3 }}>{item.title}</h3>
-                      <p className="text-lg leading-[1.6] max-w-md" style={{ color: C.cardTextBody }}>{item.description}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Mobile: stacked cards fallback */}
-          <div className="md:hidden grid grid-cols-1 gap-6 pb-20">
+          {/* How It Works — card grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-20">
             {HOW_IT_WORKS.map((item, i) => {
               const stepColors = ['#ff0080', '#00d4ff', '#ffd60a'];
               const stepTextColors = ['#ffffff', '#000000', '#000000'];
