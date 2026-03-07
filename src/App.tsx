@@ -87,7 +87,6 @@ import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
-import NeuralGalaxy from "@/components/NeuralGalaxy";
 
 function ConditionalAITutor() {
   const location = useLocation();
@@ -101,7 +100,6 @@ const App = () => (
       <SubscriptionProvider>
         <AITutorProvider>
           <TooltipProvider>
-          <NeuralGalaxy />
           <Toaster />
           <Sonner />
           <BrowserRouter>
