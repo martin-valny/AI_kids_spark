@@ -51,6 +51,14 @@ const C = {
   magentaGrad: 'linear-gradient(135deg, #ff0080, #ff4da6)',
   magentaGlow: '0 4px 12px rgba(255,0,128,0.3)',
   magentaGlowH: '0 6px 20px rgba(255,0,128,0.4)',
+  // Cyan accent system
+  cyan: '#00d4ff',
+  cyanGrad: 'linear-gradient(135deg, #00d4ff, #00aacc)',
+  cyanGlow: '0 4px 12px rgba(0,212,255,0.3)',
+  // Gold accent system
+  gold: '#ffd60a',
+  goldGrad: 'linear-gradient(135deg, #ffd60a, #cc9f00)',
+  goldGlow: '0 4px 12px rgba(255,214,10,0.3)',
   // Card text hierarchy (white on dark glass)
   cardText: '#ffffff',
   cardTextH3: '#ffffff',
@@ -208,6 +216,47 @@ const KEYFRAMES = `
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
   }
 
+  /* ---- NAV / FOOTER LINK HOVER ---- */
+  .nav-link { color: #8E8E93; transition: color 0.2s ease; }
+  .nav-link:hover { color: #FFFFFF; }
+  .social-link { transition: border-color 0.2s ease, color 0.2s ease; }
+  .social-link:hover { border-color: rgba(255,255,255,0.2) !important; color: #FFFFFF !important; }
+
+  /* ---- PROOF STRIP SCROLLBAR HIDE ---- */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ---- FEATURE CARD TEXTURES ---- */
+  .feature-texture-video { position: relative; }
+  .feature-texture-video::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,0,128,0.03) 2px, rgba(255,0,128,0.03) 3px);
+  }
+  .feature-texture-automation { position: relative; }
+  .feature-texture-automation::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 0;
+    background-image: radial-gradient(circle, rgba(0,212,255,0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .feature-texture-writing { position: relative; }
+  .feature-texture-writing::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(255,214,10,0.025) 8px, rgba(255,214,10,0.025) 9px);
+  }
+  .feature-texture-music { position: relative; }
+  .feature-texture-music::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 0;
+    background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(191,90,242,0.04) 3px, rgba(191,90,242,0.04) 4px);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -362,24 +411,6 @@ const FOOTER_SECTIONS = [
   { title: 'Legal', links: ['Privacy', 'Terms', 'Security', 'Cookies'] },
 ];
 
-const STUDENT_PORTFOLIO = [
-  {
-    name: 'Priya S.', age: 18, location: 'San Jose, CA',
-    projectType: 'AI Video Edit',
-    preview: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=340&fit=crop',
-  },
-  {
-    name: 'Marcus T.', age: 17, location: 'Atlanta, GA',
-    projectType: 'Automation',
-    preview: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop',
-  },
-  {
-    name: 'Lily C.', age: 19, location: 'Portland, OR',
-    projectType: 'AI Music',
-    preview: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=340&fit=crop',
-  },
-];
-
 // ============================================================
 // ANIMATION VARIANTS — Staggered fade-in on scroll
 // ============================================================
@@ -390,15 +421,6 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.4, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] },
-  }),
-};
-
-const scaleReveal = {
-  hidden: { opacity: 0.5, scale: 0.88 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
   }),
 };
 
@@ -474,12 +496,30 @@ export default function LumoraRunway() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
+  const [subscribed, setSubscribed] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Sticky scroll IntersectionObserver for How It Works steps
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    stepRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveStep(i); },
+        { threshold: 0.5, rootMargin: '-40% 0px -40% 0px' }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+    return () => observers.forEach(o => o.disconnect());
   }, []);
 
   // Card hover is now handled entirely via CSS .glass-card class
@@ -562,6 +602,12 @@ export default function LumoraRunway() {
           borderBottom: isScrolled ? `1px solid ${C.navBorder}` : '1px solid transparent',
         }}
       >
+        {/* Magenta glow line beneath nav logo */}
+        <div style={{
+          position: 'absolute', top: 0, left: 0,
+          width: '100%', height: '1px',
+          background: 'radial-gradient(ellipse 30% 100% at 15% 0%, rgba(255,0,128,0.35), transparent)',
+        }} />
         <div className="max-w-[1280px] mx-auto flex items-center justify-between px-5 md:px-10">
           <a href="#" className="text-white">
             <svg width="120" height="32" viewBox="0 0 120 32" fill="none">
@@ -582,10 +628,7 @@ export default function LumoraRunway() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium uppercase tracking-[0.02em] transition-colors duration-200"
-                style={{ color: C.textTer }}
-                onMouseEnter={(e) => { (e.target as HTMLElement).style.color = C.text; }}
-                onMouseLeave={(e) => { (e.target as HTMLElement).style.color = C.textTer; }}
+                className="nav-link text-sm font-medium uppercase tracking-[0.02em]"
               >
                 {link.label}
               </a>
@@ -631,7 +674,7 @@ export default function LumoraRunway() {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => setTimeout(() => setMobileMenuOpen(false), 100)}
                   className="text-2xl font-semibold py-4 text-white transition-colors duration-200"
                   style={{ borderBottom: `1px solid ${C.border}` }}
                 >
@@ -730,7 +773,7 @@ export default function LumoraRunway() {
             </h1>
 
             <p className="text-lg lg:text-xl font-normal max-w-[640px] mx-auto leading-[1.65] mb-10" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}>
-              60–90 minutes to your first AI-powered portfolio piece. Professional video editing, workflow automation, content writing, and music production.
+              Your first portfolio piece. Done in an afternoon. Professional video editing, workflow automation, content writing, and music production — built with AI tools real creators actually use.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -762,6 +805,26 @@ export default function LumoraRunway() {
               </a>
             </div>
 
+            {/* Before → After proof strip */}
+            <div className="mt-8 flex gap-3 overflow-x-auto pb-2 justify-center no-scrollbar">
+              {[
+                { label: 'Raw clip → Viral TikTok in 2 hrs', color: '#ff0080' },
+                { label: 'Zero experience → First freelance client in 3 weeks', color: '#00d4ff' },
+                { label: 'No instrument → 30-track music library in 10 hrs', color: '#ffd60a' },
+              ].map((item) => (
+                <span key={item.label} className="flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap text-sm flex-shrink-0"
+                  style={{
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    background: 'rgba(255,255,255,0.04)',
+                    backdropFilter: 'blur(8px)',
+                    color: C.textSec,
+                  }}>
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: item.color }} />
+                  {item.label}
+                </span>
+              ))}
+            </div>
+
             {/* Animated stats bar with CountUp + pulsing dots */}
             <div
               className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs sm:text-sm font-medium uppercase tracking-[0.02em]"
@@ -784,16 +847,16 @@ export default function LumoraRunway() {
               <span>&middot;</span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#ff0080', animation: 'pulseActivity 2s ease-in-out infinite 1.5s' }} />
-                <span className="text-white font-semibold"><CountUp end={87} suffix="%" delay={0.3} /></span> land first client in 30 days
+                <span className="text-white font-semibold"><CountUp end={87} suffix="%" delay={0.3} /></span> ship their first project in week 1
               </span>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ====== 3. STUDENT PORTFOLIO ====== */}
-      <section className="py-20 lg:py-[120px] px-5 md:px-10" id="student-work">
-        <div className="max-w-[1280px] mx-auto">
+      {/* ====== 3. HOW IT WORKS (sticky scroll) ====== */}
+      <section className="px-5 md:px-10" id="how-it-works" style={{ borderTop: `1px solid ${C.border}` }}>
+        <div className="max-w-[1280px] mx-auto pt-20 lg:pt-[120px]">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -802,52 +865,94 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            Featured Work
+            From Zero to Portfolio
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: 'rgba(255,255,255,0.55)' }}
+            className="text-center text-lg mb-16" style={{ color: 'rgba(255,255,255,0.55)', letterSpacing: '0.01em' }}
           >
-            Real projects from students who went from zero to shipping real work.
+            No fluff. No filler. Build real projects and develop real skills.
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {STUDENT_PORTFOLIO.map((student, i) => (
-              <motion.div
-                key={student.name}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                whileHover={cardHover}
-                viewport={{ once: false, amount: 0.3 }}
-                variants={scaleReveal}
-                className="white-card group relative rounded-2xl overflow-hidden cursor-pointer"
-                style={{
-                  border: `1px solid ${C.borderCard}`,
-                  boxShadow: cardShadowIdle,
-                }}
-              >
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={student.preview}
-                    alt={`${student.name}'s project`}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                {/* Always-visible info below image */}
-                <div className="p-5">
-                  <span className="text-xs font-medium uppercase tracking-[0.02em] mb-1 block" style={{ color: 'rgba(255,255,255,0.50)' }}>
-                    {student.projectType}
-                  </span>
-                  <h3 className="text-base font-semibold" style={{ color: C.cardTextH3 }}>{student.name}</h3>
-                  <p className="text-sm" style={{ color: C.cardTextMeta }}>Age {student.age} &middot; {student.location}</p>
-                </div>
-              </motion.div>
-            ))}
+          {/* Desktop: sticky scroll layout */}
+          <div className="hidden md:flex gap-0" style={{ minHeight: '300vh' }}>
+            {/* Left column — sticky image */}
+            <div className="w-[40%]">
+              <div className="sticky top-24 h-[60vh] rounded-2xl overflow-hidden" style={{ border: `1px solid ${C.borderCard}` }}>
+                {HOW_IT_WORKS.map((item, i) => (
+                  <img key={i} src={item.image} alt={item.title} loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+                    style={{ opacity: activeStep === i ? 1 : 0 }} />
+                ))}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent 60%, rgba(0,0,0,0.4) 100%)' }} />
+              </div>
+            </div>
+            {/* Right column — scrolling steps */}
+            <div className="w-[60%] pl-12">
+              {HOW_IT_WORKS.map((item, i) => {
+                const stepColors = ['#ff0080', '#00d4ff', '#ffd60a'];
+                const stepTextColors = ['#ffffff', '#000000', '#000000'];
+                return (
+                  <div key={item.step}
+                    ref={(el) => { stepRefs.current[i] = el; }}
+                    className="flex items-center"
+                    style={{ minHeight: '100vh' }}
+                  >
+                    <div className="transition-opacity duration-500" style={{ opacity: activeStep === i ? 1 : 0.4 }}>
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-base mb-6"
+                        style={{ background: stepColors[i], color: stepTextColors[i] }}
+                      >
+                        {item.step}
+                      </div>
+                      <h3 className="text-2xl font-semibold mb-4" style={{ color: C.cardTextH3 }}>{item.title}</h3>
+                      <p className="text-lg leading-[1.6] max-w-md" style={{ color: C.cardTextBody }}>{item.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile: stacked cards fallback */}
+          <div className="md:hidden grid grid-cols-1 gap-6 pb-20">
+            {HOW_IT_WORKS.map((item, i) => {
+              const stepColors = ['#ff0080', '#00d4ff', '#ffd60a'];
+              const stepTextColors = ['#ffffff', '#000000', '#000000'];
+              return (
+                <motion.div
+                  key={item.step}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  whileHover={cardHover}
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={fadeUp}
+                  className="white-card rounded-2xl overflow-hidden group"
+                  style={{
+                    border: `1px solid ${C.borderCard}`,
+                    boxShadow: cardShadowIdle,
+                  }}
+                >
+                  <div className="overflow-hidden">
+                    <img src={item.image} alt={item.title} loading="lazy" className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="p-8">
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm mb-4"
+                      style={{ background: stepColors[i], color: stepTextColors[i] }}
+                    >
+                      {item.step}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2" style={{ color: C.cardTextH3 }}>{item.title}</h3>
+                    <p className="text-base leading-[1.6]" style={{ color: C.cardTextBody }}>{item.description}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -867,7 +972,7 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            Four Skill Paths
+            Pick Your Path. Build Real Work.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -883,6 +988,7 @@ export default function LumoraRunway() {
             {FEATURES.map((f, i) => {
               const IconComponent = ICON_MAP[f.icon];
               const isFeatured = f.tier === 1;
+              const textureClasses = ['feature-texture-video', 'feature-texture-automation', 'feature-texture-writing', 'feature-texture-music'];
               return (
                 <motion.div
                   key={f.title}
@@ -892,27 +998,28 @@ export default function LumoraRunway() {
                   whileHover={cardHover}
                   viewport={{ once: true, amount: 0.2 }}
                   variants={fadeUp}
-                  className="white-card relative rounded-2xl p-8 group overflow-hidden"
+                  className={`white-card relative rounded-2xl p-8 group overflow-hidden ${textureClasses[i]}`}
                   style={{
                     border: `1px solid ${C.borderCard}`,
                     boxShadow: cardShadowIdle,
                   }}
                 >
-                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl" style={{background: f.accentColor}} />
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl z-[1]" style={{background: f.accentColor}} />
                   {isFeatured && (
                     <span
-                      className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md text-white"
-                      style={{ backgroundColor: C.magenta }}
+                      className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md text-white z-[1]"
+                      style={{ backgroundColor: f.accentColor, animation: 'pulseActivity 3s ease-in-out infinite' }}
                     >
                       Most in-demand
                     </span>
                   )}
-
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-3 leading-tight" style={{ color: C.cardTextH3 }}>{f.title}</h3>
-                  <div className="text-sm font-medium uppercase tracking-[0.02em] mb-4" style={{ color: C.cardTextMeta }}>
-                    {f.meta}
+                  <div className="relative z-[1]">
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-3 leading-tight" style={{ color: C.cardTextH3 }}>{f.title}</h3>
+                    <div className="text-sm font-medium uppercase tracking-[0.02em] mb-4" style={{ color: C.cardTextMeta }}>
+                      {f.meta}
+                    </div>
+                    <p className="text-base leading-[1.6]" style={{ color: C.cardTextBody }}>{f.description}</p>
                   </div>
-                  <p className="text-base leading-[1.6]" style={{ color: C.cardTextBody }}>{f.description}</p>
                 </motion.div>
               );
             })}
@@ -920,8 +1027,8 @@ export default function LumoraRunway() {
         </div>
       </section>
 
-      {/* ====== 5. HOW IT WORKS ====== */}
-      <section className="py-20 lg:py-[120px] px-5 md:px-10" style={{ borderTop: `1px solid ${C.border}` }}>
+      {/* ====== 5. STUDENT SHOWCASE ====== */}
+      <section className="py-20 lg:py-[120px] px-5 md:px-10" id="student-work" style={{ borderTop: `1px solid ${C.border}` }}>
         <div className="max-w-[1280px] mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -931,50 +1038,47 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            How It Works
+            Student Showcase
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16" style={{ color: 'rgba(255,255,255,0.55)', letterSpacing: '0.01em' }}
+            className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: 'rgba(255,255,255,0.55)' }}
           >
-            No fluff. No filler. Build real projects and develop real skills.
+            Real projects from students who went from zero to shipping real work.
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {HOW_IT_WORKS.map((item, i) => (
-              <motion.div
-                key={item.step}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                whileHover={cardHover}
-                viewport={{ once: true, amount: 0.2 }}
-                variants={fadeUp}
-                className="white-card rounded-2xl overflow-hidden group"
-                style={{
-                  border: `1px solid ${C.borderCard}`,
-                  boxShadow: cardShadowIdle,
-                }}
-              >
-                <div className="overflow-hidden">
-                  <img src={item.image} alt={item.title} loading="lazy" className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105" />
-                </div>
-                <div className="p-8">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm mb-4 text-white"
-                    style={{ background: C.magenta }}
-                  >
-                    {item.step}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: C.cardTextH3 }}>{item.title}</h3>
-                  <p className="text-base leading-[1.6]" style={{ color: C.cardTextBody }}>{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="white-card rounded-2xl text-center"
+            style={{
+              border: '1px solid rgba(255,0,128,0.25)',
+              boxShadow: '0 0 40px rgba(255,0,128,0.10)',
+              padding: '80px 48px',
+            }}
+          >
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: C.magenta, animation: 'pulseActivity 2s ease-in-out infinite' }} />
+              <span className="text-sm font-semibold uppercase tracking-[0.05em]" style={{ color: C.textSec }}>Student Showcase</span>
+            </div>
+            <h3 className="text-3xl font-semibold mb-4" style={{ color: C.silverLight }}>Your work could live here.</h3>
+            <p className="mb-8 mx-auto leading-[1.6]" style={{ color: C.textSec, maxWidth: 480 }}>
+              The first 100 students who complete a skill path get featured in the Lumora showcase.
+            </p>
+            <a
+              href="/mlp/first-short"
+              className="cta-silver inline-flex items-center gap-2 px-8 py-4 font-medium rounded-lg"
+              style={ctaButtonStyle}
+              onClick={handleCtaClick}
+            >
+              Start Building <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -989,7 +1093,7 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            What You'll Build
+            Your Portfolio Starts Here
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -1047,7 +1151,7 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            What Our Students Say
+            Real Students. Real Work.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -1075,7 +1179,7 @@ export default function LumoraRunway() {
                   boxShadow: cardShadowIdle,
                 }}
               >
-                <div className="absolute top-4 right-6 text-[80px] leading-none font-serif pointer-events-none select-none" style={{color: 'rgba(255,0,128,0.07)'}}>
+                <div className="absolute top-4 right-6 text-[80px] leading-none font-serif pointer-events-none select-none" style={{color: 'rgba(255,0,128,0.14)'}}>
                   &ldquo;
                 </div>
                 <div className="flex gap-0.5 mb-4">
@@ -1280,9 +1384,9 @@ export default function LumoraRunway() {
               className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold leading-tight mb-6"
               style={{ letterSpacing: '-0.01em' }}
             >
-              <span className="text-liquid-metal">Stop scrolling tutorials.</span>{' '}
+              <span className="text-liquid-metal">Stop watching. Start building.</span>{' '}
               <br className="hidden sm:block" />
-              <span className="text-liquid-metal">Start building skills.</span>
+              <span className="text-liquid-metal">Your portfolio begins today.</span>
             </h2>
             <p className="text-lg max-w-xl mx-auto leading-[1.6] mb-3" style={{ color: C.textSec }}>
               Video. Automation. Writing. Music. Four skill paths, real projects, and a clear path from zero to a portfolio that opens doors.
@@ -1301,7 +1405,7 @@ export default function LumoraRunway() {
                 <ArrowRight className="w-4 h-4" />
               </span>
             </a>
-            <p className="mt-3 text-xs" style={{color: 'rgba(255,255,255,0.45)'}}>Join 12,347 students already building</p>
+            <p className="mt-3 text-xs" style={{color: 'rgba(255,255,255,0.45)'}}>12,347 students built something real. You're next.</p>
           </motion.div>
         </div>
       </section>
@@ -1324,27 +1428,31 @@ export default function LumoraRunway() {
             <p className="mb-6" style={{ color: C.cardTextBody }}>
               Weekly insights on AI tools, student success stories, and new lesson releases.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-sm transition-all duration-200 outline-none placeholder:text-[rgba(255,255,255,0.40)]"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.08)',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  color: C.cardTextH3,
-                }}
-                onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'; e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.12)'; }}
-                onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'; }}
-              />
-              <button
-                className="cta-silver px-6 py-3 font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                style={ctaButtonStyle}
-                onClick={handleCtaClick}
-              >
-                Subscribe
-              </button>
-            </div>
+            {subscribed ? (
+              <p style={{ color: C.magenta, fontWeight: 600 }}>You're in. &#10003;</p>
+            ) : (
+              <div className="flex flex-col sm:flex-row gap-3 max-w-md">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 rounded-lg text-sm transition-all duration-200 outline-none placeholder:text-[rgba(255,255,255,0.40)]"
+                  style={{
+                    backgroundColor: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    color: C.cardTextH3,
+                  }}
+                  onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'; e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.12)'; }}
+                  onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'; }}
+                />
+                <button
+                  className="cta-silver px-6 py-3 font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                  style={ctaButtonStyle}
+                  onClick={() => setSubscribed(true)}
+                >
+                  Subscribe
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Footer links */}
@@ -1357,10 +1465,7 @@ export default function LumoraRunway() {
                     <li key={link}>
                       <a
                         href="#"
-                        className="text-sm transition-colors duration-200"
-                        style={{ color: C.textTer }}
-                        onMouseEnter={(e) => { (e.target as HTMLElement).style.color = C.text; }}
-                        onMouseLeave={(e) => { (e.target as HTMLElement).style.color = C.textTer; }}
+                        className="nav-link text-sm"
                       >
                         {link}
                       </a>
@@ -1382,16 +1487,8 @@ export default function LumoraRunway() {
                 <a
                   key={social}
                   href="#"
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-sm transition-all duration-200"
+                  className="social-link w-10 h-10 rounded-lg flex items-center justify-center text-sm"
                   style={{ color: C.textTer, border: `1px solid ${C.border}` }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
-                    (e.currentTarget as HTMLElement).style.color = C.text;
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = C.border;
-                    (e.currentTarget as HTMLElement).style.color = C.textTer;
-                  }}
                   aria-label={social}
                 >
                   {social[0]}
