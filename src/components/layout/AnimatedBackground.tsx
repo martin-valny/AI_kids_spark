@@ -1,9 +1,6 @@
-import NeuralBackground from './NeuralBackground';
-
 /**
- * Base background layer — neural mesh canvas with electrical pulses.
- * Renders behind all content via position: fixed at z-index: 0.
+ * Pure black base layer — gradient blobs in LumoraRunway handle all atmosphere.
  */
 export default function AnimatedBackground() {
-  return <NeuralBackground />;
+  return <div className="absolute inset-0" style={{ backgroundColor: '#080808' }} />;
 }
