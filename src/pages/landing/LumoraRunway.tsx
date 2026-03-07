@@ -416,17 +416,17 @@ const FOOTER_SECTIONS = [
 // ============================================================
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { duration: 0.5, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
   }),
 };
 
 const cardHover = {
-  y: -8,
-  scale: 1.01,
+  y: -12,
+  scale: 1.03,
   transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
 };
 
@@ -514,7 +514,7 @@ export default function LumoraRunway() {
       if (!el) return;
       const observer = new IntersectionObserver(
         ([entry]) => { if (entry.isIntersecting) setActiveStep(i); },
-        { threshold: 0.5, rootMargin: '-40% 0px -40% 0px' }
+        { threshold: 0.6, rootMargin: '-20% 0px -20% 0px' }
       );
       observer.observe(el);
       observers.push(observer);
@@ -806,7 +806,7 @@ export default function LumoraRunway() {
             </div>
 
             {/* Before → After proof strip */}
-            <div className="mt-8 flex gap-3 overflow-x-auto pb-2 justify-center no-scrollbar">
+            <div className="mt-8 flex gap-3 overflow-x-auto pb-2 no-scrollbar max-w-full mx-auto w-fit">
               {[
                 { label: 'Raw clip → Viral TikTok in 2 hrs', color: '#ff0080' },
                 { label: 'Zero experience → First freelance client in 3 weeks', color: '#00d4ff' },
@@ -878,12 +878,12 @@ export default function LumoraRunway() {
           </motion.p>
 
           {/* Desktop: sticky scroll layout */}
-          <div className="hidden md:flex gap-0" style={{ minHeight: '300vh' }}>
+          <div className="hidden md:flex gap-0" style={{ minHeight: '240vh' }}>
             {/* Left column — sticky image */}
             <div className="w-[40%]">
-              <div className="sticky top-24 h-[60vh] rounded-2xl overflow-hidden" style={{ border: `1px solid ${C.borderCard}` }}>
+              <div className="sticky top-24 h-[60vh] rounded-2xl overflow-hidden relative" style={{ border: `1px solid ${C.borderCard}` }}>
                 {HOW_IT_WORKS.map((item, i) => (
-                  <img key={i} src={item.image} alt={item.title} loading="lazy"
+                  <img key={i} src={item.image} alt={item.title}
                     className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
                     style={{ opacity: activeStep === i ? 1 : 0 }} />
                 ))}
@@ -899,7 +899,7 @@ export default function LumoraRunway() {
                   <div key={item.step}
                     ref={(el) => { stepRefs.current[i] = el; }}
                     className="flex items-center"
-                    style={{ minHeight: '100vh' }}
+                    style={{ minHeight: '80vh' }}
                   >
                     <div className="transition-opacity duration-500" style={{ opacity: activeStep === i ? 1 : 0.4 }}>
                       <div
