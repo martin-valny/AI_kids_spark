@@ -131,12 +131,12 @@ const KEYFRAMES = `
 
   /* ---- LIQUID METAL TEXT ---- */
   .text-liquid-metal {
-    background: linear-gradient(105deg, #8E8E93 0%, #E8E8EA 20%, #FFFFFF 40%, #F5F5F7 60%, #C7C7CC 80%, #8E8E93 100%);
+    background: linear-gradient(105deg, #C0C0C8 0%, #E8E8EA 20%, #FFFFFF 40%, #F5F5F7 60%, #C7C7CC 80%, #C0C0C8 100%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: textShimmer 14s ease-in-out infinite;
+    animation: textShimmer 7s ease-in-out infinite;
   }
 
   /* ---- BREATHING HERO ---- */
@@ -160,8 +160,8 @@ const KEYFRAMES = `
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes blob1Opacity {
-    0%, 100% { opacity: 0.18; }
-    50%      { opacity: 0.24; }
+    0%, 100% { opacity: 0.28; }
+    50%      { opacity: 0.38; }
   }
   @keyframes blobBMove {
     0%   { transform: translate(0, 0) scale(1); }
@@ -170,8 +170,8 @@ const KEYFRAMES = `
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes blobBOpacity {
-    0%, 100% { opacity: 0.10; }
-    50%      { opacity: 0.14; }
+    0%, 100% { opacity: 0.14; }
+    50%      { opacity: 0.20; }
   }
   @keyframes blobCMove {
     0%   { transform: translate(0, 0) scale(1); }
@@ -180,8 +180,8 @@ const KEYFRAMES = `
     100% { transform: translate(0, 0) scale(1); }
   }
   @keyframes blobCOpacity {
-    0%, 100% { opacity: 0.08; }
-    50%      { opacity: 0.12; }
+    0%, 100% { opacity: 0.18; }
+    50%      { opacity: 0.25; }
   }
 
   /* ---- BLOB BASE STYLE ---- */
@@ -245,6 +245,7 @@ const FEATURES = [
     icon: 'film',
     meta: 'FIRST SHORT IN 2 HOURS · FULL PORTFOLIO IN 15',
     tier: 1,
+    accentColor: '#ff0080',
   },
   {
     title: 'Workflow Automation Clients Pay For',
@@ -252,6 +253,7 @@ const FEATURES = [
     icon: 'bot',
     meta: 'FIRST WORKFLOW IN 3 HOURS · 10 AUTOMATIONS IN 12',
     tier: 1,
+    accentColor: '#00d4ff',
   },
   {
     title: 'AI Content Writing & Strategy',
@@ -259,6 +261,7 @@ const FEATURES = [
     icon: 'pen',
     meta: 'FIRST THREAD IN 1 HOUR · FULL CALENDAR IN 18',
     tier: 2,
+    accentColor: '#ffd60a',
   },
   {
     title: 'AI Music Production Library',
@@ -266,6 +269,7 @@ const FEATURES = [
     icon: 'music',
     meta: 'FIRST TRACK IN 2 HOURS · FULL LIBRARY IN 10',
     tier: 2,
+    accentColor: '#bf5af2',
   },
 ];
 
@@ -498,7 +502,7 @@ export default function LumoraRunway() {
           top: '-100px', left: '-80px',
           background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
           filter: 'blur(120px)',
-          opacity: 0.08,
+          opacity: 0.18,
           animation: 'blobCMove 80s ease-in-out infinite, blobCOpacity 35s ease-in-out infinite',
           animationDelay: '15s, 10s',
         }} />
@@ -509,7 +513,7 @@ export default function LumoraRunway() {
           bottom: '-150px', left: '-100px',
           background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
           filter: 'blur(130px)',
-          opacity: 0.10,
+          opacity: 0.14,
           animation: 'blobBMove 70s ease-in-out infinite, blobBOpacity 28s ease-in-out infinite',
           animationDelay: '8s, 6s',
         }} />
@@ -520,7 +524,7 @@ export default function LumoraRunway() {
           top: '-200px', right: '-200px',
           background: 'radial-gradient(circle, #ff0080 0%, transparent 70%)',
           filter: 'blur(150px)',
-          opacity: 0.18,
+          opacity: 0.28,
           animation: 'blob1Move 75s ease-in-out infinite, blob1Opacity 30s ease-in-out infinite',
           animationDelay: '0s, 3s',
         }} />
@@ -655,7 +659,7 @@ export default function LumoraRunway() {
         }} />
         {/* Hero border frame — desktop */}
         <div
-          className="absolute hidden md:block"
+          className="absolute hidden md:block overflow-hidden"
           style={{
             top: '88px',
             left: '24px',
@@ -663,17 +667,25 @@ export default function LumoraRunway() {
             bottom: '32px',
             border: `1px solid ${C.border}`,
             borderRadius: '16px',
-            background: 'rgba(0,0,0,0.3)',
+            background: 'rgba(0,0,0,0.15)',
           }}
         >
+          <div className="absolute top-3 left-4 text-[10px] font-mono uppercase tracking-widest" style={{color: 'rgba(255,255,255,0.25)', zIndex: 2}}>
+            LUMORA PLATFORM
+          </div>
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/hero-bg.mp4" />
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)' }}
+            style={{ background: 'radial-gradient(rgba(0,0,0,0) 30%, rgba(0,0,0,0.65) 100%)' }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: 'linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.5) 100%)' }}
           />
         </div>
         {/* Hero border frame — mobile */}
         <div
-          className="absolute md:hidden"
+          className="absolute md:hidden overflow-hidden"
           style={{
             top: '72px',
             left: '12px',
@@ -681,12 +693,17 @@ export default function LumoraRunway() {
             bottom: '20px',
             border: `1px solid ${C.border}`,
             borderRadius: '12px',
-            background: 'rgba(0,0,0,0.3)',
+            background: 'rgba(0,0,0,0.15)',
           }}
         >
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/hero-bg.mp4" />
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)' }}
+            style={{ background: 'radial-gradient(rgba(0,0,0,0) 30%, rgba(0,0,0,0.65) 100%)' }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: 'linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.5) 100%)' }}
           />
         </div>
 
@@ -720,7 +737,7 @@ export default function LumoraRunway() {
               <a
                 href="/mlp/first-short"
                 className="cta-silver group inline-flex items-center justify-center gap-2 px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.03] w-full sm:w-auto"
-                style={ctaButtonStyle}
+                style={{...ctaButtonStyle, boxShadow: '0 0 50px rgba(255,0,128,0.20), 0 0 100px rgba(255,0,128,0.08)'}}
                 onClick={handleCtaClick}
               >
                 Start Building{' '}
@@ -730,14 +747,14 @@ export default function LumoraRunway() {
               </a>
               <a
                 href="#features"
-                className="inline-flex items-center justify-center px-8 py-4 text-white font-medium rounded-lg text-base transition-all duration-200 w-full sm:w-auto"
-                style={{ border: '1px solid rgba(255,255,255,0.2)' }}
+                className="inline-flex items-center justify-center px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 w-full sm:w-auto"
+                style={{ border: '1px solid rgba(255,255,255,0.30)', color: 'rgba(255,255,255,0.85)' }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.3)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.4)';
                   (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(255,255,255,0.08)';
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.2)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.30)';
                   (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
                 }}
               >
@@ -748,26 +765,26 @@ export default function LumoraRunway() {
             {/* Animated stats bar with CountUp + pulsing dots */}
             <div
               className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs sm:text-sm font-medium uppercase tracking-[0.02em]"
-              style={{ color: 'rgba(255,255,255,0.5)' }}
+              style={{ color: 'rgba(255,255,255,0.75)' }}
             >
               <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgba(255,0,110,0.4)', animation: 'pulseActivity 2s ease-in-out infinite' }} />
-                <CountUp end={12347} suffix=" students" delay={0} />
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#ff0080', animation: 'pulseActivity 2s ease-in-out infinite' }} />
+                <span className="text-white font-semibold"><CountUp end={12347} suffix="" delay={0} /></span> students
               </span>
               <span>&middot;</span>
               <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgba(255,0,110,0.4)', animation: 'pulseActivity 2s ease-in-out infinite 0.5s' }} />
-                <CountUp end={847} prefix="$" suffix="K+ earned" delay={0.1} />
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#ff0080', animation: 'pulseActivity 2s ease-in-out infinite 0.5s' }} />
+                <span className="text-white font-semibold"><CountUp end={847} prefix="$" suffix="K+" delay={0.1} /></span> earned
               </span>
               <span>&middot;</span>
               <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgba(255,0,110,0.4)', animation: 'pulseActivity 2s ease-in-out infinite 1s' }} />
-                <CountUp end={4.9} suffix={'\u2605 average'} decimals={1} delay={0.2} />
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#ff0080', animation: 'pulseActivity 2s ease-in-out infinite 1s' }} />
+                <span className="text-white font-semibold"><CountUp end={4.9} suffix="" decimals={1} delay={0.2} /></span>{'\u2605'} average
               </span>
               <span>&middot;</span>
               <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgba(255,0,110,0.4)', animation: 'pulseActivity 2s ease-in-out infinite 1.5s' }} />
-                <CountUp end={87} suffix="% land first client in 30 days" delay={0.3} />
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#ff0080', animation: 'pulseActivity 2s ease-in-out infinite 1.5s' }} />
+                <span className="text-white font-semibold"><CountUp end={87} suffix="%" delay={0.3} /></span> land first client in 30 days
               </span>
             </div>
           </motion.div>
@@ -792,7 +809,7 @@ export default function LumoraRunway() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: C.textSec }}
+            className="text-center text-lg mb-16 max-w-lg mx-auto leading-[1.5]" style={{ color: 'rgba(255,255,255,0.55)' }}
           >
             Real projects from students who went from zero to shipping real work.
           </motion.p>
@@ -850,14 +867,14 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            <span className="text-liquid-metal">Four Skill Paths</span>
+            Four Skill Paths
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16 max-w-xl mx-auto leading-[1.5]" style={{ color: C.textSec }}
+            className="text-center text-lg mb-16 max-w-xl mx-auto leading-[1.5]" style={{ color: 'rgba(255,255,255,0.55)' }}
           >
             Each path takes you from zero to a portfolio you can show — in hours, not months.
           </motion.p>
@@ -881,6 +898,7 @@ export default function LumoraRunway() {
                     boxShadow: cardShadowIdle,
                   }}
                 >
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl" style={{background: f.accentColor}} />
                   {isFeatured && (
                     <span
                       className="absolute top-6 right-6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.02em] rounded-md text-white"
@@ -920,7 +938,7 @@ export default function LumoraRunway() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16" style={{ color: 'rgba(199,199,204,0.75)', letterSpacing: '0.01em' }}
+            className="text-center text-lg mb-16" style={{ color: 'rgba(255,255,255,0.55)', letterSpacing: '0.01em' }}
           >
             No fluff. No filler. Build real projects and develop real skills.
           </motion.p>
@@ -971,14 +989,14 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold text-center mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            <span className="text-liquid-metal">What You'll Build</span>
+            What You'll Build
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16" style={{ color: C.textSec }}
+            className="text-center text-lg mb-16" style={{ color: 'rgba(255,255,255,0.55)' }}
           >
             Real projects you can post, sell, or add to your portfolio.
           </motion.p>
@@ -1036,7 +1054,7 @@ export default function LumoraRunway() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16" style={{ color: C.textSec }}
+            className="text-center text-lg mb-16" style={{ color: 'rgba(255,255,255,0.55)' }}
           >
             12,347 students are already building with AI.
           </motion.p>
@@ -1051,12 +1069,20 @@ export default function LumoraRunway() {
                 whileHover={cardHover}
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
-                className="white-card rounded-2xl p-6 cursor-pointer"
+                className="white-card relative rounded-2xl p-6 cursor-pointer"
                 style={{
                   border: `1px solid ${C.borderCard}`,
                   boxShadow: cardShadowIdle,
                 }}
               >
+                <div className="absolute top-4 right-6 text-[80px] leading-none font-serif pointer-events-none select-none" style={{color: 'rgba(255,0,128,0.07)'}}>
+                  &ldquo;
+                </div>
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <span key={j} style={{color: '#ff0080', fontSize: '12px'}}>&#9733;</span>
+                  ))}
+                </div>
                 <p className="text-lg leading-[1.6] mb-8" style={{ color: C.cardTextBody }}>
                   &ldquo;{t.quote}&rdquo;
                 </p>
@@ -1091,30 +1117,20 @@ export default function LumoraRunway() {
             className="text-[32px] sm:text-[40px] lg:text-[48px] font-semibold mb-4"
             style={{ letterSpacing: '-0.01em' }}
           >
-            <span className="text-liquid-metal">Simple, Transparent Pricing</span>
+            Simple, Transparent Pricing
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg mb-16" style={{ color: C.textSec }}
+            className="text-lg mb-16" style={{ color: 'rgba(255,255,255,0.55)' }}
           >
             Start free. Go Pro for less than a coffee. Cancel anytime.
           </motion.p>
 
           {/* Pro Card — white with magenta accents */}
-          <div className="max-w-md mx-auto mb-12 rounded-xl relative group/pricing">
-            {/* Idle border ring */}
-            <div
-              className="absolute inset-0 rounded-xl transition-all duration-300 pointer-events-none"
-              style={{ boxShadow: '0 0 0 1px rgba(255,0,128,0.15)' }}
-            />
-            {/* Magenta glow ring on hover */}
-            <div
-              className="absolute inset-0 rounded-xl opacity-0 group-hover/pricing:opacity-100 transition-opacity duration-300 pointer-events-none"
-              style={{ boxShadow: '0 0 0 1px rgba(255,0,128,0.35), 0 8px 40px rgba(255,0,128,0.10)' }}
-            />
+          <div className="max-w-md mx-auto mb-12 rounded-xl relative group/pricing" style={{ boxShadow: '0 0 0 1px rgba(255,0,128,0.35), 0 0 40px rgba(255,0,128,0.18), 0 0 80px rgba(255,0,128,0.10), 0 8px 48px rgba(0,0,0,0.50)' }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1204,7 +1220,7 @@ export default function LumoraRunway() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center text-lg mb-16" style={{ color: C.textSec }}
+            className="text-center text-lg mb-16" style={{ color: 'rgba(255,255,255,0.55)' }}
           >
             Everything you need to know about Lumora.
           </motion.p>
@@ -1248,8 +1264,12 @@ export default function LumoraRunway() {
       </section>
 
       {/* ====== 10. FINAL CTA ====== */}
-      <section className="py-20 lg:py-[120px] px-5 md:px-10 text-center" style={{ borderTop: `1px solid ${C.border}` }}>
-        <div className="max-w-[920px] mx-auto">
+      <section className="py-20 lg:py-[120px] px-5 md:px-10 text-center relative" style={{ borderTop: `1px solid ${C.border}` }}>
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,0,128,0.08) 0%, transparent 70%)',
+          zIndex: 0,
+        }} />
+        <div className="relative z-10 max-w-[920px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1272,8 +1292,8 @@ export default function LumoraRunway() {
             </p>
             <a
               href="/mlp/first-short"
-              className="cta-silver group inline-flex items-center justify-center gap-2 px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.03] w-full sm:w-auto"
-              style={ctaButtonStyle}
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 font-medium rounded-lg text-base transition-all duration-200 hover:scale-[1.03] w-full sm:w-auto"
+              style={{ background: 'linear-gradient(135deg, #ff0080 0%, #d4006a 100%)', color: '#ffffff', boxShadow: '0 4px 30px rgba(255,0,128,0.40)' }}
               onClick={handleCtaClick}
             >
               Start Building{' '}
@@ -1281,6 +1301,7 @@ export default function LumoraRunway() {
                 <ArrowRight className="w-4 h-4" />
               </span>
             </a>
+            <p className="mt-3 text-xs" style={{color: 'rgba(255,255,255,0.45)'}}>Join 12,347 students already building</p>
           </motion.div>
         </div>
       </section>
@@ -1307,14 +1328,14 @@ export default function LumoraRunway() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-sm transition-all duration-200 outline-none placeholder:text-[#9a9a9a]"
+                className="flex-1 px-4 py-3 rounded-lg text-sm transition-all duration-200 outline-none placeholder:text-[rgba(255,255,255,0.40)]"
                 style={{
-                  backgroundColor: 'rgba(0,0,0,0.04)',
-                  border: '1px solid rgba(0,0,0,0.12)',
+                  backgroundColor: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(255,255,255,0.15)',
                   color: C.cardTextH3,
                 }}
-                onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.24)'; }}
-                onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.12)'; }}
+                onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'; e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.12)'; }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'; }}
               />
               <button
                 className="cta-silver px-6 py-3 font-medium rounded-lg text-sm whitespace-nowrap transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
