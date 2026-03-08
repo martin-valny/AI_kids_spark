@@ -699,7 +699,7 @@ export default function LumoraRunway() {
           <div className="absolute top-3 left-4 text-[10px] font-mono uppercase tracking-widest" style={{color: 'rgba(255,255,255,0.25)', zIndex: 2}}>
             LUMORA PLATFORM
           </div>
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/hero-bg.mp4" />
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/hero-bg-2.mp4" />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(rgba(0,0,0,0) 30%, rgba(0,0,0,0.65) 100%)' }}
@@ -722,7 +722,7 @@ export default function LumoraRunway() {
             background: 'rgba(0,0,0,0.15)',
           }}
         >
-          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/hero-bg.mp4" />
+          <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" src="/hero-bg-2.mp4" />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(rgba(0,0,0,0) 30%, rgba(0,0,0,0.65) 100%)' }}
